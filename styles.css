@@ -1,0 +1,235 @@
+body {
+    background-color: #1e1e1e;
+    overflow-x: hidden;
+    font-family: Arial;
+}
+
+.lilimage {
+    background-image: url(https://i.imgur.com/yLEqfqh.png);
+    background-position: right;
+    background-repeat: no-repeat;
+    position: absolute;
+    transform: translateY(100%);
+    z-index: -10;
+    bottom: 10px;
+    right: 10px;
+    height: 500px;
+    width: 500px;
+    background-size: 100%;
+}
+
+
+h1 {
+    color: White;
+    margin-left: 10px;
+    overflow-wrap: anywhere;
+    text-align: center;
+    margin-top: -5px;
+    margin-bottom: 5px;
+    font-size: 4em;
+    font-weight: 100;
+}
+
+h3 {
+    color: White;
+    margin-left: 10px;
+    font-size: 24px;
+    font-weight: 100;
+}
+
+.Title {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.SubTitle {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.CustomCard {
+    color: white;
+    padding: 10px;
+    border-width: 0px;
+    margin-bottom: 10px;
+    z-index: 10;
+}
+
+.CardContainer {
+    width: 50%;
+    margin: 0 auto;
+
+}
+
+.TitleContainer {
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr 150px 450px 1fr;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+p{
+    color: white;
+    font-size: 24px;
+    font-weight: 300;
+    margin-left: 10px;
+}
+
+li{
+    color: white;
+    font-size: 24px;
+}
+
+.pfp {
+    width: 150px;   
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+fluent-accordion-item div.panel {
+    padding: 12px 10px 12px;
+    margin: 12px 0 12px;
+    line-height: normal;
+    
+}
+
+#TwitButton {
+    float: right;
+    display: flex;
+    margin-right: 25%;
+    margin-bottom: 10px;
+}
+
+#GitButton {
+    float: right;
+    display: flex;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+a:link {
+    color: #4fbffc;
+}
+/* visited link */
+a:visited {
+    color: #cf2cff;
+}
+/* mouse over link */
+a:hover {
+    color: #04a4fc;
+}
+/* selected link */
+a:active {
+    color: #038cfc;
+}
+
+@media (max-width: 1240px) {
+    .CardContainer {
+        width: 80%;
+        margin: auto;
+    }
+
+    .TitleContainer {
+        display: grid;
+        grid-template-columns: 1fr 150px 450px 1fr;
+        width: 60%;
+        margin: 0 auto;
+    }
+
+    #TwitButton {
+        margin-right: 10%;
+    }
+    
+    #GitButton {
+        margin-right: 10px;
+    }
+    .lilimage {
+        height: 0px;
+        width: 0px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .CardContainer {
+        width: 80%;
+        margin: auto;
+    }
+
+    .TitleContainer {
+        padding: 10px 0;
+        display: grid;
+        grid-template-columns: 1fr 150px 450px 1fr;
+        width: 70%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 860px) {
+    .CardContainer {
+        width: 80%;
+        margin: auto;
+    }
+
+    .TitleContainer {
+        padding: 10px 0;
+        display: grid;
+        grid-template-columns: 1fr 150px 450px 1fr;
+        width: 80%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 770px) {
+    .CardContainer {
+        width: 80%;
+        margin: auto;
+    }
+
+    .TitleContainer {
+        padding: 10px 0;
+        display: grid;
+        grid-template-columns: 1fr 150px 450px 1fr;
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 700px) {
+    .CardContainer {
+        width: 90%;
+        margin: auto;
+    }
+
+    .TitleContainer {
+        padding: 10px 0;
+        display: grid;
+        grid-template-columns: 1fr 150px 450px 1fr;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    #TwitButton {
+        margin-right: 5%;
+    }
+    
+    #GitButton {
+        margin-right: 10px;
+    }
+}
+
+
+@media (max-width: 640px) {
+    .CardContainer {
+        width: 90%;
+        margin: auto;
+    }
+
+    .TitleContainer {
+        padding: 10px 0;
+        margin-left: 20px;
+        display: block;
+        margin-right: 0px;
+    }
+}
