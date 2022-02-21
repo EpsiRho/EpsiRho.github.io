@@ -311,6 +311,33 @@ a:active {
 
 @media (min-width: 600px) {
     body {
-        background-size: 500%;
+        background-size: 700%;
+    }
+    .supriseimage {
+        height: 0px;
+        width: 0px;
+    }
+    
+    .waveimage {
+        height: 0px;
+        width: 0px;
+    }
+    
+    .lazyimage {
+        height: 0px;
+        width: 0px;
+    }
+    .lazymargin {
+        margin: 0px 0px 0px 0px;
+    }
+    .lazymargin2 {
+        margin: 0px 0px 0px 0px;
+    }
+    
+    .needsmovewave {
+        margin: 0px 0px 0px 0px;
+    }
+    .needsmovewave2 {
+        margin: 0px 0px 0px 0px;
     }
 }
