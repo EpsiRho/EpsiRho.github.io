@@ -311,11 +311,12 @@ a:active {
     .ButtonContainer {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        width:30vw;
+        width:40vw;
         margin: 0 auto;
     }
 
     #TwitButton {
+        margin-right: 10px;
         display: flex;
     }
     
