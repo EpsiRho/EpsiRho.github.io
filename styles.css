@@ -1,11 +1,20 @@
 body {
     background-color: #1e1e1e;
+    font-family: Arial;
+}
+
+#background_wrap {
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
     background-image: url(https://i.imgur.com/qhznGmy.png);
     overflow-x: hidden;
     background-position: right;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    font-family: Arial;
 }
 
 .lilimage {
