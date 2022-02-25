@@ -1,11 +1,20 @@
 body {
     background-color: #1e1e1e;
+    font-family: Arial;
+}
+
+#background_wrap {
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
     background-image: url(https://i.imgur.com/qhznGmy.png);
     overflow-x: hidden;
     background-position: right;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    font-family: Arial;
 }
 
 .fluffappicon {
@@ -210,16 +219,16 @@ a:active {
         margin: auto;
     }
     .ButtonsContainer {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        width: 100%;
+        display: block;
+        grid-template-columns: 40vw 40vw;
+        width:60vw;
         margin: auto auto auto auto;
     }
     .DownloadCard {
         color: white;
         padding: 10px;
         display: grid;
-        grid-template-columns: 150px 6fr;
+        grid-template-columns: 120px 6fr;
         grid-template-rows: auto 30px;
         border-width: 0px;
         margin-bottom: 10px;
@@ -227,7 +236,16 @@ a:active {
     }
     .DownloadTitle {
         height: 70%;
-        font-size: 3em;
-        margin: auto auto auto 40px;
+        font-size: 2em;
+        margin: 25px auto auto -20px;
+    }
+    .fluffappicon {
+        background-image: url(https://i.imgur.com/Lo7BtGw.png);
+        height: 115px;
+        width: 115px;
+        background-position: right;
+        background-repeat: no-repeat;
+        position: grid;
+        background-size: 100%;
     }
 }
