@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script type="module" src="https://unpkg.com/@fluentui/web-components"></script>
+        <link rel="stylesheet" href="projectstyles.css">
+        <script type="module" src="projectscript.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="CardContainer">
+            <fluent-card class="DownloadCard">
+                <div class="fluffappicon"></div>
+
+                <h1 class="DownloadTitle">Fluff: Furry Art Viewer</h1>
+
+                <div></div>
+                <div class="ButtonsContainer">
+                    <fluent-button class="DownloadButton" appearance="accent" id="MButton">Microsoft Store</fluent-button>
+                    <fluent-button class="DownloadButton" id="GitButton">Github</fluent-button>
+                </div>
+            </fluent-card>
+            <fluent-card class="AdditionalCard">
+                <h3>Description</h3>
+                <p>A beautiful, native windows app for e926/e621!</p>
+                <p>View, search, and download posts submitted by other users, and submit your own.</p>
+                <p>This app is in beta! There may be some issues / missing features, but I'll be updating this app fairly frequently.</p>
+                <h3>Features:</h3>
+                <ul>
+                    <li>Full control with search filters.</li>
+                    <li>Saved Images get tags saved to their metadata.</li>
+                    <li>Login to your e926/e621 account.</li>
+                    <li>View and download pools.</li>
+                    <li>View and submit comments on posts.</li>
+                    <li>Get tag recommendation.</li>
+                    <li>Save your favorite tags for easy access.</li>
+                    <li>Open e621 links in app from your clipboard.</li>
+                </ul>
+            </fluent-card>
+            <fluent-card class="AdditionalCard">
+                <h3>Changelog</h3>
+                <p>Version 0.7</p>
+                <ul>
+                    <li>Upload posts from Fluff!</li>
+                    <li>Fixed scroll position not being saved when going back a page.</li>
+                    <li>Fixed filters resetting when going back a page.</li>
+                    <li>Added crash reporting code.</li>
+                </ul>
+                <p>Version 0.6</p>
+                <ul>
+                    <li>Added more pool info in search.</li>
+                    <li>Added recommended tags button.</li>
+                    <li>Fixed various bugs.</li>
+                    <li>Added Comments to posts.</li>
+                    <li>You can now comment on posts.</li>
+                    <li>Some DText is converted to markdown for proper display.</li>
+                    <li>Moved post controls into overflow menu.</li>
+                    <li>Updated tag suggestions.</li>
+                    <li>Fixed multiple downloads.</li>
+                    <li>Added Descriptions.</li>
+                    <li>Added favorite tags.</li>
+                    <li>Hover animation added to grid splitter to show that sidebar can be resized.</li>
+                    <li>Redesigned post view.</li>
+                    <li>Added sources.</li>
+                    <li>Added post relationships.</li>
+                    <li>Added clipboard checker when clicking into the window that will ask to open e621 links in app!.</li>
+                    <li>Fixed Pool search page switching.</li>
+                    <li>Fixed a crash in pool search.</li>
+                </ul>
+                <p>Version 0.5</p>
+                <ul>
+                    <li>Fixed crash on initial login.</li>
+                    <li>Mute videos settings works.</li>
+                    <li>Fixed filters resetting when going back a page.</li>
+                    <li>Moved post controls to the top to keep it out of the way of the video player UI.</li>
+                    <li>Fixed bug preventing proper page back movement.</li>
+                    <li>More minor bug fixes.</li>
+                    <li>See liked / disliked / favorited posts.</li>
+                    <li>Like / dislike / Favorited posts.</li>
+                    <li>Sped up page loads, removed connected animation.</li>
+                    <li>Pools search added.</li>
+                    <li>Pool view added.</li>
+                    <li>Pools button now shows and links to pools that the post is in.</li>
+                </ul>
+            </fluent-card>
+        </div>
+    </body>
+</html>

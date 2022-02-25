@@ -344,4 +344,17 @@ a:active {
     .needsmovewave2 {
         margin: 0px 0px 0px 0px;
     }
+
+    #TwitButton {
+        margin: auto auto 10px 10px;
+    }
+    
+    #GitButton {
+        margin: auto;
+    }
+
+    .ButtonContainer {
+        width: 40%;
+        margin: auto;
+    }
 }
