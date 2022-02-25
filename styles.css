@@ -135,6 +135,7 @@ h3 {
     padding: 10px 0;
     display: grid;
     grid-template-columns: 1fr 150px 450px 1fr;
+    grid-template-rows: auto auto;
     width: 50%;
     margin: 0 auto;
     margin-top: 20px;
@@ -167,18 +168,17 @@ fluent-accordion-item div.panel {
 }
 
 #TwitButton {
-    float: right;
-    display: flex;
-    margin-right: 25%;
     margin-bottom: 10px;
     
 }
 
 #GitButton {
-    float: right;
-    display: flex;
-    margin-right: 10px;
     margin-bottom: 10px;
+}
+
+.ButtonContainer {
+    width: 50%;
+    margin: auto;
 }
 
 a:link {
@@ -307,6 +307,21 @@ a:active {
         display: block;
         margin-right: 0px;
     }
+
+    .ButtonContainer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width:30vw;
+        margin: 0 auto;
+    }
+
+    #TwitButton {
+        display: flex;
+    }
+    
+    #GitButton {
+        display: flex;
+    }
 }
 
 @media (max-width: 600px) {
@@ -343,18 +358,5 @@ a:active {
     }
     .needsmovewave2 {
         margin: 0px 0px 0px 0px;
-    }
-
-    #TwitButton {
-        margin: auto auto 10px 10px;
-    }
-    
-    #GitButton {
-        margin: auto;
-    }
-
-    .ButtonContainer {
-        width: 40%;
-        margin: auto;
     }
 }
