@@ -206,6 +206,10 @@ a:active {
     color: #038cfc;
 }
 
+.NoHighlight{
+    text-decoration: none;
+}
+
 @media (max-width: 1240px) {
     .CardContainer {
         width: 80%;
@@ -216,6 +220,13 @@ a:active {
         display: grid;
         grid-template-columns: 1fr 150px 450px 1fr;
         width: 60%;
+        margin: 0 auto;
+    }
+
+    .ButtonContainer {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        width:40vw;
         margin: 0 auto;
     }
 
@@ -319,7 +330,7 @@ a:active {
 
     .ButtonContainer {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
         width:40vw;
         margin: 0 auto;
     }
