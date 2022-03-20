@@ -331,7 +331,7 @@ a:active {
     .ButtonContainer {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        width:40vw;
+        width:60vw;
         margin: 0 auto;
     }
 
@@ -341,6 +341,11 @@ a:active {
     }
     
     #GitButton {
+        margin-right: 10px;
+        display: flex;
+    }
+
+    #BlogButton {
         display: flex;
     }
 }
