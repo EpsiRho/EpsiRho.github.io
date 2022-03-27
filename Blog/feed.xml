@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Epsi's Den</title>
+        <link>https://www.epsirho.com/Blog/blogindex</link>
+        <description>A place for me to talk about random stuff I'm up to.</description>
+        <language>en</language>
+        <image>
+            <title>Epsi's Den</title>
+            <link>https://www.epsirho.com/Blog/blogindex</link>
+            <url>https://i.imgur.com/fnIRlTF.jpg</url>
+        </image>
+
+        <item>
+            <title>Momentum and file preformance quirks in UWP</title>
+            <pubDate>03/20/2022</pubDate>
+            <link>https://www.epsirho.com/Blog/momentum</link>
+            <description><![CDATA[Recently, inspired by the lack of an open source codebase for Everything I started a project I call Momentum.]]></description>
+            
+        </item>
+
+    </channel>
+</rss>

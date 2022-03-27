@@ -89,6 +89,17 @@ h3 {
     margin: -60px auto 70px 40px;
 }
 
+.TitleContainer {
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr 550px 1fr;
+    grid-template-rows: auto auto;
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
 .DownloadButton{
     margin: 0 5px;
 }
@@ -130,6 +141,7 @@ a:hover {
 a:active {
     color: #038cfc;
 }
+
 
 @media (max-width: 1668px) {
     .ButtonsContainer {
@@ -192,10 +204,44 @@ a:active {
     }
 }
 
+@media (max-width: 1240px) {
+
+    .TitleContainer {
+        display: grid;
+        grid-template-columns: 1fr 550px 1fr;
+        width: 60%;
+        margin: 0 auto;
+    }
+}
+
+
+@media (max-width: 1000px) {
+    .CardContainer {
+        width: 80%;
+        margin: auto;
+    }
+
+    .TitleContainer {
+        padding: 10px 0;
+        display: grid;
+        grid-template-columns: 1fr 550px 1fr;
+        width: 70%;
+        margin: 0 auto;
+    }
+}
+
+
 @media (max-width: 860px) {
     .CardContainer {
         width: 80%;
         margin: auto;
+    }
+    .TitleContainer {
+        padding: 10px 0;
+        display: grid;
+        grid-template-columns: 1fr 550px 1fr;
+        width: 80%;
+        margin: 0 auto;
     }
 }
 
@@ -204,12 +250,26 @@ a:active {
         width: 80%;
         margin: auto;
     }
+    .TitleContainer {
+        padding: 10px 0;
+        display: grid;
+        grid-template-columns: 1fr 550px 1fr;
+        width: 90%;
+        margin: 0 auto;
+    }
 }
 
 @media (max-width: 700px) {
     .CardContainer {
         width: 90%;
         margin: auto;
+    }
+    .TitleContainer {
+        padding: 10px 0;
+        display: grid;
+        grid-template-columns: 1fr 550px 1fr;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 }
 
@@ -222,6 +282,12 @@ a:active {
 
     body {
         background-size: 700%;
+    }
+    .TitleContainer {
+        padding: 10px 0;
+        margin-left: 20px;
+        display: block;
+        margin-right: 0px;
     }
 }
 
