@@ -167,6 +167,7 @@ li{
     display: block;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 50%;
 }
 
 fluent-accordion-item div.panel {
