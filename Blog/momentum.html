@@ -165,7 +165,7 @@ private static Dictionary&lt;string, <span class="hljs-keyword">List</span>&lt;I
 </code></pre>
 <h4 id="results">Results</h4>
 <p>The results of this first test were good, really good. Better than I was expecting. 
-The test set was my C Drive, a Samsung SSD 970 EVO 1TB. Each test indexed 10,575,799 files. The inital console test was great, and brought in an indexing time of 70 seconds and saving time of 5 seconds.</p>
+The test set was my C Drive, a Samsung SSD 970 EVO 1TB. Each test indexed 1,575,799 files. The inital console test was great, and brought in an indexing time of 70 seconds and saving time of 5 seconds.</p>
 <h2 id="moving-to-a-proper-ui">Moving to a proper UI</h2>
 <p>I wanted to move this project to a UI framework, initally I wanted it to be UWP because mica isn&#39;t available in the WinUI 3 yet. So I get to work developing a simple UI and porting over the code. With the BroadFilesystemAccess capability enabled, the code for the file indexer could be exactly the same. I started running the first test and.. why is it so slow?</p>
 <p>I looked back and forth. &quot;No, the code is the same!&quot; I tried disabling the UI that shows the current ammount of files indexed and elpased time since start. No, still not done after waiting 10 minutes. It&#39;s not just slow, it&#39;s <strong>SLOW</strong>. So now I need to check something</p>
