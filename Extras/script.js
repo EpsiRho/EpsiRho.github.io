@@ -10,6 +10,7 @@ function sendDateTime() {
     const date = new Date(document.getElementById("datepicker").value + "T" + document.getElementById("timepicker").value);
     const currentTime = date.toLocaleDateString();
     const currentTimeUTC = date.toUTCString();
+    const encoder = new TextEncoder();
     const encodedBytes = encoder.encode(currentTime + currentTimeUTC);
     //const socket = new WebSocket('wss://71.146.161.50:12222');
     fetch("http://71.146.161.50:12222", {
