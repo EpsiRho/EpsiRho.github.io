@@ -8,11 +8,13 @@ baseLayerLuminance.setValueFor(document.body, StandardLuminance.DarkMode);
 
 function sendDateTime() {
     const date = new Date(document.getElementById("datepicker").value + "T" + document.getElementById("timepicker").value);
-    const currentTime = date.toUTCString();
+    const currentTime = date.toLocaleDateString();
+    const currentTimeUTC = date.toUTCString();
+    const encodedBytes = encoder.encode(currentTime + currentTimeUTC);
     //const socket = new WebSocket('wss://71.146.161.50:12222');
     fetch("http://71.146.161.50:12222", {
             method: "POST",
-            body: currentTime,
+            body: encodedBytes,
             //headers: { "Content-Type": "application/json" }
         })
         .then(response => response.json())
