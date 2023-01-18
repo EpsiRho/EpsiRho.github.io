@@ -16,12 +16,15 @@ function sendDateTime() {
             body: currentTime,
             headers: { "Content-Type": "text/plain" }
         })
+        .catch(err => {
+            document.getElementById('StatusLabel').innerHTML = "Couldn't connect to the server :(";
+        })
         .then(data => {
             if (data.status == 200) {
                 document.getElementById('StatusLabel').innerHTML = "Entry Logged!";
 
             } else {
-                document.getElementById('StatusLabel').innerHTML = "Error, " + data.statusText;
+                document.getElementById('StatusLabel').innerHTML = "Error " + data.statusText;
             }
             console.log("Server response:", data);
         });
