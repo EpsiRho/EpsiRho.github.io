@@ -9,15 +9,11 @@ baseLayerLuminance.setValueFor(document.body, StandardLuminance.DarkMode);
 function sendDateTime() {
     const date = new Date(document.getElementById("datepicker").value + "T" + document.getElementById("timepicker").value);
     const currentTime = date.toLocaleString();
-    const currentTimeUTC = date.toUTCString();
-    const encoder = new TextEncoder();
-    const encodedBytes = encoder.encode(currentTime + currentTimeUTC);
-    console.log(currentTime + "|" + currentTimeUTC);
-    //const socket = new WebSocket('wss://71.146.161.50:12222');
+    console.log(currentTime);
     fetch("http://71.146.161.50:5238/api/EntryLogger", {
             method: "POST",
-            body: currentTime + "|" + currentTimeUTC,
-            //headers: { "Content-Type": "application/json" }
+            body: currentTime,
+            headers: { "Content-Type": "text/plain" }
         })
         .then(data => {
             console.log("Server response:", data);
