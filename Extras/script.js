@@ -7,6 +7,7 @@ export const FluentDesignSystem = provideFluentDesignSystem().register(allCompon
 baseLayerLuminance.setValueFor(document.body, StandardLuminance.DarkMode);
 
 function sendDateTime() {
+    document.getElementById('StatusLabel').innerHTML = 'Sending...';
     const date = new Date(document.getElementById("datepicker").value + "T" + document.getElementById("timepicker").value);
     const currentTime = date.toUTCString();
     console.log(currentTime);
@@ -16,6 +17,12 @@ function sendDateTime() {
             headers: { "Content-Type": "text/plain" }
         })
         .then(data => {
+            if (data.status == 200) {
+                document.getElementById('StatusLabel').innerHTML = "Entry Logged!";
+
+            } else {
+                document.getElementById('StatusLabel').innerHTML = "Error, " + data.statusText;
+            }
             console.log("Server response:", data);
         });
 }
