@@ -8,7 +8,7 @@ baseLayerLuminance.setValueFor(document.body, StandardLuminance.DarkMode);
 
 function sendDateTime() {
     const date = new Date(document.getElementById("datepicker").value + "T" + document.getElementById("timepicker").value);
-    const currentTime = date.toLocaleString();
+    const currentTime = date.toUTCString();
     console.log(currentTime);
     fetch("http://71.146.161.50:5238/api/EntryLogger", {
             method: "POST",
