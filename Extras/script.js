@@ -10,10 +10,11 @@ function sendDateTime() {
     document.getElementById('StatusLabel').innerHTML = 'Sending...';
     const date = new Date(document.getElementById("datepicker").value + "T" + document.getElementById("timepicker").value);
     const currentTime = date.toLocaleString();
+    const currentTimeUTC = date.toUTCString();
     console.log(currentTime);
     fetch("http://71.146.161.50:5238/api/EntryLogger", {
             method: "POST",
-            body: currentTime,
+            body: currentTime + "|" + currentTimeUTC,
             headers: { "Content-Type": "text/plain" }
         })
         .catch(err => {
