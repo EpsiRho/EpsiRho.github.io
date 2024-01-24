@@ -1,0 +1,40 @@
+# Configure main menu and social menu
+#[[main]]
+#identifier = "home"
+#name = "Home"
+#url = "/"
+#[main.params]
+#icon = "home"
+#newtab = true
+
+[[social]]
+identifier = "github"
+name = "GitHub"
+url = "https://github.com/EpsiRho"
+
+[social.params]
+icon = "brand-github"
+
+[[social]]
+identifier = "twitter"
+name = "Twitter"
+url = "https://twitter.com/EpsilonRho"
+
+[social.params]
+icon = "brand-twitter"
+
+[[social]]
+identifier = "mastodon"
+name = "Mastodon"
+url = "https://meow.social/@epsi"
+
+[social.params]
+icon = "brand-mastodon"
+
+[[social]]
+identifier = "bluesky"
+name = "Bluesky"
+url = "https://bsky.app/profile/epsirho.com"
+
+[social.params]
+icon = "brand-bluesky"
