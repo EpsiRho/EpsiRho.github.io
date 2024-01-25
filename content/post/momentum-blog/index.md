@@ -8,7 +8,7 @@ categories:
     - Blog Post
 tags:
     - Window
-    - C#
+    - C-Sharp
     - WASDK
     - UWP
     - Console

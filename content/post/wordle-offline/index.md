@@ -9,7 +9,7 @@ categories:
 tags:
     - Windows
     - WASDK
-    - C#
+    - C-Sharp
 ---
 
 I made this project cause I was having fun with wordle and wanted to play more than once a day. It's pretty simple, works the same as the Wordle website does.

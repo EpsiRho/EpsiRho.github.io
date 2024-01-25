@@ -9,7 +9,7 @@ categories:
 tags:
     - UWP
     - Windows
-    - C#
+    - C-Sharp
     - NSFW
 ---
 

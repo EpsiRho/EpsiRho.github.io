@@ -9,7 +9,7 @@ categories:
 tags:
     - WASDK
     - Windows
-    - C#
+    - C-Sharp
 ---
 
 This is a small little application to view the information stored in a Discord Data Package. This is to help users easily explore the data discord has on them, as it can be hard for normal users to comb through large text and json files.

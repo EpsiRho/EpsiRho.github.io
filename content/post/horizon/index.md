@@ -9,7 +9,7 @@ categories:
 tags:
     - Windows
     - UWP
-    - C#
+    - C-Sharp
 ---
 This was the first real app I developed. I started the project because at the time, Discord's upload limit was 8mb and that was never enough to send files to my friends. So I created horizon to give me infinite upload limit and allow easy transfers to my contacts.
 

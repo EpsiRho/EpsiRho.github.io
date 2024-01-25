@@ -9,7 +9,7 @@ categories:
 tags:
     - Windows
     - Linux
-    - C#
+    - C-Sharp
     - Devlog
     - Console
 ---

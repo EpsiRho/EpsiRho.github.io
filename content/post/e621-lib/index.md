@@ -7,7 +7,7 @@ categories:
     - Projects
 tags:
     - Library
-    - C#
+    - C-Sharp
     - NSFW
 ---
 
