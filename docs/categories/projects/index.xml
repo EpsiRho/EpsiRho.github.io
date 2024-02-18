@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Projects on Epsi&#39;s Den</title>
+        <link>https://epsirho.com/categories/projects/</link>
+        <description>Recent content in Projects on Epsi&#39;s Den</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Sun, 13 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://epsirho.com/categories/projects/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Discord Data Package Explore</title>
+        <link>https://epsirho.com/p/discord-dpe/</link>
+        <pubDate>Sun, 13 Feb 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://epsirho.com/p/discord-dpe/</guid>
+        <description>&lt;img src="https://epsirho.com/p/discord-dpe/ddpe.png" alt="Featured image of post Discord Data Package Explore" /&gt;&lt;p&gt;This is a small little application to view the information stored in a Discord Data Package. This is to help users easily explore the data discord has on them, as it can be hard for normal users to comb through large text and json files.&lt;/p&gt;
+&lt;p&gt;You can find the code and download on &lt;a class=&#34;link&#34; href=&#34;https://github.com/EpsiRho/Discord-Data-Package-Explorer&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;GitHub&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; Pushed v1.0.1 to fix an odd COM related crash in newer Win11 versions.&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Fluff</title>
+        <link>https://epsirho.com/p/fluff/</link>
+        <pubDate>Sun, 13 Feb 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://epsirho.com/p/fluff/</guid>
+        <description>&lt;img src="https://raw.githubusercontent.com/EpsiRho/Fluff/main/1.png" alt="Featured image of post Fluff" /&gt;&lt;p&gt;A beautiful, native windows app for e926/e621! View, search, and download posts submitted by other users, and submit your own.&lt;/p&gt;
+&lt;p&gt;This was a fun project I used to deep dive into learning UWP and making better UIs. It got pretty far along, but I&amp;rsquo;ll likely no longer be updating it. It does still mostly work despite a few bugs, I may go fix them at some point but I don&amp;rsquo;t plan to. I&amp;rsquo;m pretty proud of the result, especially the custom control behavior I made for the upload page.&lt;/p&gt;
+&lt;p&gt;If you want to check this out, it&amp;rsquo;s availible on &lt;a class=&#34;link&#34; href=&#34;https://github.com/EpsiRho/Fluff&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;GitHub&lt;/a&gt; and the &lt;a class=&#34;link&#34; href=&#34;https://apps.microsoft.com/detail/9NJRHG6FVKL9?rtc=1&amp;amp;hl=en-us&amp;amp;gl=US&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Microsoft Store&lt;/a&gt;. Don&amp;rsquo;t worry, it starts in safe mode! You have to enable NSFW content in the settings if that&amp;rsquo;s what you&amp;rsquo;re looking for :P&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Wordle Offline</title>
+        <link>https://epsirho.com/p/wordle/</link>
+        <pubDate>Sun, 09 Jan 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://epsirho.com/p/wordle/</guid>
+        <description>&lt;img src="https://epsirho.com/p/wordle/wordle.png" alt="Featured image of post Wordle Offline" /&gt;&lt;p&gt;I made this project cause I was having fun with wordle and wanted to play more than once a day. It&amp;rsquo;s pretty simple, works the same as the Wordle website does.&lt;/p&gt;
+&lt;p&gt;The code and downloaded are both up on &lt;a class=&#34;link&#34; href=&#34;https://github.com/EpsiRho/Wordle-Offline&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>E621 C# Library</title>
+        <link>https://epsirho.com/p/e621-library/</link>
+        <pubDate>Fri, 19 Mar 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://epsirho.com/p/e621-library/</guid>
+        <description>&lt;p&gt;This was made while I was learning REST API development for the first time. I picked the e621 API for the funny and because it&amp;rsquo;s auth and rate-limits were relaxed and easy to start with. This later went on to be used in &lt;a class=&#34;link&#34; href=&#34;https://epsirho.com/p/fluff&#34; &gt;Fluff&lt;/a&gt;, which was my first attempt at a good looking UI application. I hosted it on nuget to make it easier to use in my projects, and for some reason it has 11k+ downloads xP&lt;/p&gt;
+&lt;p&gt;You can find the code on &lt;a class=&#34;link&#34; href=&#34;https://github.com/EpsiRho/E621-C-Sharp-Api-Wrapper&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;GitHub&lt;/a&gt; and the built library on &lt;a class=&#34;link&#34; href=&#34;https://www.nuget.org/packages/e6API_EpsiRho&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;nuget&lt;/a&gt;. Documentation for this is incomplete and I&amp;rsquo;ll likely not revisit it!&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Horizon File Transfer</title>
+        <link>https://epsirho.com/p/horizon/</link>
+        <pubDate>Mon, 28 Dec 2020 00:00:00 +0000</pubDate>
+        
+        <guid>https://epsirho.com/p/horizon/</guid>
+        <description>&lt;img src="https://epsirho.com/p/horizon/horizon.png" alt="Featured image of post Horizon File Transfer" /&gt;&lt;p&gt;This was the first real app I developed. I started the project because at the time, Discord&amp;rsquo;s upload limit was 8mb and that was never enough to send files to my friends. So I created horizon to give me infinite upload limit and allow easy transfers to my contacts.&lt;/p&gt;
+&lt;p&gt;Check it out on &lt;a class=&#34;link&#34; href=&#34;https://github.com/EpsiRho/Horizon?tab=readme-ov-file&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;GitHub&lt;/a&gt; or the &lt;a class=&#34;link&#34; href=&#34;https://apps.microsoft.com/detail/9NLF1LS7Q6J6?hl=en-US&amp;amp;gl=US&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Microsoft Store&lt;/a&gt;.&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>C&#43;&#43; UIKit</title>
+        <link>https://epsirho.com/p/cppuikit/</link>
+        <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+        
+        <guid>https://epsirho.com/p/cppuikit/</guid>
+        <description>&lt;p&gt;This was a fun project I worked on to help me prototype console tools quicker and allow me to make them look and feel nice. I worked on it from Sept 2020 to Feb 2021. It was made for windows, and while some features might work on other operating systems a few will certainly not, such as the cursor menu.&lt;/p&gt;
+&lt;p&gt;Full documentation is available as well as a demo application that showcases many of the features. You can find both of those things on the &lt;a class=&#34;link&#34; href=&#34;https://github.com/EpsiRho/UIKit&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Github Repo&lt;/a&gt;.&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
