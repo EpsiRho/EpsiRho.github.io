@@ -6,13 +6,69 @@
         <description>Recent content in Windows on Epsi&#39;s Den</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Wed, 24 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://epsirho.com/tags/windows/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 08 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://epsirho.com/tags/windows/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Melon Media Server Devlog 2</title>
+        <link>https://epsirho.com/p/mms-dl2/</link>
+        <pubDate>Fri, 08 Mar 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://epsirho.com/p/mms-dl2/</guid>
+        <description>&lt;img src="https://epsirho.com/p/mms-dl2/ScannerBanner.png" alt="Featured image of post Melon Media Server Devlog 2" /&gt;&lt;p&gt;I have been working really hard on melon the past month, and it&amp;rsquo;s getting close to V1 being feature complete! I&amp;rsquo;ve worked on lots of things, but for this post I wanted to talk about the scanner. The last time I talked about Melon the scanner was working but really slow. Especially on my HDD. So I spent awhile looking for optimizations and eventually ended up rewritting the scanner, which I&amp;rsquo;ve called Scanner V2.&lt;/p&gt;
+&lt;p&gt;The old scanner worked like this:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Load a track off the disk&lt;/li&gt;
+&lt;li&gt;Call the database to find out if the track&amp;rsquo;s artist or album exists yet&lt;/li&gt;
+&lt;li&gt;If they do, update their info to include the new track, otherwise create new artist / album&lt;/li&gt;
+&lt;li&gt;Insert all the new info into the dabase&lt;/li&gt;
+&lt;li&gt;Repeat for each track&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The new scanner has multiple passes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Load tracks
+&lt;ul&gt;
+&lt;li&gt;Read track info off the disk&lt;/li&gt;
+&lt;li&gt;Create a track object and add into a thread safe List (more on that later)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Fill out database objects
+&lt;ul&gt;
+&lt;li&gt;Create album objects based on found tracks&lt;/li&gt;
+&lt;li&gt;Create artist objects based on found tracks&lt;/li&gt;
+&lt;li&gt;Update track info to link to new album and artists objects&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Upload to database
+&lt;ul&gt;
+&lt;li&gt;Uploads all the in memory info into the database&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Delete
+&lt;ul&gt;
+&lt;li&gt;Remove tracks, albums, artists that are missing from the disk&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Keeping things in memory sped things up a ton. For the 4607 files on my SSD, it takes about 10-15 seconds. The old scanner took around 3 minutes 30 seconds.
+I was also able to enable loading multiple files at a time with the thread-safe ConcurrentDictionary type. Super useful, but only really works on my SSD. On the HDD it takes longer to load in the file, so the threads get backed up (to a max of 25).&lt;/p&gt;
+&lt;p&gt;Only a few more things to do for the scanner now. I plan on adding genre merging, because I have a lot of tracks that have genres like Drum and Bass, Drum n Bass, DnB, where they are all the same genre, just written down differently. But they show up as two different genres in the db. So I&amp;rsquo;d like a way to &amp;ldquo;Canonicalize&amp;rdquo; genres into one.&lt;/p&gt;
+&lt;h3 id=&#34;scanner-v2-demo&#34;&gt;Scanner V2 Demo&lt;/h3&gt;
+&lt;div class=&#34;video-wrapper&#34;&gt;
+    &lt;iframe loading=&#34;lazy&#34; 
+            src=&#34;https://www.youtube.com/embed/4HfW5eiE3tk&#34; 
+            allowfullscreen 
+            title=&#34;YouTube Video&#34;
+    &gt;
+    &lt;/iframe&gt;
+&lt;/div&gt;
+
+</description>
+        </item>
+        <item>
         <title>Melon Media Server Devlog 1</title>
         <link>https://epsirho.com/p/mms-dl1/</link>
         <pubDate>Wed, 24 Jan 2024 00:00:00 +0000</pubDate>
         
         <guid>https://epsirho.com/p/mms-dl1/</guid>
-        <description>&lt;img src="https://epsirho.com/p/mms-dl1/mms-3.png" alt="Featured image of post Melon Media Server Devlog 1" /&gt;&lt;p&gt;For the last 2 years I&amp;rsquo;ve been acquiring songs I like in as high quality as I can find and saving them locally. This started when spotify started removing music I liked such as Exile Vilify. I wanted to have my own stash of music so I wouldn&amp;rsquo;t loose access to the songs that mean the most to me. I&amp;rsquo;ve been using Plex to listen to my local library ever since, but Plex has so many issues that bother me. I&amp;rsquo;ve looked into other options like Jellyfin, but all the big media servers seem to have tacked on music as an after thought. I want it to be better and I want more control. So now I&amp;rsquo;m making Melon, the music focused media player.&lt;/p&gt;
+        <description>&lt;img src="https://epsirho.com/p/mms-dl1/mms-3.png" alt="Featured image of post Melon Media Server Devlog 1" /&gt;&lt;p&gt;For the last 2 years I&amp;rsquo;ve been acquiring songs I like in as high quality as I can find and saving them locally. I wanted to have my own stash of music so I wouldn&amp;rsquo;t loose access to the songs that mean the most to me. I&amp;rsquo;ve been using Plex to listen to my local library ever since, but Plex has so many issues that bother me. I&amp;rsquo;ve looked into other options like Jellyfin, but all the big media servers seem to have tacked on music as an after thought. I want it to be better and I want more control. So now I&amp;rsquo;m making Melon, the music focused media player.&lt;/p&gt;
 &lt;p&gt;This project started in May of 2023, with an experimental scanner. I toyed with lots of options for databases, along with what to store and how. I ended up with MongoDB, as it&amp;rsquo;s json-like document system is super powerful for this use case. The Melon Scanner combs recursively through the folders you specify logging every music file and .lrc file. It gets the track information from the music file metadata, so you&amp;rsquo;ll want to use a tool like &lt;a class=&#34;link&#34; href=&#34;https://picard.musicbrainz.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;MusicBrainz Picard&lt;/a&gt;. MusicBrainz&amp;rsquo;s data is what I&amp;rsquo;m modeling off of, so support for it&amp;rsquo;s metadata tags will be in Melon. Below is an example of a Track in the db.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://epsirho.com/p/mms-dl1/mms-1.png&#34;
