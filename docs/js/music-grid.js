@@ -8,6 +8,7 @@ fetch("../json/PackedMusicCards.json")
         let musicItems = data;
         let filteredItems = musicItems;
         const renderGrid = () => {
+            filteredItems = musicItems;
             musicGrid.innerHTML = '';
             filteredItems.forEach(item => {
                 const card = document.createElement('div');
