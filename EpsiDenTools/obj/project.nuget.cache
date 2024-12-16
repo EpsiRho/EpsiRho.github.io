@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "/57nSHJlAxk=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jhset\\Desktop\\Epsi Website V3\\EpsiDenTools\\EpsiDenTools.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jhset\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\jhset\\.nuget\\packages\\pastel\\6.0.1\\pastel.6.0.1.nupkg.sha512",
+    "C:\\Users\\jhset\\.nuget\\packages\\restsharp\\112.1.0\\restsharp.112.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}

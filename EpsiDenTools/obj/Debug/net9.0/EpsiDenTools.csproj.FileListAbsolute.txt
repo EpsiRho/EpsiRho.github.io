@@ -1,0 +1,42 @@
+C:\Users\jhset\source\repos\EpsiDenTools\bin\Debug\net9.0\EpsiDenTools.exe
+C:\Users\jhset\source\repos\EpsiDenTools\bin\Debug\net9.0\EpsiDenTools.deps.json
+C:\Users\jhset\source\repos\EpsiDenTools\bin\Debug\net9.0\EpsiDenTools.runtimeconfig.json
+C:\Users\jhset\source\repos\EpsiDenTools\bin\Debug\net9.0\EpsiDenTools.dll
+C:\Users\jhset\source\repos\EpsiDenTools\bin\Debug\net9.0\EpsiDenTools.pdb
+C:\Users\jhset\source\repos\EpsiDenTools\bin\Debug\net9.0\MelonUI.dll
+C:\Users\jhset\source\repos\EpsiDenTools\bin\Debug\net9.0\MelonUI.pdb
+C:\Users\jhset\source\repos\EpsiDenTools\obj\Debug\net9.0\EpsiDenTools.csproj.AssemblyReference.cache
+C:\Users\jhset\source\repos\EpsiDenTools\obj\Debug\net9.0\EpsiDenTools.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jhset\source\repos\EpsiDenTools\obj\Debug\net9.0\EpsiDenTools.AssemblyInfoInputs.cache
+C:\Users\jhset\source\repos\EpsiDenTools\obj\Debug\net9.0\EpsiDenTools.AssemblyInfo.cs
+C:\Users\jhset\source\repos\EpsiDenTools\obj\Debug\net9.0\EpsiDenTools.csproj.CoreCompileInputs.cache
+C:\Users\jhset\source\repos\EpsiDenTools\obj\Debug\net9.0\EpsiDenT.78F07109.Up2Date
+C:\Users\jhset\source\repos\EpsiDenTools\obj\Debug\net9.0\EpsiDenTools.dll
+C:\Users\jhset\source\repos\EpsiDenTools\obj\Debug\net9.0\refint\EpsiDenTools.dll
+C:\Users\jhset\source\repos\EpsiDenTools\obj\Debug\net9.0\EpsiDenTools.pdb
+C:\Users\jhset\source\repos\EpsiDenTools\obj\Debug\net9.0\EpsiDenTools.genruntimeconfig.cache
+C:\Users\jhset\source\repos\EpsiDenTools\obj\Debug\net9.0\ref\EpsiDenTools.dll
+C:\Users\jhset\source\repos\EpsiDenTools\bin\Debug\net9.0\Pastel.dll
+C:\Users\jhset\source\repos\EpsiDenTools\bin\Debug\net9.0\Newtonsoft.Json.dll
+C:\Users\jhset\source\repos\EpsiDenTools\bin\Debug\net9.0\RestSharp.dll
+C:\Users\jhset\Desktop\Epsi Website V3\EpsiDenTools\bin\Debug\net9.0\EpsiDenTools.exe
+C:\Users\jhset\Desktop\Epsi Website V3\EpsiDenTools\bin\Debug\net9.0\EpsiDenTools.deps.json
+C:\Users\jhset\Desktop\Epsi Website V3\EpsiDenTools\bin\Debug\net9.0\EpsiDenTools.runtimeconfig.json
+C:\Users\jhset\Desktop\Epsi Website V3\EpsiDenTools\bin\Debug\net9.0\EpsiDenTools.dll
+C:\Users\jhset\Desktop\Epsi Website V3\EpsiDenTools\bin\Debug\net9.0\EpsiDenTools.pdb
+C:\Users\jhset\Desktop\Epsi Website V3\EpsiDenTools\bin\Debug\net9.0\Newtonsoft.Json.dll
+C:\Users\jhset\Desktop\Epsi Website V3\EpsiDenTools\bin\Debug\net9.0\Pastel.dll
+C:\Users\jhset\Desktop\Epsi Website V3\EpsiDenTools\bin\Debug\net9.0\RestSharp.dll
+C:\Users\jhset\Desktop\Epsi Website V3\EpsiDenTools\bin\Debug\net9.0\MelonUI.dll
+C:\Users\jhset\Desktop\Epsi Website V3\EpsiDenTools\bin\Debug\net9.0\MelonUI.pdb
+C:\Users\jhset\Desktop\Epsi Website V3\EpsiDenTools\obj\Debug\net9.0\EpsiDenTools.csproj.AssemblyReference.cache
+C:\Users\jhset\Desktop\Epsi Website V3\EpsiDenTools\obj\Debug\net9.0\EpsiDenTools.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jhset\Desktop\Epsi Website V3\EpsiDenTools\obj\Debug\net9.0\EpsiDenTools.AssemblyInfoInputs.cache
+C:\Users\jhset\Desktop\Epsi Website V3\EpsiDenTools\obj\Debug\net9.0\EpsiDenTools.AssemblyInfo.cs
+C:\Users\jhset\Desktop\Epsi Website V3\EpsiDenTools\obj\Debug\net9.0\EpsiDenTools.csproj.CoreCompileInputs.cache
+C:\Users\jhset\Desktop\Epsi Website V3\EpsiDenTools\obj\Debug\net9.0\EpsiDenT.78F07109.Up2Date
+C:\Users\jhset\Desktop\Epsi Website V3\EpsiDenTools\obj\Debug\net9.0\EpsiDenTools.dll
+C:\Users\jhset\Desktop\Epsi Website V3\EpsiDenTools\obj\Debug\net9.0\refint\EpsiDenTools.dll
+C:\Users\jhset\Desktop\Epsi Website V3\EpsiDenTools\obj\Debug\net9.0\EpsiDenTools.pdb
+C:\Users\jhset\Desktop\Epsi Website V3\EpsiDenTools\obj\Debug\net9.0\EpsiDenTools.genruntimeconfig.cache
+C:\Users\jhset\Desktop\Epsi Website V3\EpsiDenTools\obj\Debug\net9.0\ref\EpsiDenTools.dll
