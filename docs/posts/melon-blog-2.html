@@ -1,11 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Epsi's Den</title>
+    <title>Melon Media Server Devlog 2</title>
     <link rel="stylesheet" href="/styles/main.css">
-    <link rel="stylesheet" href="/styles/home.css">
+    <link rel="stylesheet" href="/styles/posts.css">
 </head>
 <body>
     <div class="container">
@@ -82,29 +83,74 @@
                 </ul>
             </nav>
         </aside>
+
         <main class="main-content">
-            <div class="slices-background"></div>
-            <div class="content-sections">
-                <section id="projects-section" class="slice-section">
-                    <div class="section-icon projects-icon" aria-label="View all projects">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8l-4 4l4 4" /><path d="M17 8l4 4l-4 4" /><path d="M14 4l-4 16" /></svg>
-                        <h2>Projects</h2>
-                    </div>
-                    <div class="slices-container" id="projects-slices"></div>
-                </section>
-                
-                <section id="blogs-section" class="slice-section">
-                    <div class="section-icon blogs-icon" aria-label="View all posts">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v8h-6z"></path><path d="M4 16h6v4h-6z"></path><path d="M14 12h6v8h-6z"></path><path d="M14 4h6v4h-6z"></path></svg>
-                        <h2>Blog Posts</h2>
-                    </div>
-                    <div class="slices-container" id="blogs-slices"></div>
-                </section>
-            </div>
+            <article class="blog-post-page">
+                <img src="/images/ScannerBanner.png" alt="Blog Header" class="post-header-image">
+                </br>
+                <span class="post-tag"> Windows</span>
+<span class="post-tag"> C-Sharp</span>
+<span class="post-tag"> Console</span>
+<span class="post-tag"> Melon</span>
+<span class="post-tag"> Devlog</span>
+
+                <h1 class="post-title" id="mdpost-title">Melon Media Server Devlog 2</h1>
+                <p class="post-description">Melon's Scanner has gotten a big upgrade</p>
+                <div class="post-date">3/8/2024 12:00:00 AM</div>
+                <div class="post-body">
+                    <p>I have been working really hard on melon the past month, and it's getting close to V1 being feature complete! I've worked on lots of things, but for this post I wanted to talk about the scanner. The last time I talked about Melon the scanner was working but really slow. Especially on my HDD. So I spent awhile looking for optimizations and eventually ended up rewritting the scanner, which I've called Scanner V2.</p>
+<p>The old scanner worked like this:</p>
+<ul>
+<li> Load a track off the disk</li>
+<li> Call the database to find out if the track's artist or album exists yet</li>
+<li> If they do, update their info to include the new track, otherwise create new artist / album</li>
+<li> Insert all the new info into the dabase</li>
+<li> Repeat for each track</li>
+</ul>
+<p>The new scanner has multiple passes:</p>
+<ul>
+<li> Load tracks</li>
+<ul>
+<li> Read track info off the disk</li>
+<li> Create a track object and add into a thread safe List (more on that later)</li>
+</ul>
+<li> Fill out database objects</li>
+<ul>
+<li> Create album objects based on found tracks</li>
+<li> Create artist objects based on found tracks</li>
+<li> Update track info to link to new album and artists objects</li>
+</ul>
+<li> Upload to database</li>
+<ul>
+<li> Uploads all the in memory info into the database</li>
+</ul>
+<li> Delete</li>
+<ul>
+<li> Remove tracks, albums, artists that are missing from the disk</li>
+</ul>
+</ul>
+</ul>
+<p>Keeping things in memory sped things up a ton. For the 4607 files on my SSD, it takes about 10-15 seconds. The old scanner took around 3 minutes 30 seconds.</p>
+<p>I was also able to enable loading multiple files at a time with the thread-safe ConcurrentDictionary type. Super useful, but only really works on my SSD. On the HDD it takes longer to load in the file, so the threads get backed up (to a max of 25).</p>
+<p>Only a few more things to do for the scanner now. I plan on adding genre merging, because I have a lot of tracks that have genres like Drum and Bass, Drum n Bass, DnB, where they are all the same genre, just written down differently. But they show up as two different genres in the db. So I'd like a way to "Canonicalize" genres into one.</p>
+
+                </div>
+            </article>
         </main>
-        
-        <script src="/js/home-grid.js"></script>
-        
+
+        <aside class="toc">
+            <div class="toc-icon">☰</div> 
+            <div class="toc-content">
+            <ul>
+                <a href="#mdpost-title"><li>Melon Media Server Devlog 2</li></a>
+
+            </ul>
+        </aside>
     </div>
+    <script>
+        const page = document.querySelector('.blog-post-page');
+        page.style.visibility = 'visible'
+    </script>
 </body>
 </html>
+

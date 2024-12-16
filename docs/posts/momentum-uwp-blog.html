@@ -1,0 +1,405 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momentum and file performance quirks in UWP</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/posts.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="profile">
+                <img src="/images/pfp.png" alt="Profile" class="profile-img">
+                <h1 class="profile-name">Epsi's Den</h1>
+                <p class="profile-bio">Software developer, Lava lamp dog, totally a professional</p>
+                <div class="social-links">
+                    <a href="https://bsky.app/profile/epsirho.com" aria-label="Bluesky" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-bluesky" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M6.335 5.144c-1.654 -1.199 -4.335 -2.127 -4.335 .826c0 .59 .35 4.953 .556 5.661c.713 2.463 3.13 2.75 5.444 2.369c-4.045 .665 -4.889 3.208 -2.667 5.41c1.03 1.018 1.913 1.59 2.667 1.59c2 0 3.134 -2.769 3.5 -3.5c.333 -.667 .5 -1.167 .5 -1.5c0 .333 .167 .833 .5 1.5c.366 .731 1.5 3.5 3.5 3.5c.754 0 1.637 -.571 2.667 -1.59c2.222 -2.203 1.378 -4.746 -2.667 -5.41c2.314 .38 4.73 .094 5.444 -2.369c.206 -.708 .556 -5.072 .556 -5.661c0 -2.953 -2.68 -2.025 -4.335 -.826c-2.293 1.662 -4.76 5.048 -5.665 6.856c-.905 -1.808 -3.372 -5.194 -5.665 -6.856z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/EpsiRho" aria-label="GitHub" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path>
+                          </svg>
+                    </a>
+                    <a href="https://furry.engineer/@epsi" aria-label="Mastodon" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-mastodon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M18.648 15.254c-1.816 1.763 -6.648 1.626 -6.648 1.626a18.262 18.262 0 0 1 -3.288 -.256c1.127 1.985 4.12 2.81 8.982 2.475c-1.945 2.013 -13.598 5.257 -13.668 -7.636l-.026 -1.154c0 -3.036 .023 -4.115 1.352 -5.633c1.671 -1.91 6.648 -1.666 6.648 -1.666s4.977 -.243 6.648 1.667c1.329 1.518 1.352 2.597 1.352 5.633s-.456 4.074 -1.352 4.944z"></path><path d="M12 11.204v-2.926c0 -1.258 -.895 -2.278 -2 -2.278s-2 1.02 -2 2.278v4.722m4 -4.722c0 -1.258 .895 -2.278 2 -2.278s2 1.02 2 2.278v4.722"></path>
+                        </svg>
+                    </a>
+                    <a href="https://twitter.com/EpsilonRho" aria-label="Twitter" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z"></path>
+                                <polyline points="5 12 3 12 12 3 21 12 19 12"></polyline>
+                                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
+                                <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
+                              </svg>
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/site/about" class="nav-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-square" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 10a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path><path d="M6 21v-1a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v1"></path><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z"></path>
+                            </svg>
+                             About
+                            </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/site/posts" class="nav-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-dashboard" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M4 4h6v8h-6z"></path><path d="M4 16h6v4h-6z"></path><path d="M14 12h6v8h-6z"></path><path d="M14 4h6v4h-6z"></path></svg>
+                             Blog Posts
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/site/projects" class="nav-link">
+                            <svg xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-code"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 8l-4 4l4 4" /><path d="M17 8l4 4l-4 4" /><path d="M14 4l-4 16" /></svg>
+                             Projects
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/site/music" class="nav-link">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-music"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 17a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M13 17a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M9 17v-13h10v13" /><path d="M9 8h10" /></svg>
+                             Music Recommendations
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <article class="blog-post-page">
+                <img src="/images/momentum-uwp-blog.png" alt="Blog Header" class="post-header-image">
+                </br>
+                <span class="post-tag"> Windows</span>
+<span class="post-tag"> C-Sharp</span>
+<span class="post-tag"> WASDK</span>
+<span class="post-tag"> UWP</span>
+<span class="post-tag"> Console</span>
+
+                <h1 class="post-title" id="mdpost-title">Momentum and file performance quirks in UWP</h1>
+                <p class="post-description">Recently, inspired by the lack of an open source codebase for Everything I started a project I call Momentum.</p>
+                <div class="post-date">3/20/2022 12:00:00 AM</div>
+                <div class="post-body">
+                    <p>Recently, inspired by the lack of an open source codebase for Everything and some discussion with some devs on discord, I started a project I call Momentum. It was originally planned for UWP, to be a file indexer and search that had a modern Windows 11 look and feel. However, I found some weird issues while working on the indexer code.</p>
+<h2 id="mdheadr--Console-code"> Console code</h2>
+<p>I started development on the indexer and search functions, which I programmed in a C# Console Application. The first goal was simple, create a performant indexer using hash tables and json. A simple Dictionary<string, string> was used first, but later became a Dictionary<string, IndexedFileInfo>.</p>
+<h2 id="mdheadr--Indexer-code"> Indexer code</h2>
+<ul>
+<li> Recursively scan through every folder from x starting point.</li>
+<li> Handle exceptions thrown by folders who block access.</li>
+<li> Return one filled dictionary with all files and folders scanned.</li>
+</ul>
+<pre class="code-block">
+<code>
+public static void IndexFiles()
+{
+    var dictionary = SearchDirectory("C:\\Users\\jhset\\Pictures");
+    Display.Message = "Saving to File";
+    SaveIndexesToFile(dictionary);
+}
+private static Dictionary<string, List<IndexedFileInfo>> SearchDirectory(string path)
+{
+    var dictionary = new Dictionary<string, List<IndexedFileInfo>>();
+    try
+    {
+        // Get directories in path
+        var dirs = Directory.GetDirectories(path);
+        // If ther are dirs, recursively check them
+        if (dirs.Length > 0)
+        {
+            foreach (var dir in dirs)
+            {
+                var ret = SearchDirectory(dir);
+                foreach (var f in ret)
+                {
+                    if (dictionary.ContainsKey(f.Key))
+                    {
+                        foreach (var s in f.Value)
+                        {
+dictionary[f.Key].Add(s);
+                        }
+                    }
+                    else
+                    {
+                        dictionary.Add(f.Key, new List<IndexedFileInfo>(f.Value));
+                    }
+                }
+            }
+        }
+        // Get the files in this dir
+        var files = Directory.GetFiles(path);
+        // Add each file to dictionary
+        foreach (var file in files)
+        {
+            string name = file.Split("\\").Last().ToLower();
+            var list = new List<IndexedFileInfo>();
+            list.Add(new IndexedFileInfo() { Icon = "&#xE130;", Path = file});
+            if (dictionary.ContainsKey(name))
+            {
+                foreach (var s in list)
+                {
+dictionary[name].Add(s);
+                }
+            }
+            else
+            {
+                dictionary.Add(name, list);
+            }    
+        }
+        // Finally, add this folder to the dictionary
+        string foldername = path.Split('\\').Last().ToLower();
+        var flist = new List<IndexedFileInfo>();
+        flist.Add(new IndexedFileInfo() { Icon = "&#xE8B7;", Path = path });
+        Display.IndexedFolders++;
+        if (dictionary.ContainsKey(foldername))
+        {
+dictionary[foldername].Add(new IndexedFileInfo() { Icon = "&#xE8B7;", Path = path });
+        }
+        else
+        {
+            dictionary.Add(foldername, flist);
+        }
+    }
+    catch (Exception ex)
+    {
+        Display.TotalErrored++;
+        return new Dictionary<string, List<IndexedFileInfo>>();
+    }
+    return dictionary;
+}
+</code>
+</pre>
+<h2 id="mdheadr--Saving-code"> Saving code</h2>
+<ul>
+<li> Serialize the dictionary to json</li>
+<li> Save to a file.</li>
+</ul>
+<pre class="code-block">
+<code>
+private static void SaveIndexesToFile(Dictionary<string, List<IndexedFileInfo>> dictionary)
+{
+    string text = JsonConvert.SerializeObject(dictionary, Formatting.Indented);
+    File.WriteAllText("C:\\Users\\jhset\\Desktop\\Index.json", text);
+}
+</code>
+</pre>
+<h2 id="mdheadr--Loading-code"> Loading code</h2>
+<ul>
+<li> Load file in as string</li>
+<li> Deserialize json to dictionary</li>
+</ul>
+<pre class="code-block">
+<code>
+public static Dictionary<string, List<IndexedFileInfo>> LoadIndexesFromFile()
+{
+    try
+    {
+        string text = File.ReadAllText("C:\\Users\\jhset\\Desktop\\Index.json");
+        var obj = JsonConvert.DeserializeObject<Dictionary<string, List<IndexedFileInfo>>>(text);
+        return obj;
+    }
+    catch (Exception)
+    {
+    return null;
+    }
+}
+</code>
+</pre>
+<h2 id="mdheadr--Searching-code"> Searching code</h2>
+<ul>
+<li> Search dictionary for results containing x</li>
+<li> Display.</li>
+</ul>
+<pre class="code-block">
+<code>
+var list = files.Where(o => o.Key.Contains(input)).ToList();
+for(int i = 0; i < 15; i++)
+{
+    try
+    {
+foreach (var line in list[i].Value)
+        {
+Console.WriteLine($"{list[i].Key}");
+        }
+    }
+    catch (Exception)
+    {
+    }
+}
+</code>
+</pre>
+<h2 id="mdheadr--Results"> Results</h2>
+<p>The results of this first test were good, really good. Better than I was expecting. The test set was my C Drive, a Samsung SSD 970 EVO 1TB. Each test indexed 1,575,799 files. The inital console test was great, and brought in an indexing time of 70 seconds and saving time of 5 seconds.</p>
+<h2 id="mdheadr--Moving-to-a-proper-UI"> Moving to a proper UI</h2>
+<p>I wanted to move this project to a UI framework, initally I wanted it to be UWP because mica isn't available in the WinUI 3 yet. So I get to work developing a simple UI and porting over the code. With the BroadFilesystemAccess capability enabled, the code for the file indexer could be exactly the same. I started running the first test and.. why is it so slow?</p>
+<p>I looked back and forth. "No, the code is the same!" I tried disabling the UI that shows the current ammount of files indexed and elpased time since start. No, still not done after waiting 10 minutes. It's not just slow, it's SLOW. So now I need to check something</p>
+<h2 id="mdheadr--WPF-and-the-WASDK"> WPF and the WASDK</h2>
+<p>So I created two other projects with simple UIs, and ported the code over.</p>
+<img alt="A graph comparing Console, WPF, and WASDK time to index, save, and load the database. Times showed in seconds." title="A graph comparing Console, WPF, and WASDK time to index, save, and load the database. Times showed in seconds." src="/images/momentum-1.png" />
+<p>Not bad, WASDK came out a bit slower but otherwise not bad. So you're probably thinking "Well where's UWP's times?"</p>
+<img alt="Another graph showing Console, WPF, WASDK, and UWP times. The index time for UWP is alarmingly high." title="Another graph showing Console, WPF, WASDK, and UWP times. The index time for UWP is alarmingly high." src="/images/momentum-2.png" />
+<p>Ah. Thats 3 hours, 31 minutes, and 41 seconds. So, what the fuck?</p>
+<p>Sadly, I don't have a good answer for this. My assumption is that the sandbox model causes file access to take more time. It sucks that even with the BroadFileSystem capability UWP's file access is so slow.</p>
+<p>So I decided to move to the WASDK. Goodbye Mica, my beloved. This transition wasn't without issues either. When saving and loading I encountered a System.OutOfMemoryException. This only happened here, I don't have a good answer for why, but I had to design around it.</p>
+<h2 id="mdheadr--New-saving-code"> New saving code</h2>
+<pre class="code-block">
+<code>
+private static void SaveIndexesToFile(Dictionary<string, List<IndexedFileInfo>> dictionary)
+{
+    string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+string[] dirs = Directory.GetDirectories(path);
+    if (!dirs.Contains("Momentum"))
+    {
+        System.IO.Directory.CreateDirectory($"{path}\\Momentum");
+    }
+    StreamWriter sw = File.CreateText($"{path}\\Momentum\\Index.json");
+    JsonTextWriter writer = new JsonTextWriter(sw);
+    writer.Formatting = Formatting.Indented;
+    writer.WriteStartObject();
+    Files = new ConcurrentDictionary<string, List<IndexedFileInfo>>();
+    foreach (var item in dictionary)
+    {
+        Files.TryAdd(item.Key, item.Value);
+        writer.WritePropertyName(item.Key);
+        writer.WriteStartArray();
+        foreach (var file in item.Value)
+        {
+            writer.WriteStartObject();
+            writer.WritePropertyName("Name");
+            writer.WriteValue(item.Key);
+            writer.WritePropertyName("Path");
+            writer.WriteValue(file.Path);
+            writer.WritePropertyName("Icon");
+            writer.WriteValue(file.Icon);
+            writer.WriteEndObject();
+        }
+        writer.WriteEndArray();
+        sw.Flush();
+    }
+    writer.WriteEndObject();
+    writer.Flush();
+    writer.Close();
+}
+</code>
+</pre>
+<h2 id="mdheadr--New-loading-code"> New loading code</h2>
+<pre class="code-block">
+<code>
+public static async void LoadIndexesFromFile()
+{
+    try
+    {
+        IsFullyLoaded = false;
+        Files = new ConcurrentDictionary<string, List<IndexedFileInfo>>();
+        string p = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+string[] dirs = Directory.GetDirectories(p);
+        if (!dirs.Contains("Momentum"))
+        {
+            System.IO.Directory.CreateDirectory($"{p}\\Momentum");
+        }
+        StreamReader sr = File.OpenText($"{p}\\Momentum\\Index.json");
+        JsonTextReader reader = new JsonTextReader(sr);
+        while (reader.Read())
+        {
+            if (reader.Value != null)
+            {
+                var item = new KeyValuePair<string, List<IndexedFileInfo>>();
+                reader.Read();
+                reader.Read();
+                while (true)
+                {
+                    reader.Read();
+                    reader.Read();
+                    string name = reader.Value.ToString();
+                    reader.Read();
+                    reader.Read();
+                    string path = reader.Value.ToString();
+                    reader.Read();
+                    reader.Read();
+                    string icon = reader.Value.ToString();
+                    reader.Read();
+                    reader.Read();
+                    if (Files.ContainsKey(name))
+                    {
+Files[name].Add(new IndexedFileInfo() { Name = name, Path = path, Icon=icon });
+                    }
+                    else
+                    {
+                        var lst = new List<IndexedFileInfo>();
+                        lst.Add(new IndexedFileInfo() { Name = name, Path = path, Icon = icon });
+                        Files.TryAdd(name, lst);
+                    }
+                    if (reader.TokenType == JsonToken.EndArray)
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+        IsFullyLoaded = true;
+        //var obj = JsonReader .DeserializeObject<Dictionary<string, List<IndexedFileInfo>>>(text);
+        //Files = obj;
+    }
+    catch (Exception)
+    {
+        return;
+    }
+}
+</code>
+</pre>
+<p>The new loading code is cool because the application can now load in files while you search, so the user can search before the full index file is done loading. This is nice because larger index files can take a few seconds to load.</p>
+<h2 id="mdheadr--WASDK-and-the-final-application"> WASDK and the final application</h2>
+<p>As much as I'll miss mica, the WASDK is nice to use. If you're coming from UWP, you'll be right at home. Only a few things differ, but the XAML code is mostly the same.</p>
+<img alt="A screenshot of the momentum WASDK application's search screen" title="A screenshot of the momentum WASDK application's search screen" src="/images/momentum-3.png" />
+<img alt="A screenshot of the momentum WASDK application's indexing screen" title="A screenshot of the momentum WASDK application's indexing screen" src="/images/momentum-4.png" />
+<p>If you want to test the application out and see the full source code, check out the GitHub Repository!</p>
+
+                </div>
+            </article>
+        </main>
+
+        <aside class="toc">
+            <div class="toc-icon">☰</div> 
+            <div class="toc-content">
+            <ul>
+                <a href="#mdpost-title"><li>Momentum and file performance quirks in UWP</li></a>
+<a href="#mdheadr--Console-code"><li> Console code</li></a>
+<a href="#mdheadr--Indexer-code"><li> Indexer code</li></a>
+<a href="#mdheadr--Saving-code"><li> Saving code</li></a>
+<a href="#mdheadr--Loading-code"><li> Loading code</li></a>
+<a href="#mdheadr--Searching-code"><li> Searching code</li></a>
+<a href="#mdheadr--Results"><li> Results</li></a>
+<a href="#mdheadr--Moving-to-a-proper-UI"><li> Moving to a proper UI</li></a>
+<a href="#mdheadr--WPF-and-the-WASDK"><li> WPF and the WASDK</li></a>
+<a href="#mdheadr--New-saving-code"><li> New saving code</li></a>
+<a href="#mdheadr--New-loading-code"><li> New loading code</li></a>
+<a href="#mdheadr--WASDK-and-the-final-application"><li> WASDK and the final application</li></a>
+
+            </ul>
+        </aside>
+    </div>
+    <script>
+        const page = document.querySelector('.blog-post-page');
+        page.style.visibility = 'visible'
+    </script>
+</body>
+</html>
+

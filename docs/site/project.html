@@ -1,11 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Epsi's Den</title>
+    <title>OwO?</title>
     <link rel="stylesheet" href="/styles/main.css">
-    <link rel="stylesheet" href="/styles/home.css">
+    <link rel="stylesheet" href="/styles/posts.css">
 </head>
 <body>
     <div class="container">
@@ -82,29 +83,47 @@
                 </ul>
             </nav>
         </aside>
+
         <main class="main-content">
-            <div class="slices-background"></div>
-            <div class="content-sections">
-                <section id="projects-section" class="slice-section">
-                    <div class="section-icon projects-icon" aria-label="View all projects">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8l-4 4l4 4" /><path d="M17 8l4 4l-4 4" /><path d="M14 4l-4 16" /></svg>
-                        <h2>Projects</h2>
+            <article class="blog-post-page" id="project-card" style="display: none;">
+                <div class="project-header-container">
+                    <div class="project-header-shadow">
+                        <div class="project-header-info">
+                            <h1 class="post-title"></h1>
+                            <p class="post-description" style="margin-top: -20px;"></p>
+                            <div class="post-tags">
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="slices-container" id="projects-slices"></div>
-                </section>
+                    <img alt="Project Header" class="project-header-image" style="display:none;">
+                </div>
+                </br>
                 
-                <section id="blogs-section" class="slice-section">
-                    <div class="section-icon blogs-icon" aria-label="View all posts">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v8h-6z"></path><path d="M4 16h6v4h-6z"></path><path d="M14 12h6v8h-6z"></path><path d="M14 4h6v4h-6z"></path></svg>
-                        <h2>Blog Posts</h2>
-                    </div>
-                    <div class="slices-container" id="blogs-slices"></div>
-                </section>
-            </div>
+                <div class="post-links">
+                    <h2>Links</h2>
+                </div>
+                
+                <div class="post-date"> </div>
+                <div>
+                    <p class="post-body"></p>
+                </div>
+                
+            </article>
+            <article class="blog-post-page" id="missing-card" style="display: none;">
+                <h1>Hey, wait a minute.</h1>
+                <p style="margin-top: 0px;">What are you doing here?</p>
+                <div class="post-date">This page is meant to show a project, but since there is none (or it can't be shown) you just get me instead :3</div>
+                <div class="post-body">
+                <img alt="Tiny Epsi" class="suprise-image" src="/images/what.png"
+                     onmouseover="this.src='/images/Suprize.png'"
+                     onmouseout="this.src='/images/what.png'">
+                
+            </article>
         </main>
-        
-        <script src="/js/home-grid.js"></script>
-        
+
+        <script src="/js/project.js"></script>
     </div>
 </body>
 </html>
+

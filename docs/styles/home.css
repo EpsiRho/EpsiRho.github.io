@@ -1,0 +1,396 @@
+.content-sections {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: calc(100% - 300px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.slice-section {
+    position: relative;
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+}
+
+.slices-container {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    padding: 0;
+}
+
+#projects-section{
+    margin-bottom: 0px;
+    border-style: solid;
+    border-color: transparent;
+    border-width: 0px 0px 3px 2px;
+}
+#blogs-section{
+    margin-bottom: 0px;
+    border-style: solid;
+    border-color: transparent;
+    border-width: 0px 0px 0px 2px;
+}
+
+.slices-background{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    background-size: 400% 400%;
+    transform: translateX(-32px) translateY(-32px);
+    background-image: linear-gradient(90deg, rgba(0,255,149,1) 0%, rgba(7,195,252,1) 20%, rgba(191,8,246,1) 40%, rgba(7,195,252,1) 60%, rgba(0,255,149,1) 80%, rgb(42, 160, 251) 100%);
+    animation:  bgreveal 3s,
+                gradient linear 7s infinite;
+               
+}
+
+@keyframes bgreveal {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	100% {
+        background-position: 100% 50%;
+	}
+}
+
+/* Base slice styles */
+.slice {
+    position: relative;
+    flex: 1;
+    height: 100%;
+    transform: skew(-20deg);
+    margin-left: -2px;
+    overflow: hidden;
+    transition: flex 0.2s ease;
+    cursor: pointer;
+    margin-bottom: 0px;
+    border-color: transparent;
+    border-width: 0px 0px 0px 5px;
+    border-style: solid;
+}
+
+/* Edge slice extensions */
+.slice:first-child {
+    margin-left: calc(-1 * (100% * tan(20deg)));
+    padding-left: calc(100% * tan(20deg));
+}
+
+.slice:last-child {
+    margin-right: calc(-1 * (100% * tan(20deg)));
+    padding-right: calc(100% * tan(20deg));
+}
+
+.slice:hover {
+    flex: 1.8;
+}
+
+/* Content background */
+.slice-content {
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 100%;
+    transform: skew(20deg);
+    background-size: cover;
+    background-position: center;
+    transition: filter 0.3s cubic-bezier(0.68, 1.45, 0.265, 1.05);
+}
+
+.slice .slice-content::after
+{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    background: inherit; 
+    filter: blur(4px); 
+    -webkit-mask: linear-gradient(transparent, black 70%);
+    mask: linear-gradient(transparent, black 70%);
+    transition: opacity 0.3s;
+}
+.slice:hover .slice-content::after
+{
+    opacity: 1;
+}
+
+/* Info overlay base */
+.slice-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.9) 0%,
+        rgba(0,0,0,0.6) 60%,
+        transparent 100%
+    );
+    color: white;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+/* First slice info */
+.slice:first-child .slice-info {
+    padding-left: calc(2rem + (100% * tan(20deg)));
+    padding-right: 2rem;
+    width: calc(100% - (45% * tan(20deg)));
+    left: calc(45% * tan(20deg));
+}
+
+/* Last slice info */
+.slice:last-child .slice-info {
+    padding-left: 2rem;
+    padding-right: calc(2rem + (100% * tan(20deg)));
+}
+
+/* Info content */
+.slice-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.slice-info p {
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+
+.slice:hover .slice-info {
+    opacity: 1;
+}
+
+
+/* Section icons */
+.section-icon {
+    position: absolute;
+    display: flex;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    color: white;
+    cursor: pointer;
+    padding: 0.4em;
+    margin: 10px;
+    border-radius: 50%;
+    background-color: #2a2a2a93;
+    transition: transform 0.2s cubic-bezier(0.68, 1.45, 0.265, 1.05);
+    backdrop-filter: blur(8px); /* Apply backdrop blur effect */
+    border-radius: 8px;
+    box-shadow: 10px 4px 8px rgba(0, 0, 0, 0.2);
+    border-width: 3px;
+}
+
+
+.section-icon svg {
+    width: 32px;
+    height: 32px;
+}
+
+.section-icon h2 {
+    margin: 0;
+    margin-top: -4px;
+    font-size: 1.5rem;
+    font-weight: normal;
+    white-space: nowrap; 
+}
+
+.section-icon:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 780px) {
+    .section-icon:hover {
+        transform: scale(1.0);
+    }
+    #projects-section{
+        margin-bottom: 0px;
+        border-style: solid;
+        border-width: 0px;
+    }
+    #blogs-section{
+        margin-bottom: 0px;
+        border-style: solid;
+        border-width: 0px;
+    }
+    .content-sections {
+        position: relative;
+        width: 100%;
+        height: auto;
+        min-height: 100vh;
+        overflow-y: visible;
+        display: block;
+    }
+    
+    .slice-section {
+        position: relative;
+        height: auto;
+        min-height: 300px;
+        overflow: visible;
+        margin-bottom: 1rem;
+    }
+    
+    .slices-container {
+        position: relative;
+        display: block;
+        height: auto;
+        margin-right: 10px;
+        margin-left: 5px;
+    }
+
+    .slice-content {
+        transform: none;
+        left: 0;
+        width: 100%;
+    }
+
+    .slice .slice-content::after
+    {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 1;
+        background: inherit; /* Copy background from parent */
+        filter: blur(4px); /* Apply blur to background */
+        -webkit-mask: linear-gradient(transparent, black 70%);
+        mask: linear-gradient(transparent, black 70%);
+        transition: opacity 0.3s;
+    }
+    
+    .slice {
+        position: relative;
+        width: 100%;
+        height: 250px;
+        transform: none;
+        margin: 0 0 1rem 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        text-align: center;
+        color: var(--text-primary);
+        border-radius: 1rem;
+        padding: 1rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        background-size: 200% 200%; /* To give gradients more texture */
+
+    }
+    
+    .slice:first-child,
+    .slice:last-child {
+        margin: 0 0 1rem 0;
+        padding: 0;
+    }
+    
+    .slice:hover {
+        flex: none;
+        transform: scale(1.02);
+    }
+    
+    
+    
+    .slice-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+        padding: 1rem;
+        padding-top: 10%;
+        background: linear-gradient(
+            to top,
+            rgba(0,0,0,0.9) 0%,
+            rgba(0,0,0,0.6) 70%,
+            transparent 100%
+        );
+    }
+    
+    .slice:first-child .slice-info,
+    .slice:last-child .slice-info {
+        padding: 1rem;
+        padding-top: 10%;
+        width: 100%;
+        left: 0;
+    }
+    
+    .slice-info h3 {
+        font-size: 1.25rem;
+    }
+    
+    .section-icon {
+        position: absolute;
+        position: relative;
+        left: 0;
+        top: 0;
+        z-index: 10;
+        color: white;
+        cursor: pointer;
+        padding: 0.4em;
+        margin: 10px;
+        border-radius: 50%;
+        background-color: transparent;
+        transition: transform 0.2s cubic-bezier(0.68, 1.45, 0.265, 1.05);
+        border-radius: 8px;
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.0);
+    }
+    
+    
+    .section-icon svg {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .section-icon h2 {
+        margin: 0;
+        margin-top: -4px;
+        font-size: 1.5rem;
+        font-weight: normal;
+        white-space: nowrap; 
+    }
+    .slices-background {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transform: translateX(-32px) translateY(-32px);
+        background: transparent;
+    }
+}
+
+/* Even smaller screens */
+@media (max-width: 480px) {
+    .content-sections {
+        width: 100%;
+    }
+    
+    .slice {
+        height: 200px;
+    }
+}
