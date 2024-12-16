@@ -111,7 +111,7 @@ namespace EpsiDenTools.Classes
             </article>
         </main>
 
-        <aside class=""toc"">
+        <aside class=""toc"" onclick="">
             <div class=""toc-icon"">☰</div> 
             <div class=""toc-content"">
             <ul>
