@@ -205,8 +205,11 @@ a {
 }
 
 .post-link {
+    --myColor1: rgba(0,255,149,0.5);
+    --myColor2: rgba(7,195,252,0.5);
     display: inline-block;
     color: white;
+    background-color: var(--accent);
     padding: 0.25rem 1rem;
     border-radius: 5px;
     margin-bottom: 1rem;
