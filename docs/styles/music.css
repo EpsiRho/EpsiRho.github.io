@@ -29,7 +29,7 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    background-size: 200% 200%; /* To give gradients more texture */
+    background-size: 200% 200%; 
 }
 
 .music-card:hover {
@@ -39,9 +39,9 @@
 .music-card .details {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center elements horizontally */
-    justify-content: flex-start; /* Center elements vertically */
-    gap: 0.1rem; /* Add spacing between the elements */
+    align-items: center; 
+    justify-content: flex-start; 
+    gap: 0.1rem; 
 }
 
 .music-card h3 {
@@ -57,21 +57,21 @@
 
 
 .music-card img {
-    width: 100%; /* Make the image fill the container width */
-    height: 100%; /* Make the image fill the container height */
-    object-fit: cover; /* Maintain aspect ratio while filling the square */
-    border-radius: 0.5rem; /* Optional: rounded corners */
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    border-radius: 0.5rem; 
 }
 
 
 .music-card .image-container {
     position: relative;
     justify-content: flex-start;
-    width: 100%; /* Container takes full width of its parent */
-    padding-top: 100%; /* Creates a 1:1 aspect ratio for the container */
-    overflow: hidden; /* Ensures no overflowing content is visible */
-    border-radius: 0.5rem; /* Matches the image's rounded corners */
-    background-color: var(--bg-dark); /* Optional fallback for transparency */
+    width: 100%; 
+    padding-top: 100%;
+    overflow: hidden; 
+    border-radius: 0.5rem;
+    background-color: var(--bg-dark);
 }
 
 .music-card .image-container img {
@@ -92,14 +92,14 @@
 }
 
 .star {
-    color: var(--accent-secondary); /* Default color for empty stars */
+    color: var(--accent-secondary); 
     font-size: 26px;
     margin-top: -5px;
     margin-bottom: 5px;
 }
 
 .star-full {
-    color: var(--accent); /* Full stars color */
+    color: var(--accent); 
 }
 
 .star-half {
@@ -133,13 +133,13 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    flex-wrap: wrap; /* Ensure proper layout for narrow screens */
+    flex-wrap: wrap;
     margin-bottom: 1rem;
     color: var(--text-secondary);
 }
 
 #search-bar {
-    flex: 1; /* Makes the search bar take up available space */
+    flex: 1; 
     padding: 0.5rem 1rem;
     font-size: 1rem;
     border-radius: 0.5rem;
@@ -218,6 +218,6 @@
         transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
         cursor: pointer;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        background-size: 200% 200%; /* To give gradients more texture */
+        background-size: 200% 200%; 
     }
 }

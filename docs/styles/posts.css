@@ -261,6 +261,12 @@
     transform: translateX(5px);
 }
 
+/* TOC dont work on mobile */
+@media(hover: hover) and (pointer: coarse){
+    .toc{
+        display: none;
+    }
+}
 
 /* Mobile adjustments */
 @media screen and (max-width: 768px) {
