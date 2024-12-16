@@ -64,6 +64,7 @@ fetch("../json/PackedProjects.json")
                 return new Date(b.AnnounceDate) - new Date(a.AnnounceDate);
             });
         
+            filteredItems = projects;
             renderGrid();
         });
         
@@ -71,5 +72,6 @@ fetch("../json/PackedProjects.json")
         projects.sort((a, b) => {
             return new Date(b.AnnounceDate || 0) - new Date(a.AnnounceDate || 0);
         });
+
         renderGrid();
     });

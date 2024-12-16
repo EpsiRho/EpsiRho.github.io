@@ -63,6 +63,7 @@ fetch("../json/PackedBlogPosts.json")
                 return new Date(b.DateAdded) - new Date(a.DateAdded);
             });
         
+            filteredItems = posts;
             renderGrid();
         });
         

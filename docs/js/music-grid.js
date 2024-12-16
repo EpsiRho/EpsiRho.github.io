@@ -8,7 +8,6 @@ fetch("../json/PackedMusicCards.json")
         let musicItems = data;
         let filteredItems = musicItems;
         const renderGrid = () => {
-            filteredItems = musicItems;
             musicGrid.innerHTML = '';
             filteredItems.forEach(item => {
                 const card = document.createElement('div');
@@ -153,7 +152,8 @@ fetch("../json/PackedMusicCards.json")
                 // Tertiary sorting: Date Added (most recent first)
                 return new Date(b.DateAdded) - new Date(a.DateAdded);
             });
-        
+
+            filteredItems = musicItems;
             renderGrid();
         });
         
