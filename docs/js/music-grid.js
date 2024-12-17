@@ -161,5 +161,18 @@ fetch("../json/PackedMusicCards.json")
         musicItems.sort((a, b) => {
             return new Date(b.DateAdded || 0) - new Date(a.DateAdded || 0);
         });
+
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        let search = getQueryParam('s');
+        if(search){
+            search = search.replace("%23", "#");
+            filterItems(search);
+            searchBar.value = search;
+        }
+        
         renderGrid();
     });
