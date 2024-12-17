@@ -25,7 +25,7 @@ fetch("../json/PackedMusicCards.json")
                         </div>
                     </div>
                 `;
-                card.onclick = () => window.location.href = item.URL;
+                card.onclick = () => window.location.href = encodeURI(item.URL);
                 musicGrid.appendChild(card);
             });
         };

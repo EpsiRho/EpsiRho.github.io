@@ -22,7 +22,7 @@ function GetRandomMusic(){
         </div>
         </div>
         `;
-        card.onclick = () => window.location.href = item.URL;
+        card.onclick = () => window.location.href = encodeURI(item.URL);
         
         musicGrid.appendChild(card);
     });
@@ -139,7 +139,7 @@ window.addEventListener('DOMContentLoaded', () => {
             const alink = document.createElement('a');
             span.className = 'post-link';
             span.textContent = link.Name;
-            alink.href = link.Link;
+            alink.href = encodeURI(link.Link);
             alink.appendChild(span);
             postLinks.appendChild(alink);
         });
@@ -153,6 +153,14 @@ window.addEventListener('DOMContentLoaded', () => {
         } else {
             headerImage.style.display = 'none';
         }
+        let ProjectTags = document.querySelectorAll('.project-tag');
+    console.log(ProjectTags);
+    ProjectTags.forEach((t)=>{
+        console.log(t);
+        t.addEventListener("click", () => window.location.href = encodeURI(`/site/projects?s=${t.innerHTML.trim().replace("#", "%23")}`));
+        //tag.innerHTML = `<a>${tag.innerHTML}</a>`
+        t.style.cursor = 'pointer'
+    });
     }
 
     // Main function to fetch JSON data and populate the page

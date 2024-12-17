@@ -23,7 +23,7 @@ fetch("../json/PackedProjects.json")
                         <p>${new Date(item.AnnounceDate).toLocaleDateString()}</p>
                     </div>
                 `;
-                card.onclick = () => window.location.href = fixedUrl;
+                card.onclick = () => window.location.href = encodeURI(fixedUrl);
                 musicGrid.appendChild(card);
             });
         };
@@ -72,6 +72,18 @@ fetch("../json/PackedProjects.json")
         projects.sort((a, b) => {
             return new Date(b.AnnounceDate || 0) - new Date(a.AnnounceDate || 0);
         });
+
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        let search = getQueryParam('s');
+        if(search){
+            search = search.replace("%23", "#");
+            filterItems(search);
+            searchBar.value = search;
+        }
 
         renderGrid();
     });

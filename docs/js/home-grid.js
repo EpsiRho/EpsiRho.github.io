@@ -21,11 +21,11 @@ function createSlice(data, type) {
     slice.appendChild(blur);
     slice.appendChild(info);
     if (data.PostURL) {
-    let fixedUrl = `/site/project?id=${data.PostURL}`;
+    let fixedUrl = encodeURI(`/site/project?id=${data.PostURL}`);
     slice.addEventListener('click', () => window.location.href = fixedUrl);
     }
     else{
-        slice.addEventListener('click', () => window.location.href = data.BlogPostURL);
+        slice.addEventListener('click', () => window.location.href = encodeURI(data.BlogPostURL));
     }
     
     return slice;

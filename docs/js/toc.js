@@ -41,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
             <li>
                 <svg xmlns="http://www.w3.org/2000/svg" style="margin-right:5px;" width="1.5em" viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-code"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 8l-4 4l4 4" /><path d="M17 8l4 4l-4 4" /><path d="M14 4l-4 16" /></svg>
                 Projects
-                Projects
             </li>
         </a>
         <a href="/site/music">
@@ -124,4 +123,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     manageMouseover();
     window.addEventListener("resize", manageMouseover);
+
+    let postTags = document.querySelectorAll('.post-tag');
+    postTags.forEach((tag)=>{
+        console.log(encodeURI(`/site/posts?s=${tag.innerHTML}`));
+        tag.addEventListener("click", () => window.location.href = encodeURI(`/site/posts?s=${tag.innerHTML.trim().replace("#", "%23")}`));
+        //tag.innerHTML = `<a>${tag.innerHTML}</a>`
+        tag.style.cursor = 'pointer'
+    });
 });

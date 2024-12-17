@@ -22,7 +22,7 @@ fetch("../json/PackedBlogPosts.json")
                         <p>${new Date(item.PostDate).toLocaleDateString()}</p>
                     </div>
                 `;
-                card.onclick = () => window.location.href = item.BlogPostURL;
+                card.onclick = () => window.location.href = encodeURI(item.BlogPostURL);
                 musicGrid.appendChild(card);
             });
         };
@@ -71,5 +71,18 @@ fetch("../json/PackedBlogPosts.json")
         posts.sort((a, b) => {
             return new Date(b.PostDate || 0) - new Date(a.PostDate || 0);
         });
+
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        let search = getQueryParam('s');
+        if(search){
+            search = search.replace("%23", "#");
+            filterItems(search);
+            searchBar.value = search;
+        }
+
         renderGrid();
     });
