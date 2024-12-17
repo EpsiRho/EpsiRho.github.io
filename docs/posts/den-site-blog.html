@@ -99,13 +99,19 @@
                 <div class="post-date">12/16/2024 12:00:00 AM</div>
                 <div class="post-body">
                     <p>I had previously been using <a href="https://gohugo.io/">Hugo</a> to build the static blog site I had been using for personal site,posts,projects. But I found it very limiting, and a bit of a pain to manage so I decided to just set up a new site and some backend tools from scratch.</p>
+</br>
 <h2 id="mdheadr--Backend-Tools"> Backend Tools</h2>
 <p>I wanted to make it simple to make new project/post pages and add new music recommendations so I built some tools for doing so. With music, it's as simple as sending any link (spotify, apple, tidal, etc) and getting an <a href="https://odesli.co/">odesli</a> link back, which will link to any streaming platform that hosts the song/album. Or if it's not available normally, I can add one with a custom Link/Title/Artist/Thumbnail.</p>
+</br>
 <p>For posts, I built a markdown to html parser and defined a simple metadata header for defining their info. In the backend I just link a path to a markdown file, or a folder of them, and it will generate the html files for each post, and json data for each post, so the site can list the available pages.</p>
+</br>
 <p>These backend tools were made a lot quicker with a nice UI thanks to another project I'm working on, MelonUI. MelonUI is used in Melon right now, but I wanted to give it a big upgrade, and with it move to a proper library. The DenTools were one of the first full apps I've built using it, and it's given me lots of info about how to make the library better. I'll have a lot more detail on that soon, hopefully I can get it v1'd and swap Melon over to the new library soon.</p>
+</br>
 <h2 id="mdheadr--Front-End"> Front End</h2>
 <p>As for the rest of the site, I learned a little bit more css and javascript for this. Animation and colors was a big one, I do wonder why gradients are so much of a pain to work with. I had fun but also was really stumped and annoyed at css much of the time haha.</p>
+</br>
 <p>This was mostly motivated by wanting to revamp the Music recommendations page. I used to just have a list of a couple albums I enjoyed, but I wanted more. The <a href="https://epsirho.com/site/music">new page</a> shows off cards of albums, songs, or some musical work that I recommend. It shows an image, title, artist name(s), rating (0.0 -> 5.0), and an energy level (think: chill -> hardstyle). Energy is shown by color: dark blue, light blue, green, yellow, red. The rating modifies the color's brightness.</p>
+</br>
 <p>If you're reading this, hi! You're already on the site this post is about, and if you've read this far you should check out the rest of the site! It's got lots of polish and a few easter eggs as well, like a hidden page somewhere!</p>
 
                 </div>

@@ -164,7 +164,21 @@ namespace EpsiDenTools.Classes
         {
             string html = "";
             string[] lines = body.Split('\n');
-            var temp = AddBullets(lines);
+            List<string> output = new List<string>(); 
+            foreach (string line in lines)
+            {
+                var sanatized = line.Trim();
+                if (sanatized == "")
+                {
+                    output.Add("</br>");
+                }
+                else
+                {
+                    output.Add(sanatized);
+                }
+            }
+            var temp = output.ToArray();
+            temp = AddBullets(temp);
             temp = AddStyle(temp);
             temp = ConvertParagraphs(temp);
             temp = AddHeaders(temp);
@@ -354,12 +368,6 @@ namespace EpsiDenTools.Classes
             foreach (string line in lines)
             {
                 var sanatized = line.Trim();
-                if (sanatized == "")
-                {
-                    output.Add("</br>");
-                    continue;
-                }
-
                 if (sanatized.Contains("```"))
                 {
                     flag = !flag;
