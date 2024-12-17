@@ -7,6 +7,7 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/home.css">
+    <link rel="stylesheet" href="/styles/posts.css">
 </head>
 <body>
     <div class="container">
@@ -51,7 +52,7 @@
                                 <polyline points="5 12 3 12 12 3 21 12 19 12"></polyline>
                                 <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
                                 <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
-                              </svg>
+                            </svg>
                             Home
                         </a>
                     </li>
@@ -104,6 +105,11 @@
             </div>
         </main>
         
+        <aside class="toc" onclick="">
+            <div class="toc-icon">☰</div> 
+            <div class="toc-content" id="toc-site-nav"></div>
+        </aside>
+        <script src="/js/toc.js"></script>
         <script src="/js/home-grid.js"></script>
         
     </div>

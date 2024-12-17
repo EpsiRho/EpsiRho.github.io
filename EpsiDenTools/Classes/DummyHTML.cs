@@ -111,18 +111,17 @@ namespace EpsiDenTools.Classes
             </article>
         </main>
 
-        <aside class=""toc"" onclick="">
+        <aside class=""toc"" onclick="""">
             <div class=""toc-icon"">☰</div> 
-            <div class=""toc-content"">
+            <div class=""toc-content"" id=""toc-site-nav""></div>
+            <div class=""toc-content"" id=""toc-post-nav"">
             <ul>
                 {{POSTTOC}}
             </ul>
+            </div>
         </aside>
     </div>
-    <script>
-        const page = document.querySelector('.blog-post-page');
-        page.style.visibility = 'visible'
-    </script>
+    <script src=""/js/toc.js""></script>
 </body>
 </html>
 

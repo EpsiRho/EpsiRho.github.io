@@ -97,6 +97,7 @@
     background: inherit;
     border-radius: inherit; 
     -webkit-mask-image: linear-gradient(to top, black 60%, transparent);
+    -webkit-backdrop-filter: blur(4px);
     mask-image: linear-gradient(to top, black 60%, transparent);
     backdrop-filter: blur(4px);
 }
@@ -153,7 +154,6 @@
 }
 
 
-/* TOC Container */
 .toc {
     position: fixed;
     top: 1rem;
@@ -166,13 +166,28 @@
     cursor: pointer;
     z-index: 1000;
     overflow: hidden;
-    transition: width 0.35s cubic-bezier(0.68, 1.05, 0.265, 1.05), 
+    display: none;
+    transition: width 0.35s cubic-bezier(0.58, 1.00, 0.265, 1.00), 
                 max-height 0.5s cubic-bezier(0.68, 1.005, 0.265, 1.005),
-                padding 0.3s cubic-bezier(0.68, 1.05, 0.265, 1.05),
-                background-color 0.3s cubic-bezier(0.68, 1.05, 0.265, 1.05);
+                padding 0.3s ease,
+                transform 0.2s ease-in-out,
+                background-color 0.3s ease;
 }
 
-/* TOC Icon */
+.toc.scale-hover{
+    transform: scale(1.1);
+    background-color: var(--bg-card);
+}
+
+.toc.open {
+    width: 250px;
+    max-height: 100vh;
+    padding: 1.5rem;
+    background-color: var(--bg-card);
+    transform: scale(1.0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
 .toc-icon {
     position: absolute;
     top: 0;
@@ -185,59 +200,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    justify-self: right;
     font-size: 1.5rem;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    transition: opacity 0.3s cubic-bezier(0.68, 1.05, 0.265, 1.005),
-                transform 0.3s cubic-bezier(0.68, 1.05, 0.265, 1.005),
-                padding 0.3s cubic-bezier(0.68, 1.05, 0.265, 1.05),
-                color 0.1s ease,
-                background-color 0.3s cubic-bezier(0.68, 1.05, 0.265, 1.05);
-    transform: translateX(10) translateY(-10);
+    transition: opacity 0.3s ease;
 }
 
-/* Expand the TOC on hover */
-.toc:hover {
-    width: 250px;
-    max-height: 100vh;
-    min-height: 3rem;
-    padding: 1.5rem;
-    background-color: var(--bg-card);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
-
-.toc:hover .toc-icon {
+.toc.open .toc-icon {
     opacity: 0;
-    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.0);
-    padding: 10vw;
-    color: var(--bg-card);
 }
 
-/* TOC Content */
 .toc-content {
-    opacity: 1;
-    padding-top: 40px;
     visibility: hidden;
-    width: 100%;
-    position: relative;
-}
-.toc .toc-content a li {
-    color: #444;
     opacity: 0;
-    transition: opacity 0.30s ease,
-                color 0.1s ease,
-                transform 0.4s cubic-bezier(0.68, 1.05, 0.265, 1.05),
-                visibility 0.3s linear;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.toc:hover .toc-content {
-    opacity: 1;
+.toc.open .toc-content {
     visibility: visible;
-}
-.toc:hover .toc-content a li {
     opacity: 1;
-    color: var(--text-primary);
-    visibility: visible;
 }
 
 .toc-content ul {
@@ -246,39 +226,45 @@
     padding: 0;
 }
 
+.toc-content a {
+    margin-bottom: 0.0rem;
+    padding: 0.0rem;
+    color: var(--text-primary);
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
 
 .toc-content a li {
-    margin-bottom: 0.5rem;
-    padding: 0.5rem;
+    display: flex;
+    margin-bottom: 0.2rem;
+    padding: 0.3rem;
     border-radius: 0.25rem;
-    transition: background-color 0.3s ease, 
-                transform 0.2s cubic-bezier(0.38, 1.15, 0.265, 1.15);
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .toc-content a li:hover {
     background-color: var(--accent);
-    color: var(--text-secondary);
+    color: var(--text-primary);
     transform: translateX(5px);
 }
 
-/* TOC dont work on mobile */
-@media(hover: hover) and (pointer: coarse){
-    .toc{
-        display: none;
-    }
-}
-
-/* Mobile adjustments */
 @media screen and (max-width: 768px) {
+    
     .toc {
         position: fixed;
         top: 1rem;
         right: 1rem;
-        width: 5rem;
-        max-height: 5rem;
+        width: 4rem;
+        max-height: 4rem;
+    }
+    .toc-content a li {
+        margin-bottom: 0.2rem;
+        padding: 0.3rem;
+        font-size: 0.8em;
+        border-radius: 0.25rem;
+        transition: background-color 0.3s ease, transform 0.2s ease;
     }
     
-    /* TOC Icon */
     .toc-icon {
         position: absolute;
         top: 0;

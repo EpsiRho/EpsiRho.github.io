@@ -239,6 +239,30 @@ a {
     overflow-y: hidden;
 }
 
+#epsi-quote{
+    display: inline;
+    position: relative;
+    max-width: 40%;
+    float: right;
+    background-color: #4b4b4b;
+    border-radius: 10px;
+    padding: 10px;
+    top: 30px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    transition: transform 0.2s cubic-bezier(.17,.67,0,1.27);
+}
+
+#missing-body{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+#missing-body .music-card{
+    max-width: 200px;
+}
+
 .suprise-image{
     position: relative;
     max-width: 150px;

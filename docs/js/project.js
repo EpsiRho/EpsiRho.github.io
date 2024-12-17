@@ -1,3 +1,104 @@
+function GetRandomMusic(){
+    fetch("../json/PackedMusicCards.json")
+    .then(response => response.json())
+    .then(data => {
+        let musicItems = data;
+        let item = musicItems[Math.floor(Math.random() * musicItems.length)];
+
+        let musicGrid = document.getElementById(`missing-body`);
+
+        const card = document.createElement('div');
+        card.className = 'music-card';
+        card.style.background = getGradientForEnergy(item.Energy, item.Rating);
+        card.innerHTML = `
+        <div class="image-container">
+        <img src="${item.thumbnailURL}" alt="${item.Name}" id="random-image">
+        </div>
+        <div class="details">
+        <h3>${item.Name}</h3>
+        <p>${item.Artist}</p>
+        <div class="rating">
+        ${getStarsHTML(item.Rating)}
+        </div>
+        </div>
+        `;
+        card.onclick = () => window.location.href = item.URL;
+        
+        musicGrid.appendChild(card);
+    });
+}
+const getGradientForEnergy = (energy, rating) => {
+    let bright = 0;
+    let bright2 = 0;
+    if(rating >= 5.0)
+    {
+        bright = 1;
+        bright2 = 1;
+    }
+    else if(rating >= 4.5)
+    {
+        bright = 0.3;
+        bright2 = 0.5;
+    }
+    else if(rating >= 4.0)
+    {
+        bright = 0.3;
+        bright2 = 0.07;
+    }
+    else if(rating >= 3.5)
+    {
+        bright = 0.1;
+        bright2 = 0.01;
+    }
+    else if(rating >= 3.0)
+    {
+        bright = 0.008;
+    }
+    else if(rating >= 2.5)
+    {
+        bright = 0.002;
+    }
+    else if(rating >= 2.0)
+    {
+        bright = 0.001;
+    }
+    else if(rating >= 1.5)
+    {
+        bright = 0.0001;
+    }
+    else if(rating >= 1.0)
+    {
+        bright = 0.0;
+    }
+
+    switch(energy){
+        case 1:
+            return `linear-gradient(0deg, rgba(0, 128, 255, ${bright}) 0%, rgba(1, 46, 90, ${bright2}) 40%, #2a2a2a 90%)`;
+        case 2:
+            return `linear-gradient(0deg, rgba(0, 200, 200, ${bright}) 0%, rgba(1, 99, 99, ${bright2}) 40%, #2a2a2a 90%)`;
+        case 3:
+            return `linear-gradient(0deg, rgba(100, 255, 100, ${bright}) 0%, rgba(2, 116, 2, ${bright2}) 40%, #2a2a2a 90%)`;
+        case 4:
+            return `linear-gradient(0deg, rgba(255, 200, 0, ${bright}) 0%, rgba(97, 77, 3, ${bright2}) 40%, #2a2a2a 90%)`;
+        case 5:
+            return `linear-gradient(0deg, rgba(255, 0, 0, ${bright}) 0%, rgba(109, 1, 1, ${bright2}) 40%, #2a2a2a 90%)`;
+    }
+};
+
+// Helper function to generate stars
+const getStarsHTML = (rating) => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+        if (i <= Math.floor(rating)) {
+            stars.push('<span class="star star-full">&#9733;</span>'); // Full star
+        } else if (i - rating < 1) {
+            stars.push('<span class="star star-half">&#9733;</span>'); // Half star
+        } else {
+            stars.push('<span class="star star-empty">&#9733;</span>'); // Empty star
+        }
+    }
+    return stars.join('');
+};
 // Wait for the DOM to fully load
 window.addEventListener('DOMContentLoaded', () => {
     // Function to get the ID from the URL query parameters
@@ -20,7 +121,7 @@ window.addEventListener('DOMContentLoaded', () => {
         postDescription.textContent = projectData.ShortDescription;
         postDate.textContent = new Date(projectData.AnnounceDate).toLocaleString();
         let pee = document.createElement(`p`);
-        pee.innerHTML = projectData.Description.replace("\n", "<br>");
+        pee.innerHTML = projectData.Description.replace("\n", "</br></br>");
         postBody.appendChild(pee);
 
         // Clear and populate tags
@@ -61,6 +162,7 @@ window.addEventListener('DOMContentLoaded', () => {
         if (!projectId) {
             const card = document.getElementById('missing-card');
             card.style.display = 'block'
+            GetRandomMusic();
             console.error('Project ID not found in URL query parameters.');
             return;
         }
@@ -71,6 +173,7 @@ window.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) {
                 const card = document.getElementById('missing-card');
                 card.style.display = 'block'
+                GetRandomMusic();
                 throw new Error(`Failed to fetch JSON data: ${response.statusText}`);
             }
 
@@ -82,6 +185,7 @@ window.addEventListener('DOMContentLoaded', () => {
             if (!project) {
                 const card = document.getElementById('missing-card');
                 card.style.display = 'block'
+                GetRandomMusic();
                 console.error('Project not found with the given ID:', projectId);
                 return;
             }
@@ -95,6 +199,7 @@ window.addEventListener('DOMContentLoaded', () => {
             console.error('Error loading project data:', error);
             const card = document.getElementById('missing-card');
             card.style.display = 'block'
+            GetRandomMusic();
         }
     }
 

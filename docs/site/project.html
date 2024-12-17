@@ -8,6 +8,7 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/posts.css">
+    <link rel="stylesheet" href="/styles/music.css">
 </head>
 <body>
     <div class="container">
@@ -114,15 +115,21 @@
             <article class="blog-post-page" id="missing-card" style="display: none;">
                 <h1>Hey, wait a minute.</h1>
                 <p style="margin-top: 0px;">What are you doing here?</p>
-                <div class="post-date">This page is meant to show a project, but since there is none (or it can't be shown) you just get me instead :3</div>
-                <div class="post-body">
+                <div class="post-date">While I have you, why don't you listen to some random music pulled from my recommendations?</div>
+                <div id="missing-body"></div>
                 <img alt="Tiny Epsi" class="suprise-image" src="/images/what.png"
                      onmouseover="this.src='/images/Suprize.png'"
                      onmouseout="this.src='/images/what.png'">
+                <div class="post-date" id="epsi-quote">This page is meant to show a project, but since there is none (or it can't be shown) you just get me instead :3</div>
                 
             </article>
         </main>
 
+        <aside class="toc" onclick="">
+            <div class="toc-icon">☰</div> 
+            <div class="toc-content" id="toc-site-nav"></div>
+        </aside>
+        <script src="/js/toc.js"></script>
         <script src="/js/project.js"></script>
     </div>
 </body>
