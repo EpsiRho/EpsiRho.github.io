@@ -241,15 +241,16 @@ a {
 
 #epsi-quote{
     display: inline;
-    position: relative;
+    position: absolute;
     max-width: 40%;
     float: right;
     background-color: #4b4b4b;
     border-radius: 10px;
     padding: 10px;
-    top: 30px;
     overflow-x: hidden;
     overflow-y: hidden;
+    bottom: 30px;
+    right: 180px;
     transition: transform 0.2s cubic-bezier(.17,.67,0,1.27);
 }
 
@@ -257,26 +258,30 @@ a {
     display: flex;
     justify-content: center;
     gap: 1rem;
+    margin-bottom: 180px;
+}
+#missing-card{
+    position: relative;
+    padding-top: 10px;
 }
 
 #missing-body .music-card{
     max-width: 200px;
+    margin-top: 10px;
+    box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.3);
 }
 
 .suprise-image{
-    position: relative;
+    position: absolute;
     max-width: 150px;
     float: right;
-    top: 48px;
+    bottom: -20px;
+    right: 20px;
     overflow-x: hidden;
     overflow-y: hidden;
     transition: transform 0.2s cubic-bezier(.17,.67,0,1.27);
 }
 .suprise-image:hover{
-    position: relative;
-    max-width: 150px;
-    float: right;
-    top: 48px;
     transform: translateY(-10px) scale(1.15);
 }
 
@@ -366,5 +371,48 @@ a {
         margin: 0px 0px 0px 0px;
         row-gap: 5px;
         column-gap: 5px;
+    }
+
+    .suprise-image{
+        position: absolute;
+        max-width: 100px;
+        float: right;
+        bottom: -20px;
+        right: 20px;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        transition: transform 0.2s cubic-bezier(.17,.67,0,1.27);
+    }
+    #epsi-quote{
+        display: inline;
+        position: absolute;
+        max-width: 50%;
+        float: right;
+        background-color: #4b4b4b;
+        border-radius: 10px;
+        padding: 10px;
+        overflow-x: hidden;
+        color: #bdbdbd;
+        overflow-y: hidden;
+        bottom: 30px;
+        right: 130px;
+        transition: transform 0.2s cubic-bezier(.17,.67,0,1.27);
+    }
+    #missing-body{
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 40%;
+    }
+}
+@media (max-width: 425px) {
+    #epsi-quote{
+        font-size: 0.7em;
+    }
+    #missing-body{
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 50%;
     }
 }
