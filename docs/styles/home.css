@@ -258,7 +258,7 @@
     transform: scale(1.05);
 }
 
-@media (max-width: 950px) {
+@media (max-width: 1100px) {
     .section-icon:hover {
         transform: scale(1.0);
     }
