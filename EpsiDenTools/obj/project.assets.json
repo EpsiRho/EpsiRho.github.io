@@ -134,11 +134,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jhset\\Desktop\\Epsi Website V3\\EpsiDenTools\\EpsiDenTools.csproj",
+      "projectUniqueName": "D:\\Projects\\Epsi Website V3\\EpsiDenTools\\EpsiDenTools.csproj",
       "projectName": "EpsiDenTools",
-      "projectPath": "C:\\Users\\jhset\\Desktop\\Epsi Website V3\\EpsiDenTools\\EpsiDenTools.csproj",
+      "projectPath": "D:\\Projects\\Epsi Website V3\\EpsiDenTools\\EpsiDenTools.csproj",
       "packagesPath": "C:\\Users\\jhset\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jhset\\Desktop\\Epsi Website V3\\EpsiDenTools\\obj\\",
+      "outputPath": "D:\\Projects\\Epsi Website V3\\EpsiDenTools\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

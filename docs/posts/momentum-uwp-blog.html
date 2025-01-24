@@ -8,6 +8,7 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/posts.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/stackoverflow-dark.min.css">
 </head>
 <body>
     <div class="container">
@@ -33,12 +34,6 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-mastodon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M18.648 15.254c-1.816 1.763 -6.648 1.626 -6.648 1.626a18.262 18.262 0 0 1 -3.288 -.256c1.127 1.985 4.12 2.81 8.982 2.475c-1.945 2.013 -13.598 5.257 -13.668 -7.636l-.026 -1.154c0 -3.036 .023 -4.115 1.352 -5.633c1.671 -1.91 6.648 -1.666 6.648 -1.666s4.977 -.243 6.648 1.667c1.329 1.518 1.352 2.597 1.352 5.633s-.456 4.074 -1.352 4.944z"></path><path d="M12 11.204v-2.926c0 -1.258 -.895 -2.278 -2 -2.278s-2 1.02 -2 2.278v4.722m4 -4.722c0 -1.258 .895 -2.278 2 -2.278s2 1.02 2 2.278v4.722"></path>
-                        </svg>
-                    </a>
-                    <a href="https://twitter.com/EpsilonRho" aria-label="Twitter" class="social-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z"></path>
                         </svg>
                     </a>
                 </div>
@@ -102,190 +97,165 @@
                     <p>Recently, inspired by the lack of an open source codebase for Everything and some discussion with some devs on discord, I started a project I call Momentum. It was originally planned for UWP, to be a file indexer and search that had a modern Windows 11 look and feel. However, I found some weird issues while working on the indexer code.</p>
 </br>
 <h2 id="mdheadr--Console-code"> Console code</h2>
-</br>
 <p>I started development on the indexer and search functions, which I programmed in a C# Console Application. The first goal was simple, create a performant indexer using hash tables and json. A simple Dictionary<string, string> was used first, but later became a Dictionary<string, IndexedFileInfo>.</p>
 </br>
 <h2 id="mdheadr--Indexer-code"> Indexer code</h2>
-</br>
 <ul>
 <li> Recursively scan through every folder from x starting point.</li>
 <li> Handle exceptions thrown by folders who block access.</li>
 <li> Return one filled dictionary with all files and folders scanned.</li>
 </ul>
-</br>
 <pre class="code-block">
 <code>
 public static void IndexFiles()
 {
-var dictionary = SearchDirectory("C:\\Users\\jhset\\Pictures");
-Display.Message = "Saving to File";
-SaveIndexesToFile(dictionary);
+    var dictionary = SearchDirectory(&quot;C:\\Users\\jhset\\Pictures&quot;);
+    Display.Message = &quot;Saving to File&quot;;
+    SaveIndexesToFile(dictionary);
 }
-</br>
-private static Dictionary<string, List<IndexedFileInfo>> SearchDirectory(string path)
+private static Dictionary&lt;string, List&lt;IndexedFileInfo&gt;&gt; SearchDirectory(string path)
 {
-var dictionary = new Dictionary<string, List<IndexedFileInfo>>();
-try
-{
-// Get directories in path
-var dirs = Directory.GetDirectories(path);
-</br>
-// If ther are dirs, recursively check them
-if (dirs.Length > 0)
-{
-foreach (var dir in dirs)
-{
-var ret = SearchDirectory(dir);
-</br>
-foreach (var f in ret)
-{
-if (dictionary.ContainsKey(f.Key))
-{
-foreach (var s in f.Value)
-{
-dictionary[f.Key].Add(s);
-}
-}
-else
-{
-dictionary.Add(f.Key, new List<IndexedFileInfo>(f.Value));
-}
-}
-}
-}
-</br>
-// Get the files in this dir
-var files = Directory.GetFiles(path);
-</br>
-// Add each file to dictionary
-foreach (var file in files)
-{
-string name = file.Split("\\").Last().ToLower();
-var list = new List<IndexedFileInfo>();
-list.Add(new IndexedFileInfo() { Icon = "&#xE130;", Path = file});
-if (dictionary.ContainsKey(name))
-{
-foreach (var s in list)
-{
-dictionary[name].Add(s);
-}
-}
-else
-{
-dictionary.Add(name, list);
-}
-}
-</br>
-// Finally, add this folder to the dictionary
-string foldername = path.Split('\\').Last().ToLower();
-var flist = new List<IndexedFileInfo>();
-flist.Add(new IndexedFileInfo() { Icon = "&#xE8B7;", Path = path });
-Display.IndexedFolders++;
-if (dictionary.ContainsKey(foldername))
-{
-dictionary[foldername].Add(new IndexedFileInfo() { Icon = "&#xE8B7;", Path = path });
-}
-else
-{
-dictionary.Add(foldername, flist);
-}
-</br>
-}
-</br>
-catch (Exception ex)
-{
-Display.TotalErrored++;
-return new Dictionary<string, List<IndexedFileInfo>>();
-}
-return dictionary;
-</br>
+    var dictionary = new Dictionary&lt;string, List&lt;IndexedFileInfo&gt;&gt;();
+    try
+    {
+        // Get directories in path
+        var dirs = Directory.GetDirectories(path);
+        // If ther are dirs, recursively check them
+        if (dirs.Length &gt; 0)
+        {
+            foreach (var dir in dirs)
+            {
+                var ret = SearchDirectory(dir);
+                foreach (var f in ret)
+                {
+                    if (dictionary.ContainsKey(f.Key))
+                    {
+                        foreach (var s in f.Value)
+                        {
+                            dictionary[f.Key].Add(s);
+                        }
+                    }
+                    else
+                    {
+                        dictionary.Add(f.Key, new List&lt;IndexedFileInfo&gt;(f.Value));
+                    }
+                }
+            }
+        }
+        // Get the files in this dir
+        var files = Directory.GetFiles(path);
+        // Add each file to dictionary
+        foreach (var file in files)
+        {
+            string name = file.Split(&quot;\\&quot;).Last().ToLower();
+            var list = new List&lt;IndexedFileInfo&gt;();
+            list.Add(new IndexedFileInfo() { Icon = &quot;&amp;#xE130;&quot;, Path = file});
+            if (dictionary.ContainsKey(name))
+            {
+                foreach (var s in list)
+                {
+                    dictionary[name].Add(s);
+                }
+            }
+            else
+            {
+                dictionary.Add(name, list);
+            }    
+        }
+        // Finally, add this folder to the dictionary
+        string foldername = path.Split(&#39;\\&#39;).Last().ToLower();
+        var flist = new List&lt;IndexedFileInfo&gt;();
+        flist.Add(new IndexedFileInfo() { Icon = &quot;&amp;#xE8B7;&quot;, Path = path });
+        Display.IndexedFolders++;
+        if (dictionary.ContainsKey(foldername))
+        {
+            dictionary[foldername].Add(new IndexedFileInfo() { Icon = &quot;&amp;#xE8B7;&quot;, Path = path });
+        }
+        else
+        {
+            dictionary.Add(foldername, flist);
+        }
+    }
+    catch (Exception ex)
+    {
+        Display.TotalErrored++;
+        return new Dictionary&lt;string, List&lt;IndexedFileInfo&gt;&gt;();
+    }
+    return dictionary;
 }
 </code>
 </pre>
 </br>
 <h2 id="mdheadr--Saving-code"> Saving code</h2>
-</br>
 <ul>
 <li> Serialize the dictionary to json</li>
 <li> Save to a file.</li>
 </ul>
-</br>
 <pre class="code-block">
 <code>
-private static void SaveIndexesToFile(Dictionary<string, List<IndexedFileInfo>> dictionary)
+private static void SaveIndexesToFile(Dictionary&lt;string, List&lt;IndexedFileInfo&gt;&gt; dictionary)
 {
-</br>
-string text = JsonConvert.SerializeObject(dictionary, Formatting.Indented);
-File.WriteAllText("C:\\Users\\jhset\\Desktop\\Index.json", text);
+    string text = JsonConvert.SerializeObject(dictionary, Formatting.Indented);
+    File.WriteAllText(&quot;C:\\Users\\jhset\\Desktop\\Index.json&quot;, text);
 }
 </code>
 </pre>
 </br>
 <h2 id="mdheadr--Loading-code"> Loading code</h2>
-</br>
 <ul>
 <li> Load file in as string</li>
 <li> Deserialize json to dictionary</li>
 </ul>
-</br>
 <pre class="code-block">
 <code>
-public static Dictionary<string, List<IndexedFileInfo>> LoadIndexesFromFile()
-</br>
+public static Dictionary&lt;string, List&lt;IndexedFileInfo&gt;&gt; LoadIndexesFromFile()
 {
-try
-{
-string text = File.ReadAllText("C:\\Users\\jhset\\Desktop\\Index.json");
-var obj = JsonConvert.DeserializeObject<Dictionary<string, List<IndexedFileInfo>>>(text);
-return obj;
-}
-catch (Exception)
-{
-return null;
-}
+    try
+    {
+        string text = File.ReadAllText(&quot;C:\\Users\\jhset\\Desktop\\Index.json&quot;);
+        var obj = JsonConvert.DeserializeObject&lt;Dictionary&lt;string, List&lt;IndexedFileInfo&gt;&gt;&gt;(text);
+        return obj;
+    }
+    catch (Exception)
+    {
+    return null;
+    }
 }
 </code>
 </pre>
-</br>
 <h2 id="mdheadr--Searching-code"> Searching code</h2>
-</br>
 <ul>
 <li> Search dictionary for results containing x</li>
 <li> Display.</li>
 </ul>
-</br>
 <pre class="code-block">
 <code>
-var list = files.Where(o => o.Key.Contains(input)).ToList();
-for(int i = 0; i < 15; i++)
+var list = files.Where(o =&gt; o.Key.Contains(input)).ToList();
+for(int i = 0; i &lt; 15; i++)
 {
-try
-{
-foreach (var line in list[i].Value)
-{
-Console.WriteLine($"{list[i].Key}");
-}
-}
-catch (Exception)
-{
-</br>
-}
+    try
+    {
+        foreach (var line in list[i].Value)
+        {
+            Console.WriteLine($&quot;{list[i].Key}&quot;);
+        }
+    }
+    catch (Exception)
+    {
+    }
 }
 </code>
 </pre>
 </br>
 <h2 id="mdheadr--Results"> Results</h2>
-</br>
 <p>The results of this first test were good, really good. Better than I was expecting. The test set was my C Drive, a Samsung SSD 970 EVO 1TB. Each test indexed 1,575,799 files. The inital console test was great, and brought in an indexing time of 70 seconds and saving time of 5 seconds.</p>
 </br>
 <h2 id="mdheadr--Moving-to-a-proper-UI"> Moving to a proper UI</h2>
-</br>
 <p>I wanted to move this project to a UI framework, initally I wanted it to be UWP because mica isn't available in the WinUI 3 yet. So I get to work developing a simple UI and porting over the code. With the BroadFilesystemAccess capability enabled, the code for the file indexer could be exactly the same. I started running the first test and.. why is it so slow?</p>
 </br>
 <p>I looked back and forth. "No, the code is the same!" I tried disabling the UI that shows the current ammount of files indexed and elpased time since start. No, still not done after waiting 10 minutes. It's not just slow, it's SLOW. So now I need to check something</p>
 </br>
 <h2 id="mdheadr--WPF-and-the-WASDK"> WPF and the WASDK</h2>
-</br>
 <p>So I created two other projects with simple UIs, and ported the code over.</p>
 </br>
 <img alt="A graph comparing Console, WPF, and WASDK time to index, save, and load the database. Times showed in seconds." title="A graph comparing Console, WPF, and WASDK time to index, save, and load the database. Times showed in seconds." src="/images/momentum-1.png" />
@@ -301,118 +271,109 @@ catch (Exception)
 <p>So I decided to move to the WASDK. Goodbye Mica, my beloved. This transition wasn't without issues either. When saving and loading I encountered a System.OutOfMemoryException. This only happened here, I don't have a good answer for why, but I had to design around it.</p>
 </br>
 <h2 id="mdheadr--New-saving-code"> New saving code</h2>
-</br>
 <pre class="code-block">
 <code>
-private static void SaveIndexesToFile(Dictionary<string, List<IndexedFileInfo>> dictionary)
+private static void SaveIndexesToFile(Dictionary&lt;string, List&lt;IndexedFileInfo&gt;&gt; dictionary)
 {
-string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-string[] dirs = Directory.GetDirectories(path);
-if (!dirs.Contains("Momentum"))
-{
-System.IO.Directory.CreateDirectory($"{path}\\Momentum");
-}
-</br>
-StreamWriter sw = File.CreateText($"{path}\\Momentum\\Index.json");
-JsonTextWriter writer = new JsonTextWriter(sw);
-writer.Formatting = Formatting.Indented;
-writer.WriteStartObject();
-Files = new ConcurrentDictionary<string, List<IndexedFileInfo>>();
-foreach (var item in dictionary)
-{
-Files.TryAdd(item.Key, item.Value);
-writer.WritePropertyName(item.Key);
-writer.WriteStartArray();
-foreach (var file in item.Value)
-{
-writer.WriteStartObject();
-writer.WritePropertyName("Name");
-writer.WriteValue(item.Key);
-writer.WritePropertyName("Path");
-writer.WriteValue(file.Path);
-writer.WritePropertyName("Icon");
-writer.WriteValue(file.Icon);
-writer.WriteEndObject();
-}
-writer.WriteEndArray();
-sw.Flush();
-}
-writer.WriteEndObject();
-</br>
-writer.Flush();
-writer.Close();
+    string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+    string[] dirs = Directory.GetDirectories(path);
+    if (!dirs.Contains(&quot;Momentum&quot;))
+    {
+        System.IO.Directory.CreateDirectory($&quot;{path}\\Momentum&quot;);
+    }
+    StreamWriter sw = File.CreateText($&quot;{path}\\Momentum\\Index.json&quot;);
+    JsonTextWriter writer = new JsonTextWriter(sw);
+    writer.Formatting = Formatting.Indented;
+    writer.WriteStartObject();
+    Files = new ConcurrentDictionary&lt;string, List&lt;IndexedFileInfo&gt;&gt;();
+    foreach (var item in dictionary)
+    {
+        Files.TryAdd(item.Key, item.Value);
+        writer.WritePropertyName(item.Key);
+        writer.WriteStartArray();
+        foreach (var file in item.Value)
+        {
+            writer.WriteStartObject();
+            writer.WritePropertyName(&quot;Name&quot;);
+            writer.WriteValue(item.Key);
+            writer.WritePropertyName(&quot;Path&quot;);
+            writer.WriteValue(file.Path);
+            writer.WritePropertyName(&quot;Icon&quot;);
+            writer.WriteValue(file.Icon);
+            writer.WriteEndObject();
+        }
+        writer.WriteEndArray();
+        sw.Flush();
+    }
+    writer.WriteEndObject();
+    writer.Flush();
+    writer.Close();
 }
 </code>
 </pre>
 </br>
 <h2 id="mdheadr--New-loading-code"> New loading code</h2>
-</br>
 <pre class="code-block">
 <code>
 public static async void LoadIndexesFromFile()
 {
-try
-{
-IsFullyLoaded = false;
-Files = new ConcurrentDictionary<string, List<IndexedFileInfo>>();
-</br>
-string p = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-string[] dirs = Directory.GetDirectories(p);
-if (!dirs.Contains("Momentum"))
-{
-System.IO.Directory.CreateDirectory($"{p}\\Momentum");
-}
-</br>
-StreamReader sr = File.OpenText($"{p}\\Momentum\\Index.json");
-JsonTextReader reader = new JsonTextReader(sr);
-</br>
-while (reader.Read())
-{
-if (reader.Value != null)
-{
-var item = new KeyValuePair<string, List<IndexedFileInfo>>();
-reader.Read();
-reader.Read();
-while (true)
-{
-reader.Read();
-reader.Read();
-string name = reader.Value.ToString();
-reader.Read();
-reader.Read();
-string path = reader.Value.ToString();
-reader.Read();
-reader.Read();
-string icon = reader.Value.ToString();
-reader.Read();
-reader.Read();
-if (Files.ContainsKey(name))
-{
-Files[name].Add(new IndexedFileInfo() { Name = name, Path = path, Icon=icon });
-}
-else
-{
-var lst = new List<IndexedFileInfo>();
-lst.Add(new IndexedFileInfo() { Name = name, Path = path, Icon = icon });
-Files.TryAdd(name, lst);
-}
-if (reader.TokenType == JsonToken.EndArray)
-{
-break;
-}
-}
-}
-}
-IsFullyLoaded = true;
-</br>
-//var obj = JsonReader .DeserializeObject<Dictionary<string, List<IndexedFileInfo>>>(text);
-//Files = obj;
-</br>
-}
-catch (Exception)
-{
-return;
-}
+    try
+    {
+        IsFullyLoaded = false;
+        Files = new ConcurrentDictionary&lt;string, List&lt;IndexedFileInfo&gt;&gt;();
+        string p = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        string[] dirs = Directory.GetDirectories(p);
+        if (!dirs.Contains(&quot;Momentum&quot;))
+        {
+            System.IO.Directory.CreateDirectory($&quot;{p}\\Momentum&quot;);
+        }
+        StreamReader sr = File.OpenText($&quot;{p}\\Momentum\\Index.json&quot;);
+        JsonTextReader reader = new JsonTextReader(sr);
+        while (reader.Read())
+        {
+            if (reader.Value != null)
+            {
+                var item = new KeyValuePair&lt;string, List&lt;IndexedFileInfo&gt;&gt;();
+                reader.Read();
+                reader.Read();
+                while (true)
+                {
+                    reader.Read();
+                    reader.Read();
+                    string name = reader.Value.ToString();
+                    reader.Read();
+                    reader.Read();
+                    string path = reader.Value.ToString();
+                    reader.Read();
+                    reader.Read();
+                    string icon = reader.Value.ToString();
+                    reader.Read();
+                    reader.Read();
+                    if (Files.ContainsKey(name))
+                    {
+                        Files[name].Add(new IndexedFileInfo() { Name = name, Path = path, Icon=icon });
+                    }
+                    else
+                    {
+                        var lst = new List&lt;IndexedFileInfo&gt;();
+                        lst.Add(new IndexedFileInfo() { Name = name, Path = path, Icon = icon });
+                        Files.TryAdd(name, lst);
+                    }
+                    if (reader.TokenType == JsonToken.EndArray)
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+        IsFullyLoaded = true;
+        //var obj = JsonReader .DeserializeObject&lt;Dictionary&lt;string, List&lt;IndexedFileInfo&gt;&gt;&gt;(text);
+        //Files = obj;
+    }
+    catch (Exception)
+    {
+        return;
+    }
 }
 </code>
 </pre>
@@ -420,7 +381,6 @@ return;
 <p>The new loading code is cool because the application can now load in files while you search, so the user can search before the full index file is done loading. This is nice because larger index files can take a few seconds to load.</p>
 </br>
 <h2 id="mdheadr--WASDK-and-the-final-application"> WASDK and the final application</h2>
-</br>
 <p>As much as I'll miss mica, the WASDK is nice to use. If you're coming from UWP, you'll be right at home. Only a few things differ, but the XAML code is mostly the same.</p>
 </br>
 <img alt="A screenshot of the momentum WASDK application's search screen" title="A screenshot of the momentum WASDK application's search screen" src="/images/momentum-3.png" />
@@ -456,6 +416,11 @@ return;
         </aside>
     </div>
     <script src="/js/toc.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+<script>
+    hljs.highlightAll();
+</script>
 </body>
 </html>
 

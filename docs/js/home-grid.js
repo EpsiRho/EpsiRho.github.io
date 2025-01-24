@@ -1,6 +1,9 @@
 function createSlice(data, type) {
     const slice = document.createElement('div');
     slice.className = 'slice';
+
+    const tempBg = document.createElement('div');
+    tempBg.className = 'slice-background';
     
     const content = document.createElement('div');
     content.className = 'slice-content';
@@ -17,6 +20,7 @@ function createSlice(data, type) {
         <small>${new Date(data.AnnounceDate || data.PostDate).toLocaleDateString()}</small>
     `;
     
+    slice.appendChild(tempBg);
     slice.appendChild(content);
     slice.appendChild(blur);
     slice.appendChild(info);
@@ -64,6 +68,9 @@ document.addEventListener('DOMContentLoaded', () => {
         blogs.slice(0, 3).forEach(blog => {
             blogsContainer.appendChild(createSlice(blog, 'blog'));
         });
+        const background = document.querySelector('.slices-background');
+        background.classList.add('animate-background');
+        console.log("background enabled")
     });
     
     document.querySelector('.projects-icon').addEventListener('click', () => {
@@ -73,6 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.blogs-icon').addEventListener('click', () => {
         window.location.href = '/site/posts';
     });
+
+    
 });
 
 const sidebar = document.querySelector('.sidebar');

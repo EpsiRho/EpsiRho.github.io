@@ -1,6 +1,5 @@
 ﻿using EpsiDenTools.Classes;
 using MelonUI;
-using MelonUI.Components;
 using MelonUI.Default;
 using MelonUI.Managers;
 using System.Drawing;
@@ -15,7 +14,7 @@ OptionsMenu mainMenu = new OptionsMenu()
     Width="50%",
     Height="70%",
 };
-mainMenu.Options.Add(("Add Music Recommendation", () =>
+mainMenu.Options.Add(new MenuItem("Add Music Recommendation", () =>
 {
     Thread t = new Thread(() =>
     {
@@ -27,7 +26,7 @@ mainMenu.Options.Add(("Add Music Recommendation", () =>
     t.Start();
 }
 ));
-mainMenu.Options.Add(("Add Custom Music Recommendation", () =>
+mainMenu.Options.Add(new MenuItem("Add Custom Music Recommendation", () =>
 {
     Thread t = new Thread(() =>
     {
@@ -39,7 +38,7 @@ mainMenu.Options.Add(("Add Custom Music Recommendation", () =>
     t.Start();
 }
 ));
-mainMenu.Options.Add(("Pack Site Files", () =>
+mainMenu.Options.Add(new MenuItem("Pack Site Files", () =>
 {
     Thread t = new Thread(() =>
     {
@@ -53,7 +52,7 @@ mainMenu.Options.Add(("Pack Site Files", () =>
     t.Start();
 }
 ));
-mainMenu.Options.Add(("Add Blog Post", () =>
+mainMenu.Options.Add(new MenuItem("Add Blog Post", () =>
 {
     Thread t = new Thread(() =>
     {
@@ -65,7 +64,7 @@ mainMenu.Options.Add(("Add Blog Post", () =>
     t.Start();
 }
 ));
-mainMenu.Options.Add(("Add Project Page", () =>
+mainMenu.Options.Add(new MenuItem("Add Project Page", () =>
 {
     Thread t = new Thread(() =>
     {

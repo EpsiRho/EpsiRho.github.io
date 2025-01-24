@@ -1,5 +1,4 @@
 ﻿using EpsiDenTools.json;
-using MelonUI.Components;
 using MelonUI.Default;
 using MelonUI.Managers;
 using Newtonsoft.Json;
@@ -53,63 +52,63 @@ namespace EpsiDenTools.Classes
                 MenuName = "Enter a song rating"
             };
 
-            rating.Options.Add(("1", () =>
+            rating.Options.Add(new MenuItem("1", () =>
             {
                 Rating = 1.0f;
                 rating.RenderThreadDeleteMe = true;
                 source.Cancel();
             }
             ));
-            rating.Options.Add(("1.5", () =>
+            rating.Options.Add(new MenuItem("1.5", () =>
             {
                 Rating = 1.5f;
                 rating.RenderThreadDeleteMe = true;
                 source.Cancel();
             }
             ));
-            rating.Options.Add(("2", () =>
+            rating.Options.Add(new MenuItem("2", () =>
             {
                 Rating = 2.0f;
                 rating.RenderThreadDeleteMe = true;
                 source.Cancel();
             }
             ));
-            rating.Options.Add(("2.5", () =>
+            rating.Options.Add(new MenuItem("2.5", () =>
             {
                 Rating = 2.5f;
                 rating.RenderThreadDeleteMe = true;
                 source.Cancel();
             }
             ));
-            rating.Options.Add(("3", () =>
+            rating.Options.Add(new MenuItem("3", () =>
             {
                 Rating = 3.0f;
                 rating.RenderThreadDeleteMe = true;
                 source.Cancel();
             }
             ));
-            rating.Options.Add(("3.5", () =>
+            rating.Options.Add(new MenuItem("3.5", () =>
             {
                 Rating = 3.5f;
                 rating.RenderThreadDeleteMe = true;
                 source.Cancel();
             }
             ));
-            rating.Options.Add(("4", () =>
+            rating.Options.Add(new MenuItem("4", () =>
             {
                 Rating = 4.0f;
                 rating.RenderThreadDeleteMe = true;
                 source.Cancel();
             }
             ));
-            rating.Options.Add(("4.5", () =>
+            rating.Options.Add(new MenuItem("4.5", () =>
             {
                 Rating = 4.5f;
                 rating.RenderThreadDeleteMe = true;
                 source.Cancel();
             }
             ));
-            rating.Options.Add(("5", () =>
+            rating.Options.Add(new MenuItem("5", () =>
             {
                 Rating = 5.0f;
                 rating.RenderThreadDeleteMe = true;
@@ -134,35 +133,35 @@ namespace EpsiDenTools.Classes
                 MenuName = "Enter a song energy"
             };
 
-            energy.Options.Add(("1", () =>
+            energy.Options.Add(new MenuItem("1", () =>
             {
                 Energy = 1;
                 energy.RenderThreadDeleteMe = true;
                 source.Cancel();
             }
             ));
-            energy.Options.Add(("2", () =>
+            energy.Options.Add(new MenuItem("2", () =>
             {
                 Energy = 2;
                 energy.RenderThreadDeleteMe = true;
                 source.Cancel();
             }
             ));
-            energy.Options.Add(("3", () =>
+            energy.Options.Add(new MenuItem("3", () =>
             {
                 Energy = 3;
                 energy.RenderThreadDeleteMe = true;
                 source.Cancel();
             }
             ));
-            energy.Options.Add(("4", () =>
+            energy.Options.Add(new MenuItem("4", () =>
             {
                 Energy = 4;
                 energy.RenderThreadDeleteMe = true;
                 source.Cancel();
             }
             ));
-            energy.Options.Add(("5", () =>
+            energy.Options.Add(new MenuItem("5", () =>
             {
                 Energy = 5;
                 energy.RenderThreadDeleteMe = true;
