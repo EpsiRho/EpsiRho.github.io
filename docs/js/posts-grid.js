@@ -12,7 +12,7 @@ fetch("../json/PackedBlogPosts.json")
             filteredItems.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'music-card';
-                card.style.background = '#252525';
+                card.style.background = 'var(--bg-card);';
                 card.innerHTML = `
                     <div class="image-container">
                         <img src="${item.HeaderImage}" alt="${item.Title}">

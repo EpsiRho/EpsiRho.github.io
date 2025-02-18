@@ -29,6 +29,11 @@
     border-color: transparent;
     border-width: 0px 0px 3px 2px;
 }
+
+.home-header {
+    color: var(--text-primary);
+}
+
 #blogs-section{
     margin-bottom: 0px;
     border-style: solid;

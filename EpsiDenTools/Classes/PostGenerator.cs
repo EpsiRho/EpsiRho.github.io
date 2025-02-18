@@ -59,9 +59,10 @@ namespace EpsiDenTools.Classes
                     var postJson = ConvertBlogFileToJson(file);
                     if (postJson == null)
                     {
-                        bar.RenderThreadDeleteMe = true;
-                        manager.SetStatus("Metadata error!");
-                        return;
+                        //bar.RenderThreadDeleteMe = true;
+                        //manager.SetStatus("Metadata error!");
+                        //return;
+                        continue;
                     }
                     var html = ConvertBlogFileToHTML(postJson);
 
@@ -83,7 +84,7 @@ namespace EpsiDenTools.Classes
                 if (postJson == null)
                 {
                     bar.RenderThreadDeleteMe = true;
-                    manager.SetStatus("Metadata error!");
+                    manager.SetStatus("Metadata error or marked as draft!");
                     return;
                 }
                 var html = ConvertBlogFileToHTML(postJson);
@@ -184,6 +185,12 @@ namespace EpsiDenTools.Classes
         {
             BlogPost blogPost = new BlogPost();
             string txt = File.ReadAllText(path);
+
+            if (txt.StartsWith("[DRAFT]"))
+            {
+                return null;
+            }
+
             txt = txt.Replace("\r\n", "\n");
             int start = txt.IndexOf("~~~meta~~~");
             if (start == -1)

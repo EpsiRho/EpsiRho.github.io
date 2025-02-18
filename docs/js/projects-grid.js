@@ -12,7 +12,7 @@ fetch("../json/PackedProjects.json")
             filteredItems.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'music-card';
-                card.style.background = '#252525';
+                card.style.background = 'var(--bg-card);';
                 let fixedUrl = `/site/project?id=${item.PostURL}`;
                 card.innerHTML = `
                     <div class="image-container">

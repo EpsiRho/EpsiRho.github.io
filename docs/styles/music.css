@@ -25,6 +25,7 @@
     text-align: center;
     color: var(--text-primary);
     border-radius: 1rem;
+    background: var(--bg-card);
     padding: 1rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
     cursor: pointer;

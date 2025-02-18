@@ -1,44 +1,47 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Projects\\Epsi Website V3\\EpsiDenTools\\",
+  "WorkspaceRootPath": "C:\\Users\\jhset\\Documents\\GitHub\\EpsiRho.github.io\\EpsiDenTools\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|d:\\projects\\epsi website v3\\epsidentools\\classes\\dummyhtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|solutionrelative:classes\\dummyhtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jhset\\AppData\\Local\\Temp\\.vsdbgsrc\\1e205cdd96c8306bbcf07a3f7b509bf2bbccc58ba1a8bada99b50d7f53d26ba2\\Socket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Documents\\GitHub\\MelonUI\\MelonUI\\Managers\\ConsoleWindowManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|d:\\projects\\epsi website v3\\epsidentools\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|c:\\users\\jhset\\documents\\github\\epsirho.github.io\\epsidentools\\classes\\dummyhtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|solutionrelative:classes\\dummyhtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|c:\\users\\jhset\\documents\\github\\epsirho.github.io\\epsidentools\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|d:\\projects\\epsi website v3\\epsidentools\\classes\\musiccardgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|solutionrelative:classes\\musiccardgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|d:\\projects\\epsi website v3\\epsidentools\\classes\\projectgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|solutionrelative:classes\\projectgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|d:\\projects\\epsi website v3\\epsidentools\\classes\\postgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|c:\\users\\jhset\\documents\\github\\epsirho.github.io\\epsidentools\\classes\\postgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|solutionrelative:classes\\postgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|d:\\projects\\epsi website v3\\epsidentools\\json\\projectpost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|c:\\users\\jhset\\documents\\github\\epsirho.github.io\\epsidentools\\classes\\musiccardgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|solutionrelative:classes\\musiccardgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|c:\\users\\jhset\\documents\\github\\epsirho.github.io\\epsidentools\\classes\\projectgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|solutionrelative:classes\\projectgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|c:\\users\\jhset\\documents\\github\\epsirho.github.io\\epsidentools\\json\\projectpost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|solutionrelative:json\\projectpost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|d:\\projects\\epsi website v3\\epsidentools\\json\\odesliresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|c:\\users\\jhset\\documents\\github\\epsirho.github.io\\epsidentools\\json\\odesliresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|solutionrelative:json\\odesliresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|d:\\projects\\epsi website v3\\epsidentools\\json\\blogpost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|c:\\users\\jhset\\documents\\github\\epsirho.github.io\\epsidentools\\json\\blogpost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|solutionrelative:json\\blogpost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|d:\\projects\\epsi website v3\\epsidentools\\json\\musicitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|c:\\users\\jhset\\documents\\github\\epsirho.github.io\\epsidentools\\json\\musicitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{53F2B46B-93D3-49FC-895F-C9E04E9A3F20}|EpsiDenTools.csproj|solutionrelative:json\\musicitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -49,7 +52,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 224,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -57,37 +60,48 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Socket.cs",
+              "DocumentMoniker": "C:\\Users\\jhset\\AppData\\Local\\Temp\\.vsdbgsrc\\1e205cdd96c8306bbcf07a3f7b509bf2bbccc58ba1a8bada99b50d7f53d26ba2\\Socket.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\1e205cdd96c8306bbcf07a3f7b509bf2bbccc58ba1a8bada99b50d7f53d26ba2\\Socket.cs",
+              "ToolTip": "C:\\Users\\jhset\\AppData\\Local\\Temp\\.vsdbgsrc\\1e205cdd96c8306bbcf07a3f7b509bf2bbccc58ba1a8bada99b50d7f53d26ba2\\Socket.cs [Read Only]",
+              "RelativeToolTip": "..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\1e205cdd96c8306bbcf07a3f7b509bf2bbccc58ba1a8bada99b50d7f53d26ba2\\Socket.cs [Read Only]",
+              "ViewState": "AgIAAHwBAAAAAAAAAAAqwJQBAAADAAAAAQAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-18T23:02:31.751Z",
+              "EditorCaption": " [Read Only]"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "ConsoleWindowManager.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\MelonUI\\MelonUI\\Managers\\ConsoleWindowManager.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\Documents\\GitHub\\MelonUI\\MelonUI\\Managers\\ConsoleWindowManager.cs",
               "ToolTip": "D:\\Documents\\GitHub\\MelonUI\\MelonUI\\Managers\\ConsoleWindowManager.cs",
-              "RelativeToolTip": "..\\..\\..\\Documents\\GitHub\\MelonUI\\MelonUI\\Managers\\ConsoleWindowManager.cs",
-              "ViewState": "AgIAAAYCAAAAAAAAAADgvyECAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAACYCAAAAAAAAAAAqwD4CAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-23T21:57:41.176Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "DummyHTML.cs",
-              "DocumentMoniker": "D:\\Projects\\Epsi Website V3\\EpsiDenTools\\Classes\\DummyHTML.cs",
+              "DocumentMoniker": "C:\\Users\\jhset\\Documents\\GitHub\\EpsiRho.github.io\\EpsiDenTools\\Classes\\DummyHTML.cs",
               "RelativeDocumentMoniker": "Classes\\DummyHTML.cs",
-              "ToolTip": "D:\\Projects\\Epsi Website V3\\EpsiDenTools\\Classes\\DummyHTML.cs",
+              "ToolTip": "C:\\Users\\jhset\\Documents\\GitHub\\EpsiRho.github.io\\EpsiDenTools\\Classes\\DummyHTML.cs",
               "RelativeToolTip": "Classes\\DummyHTML.cs",
-              "ViewState": "AgIAAKEAAAAAAAAAAADgv7wAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAIYAAAAAAAAAAAAQwKMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-15T22:19:19.381Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "ProjectGenerator.cs",
-              "DocumentMoniker": "D:\\Projects\\Epsi Website V3\\EpsiDenTools\\Classes\\ProjectGenerator.cs",
+              "DocumentMoniker": "C:\\Users\\jhset\\Documents\\GitHub\\EpsiRho.github.io\\EpsiDenTools\\Classes\\ProjectGenerator.cs",
               "RelativeDocumentMoniker": "Classes\\ProjectGenerator.cs",
-              "ToolTip": "D:\\Projects\\Epsi Website V3\\EpsiDenTools\\Classes\\ProjectGenerator.cs",
+              "ToolTip": "C:\\Users\\jhset\\Documents\\GitHub\\EpsiRho.github.io\\EpsiDenTools\\Classes\\ProjectGenerator.cs",
               "RelativeToolTip": "Classes\\ProjectGenerator.cs",
               "ViewState": "AgIAAL4AAAAAAAAAAAAkwNEAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -95,11 +109,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "ProjectPost.cs",
-              "DocumentMoniker": "D:\\Projects\\Epsi Website V3\\EpsiDenTools\\json\\ProjectPost.cs",
+              "DocumentMoniker": "C:\\Users\\jhset\\Documents\\GitHub\\EpsiRho.github.io\\EpsiDenTools\\json\\ProjectPost.cs",
               "RelativeDocumentMoniker": "json\\ProjectPost.cs",
-              "ToolTip": "D:\\Projects\\Epsi Website V3\\EpsiDenTools\\json\\ProjectPost.cs",
+              "ToolTip": "C:\\Users\\jhset\\Documents\\GitHub\\EpsiRho.github.io\\EpsiDenTools\\json\\ProjectPost.cs",
               "RelativeToolTip": "json\\ProjectPost.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -107,11 +121,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "BlogPost.cs",
-              "DocumentMoniker": "D:\\Projects\\Epsi Website V3\\EpsiDenTools\\json\\BlogPost.cs",
+              "DocumentMoniker": "C:\\Users\\jhset\\Documents\\GitHub\\EpsiRho.github.io\\EpsiDenTools\\json\\BlogPost.cs",
               "RelativeDocumentMoniker": "json\\BlogPost.cs",
-              "ToolTip": "D:\\Projects\\Epsi Website V3\\EpsiDenTools\\json\\BlogPost.cs",
+              "ToolTip": "C:\\Users\\jhset\\Documents\\GitHub\\EpsiRho.github.io\\EpsiDenTools\\json\\BlogPost.cs",
               "RelativeToolTip": "json\\BlogPost.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -119,23 +133,24 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "PostGenerator.cs",
-              "DocumentMoniker": "D:\\Projects\\Epsi Website V3\\EpsiDenTools\\Classes\\PostGenerator.cs",
+              "DocumentMoniker": "C:\\Users\\jhset\\Documents\\GitHub\\EpsiRho.github.io\\EpsiDenTools\\Classes\\PostGenerator.cs",
               "RelativeDocumentMoniker": "Classes\\PostGenerator.cs",
-              "ToolTip": "D:\\Projects\\Epsi Website V3\\EpsiDenTools\\Classes\\PostGenerator.cs",
+              "ToolTip": "C:\\Users\\jhset\\Documents\\GitHub\\EpsiRho.github.io\\EpsiDenTools\\Classes\\PostGenerator.cs",
               "RelativeToolTip": "Classes\\PostGenerator.cs",
-              "ViewState": "AgIAAHQAAAAAAAAAAAAcwIoAAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAABoAAAAAAAAAAAAIwFYAAABJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-14T06:09:21.963Z"
+              "WhenOpened": "2024-12-14T06:09:21.963Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "MusicItem.cs",
-              "DocumentMoniker": "D:\\Projects\\Epsi Website V3\\EpsiDenTools\\json\\MusicItem.cs",
+              "DocumentMoniker": "C:\\Users\\jhset\\Documents\\GitHub\\EpsiRho.github.io\\EpsiDenTools\\json\\MusicItem.cs",
               "RelativeDocumentMoniker": "json\\MusicItem.cs",
-              "ToolTip": "D:\\Projects\\Epsi Website V3\\EpsiDenTools\\json\\MusicItem.cs",
+              "ToolTip": "C:\\Users\\jhset\\Documents\\GitHub\\EpsiRho.github.io\\EpsiDenTools\\json\\MusicItem.cs",
               "RelativeToolTip": "json\\MusicItem.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -143,11 +158,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "OdesliResponse.cs",
-              "DocumentMoniker": "D:\\Projects\\Epsi Website V3\\EpsiDenTools\\json\\OdesliResponse.cs",
+              "DocumentMoniker": "C:\\Users\\jhset\\Documents\\GitHub\\EpsiRho.github.io\\EpsiDenTools\\json\\OdesliResponse.cs",
               "RelativeDocumentMoniker": "json\\OdesliResponse.cs",
-              "ToolTip": "D:\\Projects\\Epsi Website V3\\EpsiDenTools\\json\\OdesliResponse.cs",
+              "ToolTip": "C:\\Users\\jhset\\Documents\\GitHub\\EpsiRho.github.io\\EpsiDenTools\\json\\OdesliResponse.cs",
               "RelativeToolTip": "json\\OdesliResponse.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -155,26 +170,25 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "MusicCardGenerator.cs",
-              "DocumentMoniker": "D:\\Projects\\Epsi Website V3\\EpsiDenTools\\Classes\\MusicCardGenerator.cs",
+              "DocumentMoniker": "C:\\Users\\jhset\\Documents\\GitHub\\EpsiRho.github.io\\EpsiDenTools\\Classes\\MusicCardGenerator.cs",
               "RelativeDocumentMoniker": "Classes\\MusicCardGenerator.cs",
-              "ToolTip": "D:\\Projects\\Epsi Website V3\\EpsiDenTools\\Classes\\MusicCardGenerator.cs",
+              "ToolTip": "C:\\Users\\jhset\\Documents\\GitHub\\EpsiRho.github.io\\EpsiDenTools\\Classes\\MusicCardGenerator.cs",
               "RelativeToolTip": "Classes\\MusicCardGenerator.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-13T22:10:33.181Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-13T22:10:33.181Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Projects\\Epsi Website V3\\EpsiDenTools\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\jhset\\Documents\\GitHub\\EpsiRho.github.io\\EpsiDenTools\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\Projects\\Epsi Website V3\\EpsiDenTools\\Program.cs",
+              "ToolTip": "C:\\Users\\jhset\\Documents\\GitHub\\EpsiRho.github.io\\EpsiDenTools\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAAEIAAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAACsAAAAAAAAAAAAiwFoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-13T21:48:32.546Z",
               "EditorCaption": ""

@@ -31,154 +31,19 @@ const getGradientForEnergy = (energy, rating) => {
 
     switch(energy){
         case 1:
-            return `linear-gradient(0deg, rgba(0, 128, 255, ${bright}) 0%, rgba(1, 46, 90, ${bright2}) 40%, #2a2a2a 90%)`;
+            return `linear-gradient(0deg, rgba(0, 128, 255, ${bright}) 0%, rgba(1, 46, 90, ${bright2}) 40%, var(--bg-card) 90%)`;
         case 2:
-            return `linear-gradient(0deg, rgba(0, 200, 200, ${bright}) 0%, rgba(1, 99, 99, ${bright2}) 40%, #2a2a2a 90%)`;
+            return `linear-gradient(0deg, rgba(0, 200, 200, ${bright}) 0%, rgba(1, 99, 99, ${bright2}) 40%, var(--bg-card) 90%)`;
         case 3:
-            return `linear-gradient(0deg, rgba(100, 255, 100, ${bright}) 0%, rgba(2, 116, 2, ${bright2}) 40%, #2a2a2a 90%)`;
+            return `linear-gradient(0deg, rgba(100, 255, 100, ${bright}) 0%, rgba(2, 116, 2, ${bright2}) 40%, var(--bg-card) 90%)`;
         case 4:
-            return `linear-gradient(0deg, rgba(255, 200, 0, ${bright}) 0%, rgba(97, 77, 3, ${bright2}) 40%, #2a2a2a 90%)`;
+            return `linear-gradient(0deg, rgba(255, 200, 0, ${bright}) 0%, rgba(97, 77, 3, ${bright2}) 40%, var(--bg-card) 90%)`;
         case 5:
-            return `linear-gradient(0deg, rgba(255, 0, 0, ${bright}) 0%, rgba(109, 1, 1, ${bright2}) 40%, #2a2a2a 90%)`;
+            return `linear-gradient(0deg, rgba(255, 0, 0, ${bright}) 0%, rgba(109, 1, 1, ${bright2}) 40%, var(--bg-card) 90%)`;
         default:
-            return `linear-gradient(0deg, rgba(128, 128, 128, ${bright}) 0%, rgba(64, 64, 64, ${bright2}) 40%, #2a2a2a 90%)`;
+            return `linear-gradient(0deg, rgba(128, 128, 128, ${bright}) 0%, rgba(64, 64, 64, ${bright2}) 40%, var(--bg-card) 90%)`;
     }
 };
-
-async function compareLastFMAlbums(username, apiKey, referenceList) {
-    if (!username || !apiKey || !Array.isArray(referenceList)) {
-        throw new Error('Invalid input parameters');
-    }
-
-    const API_BASE_URL = 'http://ws.audioscrobbler.com/2.0/';
-    const PERIOD = '1month';
-    const LIMIT = 50;
-    const method = 'user.gettopalbums';
-
-    try {
-        const response = await fetch(
-            `${API_BASE_URL}?method=${method}&user=${username}&api_key=${apiKey}&period=${PERIOD}&limit=${LIMIT}&format=json`
-        );
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        const userItems = data.topalbums?.album || [];
-
-        const referenceMap = new Map(
-            referenceList.map(item => [
-                `${item.Name.toLowerCase()}-${item.Artist.toLowerCase()}`,
-                item
-            ])
-        );
-
-        const normalizedUserItems = userItems
-            .map(item => {
-                const itemName = item.name || '';
-                const artistName = item.artist?.name || item.artist?.['#text'] || '';
-                const lookupKey = `${itemName.toLowerCase()}-${artistName.toLowerCase()}`;
-                const referenceItem = referenceMap.get(lookupKey);
-
-                if (referenceItem) {
-                    return {
-                        Name: itemName,
-                        Artist: artistName,
-                        PlayCount: parseInt(item.playcount) || 0,
-                        URL: item.url,
-                        Energy: referenceItem.Energy 
-                    };
-                }
-                return null;
-            })
-            .filter(item => item !== null);
-
-        const totalPlays = normalizedUserItems.reduce((sum, item) => 
-            sum + item.PlayCount, 0);
-
-        return normalizedUserItems
-            .sort((a, b) => b.PlayCount - a.PlayCount)
-            .map(item => ({
-                name: `${item.Name} - ${item.Artist}`,
-                plays: item.PlayCount,
-                artist: item.Artist,
-                Energy: item.Energy
-            }));
-
-    } catch (error) {
-        console.error('Error fetching Last.FM data:', error);
-        throw error;
-    }
-}
-async function compareLastFMTracks(username, apiKey, referenceList) {
-    if (!username || !apiKey || !Array.isArray(referenceList)) {
-        throw new Error('Invalid input parameters');
-    }
-
-    const API_BASE_URL = 'http://ws.audioscrobbler.com/2.0/';
-    const PERIOD = '1month';
-    const LIMIT = 10;
-    const method = 'user.gettoptracks';
-
-    try {
-        const response = await fetch(
-            `${API_BASE_URL}?method=${method}&user=${username}&api_key=${apiKey}&period=${PERIOD}&limit=${LIMIT}&format=json`
-        );
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        const userItems = data.toptracks?.track || [];
-
-        const referenceMap = new Map(
-            referenceList.map(item => [
-                `${item.Name.toLowerCase()}-${item.Artist.toLowerCase()}`,
-                item
-            ])
-        );
-
-        const normalizedUserItems = userItems
-            .map(item => {
-                const itemName = item.name || '';
-                const artistName = item.artist?.name || item.artist?.['#text'] || '';
-                const lookupKey = `${itemName.toLowerCase()}-${artistName.toLowerCase()}`;
-                const referenceItem = referenceMap.get(lookupKey);
-
-                if (referenceItem) {
-                    return {
-                        Name: itemName,
-                        Artist: artistName,
-                        PlayCount: parseInt(item.playcount) || 0,
-                        URL: item.url,
-                        Energy: referenceItem.Energy 
-                    };
-                }
-                return null;
-            })
-            .filter(item => item !== null); 
-
-        const totalPlays = normalizedUserItems.reduce((sum, item) => 
-            sum + item.PlayCount, 0);
-
-        console.log(userItems);
-
-        return normalizedUserItems
-            .sort((a, b) => b.PlayCount - a.PlayCount)
-            .map(item => ({
-                name: `${item.Name} - ${item.Artist}`,
-                plays: item.PlayCount,
-                artist: item.Artist,
-                Energy: item.Energy
-            }));
-
-    } catch (error) {
-        console.error('Error fetching Last.FM data:', error);
-        throw error;
-    }
-}
 
 // Helper function to generate stars HTML
 const getStarsHTML = (rating) => {
@@ -229,44 +94,6 @@ fetch("../json/PackedMusicCards.json")
                 card.onclick = () => window.location.href = encodeURI(item.URL);
                 musicGrid.appendChild(card);
             });
-   
-            /* try {
-                const matchingAlbums = await compareLastFMAlbums(
-                    'EpsiRho', 
-                    'fbe6ea7fc7b8a8ceae36d7603d1014e4', 
-                    filteredItems, 
-                    'albums'
-                );
-                const matchingTracks = await compareLastFMTracks(
-                    'EpsiRho', 
-                    'fbe6ea7fc7b8a8ceae36d7603d1014e4', 
-                    filteredItems, 
-                    'albums'
-                );
-                const matchingData = matchingAlbums.concat(matchingTracks);
-
-                if (matchingData.length > 0) {
-                    const totalPlays = matchingData.reduce((sum, track) => 
-                        sum + track.plays, 0);
-
-                    const normalizedData = matchingData.map(album => ({
-                        ...album,
-                        normalizedValue: Math.max(1, (album.plays / totalPlays) * 100),
-                        actualPercentage: (album.plays / totalPlays) * 100
-                    }));
-
-                    const normalizedSum = normalizedData.reduce((sum, album) => 
-                        sum + album.normalizedValue, 0);
-
-                    normalizedData.forEach(album => {
-                        album.normalizedValue = (album.normalizedValue / normalizedSum) * 100;
-                    });
-
-                    renderChart(normalizedData);
-                }
-            } catch (error) {
-                console.error('Error processing Last.fm data:', error);
-            } */
         };
 
         const renderChart = (normalizedData) => {

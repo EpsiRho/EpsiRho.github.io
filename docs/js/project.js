@@ -2,7 +2,7 @@ function GetRandomMusic(){
     fetch("../json/PackedMusicCards.json")
     .then(response => response.json())
     .then(data => {
-        let musicItems = data;
+        let musicItems = data.filter(item => item.Rating >= 4.5);
         let item = musicItems[Math.floor(Math.random() * musicItems.length)];
 
         let musicGrid = document.getElementById(`missing-body`);
@@ -73,15 +73,15 @@ const getGradientForEnergy = (energy, rating) => {
 
     switch(energy){
         case 1:
-            return `linear-gradient(0deg, rgba(0, 128, 255, ${bright}) 0%, rgba(1, 46, 90, ${bright2}) 40%, #2a2a2a 90%)`;
+            return `linear-gradient(0deg, rgba(0, 128, 255, ${bright}) 0%, rgba(1, 46, 90, ${bright2}) 40%, var(--bg-card) 90%)`;
         case 2:
-            return `linear-gradient(0deg, rgba(0, 200, 200, ${bright}) 0%, rgba(1, 99, 99, ${bright2}) 40%, #2a2a2a 90%)`;
+            return `linear-gradient(0deg, rgba(0, 200, 200, ${bright}) 0%, rgba(1, 99, 99, ${bright2}) 40%, var(--bg-card) 90%)`;
         case 3:
-            return `linear-gradient(0deg, rgba(100, 255, 100, ${bright}) 0%, rgba(2, 116, 2, ${bright2}) 40%, #2a2a2a 90%)`;
+            return `linear-gradient(0deg, rgba(100, 255, 100, ${bright}) 0%, rgba(2, 116, 2, ${bright2}) 40%, var(--bg-card) 90%)`;
         case 4:
-            return `linear-gradient(0deg, rgba(255, 200, 0, ${bright}) 0%, rgba(97, 77, 3, ${bright2}) 40%, #2a2a2a 90%)`;
+            return `linear-gradient(0deg, rgba(255, 200, 0, ${bright}) 0%, rgba(97, 77, 3, ${bright2}) 40%, var(--bg-card) 90%)`;
         case 5:
-            return `linear-gradient(0deg, rgba(255, 0, 0, ${bright}) 0%, rgba(109, 1, 1, ${bright2}) 40%, #2a2a2a 90%)`;
+            return `linear-gradient(0deg, rgba(255, 0, 0, ${bright}) 0%, rgba(109, 1, 1, ${bright2}) 40%, var(--bg-card) 90%)`;
     }
 };
 

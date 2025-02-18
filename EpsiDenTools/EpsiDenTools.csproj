@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <Reference Include="MelonUI">
-      <HintPath>..\..\..\Documents\GitHub\MelonUI\MelonUI\bin\Debug\net9.0\MelonUI.dll</HintPath>
+      <HintPath>D:\Documents\GitHub\MelonUI\MelonUI\bin\Release\net9.0\MelonUI.dll</HintPath>
     </Reference>
   </ItemGroup>
 

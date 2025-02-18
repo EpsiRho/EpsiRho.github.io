@@ -1,0 +1,148 @@
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+const root = document.documentElement;
+const settingsButton = document.getElementById('page-settings');
+const settingsModal = document.getElementById('settings-modal');
+const settingsBg = document.getElementById('settings-bg');
+const closeModal = document.getElementById('close-modal');
+const themeLight = document.getElementById('theme-option-light');
+const themeDark = document.getElementById('theme-option-dark');
+const themeTransparent = document.getElementById('theme-option-transparent');
+
+function setTheme(theme) {
+    console.log(`Using ${theme} theme`)
+    if (theme === 'dark') {
+        /* 
+            --bg-dark: #00000028;
+            --bg-sidebar: #47474721;
+            --bg-main: #1414143a;
+            --bg-card: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0; 
+        */
+
+        /* 
+            --bg-dark: #1a1a1a;
+            --bg-card: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0; 
+            --bg-code: #e6e6e6;
+        */
+        root.style.setProperty('--bg-dark', '#1a1a1a');
+        root.style.setProperty('--bg-sidebar', '#2a2a2a');
+        root.style.setProperty('--bg-main', '#1a1a1a');
+        root.style.setProperty('--bg-card', 'rgb(53, 53, 53)');
+        root.style.setProperty('--text-primary', '#ffffff');
+        root.style.setProperty('--text-secondary', '#a0a0a0');
+        root.style.setProperty('--bg-code', '#282c34');
+
+        themeLight.classList.remove('selected');
+        themeDark.classList.add('selected');
+        themeTransparent.classList.remove('selected');
+
+        changeHighlightTheme('atom-one-dark');
+    } else if (theme === 'light')  {
+        root.style.setProperty('--bg-dark', 'rgb(236, 236, 236)');
+        root.style.setProperty('--bg-sidebar', 'rgb(216, 216, 216)');
+        root.style.setProperty('--bg-main', 'rgb(228, 228, 228)');
+        root.style.setProperty('--bg-card','rgb(199, 199, 199)');
+        root.style.setProperty('--text-primary', '#000000');
+        root.style.setProperty('--text-secondary', '#1a1a1a');
+        root.style.setProperty('--bg-code', '#e6e6e6');
+
+        themeLight.classList.add('selected');
+        themeDark.classList.remove('selected');
+        themeTransparent.classList.remove('selected');
+        changeHighlightTheme('panda-syntax-light');
+    }
+    else {
+        root.style.setProperty('--bg-dark', '#00000028');
+        root.style.setProperty('--bg-sidebar', '#47474721');
+        root.style.setProperty('--bg-main', '#1414143a');
+        root.style.setProperty('--bg-card', '#3a3a3a');
+        root.style.setProperty('--text-primary', '#ffffff');
+        root.style.setProperty('--text-secondary', '#a0a0a0');
+        root.style.setProperty('--bg-code', '#22272e');
+
+        themeLight.classList.remove('selected');
+        themeDark.classList.remove('selected');
+        themeTransparent.classList.add('selected');
+        changeHighlightTheme('github-dark-dimmed');
+    }
+
+    document.cookie = `theme=${theme}; path=/`; // Store theme in cookie
+}
+
+function changeHighlightTheme(theme) {
+    // Find the existing link tag for highlight.js theme
+    let link = document.getElementById('codeTheme');
+    
+    if (!link) {
+        // If no link tag exists, create one
+        console.log('FUCK');
+        link = document.createElement('link');
+        link.rel = 'stylesheet';
+        document.head.appendChild(link);
+    }
+
+    // Update the href to the selected theme
+    link.href = `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/${theme}.min.css`;
+    console.log(link.href);
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const savedTheme = getCookie('theme');
+    if (savedTheme) {
+        setTheme(savedTheme);
+        console.log(savedTheme);
+    }
+    else{
+        console.log("Using prefered theme");
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            setTheme('dark');
+          } else {
+            setTheme('light');
+          }
+    }
+
+    settingsButton.addEventListener('click', function() {
+        settingsModal.style.opacity = 1;
+        settingsBg.style.opacity = 1;
+        settingsBg.style.pointerEvents = 'all';
+        settingsModal.style.pointerEvents = 'all';
+        settingsBg.style.backdropFilter = 4
+        //settingsModal.classList.add('modal-open');
+    });
+
+    closeModal.addEventListener('click', function() {
+        settingsModal.style.opacity = 0;
+        settingsBg.style.opacity = 0;
+        settingsBg.style.pointerEvents = 'none';
+        settingsModal.style.pointerEvents = 'none';
+    });
+
+    window.addEventListener('click', function(event) {
+        console.log(event.target);
+        if (event.target == settingsBg) {
+            settingsModal.style.opacity = 0;
+            settingsBg.style.opacity = 0;
+            settingsBg.style.pointerEvents = 'none';
+            settingsModal.style.pointerEvents = 'none';
+        }
+    });
+
+    themeLight.addEventListener('click', function() {
+        setTheme('light');
+    });
+    themeDark.addEventListener('click', function() {
+        setTheme('dark');
+    });
+    themeTransparent.addEventListener('click', function() {
+        setTheme('transparent');
+    });
+});
