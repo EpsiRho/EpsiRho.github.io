@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       commentElement.innerHTML = `
-            <a class="externalLink" href="${node.webLink}">&#x2924</a>
+            <a class="externalLink" title="View comment on bluesky" href="${node.webLink}">&#x2924</a>
             <div class="author-info">
                 <div class="authorpfp"><img src="${node.authorpfp}"></img></div>
                 <div class="authorNameInfo">
@@ -211,7 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         addComment.href = ConnectPostUrl;
         addComment.innerHTML = ` 
-            <p>&#x1F5E8 Comment on <span class="bskyFlair">BSky</span></p>
+            <p title="Add a comment with bluesky">&#x1F5E8</p>
         `;
 
         hdr.appendChild(addComment);
