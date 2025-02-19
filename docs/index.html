@@ -35,16 +35,6 @@
                             <path d="M18.648 15.254c-1.816 1.763 -6.648 1.626 -6.648 1.626a18.262 18.262 0 0 1 -3.288 -.256c1.127 1.985 4.12 2.81 8.982 2.475c-1.945 2.013 -13.598 5.257 -13.668 -7.636l-.026 -1.154c0 -3.036 .023 -4.115 1.352 -5.633c1.671 -1.91 6.648 -1.666 6.648 -1.666s4.977 -.243 6.648 1.667c1.329 1.518 1.352 2.597 1.352 5.633s-.456 4.074 -1.352 4.944z"></path><path d="M12 11.204v-2.926c0 -1.258 -.895 -2.278 -2 -2.278s-2 1.02 -2 2.278v4.722m4 -4.722c0 -1.258 .895 -2.278 2 -2.278s2 1.02 2 2.278v4.722"></path>
                         </svg>
                     </a>
-                    <a aria-label="page-settings" class="social-link" id="page-settings">
-                        
-                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-adjustments">
-                            
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M4 10a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M6 4v4" />
-                            <path d="M6 12v8" /><path d="M10 16a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M12 4v10" /><path d="M12 18v2" />
-                            <path d="M16 7a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M18 4v1" /><path d="M18 9v11" />
-                        </svg>
-                    </a>
                 </div>
             </div>
             <nav>
@@ -110,31 +100,74 @@
         </main>
 
         <div id="settings-bg">
-            <div id="settings-modal">
+            <div id="settings-modal" class="themebtn">
                 <a aria-label="page-settings" class="social-link" id="close-modal">
                     <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
                 </a>
-                <label>Select Theme:</label>
-                <div class="theme-picker">
-                    <div class="theme-option tooltip" id="theme-option-light" >
-                        <span class="tooltiptext">Light</span>
-                        <div class="theme-sidebar" style="background-color: rgb(216, 216, 216);"></div>
-                        <div class="theme-main" style="background-color: rgb(228, 228, 228);">
-                            <div class="theme-card" style="background-color: rgb(199, 199, 199);"></div>
+                <p class="themebtn" style="font-size: 0.8em; margin-left: 0px; position: relative;"><i class="themebtn">v3.3 &#x2022; <a class="changelog-link themebtn" href="/site/changelog">changelog</a></i></p>
+                <label class="themebtn">Select Theme:</label>
+                <div class="theme-picker themebtn">
+                    <div class="theme-option tooltip themebtn" id="theme-option-notebook">
+                        <span class="tooltiptext themebtn">Notebook</span>
+                        <div class="theme-sidebar themebtn" style="background-color: #f1e4c1;"></div>
+                        <div class="theme-main themebtn" style="background-color: #fff9e8;">
+                            <div class="theme-card themebtn" style="background-color: #f7f2e0;"></div>
                         </div>
                     </div>
-                    <div class="theme-option tooltip" id="theme-option-dark">
-                        <span class="tooltiptext">Dark</span>
-                        <div class="theme-sidebar" style="background-color: #2a2a2a;"></div>
-                        <div class="theme-main" style="background-color: #1a1a1a;">
-                            <div class="theme-card" style="background-color: rgb(53, 53, 53);"></div>
+                    <div class="theme-option tooltip themebtn" id="theme-option-light" >
+                        <span class="tooltiptext themebtn">Flashbang</span>
+                        <div class="theme-sidebar themebtn" style="background-color: rgb(216, 216, 216);"></div>
+                        <div class="theme-main themebtn" style="background-color: rgb(228, 228, 228);">
+                            <div class="theme-card themebtn" style="background-color: rgb(199, 199, 199);"></div>
                         </div>
                     </div>
-                    <div class="theme-option tooltip" id="theme-option-transparent">
-                        <span class="tooltiptext">Transparent</span>
-                        <div class="theme-sidebar" style="background: linear-gradient(230deg, rgb(48, 57, 68) 0%, rgb(54, 61, 63) 50%, rgb(45, 54, 61) 100%);"></div>
-                        <div class="theme-main" style="background: linear-gradient(120deg, rgb(48, 57, 68) 0%, rgb(54, 61, 63) 50%, rgb(45, 54, 61) 100%);">
-                            <div class="theme-card" style="background-color: #3a3a3a;"></div>
+                    <div class="theme-option tooltip themebtn" id="theme-option-dark">
+                        <span class="tooltiptext themebtn">Dark</span>
+                        <div class="theme-sidebar themebtn" style="background-color: #2a2a2a;"></div>
+                        <div class="theme-main themebtn" style="background-color: #1a1a1a;">
+                            <div class="theme-card themebtn" style="background-color: rgb(53, 53, 53);"></div>
+                        </div>
+                    </div>
+                    <div class="theme-option tooltip themebtn" id="theme-option-transparent">
+                        <span class="tooltiptext themebtn">Transparent</span>
+                        <div class="theme-sidebar themebtn" style="background: linear-gradient(230deg, rgb(48, 57, 68) 0%, rgb(54, 61, 63) 50%, rgb(45, 54, 61) 100%);"></div>
+                        <div class="theme-main themebtn" style="background: linear-gradient(120deg, rgb(48, 57, 68) 0%, rgb(54, 61, 63) 50%, rgb(45, 54, 61) 100%);">
+                            <div class="theme-card themebtn" style="background-color: #3a3a3a;"></div>
+                        </div>
+                    </div>
+                    <div class="theme-option tooltip themebtn" id="theme-option-ocean">
+                        <span class="tooltiptext themebtn">Ocean</span>
+                        <div class="theme-sidebar themebtn" style="background-color: #073642;"></div>
+                        <div class="theme-main themebtn" style="background-color: #002b36;">
+                            <div class="theme-card themebtn" style="background-color: #083c4a;"></div>
+                        </div>
+                    </div>
+                    <div class="theme-option tooltip themebtn" id="theme-option-dream">
+                        <span class="tooltiptext themebtn">Dream</span>
+                        <div class="theme-sidebar themebtn" style="background-color: #2c2a3e;"></div>
+                        <div class="theme-main themebtn" style="background-color: #2b2336;">
+                            <div class="theme-card themebtn" style="background-color: #3b3f51;"></div>
+                        </div>
+                    </div>
+                    <div class="theme-option tooltip themebtn" id="theme-option-fields">
+                        <span class="tooltiptext themebtn">Fields</span>
+                        <div class="theme-sidebar themebtn" style="background-color: #365142;"></div>
+                        <div class="theme-main themebtn" style="background-color: #283c2e;">
+                            <div class="theme-card themebtn" style="background-color: #2d543f;"></div>
+                        </div>
+                    </div>
+                    <div class="theme-option tooltip themebtn" id="theme-option-sunset">
+                        <span class="tooltiptext themebtn">Sunset</span>
+                        <div class="theme-sidebar themebtn" style="background-color: #4c1919;"></div>
+                        <div class="theme-main themebtn" style="background-color: #381324;">
+                            <div class="theme-card themebtn" style="background-color: #403949;"></div>
+                        </div>
+                    </div>
+                    <div class="theme-option tooltip themebtn" id="theme-option-matrix">
+                        <span class="tooltiptext themebtn">Matrix</span>
+                        <div class="theme-sidebar themebtn" style="background-color: #000000;"></div>
+                        <div class="theme-main themebtn" style="background-color: #0e0e0e;">
+                            <div class="theme-card themebtn" style="background-color: #1a1a1a;"></div>
                         </div>
                     </div>
                 </div>
@@ -145,9 +178,31 @@
         <aside class="toc" onclick="">
             <div class="toc-icon">☰</div> 
             <div class="toc-content" id="toc-site-nav"></div>
+            <div class="toc-content" id="toc-post-nav">
+            <ul>
+                <a aria-label="page-settings" class="social-link" id="page-settings">
+                    <li class="settingsbtn">
+                        <svg xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-adjustments settingsbtn "
+                        style="margin-right: 3px;">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" class="settingsbtn"/>
+                            <path d="M4 10a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" class="settingsbtn"/>
+                            <path d="M6 4v4" class="settingsbtn"/>
+                            <path d="M6 12v8" class="settingsbtn"/>
+                            <path d="M10 16a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" class="settingsbtn"/>
+                            <path d="M12 4v10" class="settingsbtn"/>
+                            <path d="M12 18v2" class="settingsbtn"/>
+                            <path d="M16 7a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" class="settingsbtn"/>
+                            <path d="M18 4v1" class="settingsbtn"/>
+                            <path d="M18 9v11" class="settingsbtn"/>
+                        </svg>
+                        Settings
+                    </li>
+                </a>
+            </ul>
         </aside>
-        <script src="/js/toc.js"></script>
         <script src="/js/home-grid.js"></script>
+        <script src="/js/toc.js"></script>
         <script src="/js/settings.js"></script>
     </div>
 </body>

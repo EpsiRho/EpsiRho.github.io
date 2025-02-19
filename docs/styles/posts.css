@@ -25,6 +25,15 @@
 .blog-post-page a:hover{
     color: var(--link-hover);
 }
+
+.changelog-link{
+    color: var(--link-primary);
+    transition: color 0.35s cubic-bezier(0.68, 1.25, 0.265, 1.25);
+}
+.changelog-link:hover{
+    color: var(--link-hover);
+}
+
 .blog-post-page a:active{
     color: var(--link-clicked);
 }
@@ -102,24 +111,33 @@
     backdrop-filter: blur(4px);
 }
 
+
 .post-description {
+    --d:100%;
     color: var(--text-secondary);
-    background: linear-gradient(90deg, rgb(0, 89, 255) 0%, rgba(7,195,252,1) 20%, rgba(191,8,246,1) 40%, rgba(7,195,252,1) 60%, rgb(0, 89, 255) 70%, rgba(7,195,252,1) 100%);
+    background: repeating-linear-gradient(
+        90deg,
+        var(--accent),
+        var(--accent-secondary),
+        var(--link-clicked),
+        var(--accent-secondary),
+        var(--accent) var(--d)
+      );
+      background-size: 200% 100%;
     background-clip: text;
     overflow: hidden;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-size: 200% 100%;
+    background-size: 400% 100%;
     background-position: 100%;
     color: transparent;
     margin-top: -10px;
     margin-bottom: 1rem;
     font-size: 1.2rem;
-    background-size: 400% 400%;
     font-weight: 600;
-    transition: background 1.35s ease,
-                background-position 1.0s ease;
-    animation: gradient linear 5s infinite;
+    transition: background 1.00s linear,
+                background-position 1.0s linear;
+    animation: gradient 3.5s linear infinite reverse;
 }
 
 .post-description:hover {
@@ -130,12 +148,8 @@
 }
 
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	100% {
-        background-position: 100% 50%;
-	}
+    0%{background-position:100% 50%}
+    100%{background-position:-33% 50%}
 }
 
 .post-body h2, .post-body h3 {
@@ -164,11 +178,12 @@
     right: 1rem;
     width: 3rem;
     max-height: 3rem;
+    min-height: 3rem;
     background-color: transparent;
     border-radius: 0.5rem;
     padding: 0;
     cursor: pointer;
-    z-index: 1000;
+    z-index: 140;
     overflow-y: hidden;
     overflow-x: hidden;
     display: none;
@@ -187,7 +202,7 @@
 .toc.open {
     width: 250px;
     max-height: 95vh;
-    padding: 1.5rem;
+    padding: 1rem;
     background-color: var(--bg-card);
     transform: scale(1.0);
     overflow-y: auto;
@@ -247,7 +262,9 @@
     display: flex;
     margin-bottom: 0.2rem;
     padding: 0.3rem;
+    padding-left: 0.5rem;
     border-radius: 0.25rem;
+    width: 90%;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 

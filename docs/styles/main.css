@@ -1,9 +1,8 @@
 :root {
-    --bg-dark: #000000;
-    --bg-sidebar: #47474721;
-    --bg-main: #1414143a;
-    --bg-card: #2a2a2a;
-    --bg-code: #e6e6e6;
+    --bg-sidebar: #2a2a2a;
+    --bg-main: #1a1a1a;
+    --bg-card: rgb(53, 53, 53);
+    --bg-code: #282c34;
     --text-primary: #ffffff;
     --text-secondary: #a0a0a0;
     --accent: #3383d2;
@@ -53,6 +52,12 @@
     transition: backdrop-filter 0.3s ease, opacity 0.5s ease;
 }
 
+
+.settingsbtntop:hover {
+    transform: scale(1.2);
+    transition: all 0.1 linear;
+}
+
 #settings-modal {
     display: block;
     opacity: 0;
@@ -66,7 +71,9 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     z-index: 200; /* Make sure it's above the background */
     width: 90%;
-    max-width: 800px;
+    overflow-y: auto;
+    max-height: 500px;
+    max-width: 700px;
 }
 
 .theme-picker {
@@ -155,11 +162,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: background-color 0.6s ease, color 0.6s ease;
 }
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background-color: var(--bg-dark);
+    background-color: var(--bg-main);
     color: var(--text-primary);
     overflow-x: hidden;
     line-height: 1.6;
@@ -172,7 +180,8 @@ body {
 }
 
 .social-link{
-    transition: transform 0.2s ease;
+    transition: transform 0.1s linear;
+    color: var(--text-secondary);
 }
 
 .social-link:hover{
@@ -182,7 +191,7 @@ body {
 .sidebar {
     background-color: var(--bg-sidebar);
     padding: 2rem;
-    border-right: 1px solid #333;
+    border-right: 1px solid var(--bg-sidebar);
     position: fixed;
     width: 300px;
     height: 100vh;
@@ -349,8 +358,7 @@ a {
 }
 
 .post-link {
-    --myColor1: rgba(0,255,149,0.5);
-    --myColor2: rgba(7,195,252,0.5);
+    --myColor1: var(--link-primary);
     display: inline-block;
     color: white;
     background-color: var(--accent);
@@ -360,29 +368,33 @@ a {
     margin-right: 10px;
     margin-top: -10px;
     font-size: 0.9rem;
-    background: linear-gradient(150deg, var(--myColor1), var(--myColor2));
-    transition: transform 0.2s ease,
+    background: var(--myColor1);
+    transition: transform 0.1s ease,
                 background-image 1.8s ease,
                 --myColor1 0.6s, --myColor2 0.6s;
 }
 
 .post-link:hover {
-    --myColor1: rgba(7,195,252,0.5);
-    --myColor2: rgba(191,8,246,1);
+    --myColor1: var(--link-hover);
   }
 
 .post-links {
-    background: linear-gradient(90deg, rgb(2, 32, 43) 0%, rgb(29, 3, 37) 60%);
+    background: 
+      /* This dark overlay is drawn on top of the color gradient */
+      linear-gradient(90deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)),
+      /* Your original color gradient */
+      linear-gradient(90deg, var(--accent) 0%, var(--accent-secondary) 60%);
     border-radius: 10px;
-    padding: 10px 20px 10px 20px;
+    border-color: red;
+    background-clip: border-box;
+    border-width: 2px;
+    padding: 10px 20px 12px 20px;
     margin: 0;
     margin-bottom: 15px;
     color: white;
-    overflow-x: hidden;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
-    overflow-y: hidden;
-}
-
+  }
+  
 
 
 #epsi-quote{

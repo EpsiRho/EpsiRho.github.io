@@ -4,14 +4,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const profile = document.querySelector(".profile");
     const tocNavContainer = document.getElementById("toc-site-nav");
     const tocAnchorContainer = document.getElementById("toc-post-nav");
-
+    const setBtn = document.getElementById("page-settings");
 
 
     const navItems = document.createElement('div');
-    let divide = ``;
-    if(tocAnchorContainer){
-        divide = `<hr style="margin: 10px;">`;
-    }
+    let divide = document.createElement('hr');
+    divide.style.margin = `10px 10px 10px 5px`
+    divide.id = 'divider-line';
     navItems.innerHTML = `<ul>
         <a href="/">
             <li>
@@ -50,7 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
             </li>
         </a>
         </ul>
-        ${divide}
     `;
     let isOpen = false;
 
@@ -90,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
             toc.removeEventListener("mouseleave", removeScaleEffect);
             if(tocNavContainer.contains(navItems)){
                 tocNavContainer.removeChild(navItems);
+                divide.remove();
             }
             SidebarNav.style.display = 'block';
             profile.style.margin = "0px 0px 2rem 0px"
@@ -106,6 +105,11 @@ document.addEventListener("DOMContentLoaded", () => {
             toc.addEventListener("mouseleave", removeScaleEffect);
             if(!tocNavContainer.contains(navItems)){
                 tocNavContainer.appendChild(navItems);
+                let check = document.getElementById('setdivider');
+                if(!check){
+                    setBtn.after(divide);
+                    
+                }
             }
             SidebarNav.style.display = 'none';
             profile.style.margin = "0px 0px -60px 0px"
