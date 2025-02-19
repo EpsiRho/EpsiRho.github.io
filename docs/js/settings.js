@@ -4,6 +4,24 @@ function getCookie(name) {
     if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
+fetch('/site/version')
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return response.text();
+})
+.then(version => {
+    const displayElements = document.getElementsByClassName('version-display');
+    console.log(displayElements);
+    for (let item of displayElements) {
+        item.textContent = version;
+    }
+})
+.catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+});
+
 const root = document.documentElement;
 const settingsButton = document.getElementById('page-settings');
 const settingsModal = document.getElementById('settings-modal');
@@ -95,9 +113,9 @@ function setTheme(theme) {
         root.style.setProperty('--text-primary', '#fdf6e3');
         root.style.setProperty('--text-secondary', '#93a1a1');
         
-        root.style.setProperty('--accent', `#0c2b98`);
+        root.style.setProperty('--accent', `#2eacf8`);
         root.style.setProperty('--accent-secondary', '#268bd2');
-        root.style.setProperty('--link-primary', '#2aa198');
+        root.style.setProperty('--link-primary', '#2eacf8');
         root.style.setProperty('--link-hover', '#d33682');
         root.style.setProperty('--link-clicked', '#28918c');
 
@@ -269,17 +287,14 @@ function setTheme(theme) {
 }
 
 function changeHighlightTheme(theme) {
-    // Find the existing link tag for highlight.js theme
     let link = document.getElementById('codeTheme');
     
     if (!link) {
-        // If no link tag exists, create one
         link = document.createElement('link');
         link.rel = 'stylesheet';
         document.head.appendChild(link);
     }
 
-    // Update the href to the selected theme
     link.href = `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/${theme}.min.css`;
     console.log(link.href);
 }
@@ -306,7 +321,6 @@ document.addEventListener('DOMContentLoaded', function() {
         settingsBg.style.pointerEvents = 'all';
         settingsModal.style.pointerEvents = 'all';
         settingsBg.style.backdropFilter = 4
-        //settingsModal.classList.add('modal-open');
     });
 
     closeModal.addEventListener('click', function() {

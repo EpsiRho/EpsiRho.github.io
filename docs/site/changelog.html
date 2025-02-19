@@ -84,8 +84,28 @@
                 </br>
 
                 <h1 class="post-title" id="mdpost-title">Changelog</h1>
-                <p class="post-description">Current Version: v3.3</p>
+                <p class="post-description">Current Version: <span class="version-display"></span></p>
                 <div class="post-body">
+                <h2 id="mdheadr--v3-4"> v3.4</h2>
+                <ul>
+                    <li> Added Comments to Blog Posts!</li>
+                    <ul>
+                        <li> Comments are handled through Bluesky. </li>
+                        <li> Every Blog Posts will look for a corrisponding bsky post and read it's thread. </li>
+                        <li> Anyone's comments on it will show on the site! </li>
+                        <li> Any comments from me get the OP highlight ✨</li>
+                    </ul>
+                    <li> Inline code blocks now look good.</li>
+                    <li> Version number is now a synced var, so I don't have to track down every instance and replace it.</li>
+                    <li> Made Blog Post images smaller.</li>
+                    <li> Fixed a couple issues with the DenTools.</li>
+                    <ul>
+                        <li> Block Comments work get left open if a stray "_" was inside. </li>
+                        <li> Multiple masked links in a single line would cause the links to cascade and get added on to for each link. </li>
+                        <li> Anyone's comments on it will show on the site! </li>
+                        <li> Any comments from me get the OP highlight ✨</li>
+                    </ul>
+                </ul>
                 <h2 id="mdheadr--v3-3"> v3.3</h2>
                 <ul>
                     <li> Added a bunch of new themes:</li>
@@ -144,7 +164,7 @@
                 <a aria-label="page-settings" class="social-link" id="close-modal">
                     <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
                 </a>
-                <p class="themebtn" style="font-size: 0.8em; margin-left: 0px; position: relative;"><i class="themebtn">v3.3 &#x2022; <a class="changelog-link themebtn" href="/site/changelog">changelog</a></i></p>
+                <p class="themebtn" style="font-size: 0.8em; margin-left: 0px; position: relative;"><i class="themebtn"><span class="version-display"></span> &#x2022; <a class="changelog-link themebtn" href="/site/changelog">changelog</a></i></p>
                 <label class="themebtn">Select Theme:</label>
                 <div class="theme-picker themebtn">
                     <div class="theme-option tooltip themebtn" id="theme-option-notebook">

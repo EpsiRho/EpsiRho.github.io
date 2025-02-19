@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Epsi's Den V3</title>
+    <title>Updates to The Den</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/posts.css">
@@ -82,32 +82,50 @@
 
         <main class="main-content">
             <article class="blog-post-page">
-                <img src="/images/denblogheader.png" alt="Blog Header" class="post-header-image">
+                <img src="/images/sitev3UpdatesHeader.png" alt="Blog Header" class="post-header-image">
                 </br>
-                <span class="post-tag">HTML</span>
+                <span class="post-tag"> HTML</span>
 <span class="post-tag">CSS</span>
 <span class="post-tag">JS</span>
-<span class="post-tag">C#</span>
 
-                <h1 class="post-title" id="mdpost-title">Epsi's Den V3</h1>
-                <p class="post-description">Built a new site from the ground up to showcase my stuff.</p>
-                <div class="post-date">12/16/2024 12:00:00 AM</div>
+                <h1 class="post-title" id="mdpost-title">Updates to The Den</h1>
+                <p class="post-description">Updates on this site on other ongoing projects.</p>
+                <div class="post-date">2/19/2025 12:00:00 AM</div>
                 <div class="post-body">
-                    <p>I had previously been using <a href="https://gohugo.io/">Hugo</a> to build the static blog site I had been using for personal site,posts,projects. But I found it very limiting, and a bit of a pain to manage so I decided to just set up a new site and some backend tools from scratch.</p>
+                    <p>Hello again! I have been gone for a little while, school and life have been keeping me busy. Work on MelonUI and MelonMediaServer are still in progress, but have been slow. In the meantime I've been able to push some small but fun updates to this site! This covers v3.2, v3.3, and v3.4 :O</p>
 </br>
-<h2 id="mdheadr--Backend-Tools"> Backend Tools</h2>
-<p>I wanted to make it simple to make new project/post pages and add new music recommendations so I built some tools for doing so. With music, it's as simple as sending any link (spotify, apple, tidal, etc) and getting an <a href="https://odesli.co/">odesli</a> link back, which will link to any streaming platform that hosts the song/album. Or if it's not available normally, I can add one with a custom Link/Title/Artist/Thumbnail.</p>
+<h2 id="mdheadr--Themes"> Themes</h2>
+<p>I have recently been using <a href="https://zen-browser.app/">Zen Browser</a> as my main web browser, a firefox based browser that's got lots of nice QOL. I stumbled upon the fact that Zen supports Transparency by setting the <code>browser.tabs.allowtransparentbrowser</code> tag in about:config. This disables the background between the webpage compositor and the app background, and alongside <a href="https://github.com/MicaForEveryone/MicaForEveryone">MicaForEveryone</a> on windows (I hear Linux has easier support) you can allow a webpage to be fully transparent back to the desktop. This makes for some very nice looks and lots of customization. Unfortunately, there is no way to detect if this is enabled, so I needed to add a Theme Switcher. Alongside that I figured I might as well make a few themes to flesh out the menu xP</p>
 </br>
-<p>For posts, I built a markdown to html parser and defined a simple metadata header for defining their info. In the backend I just link a path to a markdown file, or a folder of them, and it will generate the html files for each post, and json data for each post, so the site can list the available pages.</p>
+<p>The current themes are:</p>
+<ul>
+<li> Notebook (Warm White)</li>
+<li> Flashbang (Cool White)</li>
+<li> Dark (Dark Gray)</li>
+<li> Transparent (Transparent)</li>
+<li> Ocean (Deep cyan and blue)</li>
+<li> Dream (Purple and Pink)</li>
+<li> Fields (Green)</li>
+<li> Sunset (Red and Purple)</li>
+<li> Matrix (Black and Green)</li>
+</ul>
 </br>
-<p>These backend tools were made a lot quicker with a nice UI thanks to another project I'm working on, MelonUI. MelonUI is used in Melon right now, but I wanted to give it a big upgrade, and with it move to a proper library. The DenTools were one of the first full apps I've built using it, and it's given me lots of info about how to make the library better. I'll have a lot more detail on that soon, hopefully I can get it v1'd and swap Melon over to the new library soon.</p>
+<p>If you have suggestions for more themes or fixes/adjustments to current ones, please leave a <a href="https://github.com/EpsiRho/EpsiRho.github.io">Github Issue/PR</a> :D</p>
 </br>
-<h2 id="mdheadr--Front-End"> Front End</h2>
-<p>As for the rest of the site, I learned a little bit more css and javascript for this. Animation and colors was a big one, I do wonder why gradients are so much of a pain to work with. I had fun but also was really stumped and annoyed at css much of the time haha.</p>
+<h2 id="mdheadr--Comments"> Comments</h2>
+<p>I saw a post awhile back from a Bluesky user turning their posts into repos for their blog's comments. I've been meaning to look into it since then, and now I've lost that post hah! But I did finally get around to it, and now blog posts can have comments! This one will have them, you should be able to see them below and going to the Bluesky post will allow you to leave your own comment. You totally should btw, y'know, so I can test my code :P</p>
+<p>The implementation is custom, so not easy to drag n drop into other code. But feel free to look at mine for reference. The simple idea is we call <code>app.bsky.feed.searchPosts</code> to get all the posts I have made tagged "#blog", and checking if it's link is the same as the one we're on. If it is, then we call <code>app.bsky.feed.getPostThread</code> to get all of it's replies. Then we can recursively follow the reply tree to generate HTML to show.</p>
 </br>
-<p>This was mostly motivated by wanting to revamp the Music recommendations page. I used to just have a list of a couple albums I enjoyed, but I wanted more. The <a href="https://epsirho.com/site/music">new page</a> shows off cards of albums, songs, or some musical work that I recommend. It shows an image, title, artist name(s), rating (0.0 -> 5.0), and an energy level (think: chill -> hardstyle). Energy is shown by color: dark blue, light blue, green, yellow, red. The rating modifies the color's brightness.</p>
+<h2 id="mdheadr--Beyond"> Beyond</h2>
+<p>I also worked on a lot of other little fixes and QOL around the site, you can see all of them on the <a href="https://epsirho.com/site/changelog">Site Changelog</a>.</p>
 </br>
-<p>If you're reading this, hi! You're already on the site this post is about, and if you've read this far you should check out the rest of the site! It's got lots of polish and a few easter eggs as well, like a hidden page somewhere!</p>
+<h2 id="mdheadr--MelonUI-Updates"> MelonUI Updates</h2>
+<p>I'm workin on it! Actually, afaik(barring on bugs I haven't spotted) the main core of MelonUI is done, the CWM and Renderer. Now I just want to finish up the inbox default controls, some of them are done but not most of them. They mostly all work, but have unfinished features or are buggy.</p>
+</br>
+<h2 id="mdheadr--MelonMediaServer-Updates"> MelonMediaServer Updates</h2>
+<p>Melon has been waiting on MelonUI to complete so I can swap MelonUI v1.0 for the new v2.0 Library. Aside from that, in testing thing for MelonUI I found 2 important bits of info for the 2 other blockers for progress. One was a work around for buggy audio playback in Galia(the Windows client) and the other was for Discovery algorithms. Unfortunately, I'm down to my last 2 semesters in college so I anticipate that I will have a lot of my time waste this year. But I will work on these projects as much as I can! I mostly work on side projects like these site updates because they are small and easy to work on in between other stuff, and because they help me get back into the groove of coding after spending my time away.</p>
+</br>
+<p>Well thanks for reading, I'll be back again with a MelonUI announcement hopefully soon!</p>
 
                 </div>
             </article>
@@ -225,9 +243,12 @@
                     </li>
                 </a>
                 <hr style="margin: 10px 10px 10px 5px;" id="setdivider"/>
-                <a href="#mdpost-title"><li>Epsi's Den V3</li></a>
-<a href="#mdheadr--Backend-Tools"><li> Backend Tools</li></a>
-<a href="#mdheadr--Front-End"><li> Front End</li></a>
+                <a href="#mdpost-title"><li>Updates to The Den</li></a>
+<a href="#mdheadr--Themes"><li> Themes</li></a>
+<a href="#mdheadr--Comments"><li> Comments</li></a>
+<a href="#mdheadr--Beyond"><li> Beyond</li></a>
+<a href="#mdheadr--MelonUI-Updates"><li> MelonUI Updates</li></a>
+<a href="#mdheadr--MelonMediaServer-Updates"><li> MelonMediaServer Updates</li></a>
 
             </ul>
             </div>

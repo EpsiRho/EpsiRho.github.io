@@ -20,6 +20,7 @@ namespace EpsiDenTools.Classes
     <link rel=""icon"" type=""image/x-icon"" href=""/images/favicon.ico"">
     <link rel=""stylesheet"" href=""/styles/main.css"">
     <link rel=""stylesheet"" href=""/styles/posts.css"">
+<link rel=""stylesheet"" href=""/styles/comments.css"">
 </head>
 <body>
     <div class=""container"">
@@ -103,6 +104,18 @@ namespace EpsiDenTools.Classes
                     {{POSTBODY}}
                 </div>
             </article>
+            <div class=""blog-post-page"">
+                <div id=""comments-header"">
+                    <h1>Comments</h1>
+                </div>
+                <hr id=""comments-divider""/>
+                <div id=""comments-section"">
+                    <div id=""loading-bar-container"" style=""position: relative; width: 100%; height: 5px; background-color: var(--accent-secondary); overflow: hidden; display: none;"">
+                        <div id=""loading-bar"" style=""width: 30%; height: 100%; background-color: var(--accent); position: absolute; animation: loading 1.5s infinite;""></div>
+                      </div>
+                      
+                </div>
+            </div>
         </main>
 
         <div id=""settings-bg"">
@@ -110,7 +123,7 @@ namespace EpsiDenTools.Classes
                 <a aria-label=""page-settings"" class=""social-link"" id=""close-modal"">
                     <svg  xmlns=""http://www.w3.org/2000/svg""  width=""24""  height=""24""  viewBox=""0 0 24 24""  fill=""none""  stroke=""currentColor""  stroke-width=""2""  stroke-linecap=""round""  stroke-linejoin=""round""  class=""icon icon-tabler icons-tabler-outline icon-tabler-x""><path stroke=""none"" d=""M0 0h24v24H0z"" fill=""none""/><path d=""M18 6l-12 12"" /><path d=""M6 6l12 12"" /></svg>
                 </a>
-                <p class=""themebtn"" style=""font-size: 0.8em; margin-left: 0px; position: relative;""><i class=""themebtn"">v3.3 &#x2022; <a class=""changelog-link themebtn"" href=""/site/changelog"">changelog</a></i></p>
+                <p class=""themebtn"" style=""font-size: 0.8em; margin-left: 0px; position: relative;""><i class=""themebtn""><span class=""version-display""></span> &#x2022; <a class=""changelog-link themebtn"" href=""/site/changelog"">changelog</a></i></p>
                 <label class=""themebtn"">Select Theme:</label>
                 <div class=""theme-picker themebtn"">
                     <div class=""theme-option tooltip themebtn"" id=""theme-option-notebook"">
@@ -212,6 +225,7 @@ namespace EpsiDenTools.Classes
     </div>
     <script src=""/js/toc.js""></script>
     <script src=""/js/settings.js""></script>
+    <script src=""/js/comments.js""></script>
     <link id=""codeTheme"" rel=""stylesheet"" href=""https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"">
     <script src=""https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js""></script>
 
@@ -440,6 +454,7 @@ namespace EpsiDenTools.Classes
                     {
                         flag = 0;
                         modified = modified.Replace("{{LINK}}", link);
+                        link = "";
                         continue;
                     }
 
@@ -494,7 +509,7 @@ namespace EpsiDenTools.Classes
                 {
                     if (c == '~') // Strikthrough
                     {
-                        if(modifier == 1)
+                        if (modifier == 1)
                         {
                             modifier = 2;
                         }
@@ -510,6 +525,10 @@ namespace EpsiDenTools.Classes
                         }
                         else
                         {
+                            if (sanatized[sanatized.IndexOf(c) - 1] != ' ')
+                            {
+                                continue;
+                            }
                             modifier = 1;
                             modified += "{{STRIKETEMP}}";
                         }
@@ -533,6 +552,10 @@ namespace EpsiDenTools.Classes
                         }
                         else
                         {
+                            if (sanatized[sanatized.IndexOf(c) - 1] != ' ')
+                            {
+                                continue;
+                            }
                             modifier = 11;
                             modified += "{{UNDERTEMP}}";
                         }
@@ -563,6 +586,10 @@ namespace EpsiDenTools.Classes
                         }
                         else // First We Italics
                         {
+                            if (sanatized[sanatized.IndexOf(c) - 1] != ' ')
+                            {
+                                continue;
+                            }
                             modifier = 5;
                             modified += "{{ITALICSTEMP}}";
                         }
@@ -578,6 +605,10 @@ namespace EpsiDenTools.Classes
                         }
                         else
                         {
+                            if (sanatized[sanatized.IndexOf(c) - 1] != ' ')
+                            {
+                                continue;
+                            }
                             modifier = 10;
                             modified += "{{CODETEMP}}";
                         }

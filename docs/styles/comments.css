@@ -1,0 +1,161 @@
+.comment {
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    margin-bottom: 15px;
+    padding: 15px 0px 15px 15px;
+    background: var(--bg-code); /* Adjust or change this as needed */
+    border-radius: 10px;
+}
+
+.comment.reply {
+    padding: 15px;
+    border-radius: 0px;
+    border-left: 2px solid var(--text-secondary);
+    margin-bottom: -5px;
+}
+
+#comments-divider {
+    color: var(--accent-secondary);
+    height: 3px;
+    border-width: 0px;
+    background-color: var(--accent-secondary);
+}
+
+#comments-header {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 0px solid var(--text-secondary);
+    
+}
+#comments-header a{
+    margin-left: auto;
+    font-size: 1.5rem;
+    margin-top: 10px;
+    transition: all 0.1s linear;
+}
+
+.bskyFlair {
+    color: #1084fd;
+}
+
+#comments-header a:hover .bskyFlair {
+    color: var(--link-hover);
+}
+
+#comments-header a:hover{
+    transform: scale(1.05);
+}
+
+
+.comment .author {
+    color: var(--text-secondary);
+}
+.comment .date {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+}
+.comment .author-display {
+    font-weight: bold;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.comment .externalLink {
+    position:absolute;
+    align-self:flex-end;
+    font-size: 1.5rem;
+    transition: all 0.1s linear;
+    padding-left: 10px;
+    padding-right: 13px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: -15px;
+    margin-bottom: 0px;
+}
+.✨ {
+    --d:100%;
+    color: var(--text-secondary);
+    background: repeating-linear-gradient(
+        90deg,
+        var(--accent),
+        var(--accent-secondary),
+        var(--link-clicked),
+        var(--accent-secondary),
+        var(--accent) var(--d)
+        );
+        background-size: 200% 100%;
+    background-clip: text;
+    overflow: hidden;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400% 100%;
+    background-position: 100%;
+    color: transparent;
+    transition: background 1.00s linear,
+                background-position 1.0s linear;
+    animation: gradient 3.5s linear infinite reverse;
+}
+
+.comment.reply .externalLink {
+    margin-left: 0px;
+    margin-right: -15px;
+    margin-top: -15px;
+    margin-bottom: 0px;
+}
+
+.comment .externalLink:hover {
+    align-self:flex-end;
+    font-size: 1.5rem;
+    transform: scale(1.2);
+}
+
+.comment .author-info {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+    margin-top: -20px;
+    margin-left: -5px;
+}
+
+.comment .author {
+    margin-left: 10px;
+}
+
+.comment .authorpfp {
+    position: relative;
+    max-width: 40px;
+    margin-top: -0px;
+    max-height: 40px;
+}
+
+.comment .text {
+    margin-top: -8px;
+    margin-left: 0px;
+    font-size: 1.1rem;
+    margin-bottom: 0px;
+}
+  
+#comments-section {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes loading {
+0% {
+    left: -30%;
+}
+50% {
+    left: 50%;
+    width: 30%;
+}
+100% {
+    left: 100%;
+    width: 30%;
+}
+}
