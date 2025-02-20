@@ -130,7 +130,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let postTags = document.querySelectorAll('.post-tag');
     postTags.forEach((tag)=>{
-        console.log(encodeURI(`/site/posts?s=${tag.innerHTML}`));
         tag.addEventListener("click", () => window.location.href = encodeURI(`/site/posts?s=${tag.innerHTML.trim().replace("#", "%23")}`));
         //tag.innerHTML = `<a>${tag.innerHTML}</a>`
         tag.style.cursor = 'pointer'

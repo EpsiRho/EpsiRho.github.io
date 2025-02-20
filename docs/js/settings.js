@@ -13,7 +13,6 @@ fetch('/site/version')
 })
 .then(version => {
     const displayElements = document.getElementsByClassName('version-display');
-    console.log(displayElements);
     for (let item of displayElements) {
         item.textContent = version;
     }
@@ -38,7 +37,6 @@ const themeMatrix = document.getElementById('theme-option-matrix');
 const themeNotebook = document.getElementById('theme-option-notebook');
 
 function setTheme(theme) {
-    console.log(`Using ${theme} theme`)
     if (theme === 'dark') {
         /* 
             --bg-dark: #00000028;
@@ -296,7 +294,6 @@ function changeHighlightTheme(theme) {
     }
 
     link.href = `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/${theme}.min.css`;
-    console.log(link.href);
 }
 
 
@@ -304,7 +301,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const savedTheme = getCookie('theme');
     if (savedTheme) {
         setTheme(savedTheme);
-        console.log(savedTheme);
     }
     else{
         console.log("Using prefered theme");

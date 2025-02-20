@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
       // Extract the thread and build a tree structure
       const thread = data.thread;
       //const tree = buildTree(thread);
-      console.log(thread);
       const tree = thread.replies.map((reply) => buildTree(reply));
 
       return tree;
@@ -40,7 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Construct the URL
     const postUrl = `https://bsky.app/profile/${node.post?.author.handle}/post/${rkey}`;
-    console.log(postUrl); // https://bsky.app/profile/alice.bsky.social/post/xyz123
 
     const dt = new Date(node.post?.record.createdAt);
 
@@ -56,16 +54,14 @@ document.addEventListener("DOMContentLoaded", () => {
     
     if(cleanHTML != node.post?.record.text){
         cleanHTML += ` <span title="This user posted content that needed to be filtered out for saftey, likely html/css code that could be used for injection." style="color: red;">*</span>`;
-        console.log('comment adjust');
+        console.log('Comment Sanatized!');
     }
 
     let img = document.createElement('div');
 
     if(node.post?.record.embed){
-        console.log(node.post?.record.embed.images);
         img.classList.add('comment-images-holder')
         node.post?.record.embed.images.forEach(item => {
-            console.log(item.image.ref.$link);
             let tempDiv = document.createElement(`div`);
             tempDiv.classList.add(`comment-image-container`);
             let tempImg = document.createElement(`img`);
@@ -77,9 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     
-    console.log('Comment:');
-    console.log(img);
-    console.log(cleanHTML);
     const treeNode = {
       id: node.post?.uri || null,
       author: node.post?.author.handle || "Unknown",
@@ -93,13 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
       text: cleanHTML || "",
       children: [],
     };
-
-    console.log(`----`);
-    console.log(node);
-    console.log(treeNode);
-    console.log(`----img`);
-    console.log(treeNode.imageEmbed);
-
 
     // Recursively build children for each reply
     if (node.replies && node.replies.length > 0) {
@@ -184,16 +170,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         data.posts.forEach((post) => {
           let url = post.embed.external.uri;
-          console.log(url);
-          console.log(currentRelativePath);
-          console.log("rehehe");
           if (url.includes(currentRelativePath)) {
             const parts = post.uri.split("/");
             const rkey = parts[4]; 
             ConnectPostUrl = `https://bsky.app/profile/${userHandle}/post/${rkey}`;
             fetchCommentsForPost(post.uri)
               .then((comments) => {
-                console.log(comments);
                 renderComments(comments, commentsContainer, false);
               })
               .catch((error) => {
@@ -202,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             return true;
           } else {
-            console.log("kiil");
+            
           }
         });
 
@@ -226,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   fetchUserPostsByHashtag(blueskyHandle, commentTag)
     .then((posts) => {
-      console.log(ConnectPostUrl);
+      console.log(`Found comment post: ${ConnectPostUrl}`);
 
       if (ConnectPostUrl == '') {
         const noCommentsInfo = document.createElement("div");
