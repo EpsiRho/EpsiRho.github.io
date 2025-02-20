@@ -331,7 +331,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     window.addEventListener('click', function(event) {
-        console.log(event.target);
         if (!event.target.classList.contains('settingsbtn') && !event.target.classList.contains('themebtn')) {
             settingsModal.style.opacity = 0;
             settingsBg.style.opacity = 0;

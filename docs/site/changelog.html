@@ -86,6 +86,16 @@
                 <h1 class="post-title" id="mdpost-title">Changelog</h1>
                 <p class="post-description">Current Version: <span class="version-display"></span></p>
                 <div class="post-body">
+                <h2 id="mdheadr--v3-5"> v3.5</h2>
+                <ul>
+                    <li> Fixed comments allowing html/css/js code leading to potential injection vulnerability.</li>
+                    <ul>
+                        <li> This vuln was never exploited, but pointed out by a friend as a potential issue.</li>
+                        <li> Any comment that has been altered shows an asterisk at the end with a tooltip saying so.</li>
+                        <li> Not all html/css is disallowed, 'b', 'i', 'em', 'strong', 'p', and 'span' are allowed for custom styling.</li>
+                    </ul>
+                    <li> Comments now support images.</li>
+                </ul>
                 <h2 id="mdheadr--v3-4"> v3.4</h2>
                 <ul>
                     <li> Added Comments to Blog Posts!</li>

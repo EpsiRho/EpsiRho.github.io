@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const commentTag = "blog";
   const commentsContainer = document.getElementById("comments-section");
   let ConnectPostUrl = '';
-
   async function fetchCommentsForPost(postUri) {
     const apiUrl =
       "https://public.api.bsky.app/xrpc/app.bsky.feed.getPostThread";
@@ -51,6 +50,36 @@ document.addEventListener("DOMContentLoaded", () => {
       day: "numeric",
     });
 
+    let cleanHTML = DOMPurify.sanitize(node.post?.record.text, {
+        ALLOWED_TAGS: ['b', 'i', 'em', 'strong', 'p', 'span']
+      });
+    
+    if(cleanHTML != node.post?.record.text){
+        cleanHTML += ` <span title="This user posted content that needed to be filtered out for saftey, likely html/css code that could be used for injection." style="color: red;">*</span>`;
+        console.log('comment adjust');
+    }
+
+    let img = document.createElement('div');
+
+    if(node.post?.record.embed){
+        console.log(node.post?.record.embed.images);
+        img.classList.add('comment-images-holder')
+        node.post?.record.embed.images.forEach(item => {
+            console.log(item.image.ref.$link);
+            let tempDiv = document.createElement(`div`);
+            tempDiv.classList.add(`comment-image-container`);
+            let tempImg = document.createElement(`img`);
+            tempImg.src = `https://cdn.bsky.app/img/feed_fullsize/plain/${node.post?.author.did}/${item.image.ref.$link}@png`
+            tempImg.classList.add('comment-image');
+            tempDiv.appendChild(tempImg);
+            img.appendChild(tempDiv);
+            
+        });
+    }
+    
+    console.log('Comment:');
+    console.log(img);
+    console.log(cleanHTML);
     const treeNode = {
       id: node.post?.uri || null,
       author: node.post?.author.handle || "Unknown",
@@ -60,13 +89,17 @@ document.addEventListener("DOMContentLoaded", () => {
       likeCount: node.post?.likeCount || 0,
       repostTotal: node.post?.quoteCount || 0 + node.post?.repostCount || 0,
       webLink: postUrl,
-      text: node.post?.record.text || "",
+      imageEmbed: img,
+      text: cleanHTML || "",
       children: [],
     };
 
     console.log(`----`);
     console.log(node);
     console.log(treeNode);
+    console.log(`----img`);
+    console.log(treeNode.imageEmbed);
+
 
     // Recursively build children for each reply
     if (node.replies && node.replies.length > 0) {
@@ -105,6 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             </div>
             <div class="text">${node.text}</div>
+            ${node.imageEmbed.outerHTML}
             <div>
                 <div class="date">${node.createdAt}  &#x2022;  &#9829; ${node.likeCount}  &#x2022;  &#x1F5D8; ${node.repostTotal}</div>
             </div>
