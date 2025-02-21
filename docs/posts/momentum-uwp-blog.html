@@ -412,6 +412,14 @@ public static async void LoadIndexesFromFile()
                 </a>
                 <p class="themebtn" style="font-size: 0.8em; margin-left: 0px; position: relative;"><i class="themebtn"><span class="version-display"></span> &#x2022; <a class="changelog-link themebtn" href="/site/changelog">changelog</a></i></p>
                 <label class="themebtn">Select Theme:</label>
+                <div class="toggle-container themebtn">
+                    <label class="toggle-switch themebtn">
+                        <input class="themebtn" type="checkbox">
+                        <span class="slider themebtn"></span>
+                    </label>
+                    <p class="themebtn transparent-desc">Enable Transparent Effects <span class="themebtn" title="If your browser supports transparent backgrounds, you can enable this to make the site theme show through to your desktop (or browser bg).">&#x1F6C8</span></p>
+                </div>
+
                 <div class="theme-picker themebtn">
                     <div class="theme-option tooltip themebtn" id="theme-option-notebook">
                         <span class="tooltiptext themebtn">Notebook</span>
@@ -427,18 +435,18 @@ public static async void LoadIndexesFromFile()
                             <div class="theme-card themebtn" style="background-color: rgb(199, 199, 199);"></div>
                         </div>
                     </div>
+                    <div class="theme-option tooltip themebtn" id="theme-option-transparent">
+                        <span class="tooltiptext themebtn">Snow Day</span>
+                        <div class="theme-sidebar themebtn" style="background: #b1c9e1;"></div>
+                        <div class="theme-main themebtn" style="background: #d9eafd;">
+                            <div class="theme-card themebtn" style="background-color: #bcccdc;"></div>
+                        </div>
+                    </div>
                     <div class="theme-option tooltip themebtn" id="theme-option-dark">
                         <span class="tooltiptext themebtn">Dark</span>
                         <div class="theme-sidebar themebtn" style="background-color: #2a2a2a;"></div>
                         <div class="theme-main themebtn" style="background-color: #1a1a1a;">
                             <div class="theme-card themebtn" style="background-color: rgb(53, 53, 53);"></div>
-                        </div>
-                    </div>
-                    <div class="theme-option tooltip themebtn" id="theme-option-transparent">
-                        <span class="tooltiptext themebtn">Transparent</span>
-                        <div class="theme-sidebar themebtn" style="background: linear-gradient(230deg, rgb(48, 57, 68) 0%, rgb(54, 61, 63) 50%, rgb(45, 54, 61) 100%);"></div>
-                        <div class="theme-main themebtn" style="background: linear-gradient(120deg, rgb(48, 57, 68) 0%, rgb(54, 61, 63) 50%, rgb(45, 54, 61) 100%);">
-                            <div class="theme-card themebtn" style="background-color: #3a3a3a;"></div>
                         </div>
                     </div>
                     <div class="theme-option tooltip themebtn" id="theme-option-ocean">

@@ -35,8 +35,16 @@ const themeFields = document.getElementById('theme-option-fields');
 const themeSunset = document.getElementById('theme-option-sunset');
 const themeMatrix = document.getElementById('theme-option-matrix');
 const themeNotebook = document.getElementById('theme-option-notebook');
+const toggleSwitch = document.querySelector('.toggle-switch input');
+let savedTransparencyValue = getCookie('transparent');
 
 function setTheme(theme) {
+    let alphaSidebar = 'ff';
+    let alphaMain = 'ff';
+    if(toggleSwitch.checked){
+        alphaSidebar = '21';
+        alphaMain = '3a';
+    }
     if (theme === 'dark') {
         /* 
             --bg-dark: #00000028;
@@ -54,8 +62,8 @@ function setTheme(theme) {
             --text-secondary: #a0a0a0; 
             --bg-code: #e6e6e6;
         */
-        root.style.setProperty('--bg-sidebar', '#2a2a2a');
-        root.style.setProperty('--bg-main', '#1a1a1a');
+        root.style.setProperty('--bg-sidebar', '#2a2a2a' + alphaSidebar);
+        root.style.setProperty('--bg-main', '#1a1a1a' + alphaMain);
         root.style.setProperty('--bg-card', 'rgb(53, 53, 53)');
         root.style.setProperty('--bg-code', '#282c34');
         root.style.setProperty('--text-primary', '#ffffff');
@@ -79,9 +87,9 @@ function setTheme(theme) {
 
         changeHighlightTheme('atom-one-dark');
     } else if (theme === 'light')  {
-        root.style.setProperty('--bg-sidebar', 'rgb(216, 216, 216)');
-        root.style.setProperty('--bg-main', 'rgb(228, 228, 228)');
-        root.style.setProperty('--bg-card','rgb(199, 199, 199)');
+        root.style.setProperty('--bg-sidebar', '#d8d8d8D' + alphaSidebar);
+        root.style.setProperty('--bg-main', '#e4e4e4' + alphaMain);
+        root.style.setProperty('--bg-card','#c7c7c7');
         root.style.setProperty('--bg-code', '#e6e6e6');
         root.style.setProperty('--text-primary', '#000000');
         root.style.setProperty('--text-secondary', '#1a1a1a');
@@ -104,8 +112,8 @@ function setTheme(theme) {
 
         changeHighlightTheme('panda-syntax-light');
     } else if (theme === 'ocean')  {
-        root.style.setProperty('--bg-sidebar', '#073642');
-        root.style.setProperty('--bg-main', '#002b36');
+        root.style.setProperty('--bg-sidebar', '#073642' + alphaSidebar);
+        root.style.setProperty('--bg-main', '#002b36' + alphaMain);
         root.style.setProperty('--bg-card','#083c4a');
         root.style.setProperty('--bg-code', '#002451');
         root.style.setProperty('--text-primary', '#fdf6e3');
@@ -129,8 +137,8 @@ function setTheme(theme) {
 
         changeHighlightTheme('tomorrow-night-blue');
     } else if (theme === 'dream')  {
-        root.style.setProperty('--bg-sidebar', '#2c2a3e');
-        root.style.setProperty('--bg-main', '#2b2336');
+        root.style.setProperty('--bg-sidebar', '#2c2a3e' + alphaSidebar);
+        root.style.setProperty('--bg-main', '#2b2336' + alphaMain);
         root.style.setProperty('--bg-card','#3b3f51');
         root.style.setProperty('--bg-code', '#2e3440');
         root.style.setProperty('--text-primary', '#f8f8f2');
@@ -154,8 +162,8 @@ function setTheme(theme) {
 
         changeHighlightTheme('nord');
     } else if (theme === 'fields')  {
-        root.style.setProperty('--bg-sidebar', '#365142');
-        root.style.setProperty('--bg-main', '#283c2e');
+        root.style.setProperty('--bg-sidebar', '#365142' + alphaSidebar);
+        root.style.setProperty('--bg-main', '#283c2e' + alphaMain);
         root.style.setProperty('--bg-card','#2d543f');
         root.style.setProperty('--bg-code', '#2e3440');
         root.style.setProperty('--text-primary', '#c0f5dc');
@@ -179,8 +187,8 @@ function setTheme(theme) {
 
         changeHighlightTheme('nord');
     } else if (theme === 'sunset')  {
-        root.style.setProperty('--bg-sidebar', '#4c1919');
-        root.style.setProperty('--bg-main', '#381324');
+        root.style.setProperty('--bg-sidebar', '#4c1919' + alphaSidebar);
+        root.style.setProperty('--bg-main', '#381324' + alphaMain);
         root.style.setProperty('--bg-card','#403949');
         root.style.setProperty('--bg-code', '#2e3440');
         root.style.setProperty('--text-primary', '#f3d59f');
@@ -204,8 +212,8 @@ function setTheme(theme) {
 
         changeHighlightTheme('nord');
     } else if (theme === 'matrix')  {
-        root.style.setProperty('--bg-sidebar', '#000000');
-        root.style.setProperty('--bg-main', '#0e0e0e');
+        root.style.setProperty('--bg-sidebar', '#000000' + alphaSidebar);
+        root.style.setProperty('--bg-main', '#0e0e0e' + alphaMain);
         root.style.setProperty('--bg-card','#1a1a1a');
         root.style.setProperty('--bg-code', '#001100');
         root.style.setProperty('--text-primary', '#00ff00');
@@ -229,8 +237,8 @@ function setTheme(theme) {
 
         changeHighlightTheme('base16-green-screen');
     } else if (theme === 'notebook')  {
-        root.style.setProperty('--bg-sidebar', '#f1e8d2');
-        root.style.setProperty('--bg-main', '#fff9e8');
+        root.style.setProperty('--bg-sidebar', '#f1e8d2' + alphaSidebar);
+        root.style.setProperty('--bg-main', '#fff9e8' + alphaMain);
         root.style.setProperty('--bg-card','#f7f2e0');
         root.style.setProperty('--bg-code', '#e7e9db');
         root.style.setProperty('--text-primary', '#2f383e');
@@ -255,12 +263,12 @@ function setTheme(theme) {
         changeHighlightTheme('paraiso-light');
     }
     else { 
-        root.style.setProperty('--bg-sidebar', '#47474721');
-        root.style.setProperty('--bg-main', '#1414143a');
-        root.style.setProperty('--bg-card', '#3a3a3a');
-        root.style.setProperty('--bg-code', '#22272e');
-        root.style.setProperty('--text-primary', '#ffffff');
-        root.style.setProperty('--text-secondary', '#a0a0a0');
+        root.style.setProperty('--bg-sidebar', '#b1c9e1' + alphaSidebar);
+        root.style.setProperty('--bg-main', '#d9eafd' + alphaMain);
+        root.style.setProperty('--bg-card', '#bcccdc');
+        root.style.setProperty('--bg-code', '#9faebb');
+        root.style.setProperty('--text-primary', '#131619');
+        root.style.setProperty('--text-secondary', '#3e4751');
 
         root.style.setProperty('--accent', `#3383d2`);
         root.style.setProperty('--accent-secondary', 'rgba(7,195,252,1)');
@@ -281,7 +289,7 @@ function setTheme(theme) {
         changeHighlightTheme('github-dark-dimmed');
     }
 
-    document.cookie = `theme=${theme}; path=/`; // Store theme in cookie
+    document.cookie = `theme=${theme}; path=/`; 
 }
 
 function changeHighlightTheme(theme) {
@@ -299,6 +307,17 @@ function changeHighlightTheme(theme) {
 
 document.addEventListener('DOMContentLoaded', function() {
     const savedTheme = getCookie('theme');
+
+    if(savedTransparencyValue){
+        if(savedTransparencyValue == "true") {
+            toggleSwitch.checked = true;
+        }
+        else {
+            toggleSwitch.checked = false;
+        }
+        console.log(savedTransparencyValue);
+    }
+
     if (savedTheme) {
         setTheme(savedTheme);
     }
@@ -327,6 +346,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     window.addEventListener('click', function(event) {
+        console.log(event.target);
         if (!event.target.classList.contains('settingsbtn') && !event.target.classList.contains('themebtn')) {
             settingsModal.style.opacity = 0;
             settingsBg.style.opacity = 0;
@@ -349,7 +369,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setTheme('dark');
     });
     themeTransparent.addEventListener('click', function() {
-        setTheme('transparent');
+        setTheme('snow');
     });
     themeOcean.addEventListener('click', function() {
         setTheme('ocean');
@@ -369,4 +389,10 @@ document.addEventListener('DOMContentLoaded', function() {
     themeNotebook.addEventListener('click', function() {
         setTheme('notebook');
     });
+    toggleSwitch.addEventListener('change', function() {
+        let theme = getCookie('theme');
+        savedTransparencyValue = toggleSwitch.checked;
+        document.cookie = `transparent=${savedTransparencyValue}; path=/`; 
+        setTheme(theme);
+      });
 });

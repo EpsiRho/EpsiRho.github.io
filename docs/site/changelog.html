@@ -86,85 +86,91 @@
                 <h1 class="post-title" id="mdpost-title">Changelog</h1>
                 <p class="post-description">Current Version: <span class="version-display"></span></p>
                 <div class="post-body">
-                <h2 id="mdheadr--v3-5"> v3.5</h2>
-                <ul>
-                    <li> Fixed comments allowing html/css/js code leading to potential injection vulnerability.</li>
+                    <h2 id="mdheadr--v3-6"> v3.6</h2>
                     <ul>
-                        <li> This vuln was never exploited, but pointed out by a friend as a potential issue.</li>
-                        <li> Any comment that has been altered shows an asterisk at the end with a tooltip saying so.</li>
-                        <li> Not all html/css is disallowed, 'b', 'i', 'em', 'strong', 'p', and 'span' are allowed for custom styling.</li>
+                        <li> Removed Transparent theme in favor of a toggle for transparency on any theme.</li>
+                        <li> Added Snow Day theme.</li>
+                        <li> Fixed comment images not sizing properly for smaller screen widths.</li>
                     </ul>
-                    <li> Comments now support images.</li>
-                </ul>
-                <h2 id="mdheadr--v3-4"> v3.4</h2>
-                <ul>
-                    <li> Added Comments to Blog Posts!</li>
+                    <h2 id="mdheadr--v3-5"> v3.5</h2>
                     <ul>
-                        <li> Comments are handled through Bluesky. </li>
-                        <li> Every Blog Posts will look for a corrisponding bsky post and read it's thread. </li>
-                        <li> Anyone's comments on it will show on the site! </li>
-                        <li> Any comments from me get the OP highlight ✨</li>
+                        <li> Fixed comments allowing html/css/js code leading to potential injection vulnerability.</li>
+                        <ul>
+                            <li> This vuln was never exploited, but pointed out by a friend as a potential issue.</li>
+                            <li> Any comment that has been altered shows an asterisk at the end with a tooltip saying so.</li>
+                            <li> Not all html/css is disallowed, 'b', 'i', 'em', 'strong', 'p', and 'span' are allowed for custom styling.</li>
+                        </ul>
+                        <li> Comments now support images.</li>
                     </ul>
-                    <li> Inline code blocks now look good.</li>
-                    <li> Version number is now a synced var, so I don't have to track down every instance and replace it.</li>
-                    <li> Made Blog Post images smaller.</li>
-                    <li> Fixed a couple issues with the DenTools.</li>
+                    <h2 id="mdheadr--v3-4"> v3.4</h2>
                     <ul>
-                        <li> Block Comments work get left open if a stray "_" was inside. </li>
-                        <li> Multiple masked links in a single line would cause the links to cascade and get added on to for each link. </li>
-                        <li> Anyone's comments on it will show on the site! </li>
-                        <li> Any comments from me get the OP highlight ✨</li>
+                        <li> Added Comments to Blog Posts!</li>
+                        <ul>
+                            <li> Comments are handled through Bluesky. </li>
+                            <li> Every Blog Posts will look for a corrisponding bsky post and read it's thread. </li>
+                            <li> Anyone's comments on it will show on the site! </li>
+                            <li> Any comments from me get the OP highlight ✨</li>
+                        </ul>
+                        <li> Inline code blocks now look good.</li>
+                        <li> Version number is now a synced var, so I don't have to track down every instance and replace it.</li>
+                        <li> Made Blog Post images smaller.</li>
+                        <li> Fixed a couple issues with the DenTools.</li>
+                        <ul>
+                            <li> Block Comments work get left open if a stray "_" was inside. </li>
+                            <li> Multiple masked links in a single line would cause the links to cascade and get added on to for each link. </li>
+                            <li> Anyone's comments on it will show on the site! </li>
+                            <li> Any comments from me get the OP highlight ✨</li>
+                        </ul>
                     </ul>
-                </ul>
-                <h2 id="mdheadr--v3-3"> v3.3</h2>
-                <ul>
-                    <li> Added a bunch of new themes:</li>
+                    <h2 id="mdheadr--v3-3"> v3.3</h2>
                     <ul>
-                        <li> Notebook </li>
-                        <li> Flashbang (Renamed from "Light") </li>
-                        <li> Ocean </li>
-                        <li> Dracula </li>
-                        <li> Fields </li>
-                        <li> Sunset </li>
-                        <li> Matrix </li>
+                        <li> Added a bunch of new themes:</li>
+                        <ul>
+                            <li> Notebook </li>
+                            <li> Flashbang (Renamed from "Light") </li>
+                            <li> Ocean </li>
+                            <li> Dracula </li>
+                            <li> Fields </li>
+                            <li> Sunset </li>
+                            <li> Matrix </li>
+                        </ul>
+                        <li> Themes now change smoothly.</li>
+                        <li> Fixed Nav Menu items clipping their padding boundary.</li>
+                        <li> Moved changelog and version number from About Page TOC to the Settings Modal.</li>
+                        <li> The hamburger menu is now always visible, to give the Settings Button a home.</li>
+                        <li> Theme changes to move more accented bits to be theme specific.</li>
                     </ul>
-                    <li> Themes now change smoothly.</li>
-                    <li> Fixed Nav Menu items clipping their padding boundary.</li>
-                    <li> Moved changelog and version number from About Page TOC to the Settings Modal.</li>
-                    <li> The hamburger menu is now always visible, to give the Settings Button a home.</li>
-                    <li> Theme changes to move more accented bits to be theme specific.</li>
-                </ul>
-                <h2 id="mdheadr--v3-2"> v3.2</h2>
-                <ul>
-                    <li> Added Theme Picker.</li>
-                    <li> Added Light theme and revised Dark theme.</li>
-                    <li> Added Transparent theme for browsers that support it like Firefox and Zen.</li>
-                    <li> Adjusted project error page to grab only highly rated music recommendations.</li>
-                    <li> Fixed Changelog Table of Contents anchors not working.</li>
-                    <li> Adjusted font sizes for better clarity.</li>
-                    <li> Code Blocks now get properly added to all blog posts (previously hljs was baked into only one post).</li>
-                    <li> Fixed post links div being too short.</li>
-                    <li> Adjusted accent colors for links and subtitles.</li>
-                    <li> Fixed TOC showing scroll when unneeded on chrome.</li>
-                </ul>
-                <h2 id="mdheadr--v3-1"> v3.1</h2>
-                <ul>
-                    <li> Removed Twitter Link (No longer posting there due to current policies).</li>
-                    <li> Fixed Code Blocks being converted to HTML incorrectly.</li>
-                    <li> Code Blocks now get higlighting using hightlight.js.</li>
-                    <li> The Content section of every page is now able to get 200px bigger at it's MaxWidth.</li>
-                    <li> Homepage BG doesn't load until slices are in place.</li>
-                    <li> Homepage Slices show a background behind images, so they are visible before images are done loading.</li>
-                    <li> Stopped slices from getting to thin by switching to cards sooner (780px->1000px).</li>
-                </ul>
-                <h2 id="mdheadr--v3-0"> v3.0</h2>
-                <ul>
-                    <li> Moved from Hugo static site generation to a custom solution (DenTools).</li>
-                    <li> Revamped Music Recommendations.</li>
-                    <li> Revamped Project pages.</li>
-                    <li> Revamped Blog Post pages.</li>
-                    <li> New homepage layout for desktop.</li>
-                </ul>
+                    <h2 id="mdheadr--v3-2"> v3.2</h2>
+                    <ul>
+                        <li> Added Theme Picker.</li>
+                        <li> Added Light theme and revised Dark theme.</li>
+                        <li> Added Transparent theme for browsers that support it like Firefox and Zen.</li>
+                        <li> Adjusted project error page to grab only highly rated music recommendations.</li>
+                        <li> Fixed Changelog Table of Contents anchors not working.</li>
+                        <li> Adjusted font sizes for better clarity.</li>
+                        <li> Code Blocks now get properly added to all blog posts (previously hljs was baked into only one post).</li>
+                        <li> Fixed post links div being too short.</li>
+                        <li> Adjusted accent colors for links and subtitles.</li>
+                        <li> Fixed TOC showing scroll when unneeded on chrome.</li>
+                    </ul>
+                    <h2 id="mdheadr--v3-1"> v3.1</h2>
+                    <ul>
+                        <li> Removed Twitter Link (No longer posting there due to current policies).</li>
+                        <li> Fixed Code Blocks being converted to HTML incorrectly.</li>
+                        <li> Code Blocks now get higlighting using hightlight.js.</li>
+                        <li> The Content section of every page is now able to get 200px bigger at it's MaxWidth.</li>
+                        <li> Homepage BG doesn't load until slices are in place.</li>
+                        <li> Homepage Slices show a background behind images, so they are visible before images are done loading.</li>
+                        <li> Stopped slices from getting to thin by switching to cards sooner (780px->1000px).</li>
+                    </ul>
+                    <h2 id="mdheadr--v3-0"> v3.0</h2>
+                    <ul>
+                        <li> Moved from Hugo static site generation to a custom solution (DenTools).</li>
+                        <li> Revamped Music Recommendations.</li>
+                        <li> Revamped Project pages.</li>
+                        <li> Revamped Blog Post pages.</li>
+                        <li> New homepage layout for desktop.</li>
+                    </ul>
                 </div>
             </article>
         </main>
@@ -176,6 +182,14 @@
                 </a>
                 <p class="themebtn" style="font-size: 0.8em; margin-left: 0px; position: relative;"><i class="themebtn"><span class="version-display"></span> &#x2022; <a class="changelog-link themebtn" href="/site/changelog">changelog</a></i></p>
                 <label class="themebtn">Select Theme:</label>
+                <div class="toggle-container themebtn">
+                    <label class="toggle-switch themebtn">
+                        <input class="themebtn" type="checkbox">
+                        <span class="slider themebtn"></span>
+                    </label>
+                    <p class="themebtn transparent-desc">Enable Transparent Effects <span class="themebtn" title="If your browser supports transparent backgrounds, you can enable this to make the site theme show through to your desktop (or browser bg).">&#x1F6C8</span></p>
+                </div>
+
                 <div class="theme-picker themebtn">
                     <div class="theme-option tooltip themebtn" id="theme-option-notebook">
                         <span class="tooltiptext themebtn">Notebook</span>
@@ -191,18 +205,18 @@
                             <div class="theme-card themebtn" style="background-color: rgb(199, 199, 199);"></div>
                         </div>
                     </div>
+                    <div class="theme-option tooltip themebtn" id="theme-option-transparent">
+                        <span class="tooltiptext themebtn">Snow Day</span>
+                        <div class="theme-sidebar themebtn" style="background: #b1c9e1;"></div>
+                        <div class="theme-main themebtn" style="background: #d9eafd;">
+                            <div class="theme-card themebtn" style="background-color: #bcccdc;"></div>
+                        </div>
+                    </div>
                     <div class="theme-option tooltip themebtn" id="theme-option-dark">
                         <span class="tooltiptext themebtn">Dark</span>
                         <div class="theme-sidebar themebtn" style="background-color: #2a2a2a;"></div>
                         <div class="theme-main themebtn" style="background-color: #1a1a1a;">
                             <div class="theme-card themebtn" style="background-color: rgb(53, 53, 53);"></div>
-                        </div>
-                    </div>
-                    <div class="theme-option tooltip themebtn" id="theme-option-transparent">
-                        <span class="tooltiptext themebtn">Transparent</span>
-                        <div class="theme-sidebar themebtn" style="background: linear-gradient(230deg, rgb(48, 57, 68) 0%, rgb(54, 61, 63) 50%, rgb(45, 54, 61) 100%);"></div>
-                        <div class="theme-main themebtn" style="background: linear-gradient(120deg, rgb(48, 57, 68) 0%, rgb(54, 61, 63) 50%, rgb(45, 54, 61) 100%);">
-                            <div class="theme-card themebtn" style="background-color: #3a3a3a;"></div>
                         </div>
                     </div>
                     <div class="theme-option tooltip themebtn" id="theme-option-ocean">
@@ -270,6 +284,7 @@
                 </a>
                 <hr style="margin: 10px 10px 10px 5px;" id="setdivider"/>
                 <a href="#mdpost-title"><li>Changelog</li></a>
+                <a href="#mdheadr--v3-6"><li> v3.6</li></a>
                 <a href="#mdheadr--v3-5"><li> v3.5</li></a>
                 <a href="#mdheadr--v3-4"><li> v3.4</li></a>
                 <a href="#mdheadr--v3-3"><li> v3.3</li></a>
