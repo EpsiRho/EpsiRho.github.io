@@ -61,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeToc = () => {
         toc.classList.remove("open");
         isOpen = false;
+        toc.scrollTop = 0;
     };
 
     const clickEvent = (e) => {
