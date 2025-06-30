@@ -16,11 +16,6 @@ class VisualizerPlayer {
         this.pauseTime = 0;
         this.animationId = null;
         
-        console.log('Creating VisualizerPlayer with:', {
-            totalFrames: frequencyVisualizer.header.totalFrames,
-            numBands: frequencyVisualizer.header.numBands,
-            frameRate: frequencyVisualizer.header.frameRate
-        });
         
         this.setupCanvas();
         this.setupControls();
@@ -58,7 +53,6 @@ class VisualizerPlayer {
         const canvasWidth = Math.max(containerWidth, minWidth);
         
         let cheight = canvasWidth > 600 ? 200 : 100;
-        console.log(cheight);
 
         // Set actual canvas size
         this.canvas.width = canvasWidth;
@@ -305,12 +299,6 @@ async function handleFile(file, cnv, playbtn, timeline, timestr, framecount, cur
         if (typeof fzstd === 'undefined') {
             throw new Error('Zstd library not loaded. Please ensure fzstd is included.');
         }
-
-        console.log('File info:', {
-            name: file.name,
-            size: file.size,
-            type: file.type
-        });
 
         const arrayBuffer = await file.arrayBuffer();
         const { decompress } = fzstd;
