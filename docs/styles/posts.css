@@ -310,6 +310,13 @@ tbody tr:nth-child(even) {
   background-color: var(--bg-sidebar);
 }
 
+.hljs-comment,
+.hljs-quote {
+  color: #12c53f !important; 
+  font-style: italic; 
+  opacity: 1;
+}
+
 @media screen and (max-width: 990px) {
     
     .toc {
