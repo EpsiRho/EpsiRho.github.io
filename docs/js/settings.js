@@ -64,16 +64,16 @@ function setTheme(theme) {
         */
         root.style.setProperty('--bg-sidebar', '#2a2a2a' + alphaSidebar);
         root.style.setProperty('--bg-main', '#1a1a1a' + alphaMain);
-        root.style.setProperty('--bg-card', 'rgb(53, 53, 53)');
+        root.style.setProperty('--bg-card', '#353535');
         root.style.setProperty('--bg-code', '#282c34');
         root.style.setProperty('--text-primary', '#ffffff');
         root.style.setProperty('--text-secondary', '#a0a0a0');
 
         root.style.setProperty('--accent', `#3383d2`);
-        root.style.setProperty('--accent-secondary', 'rgba(7,195,252,1)');
+        root.style.setProperty('--accent-secondary', '#07c3fc');
         root.style.setProperty('--link-primary', '#3383d2');
-        root.style.setProperty('--link-hover', 'rgba(7,195,252,1)');
-        root.style.setProperty('--link-clicked', 'rgba(191,8,246,1)');
+        root.style.setProperty('--link-hover', '#07c3fc');
+        root.style.setProperty('--link-clicked', '#bf08f6');
 
         themeLight.classList.remove('selected');
         themeDark.classList.add('selected');
@@ -87,7 +87,7 @@ function setTheme(theme) {
 
         changeHighlightTheme('atom-one-dark');
     } else if (theme === 'light')  {
-        root.style.setProperty('--bg-sidebar', '#d8d8d8D' + alphaSidebar);
+        root.style.setProperty('--bg-sidebar', '#cdcdcd' + alphaSidebar);
         root.style.setProperty('--bg-main', '#e4e4e4' + alphaMain);
         root.style.setProperty('--bg-card','#c7c7c7');
         root.style.setProperty('--bg-code', '#e6e6e6');
@@ -95,10 +95,10 @@ function setTheme(theme) {
         root.style.setProperty('--text-secondary', '#1a1a1a');
 
         root.style.setProperty('--accent', `#3383d2`);
-        root.style.setProperty('--accent-secondary', 'rgba(7,195,252,1)');
+        root.style.setProperty('--accent-secondary', '#07c3fc');
         root.style.setProperty('--link-primary', '#3383d2');
-        root.style.setProperty('--link-hover', 'rgba(7,195,252,1)');
-        root.style.setProperty('--link-clicked', 'rgba(191,8,246,1)');
+        root.style.setProperty('--link-hover', '#07c3fc');
+        root.style.setProperty('--link-clicked', '#bf08f6');
 
         themeLight.classList.add('selected');
         themeDark.classList.remove('selected');
@@ -271,10 +271,10 @@ function setTheme(theme) {
         root.style.setProperty('--text-secondary', '#3e4751');
 
         root.style.setProperty('--accent', `#3383d2`);
-        root.style.setProperty('--accent-secondary', 'rgba(7,195,252,1)');
+        root.style.setProperty('--accent-secondary', '#07c3fc');
         root.style.setProperty('--link-primary', '#3383d2');
-        root.style.setProperty('--link-hover', 'rgba(7,195,252,1)');
-        root.style.setProperty('--link-clicked', 'rgba(191,8,246,1)');
+        root.style.setProperty('--link-hover', '#07c3fc');
+        root.style.setProperty('--link-clicked', '#bf08f6');
 
         themeLight.classList.remove('selected');
         themeDark.classList.remove('selected');

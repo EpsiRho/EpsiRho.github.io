@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const manageMouseover = () => {
-        if (window.innerWidth > 780) {  // too big
+        if (window.innerWidth > 990) {  // too big
             toc.addEventListener("mouseover", openToc);
             toc.removeEventListener("click", clickEvent);
             toc.removeEventListener("mouseover", addScaleEffect);

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Interactive Animation Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <!-- Progress navigation -->
+  <nav id="progress">
+    <ul>
+      <li class="step active" data-step="0">1</li>
+      <li class="step" data-step="1">2</li>
+      <li class="step" data-step="2">3</li>
+      <li class="step" data-step="3">4</li>
+      <li class="step" data-step="4">5</li>
+      <li class="step" data-step="5">6</li>
+      <li class="step" data-step="6">7</li>
+      <li class="step" data-step="7">8</li>
+      <li class="step" data-step="8">9</li>
+    </ul>
+  </nav>
+
+  <!-- Animation stage -->
+  <div id="stage">
+    <div id="square" class="shape">
+        <span id="AICubeText">AI</span>
+    </div>
+    <h1 id="title">Ever wonder how AI systems like ChatGPT work?</h1>
+    <p id="puzzleOne">1 - 2 - 4 - 8 - ?</p>
+    <p id="puzzleOneSolved">1 - 2 - 4 - 8 - 10</p>
+    <p id="puzzleTwo">15 - 29 - 56 - 108 - 208 - ?</p>
+    <p id="puzzleTwoSolved">15 - 29 - 56 - 108 - 208 - 400</p>
+    <p id="demoSentence"><span id="wordThe">The</span> <span id="wordCapital">capital</span> <span id="wordOf">of</span> <span id="wordAlabama">Alabama</span> <span id="wordIs">is</span> </p>
+    <p id="encodedSentence"><span id="numThe">1</span> <span id="numCapital">23</span> <span id="numOf">46</span> <span id="numAlabama">74</span> <span id="numIs">34</span> </p>
+    <p id="encodedOutput">186</p>
+    <p id="secondEncodedOutput">231</p>
+    <p id="encodedStopToken">0</p>
+    <p id="decodedStopToken">[Stop]</p>
+    <p id="decodedOutput">Montgomery</p>
+    <math id="puzzleTwoEquation" xmlns="http://www.w3.org/1998/Math/MathML">
+        <msub>
+        <mi>a</mi>
+        <mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow>
+        </msub>
+        <mo>=</mo>
+        <mn>2</mn>
+        <msub>
+        <mi>a</mi>
+        <mi>n</mi>
+        </msub>
+        <mo>&#x2212;</mo>
+        <msup>
+        <mn>2</mn>
+        <mrow><mi>n</mi><mo>&#x2212;</mo><mn>1</mn></mrow>
+        </msup>
+    </math>
+  
+    <button id="actionBtn">Start</button>
+  </div>
+
+  <!-- GSAP for animation & Howler for sound -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/MotionPathPlugin.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

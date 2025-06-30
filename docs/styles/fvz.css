@@ -1,0 +1,91 @@
+.frame-data {
+    max-height: 200px;
+    overflow-y: auto;
+    background: white;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 12px;
+}
+.visualizer-container {
+    margin: 0px 0;
+}
+.visualizer-canvas {
+    width: 100%;
+    height: 200px;
+    background: var(--bg-sidebar);
+    border-radius: 5px;
+    border: 0px solid #333;
+}
+.controls {
+    margin-right: 0px;
+    border-radius: 5px;
+    background: var(--bg-main);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.controls button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    background: var(--accent);
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+.controls button:hover {
+    background: var(--accent-secondary);
+}
+.timeline {
+    flex: 1;
+    margin: 5px 10px 0px 0;
+    min-width: 200px;
+}
+.timeline input[type="range"] {
+    width: 100%;
+    accent-color: var(--accent-secondary);
+}
+.info-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px -15px;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.songName { 
+    margin: 10px 10px;
+    transition: filter 1s;
+    font-weight: bold;
+}
+
+.songNameHidden { 
+    filter: blur(5px);
+    user-select: none;
+    font-weight: bold;
+    transition: filter 1s, font-weight 1s;
+}
+.songNameHidden:hover { 
+    filter: blur(3px) drop-shadow(0px 0px 5px var(--text-primary));
+}
+
+
+@media (max-width: 990px) {
+    .visualizer-container {
+        margin: 0px 0;
+    }
+    .visualizer-canvas {
+        width: 100%;
+        height: 200px;
+        background: var(--bg-sidebar);
+        border-radius: 5px;
+        border: 0px solid #333;
+    }
+    .songName { 
+        font-size: 11px;
+    }
+}

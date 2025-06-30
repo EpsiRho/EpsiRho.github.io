@@ -121,7 +121,10 @@ window.addEventListener('DOMContentLoaded', () => {
         postDescription.textContent = projectData.ShortDescription;
         postDate.textContent = new Date(projectData.AnnounceDate).toLocaleString();
         let pee = document.createElement(`p`);
-        pee.innerHTML = projectData.Description.replace("\n", "</br></br>");
+        pee.innerHTML = projectData.Description
+            .split('\n\n')
+            .map(paragraph => `<p>${paragraph.replace(/\n/g, "<br>")}</p><br>`)
+            .join('');
         postBody.appendChild(pee);
 
         // Clear and populate tags
@@ -154,9 +157,7 @@ window.addEventListener('DOMContentLoaded', () => {
             headerImage.style.display = 'none';
         }
         let ProjectTags = document.querySelectorAll('.project-tag');
-    console.log(ProjectTags);
     ProjectTags.forEach((t)=>{
-        console.log(t);
         t.addEventListener("click", () => window.location.href = encodeURI(`/site/projects?s=${t.innerHTML.trim().replace("#", "%23")}`));
         //tag.innerHTML = `<a>${tag.innerHTML}</a>`
         t.style.cursor = 'pointer'
