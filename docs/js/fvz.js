@@ -48,7 +48,6 @@ class VisualizerPlayer {
     }
 
     resizeCanvas() {
-        const dpr = 1;
         
         // Get the actual container width (or use window width)
         const container = this.canvas.parentElement;
@@ -57,16 +56,12 @@ class VisualizerPlayer {
         // Use container width, but ensure minimum width for 250 bars
         const minWidth = 250; // At least 1px per bar
         const canvasWidth = Math.max(containerWidth, minWidth);
-        console.log(`Test - ${containerWidth} ${dpr} ${canvasWidth * dpr}`);
         
         // Set actual canvas size
-        this.canvas.width = canvasWidth * dpr;
-        this.canvas.height = 200 * dpr;
+        this.canvas.width = canvasWidth;
+        this.canvas.height = 200;
         
-        // Reset any existing transforms and scale context for high DPI
-        this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        
-        this.canvas.width = canvasWidth * dpr;
+        this.canvas.width = canvasWidth;
         this.canvas.style.width = canvasWidth + 'px';
         this.canvas.style.height = '400px';
         
@@ -318,7 +313,7 @@ async function handleFile(file, cnv, playbtn, timeline, timestr, framecount, cur
         const { decompress } = fzstd;
         const result = await AudioDecoder.readFile(arrayBuffer, decompress);
         
-        console.log(result);
+        //console.log(result);
         
         // Create and show visualizer
         let currentVisualizer = new VisualizerPlayer(result, cnv, playbtn, timeline, timestr, framecount, currentTime, currentFrame);

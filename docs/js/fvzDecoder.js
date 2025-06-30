@@ -72,7 +72,6 @@ class AudioDecoder {
 
         let frames;
 
-        // New
         const bitmask = new Array(4);
         bitmask[0] = (compressionType & 0x01) !== 0; // Zstd
         bitmask[1] = (compressionType & 0x02) !== 0; // Quantized
