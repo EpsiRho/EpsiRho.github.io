@@ -57,17 +57,20 @@ class VisualizerPlayer {
         const minWidth = 250; // At least 1px per bar
         const canvasWidth = Math.max(containerWidth, minWidth);
         
+        let cheight = canvasWidth > 600 ? 200 : 100;
+        console.log(cheight);
+
         // Set actual canvas size
         this.canvas.width = canvasWidth;
-        this.canvas.height = 200;
+        this.canvas.height = cheight;
         
         this.canvas.width = canvasWidth;
         this.canvas.style.width = canvasWidth + 'px';
-        this.canvas.style.height = '400px';
+        this.canvas.style.height = cheight + 'px';
         
         // Store the logical canvas size for rendering
         this.canvasWidth = canvasWidth;
-        this.canvasHeight = 200;
+        this.canvasHeight = cheight;
     }
 
     setupControls() {
