@@ -108,6 +108,18 @@ class VisualizerPlayer {
                 this.play();
             }
         });
+        this.timeline.addEventListener('touchstart', () => {
+            wasPaused = !this.isPlaying;
+            if (this.isPlaying) {
+                this.pause();
+            }
+        });
+        this.timeline.addEventListener('touchsend', () => {
+            wasPaused = !this.isPlaying;
+            if (!this.isPaused) {
+                this.play();
+            }
+        });
     }
 
     play() {
