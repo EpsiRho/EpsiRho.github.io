@@ -363,7 +363,7 @@ private static void ComputeFFT(int needed)
 </br>
 <p>BuildFrame routes to different representations of the frequency spectrum, selected in the UI. I want to cover two of the spectrums, Log10 and "Normalized". There is also support for the Mel spectrogram binning.</p>
 </br>
-<p>First, Log10. This function takes our magnitudes from the last step and averages them into bars that we will display on the visualizer. If it were just linear, we would find how many bins fit in how many bars equally splitting the bins into each bar, but human hearing doesn't work that way. Our pitch perception is said to be logarithmic, where each octave doubles in frequency. So we can double each section of bins, like so: 20-40, 40-80, 80-160, 160-320, etc. This means more high frequency bins get shoved into less bars.</p>
+<p>First, Log10. This function takes our magnitudes from the last step and averages them into bars that we will display on the visualizer. If it were just linear, we would find how many bins fit in how many bars equally splitting the bins into each bar, but human hearing doesn't work that way. Our pitch perception is said to be logarithmic, where each octave doubles in frequency. So we can double each section of bins, like so: 20-40, 40-80, 80-160, 160-320, etc. This means high frequency bins get shoved into less bars.</p>
 <pre class="code-block">
 <code>
 private static void BuildFrameLogNormalized(double[] mags, int sampleRate)
@@ -472,16 +472,16 @@ private static void BuildFrameLogNormalized(double[] mags, int sampleRate)
 </pre>
 </br>
 <img alt="Log10 Visualizer Gif" title="Log10 Visualizer Gif" src="https://www.dropbox.com/scl/fi/pso6m3w1xrdifjvvautih/Log10Demo.gif?rlkey=osa55fbotkpk6dpimonb20ppv&st=rjkpoxvi&raw=1" />
-<p>Now we've got frames to show! I wont go over how I show them here, it's super simple anyway, just telling a rectangle to get taller based on 0->1 floats.</p>
+<p>Now we've got frames to show! I wont go over how I show them here, it's super simple anyway, just telling a rectangle to get taller based on 0->1 floats (and then coloring/position/etc).</p>
 <h1 id="mdheadr--Making-it-look-better"> Making it look better</h1>
-<p>The visualization works and looks decent, but in my opinion had some issue. For the algorithm above, I added smoothing to try and help Fix the jagged bars especially as your bar count grows in the low end. The Smoothness value determines how much peaks should "slide down" to adjacent bars to smooth out jagged waveforms. This helped but there were three other issues I wanted to fix:</p>
+<p>The visualization works and looks decent, but in my opinion has some issues. For the algorithm above, I added smoothing to try and help Fix the jagged bars especially as your bar count grows in the low end. The Smoothness value determines how much peaks should "slide down" to adjacent bars to smooth out jagged waveforms. This helped but there were three other issues I wanted to fix:</p>
 <ul>
 <li> The low end takes up too much space leading to wide square waveforms as bars increase</li>
 <li> Lots of noise bleed leads to uniformity without raising the db Floor</li>
-<li> The high end is quiet and takes not responsive enough (especially compared to the lows)</li>
+<li> The high end is quiet and not very responsive (especially compared to the lows)</li>
 </ul>
 </br>
-<p>For the first part, we can swap out the Log10 binning for any function that takes in a frequency and returns the bin it should hit. For my algorithm I define a low, mid, and high range. Then I can scale them separately, compressing the low ends more than the mids, and compressing the highs more than the mids and the lows. Additionally, splitting the compression like this leads to "boundary walls", where as the frequency increases/decreases through the boundary it sticks around the boundary points. This is because the "slope" of each section mismatches even though the bar values on the edges of each side may be close if not the same. To fix this we can compute the Derivatives for each section border and then use the <a href="https://en.wikipedia.org/wiki/Cubic_Hermite_spline">Cubic Hermite Spline</a> algorithm to find a "connection" between point A and point B. Point A and B will just be the boundary line +/- some transitional value. I wont cover the Cubic Hermite implementation because my brain doesn't like it and someone else could do it better. I highly recommend <a href="https://youtu.be/jvPPXbo87ds?si=lXTp0Kds1Ln0VjGG">Freya Holmér's video on Splines</a> which helped me wrap my head around many of the concepts.</p>
+<p>For the first part, we can swap out the Log10 binning for any function that takes in a frequency and returns the bin it should hit. For my algorithm I define a low, mid, and high range. Then I can scale them separately, compressing the lows more than the mids, and compressing the highs more than the mids and the lows. However, splitting the compression like this leads to "boundary walls", where as the frequency increases/decreases through the boundary it sticks around the boundary points. This is because the "slope" of each section mismatches even though the bar values on the edges of each side may be close if not the same. To fix this we can compute the Derivatives for each section border and then use the <a href="https://en.wikipedia.org/wiki/Cubic_Hermite_spline">Cubic Hermite Spline</a> algorithm to find a "connection" between point A and point B. Point A and B will just be the boundary line +/- some transitional value. I wont cover the Cubic Hermite implementation because my brain doesn't like it and someone else could do it better. I highly recommend <a href="https://youtu.be/jvPPXbo87ds?si=lXTp0Kds1Ln0VjGG">Freya Holmér's video on Splines</a> which helped me wrap my head around many of the concepts.</p>
 </br>
 <pre class="code-block">
 <code>
@@ -568,7 +568,7 @@ static double TriEase(double t, double lowMid = 0.3, double highMid = 0.7)
 </code>
 </pre>
 </br>
-<p>This also solves part 3 because we compress the highs their combined energy makes them more visible. The last improvement happens within the Normalization + Clamping step. Using a Logistic Sigmoid Function we can gate out extra noise that washes out the spectrum's details. If we just gate the noise, say at 0.4, then that audio gets chopped and can visibly be seen as a wall in the waveform (0-1 becomes more like 0.1-1). So we use the Sigmoid as a Soft Gate to gradually ramp sounds we want muted down fast. Also specifically for this live audio implementation.</p>
+<p>This also solves part 3. Because we compress the highs, their combined energy makes them more visible. The last improvement happens within the Normalization + Clamping step. Using a Logistic Sigmoid Function we can gate out extra noise that washes out the spectrum's details. If we just gate the noise, say at 0.4, then that audio gets chopped and can visibly be seen as a wall in the waveform (0-1 becomes more like 0.1-1). So we use the Sigmoid as a Soft Gate to gradually ramp sounds we want muted down fast. (This applies more specifically for live audio visualizations, as pre generated ones don't get noise bleed as much. I'm not sure why this is though.)</p>
 <pre class="code-block">
 <code>
 // The Normalizing + clamping section
@@ -608,9 +608,9 @@ static double ApplySoftGate(double x, double t)
 <p>Looking much better! BTW, both gifs are showing 0:13->0:28 of Caleb Belkin - For Her.</p>
 </br>
 <h1 id="mdheadr--Visualizations-using-FVZ"> Visualizations using FVZ</h1>
-<p>Remember when I said "...it should be easy for developers interfacing with the server to be able to implement features... It's not the only visualization feature I want though." Well after working on making a visualizer UI for so long, I thought about how visualizers could work in Melon.  The Fast Fourier Transform is a faster version of the Fourier Transform, are very complex formula that can split that waves in a combined wave back into their parts. The original Discreet Fourier Transform is O(N^2), but the FFT brings this down to O(N log N). This is an improvement, but this is still complex. The N here is going to be Resolution x Number of Frames. On my PC, running an RTX 4080 + Ryzen 7900X3D + 32GB of Memory, 60 seconds of audio at 8192x60fps, it takes 2.6667 seconds to compute. Though, per FFT is only 0.7408ms per, running the FFT constantly in real time takes a toll. It's a costly operation that requires lots of multiply and add instructions on the CPU. Running it in real time while the system also works on other tasks can be overwhelming especially on mobile / embedded systems or systems without Hardware Acceleration.</p>
+<p>Remember when I said "...it should be easy for developers interfacing with the server to be able to implement features... It's not the only visualization feature I want though." Well after working on making a visualizer UI for so long, I thought about how visualizers could work in Melon. The Fast Fourier Transform is a faster to compute version of the Discrete Fourier Transform, a very complex formula that can split the waves in a combined wave back into their parts. Sound is just a wave that is made of the combined frequencies in the signal, so we can split songs into their frequency spectrums using this formula with a small window of the audio that is playing right now. The original Discreet Fourier Transform is O(N^2), but the FFT brings this down to O(N log N). This is an improvement, but this is still complex. The N here is going to be mostly influenced by Resolution x Number of Frames. On my PC, running an RTX 4080 + Ryzen 7900X3D + 32GB of Memory, 60 seconds of audio at 8192x60fps, it takes 2.6667 seconds to compute. Per FFT that's only 0.7408ms per, however, running the FFT constantly in real time takes a toll. It's a costly operation that requires lots of multiply and add instructions on the CPU. Running it in real time while the system also works on other tasks can be overwhelming especially on mobile / embedded systems or systems without Hardware Acceleration. It can be a real battery drain.</p>
 </br>
-<p>So I decided to try and create a file format that could store pre-generated <b>F</b>ft <b>V</b>isuali<b>Z</b>ations. This format needed a few things for me:</p>
+<p>So I decided to try and create a file format that could store pre-generated <b>F</b>requency <b>V</b>isuali<b>Z</b>ations. This format needed a few things for me:</p>
 <ul>
 <li> Flexibility</li>
 <ul>
@@ -622,13 +622,13 @@ static double ApplySoftGate(double x, double t)
 </ul>
 <li> Fast</li>
 <ul>
-<li> I have a LOT of music that will need pre generating and likely so will many using Melon. So, it needs to be as fast as I can get to encode. Additionally, we want it to be lightning fast to decode on clients.</li>
+<li> I have a LOT of music that will need pre generating and likely so will many using Melon. So, it needs to be as fast as I can get to encode, and even faster to decode on clients.</li>
 </ul>
 </ul>
 </br>
 <p>So say hello to the .fvz file! The encoder library allows for customizing tons of options about the visualization's bars, but ultimately just stores a header with some metadata and an array of arrays of floats, from 0->1. Like I mentioned earlier it's very large uncompressed, but luckily there are a few tricks I was able to use to compress it farther.</p>
 </br>
-<p>You can enable compression steps in custom patterns. First is simple Zstd 3 Compression, which nets you large reduction off the bat, at least back below the original file size. Next is Quantization. Our floats start as 32bit, but we can quantize them down to 16 or 8 bits without loosing too much information (4 bit starts to look bad). Lastly I've added Delta Encoding from frame-to-frame. Below is a size comparison chat using <code>Fox Stevenson - What Are You (Wow).flac</code> at 250x8192@120 (Bars x Res @ FPS)</p>
+<p>You can enable compression steps in custom patterns. First is standard Zstd 3 Compression, which nets you large reduction off the bat. Next is Quantization. Our floats start as 32bit, but we can quantize them down to 16 or 8 bit without loosing too much information (4 bit starts to look bad). Lastly I've added Delta Encoding from frame-to-frame. This means instead of storing the actual value each bar is in each frame, we store the difference from last frame to this frame. This only really helps when the change from frame to frame is small enough to keep variance across the file low enough for Zstd to optimize it. Below is a size comparison chat using <code>Fox Stevenson - What Are You (Wow).flac</code> at 250x8192@120 (Bars x Res @ FPS)</p>
 </br>
 <table>
     <tr>
@@ -661,11 +661,11 @@ static double ApplySoftGate(double x, double t)
     </tr>
 </table>
 </br>
-<p>I think it's about as small as I can get it for now, and I feel it's small enough for my use case. It's not too much extra data and it's faster than the song is to transmit. The file in this example is 4:19 long and took roughly 4.7 seconds to complete generating, and a range of 2-6 seconds on the various other songs and test files I've used.</p>
+<p>I think it's about as small as I can get it for now, and I feel it's small enough for my use case. It's not too much extra data and it's faster than the song is to transmit. The file in this example is 4:19 long and took roughly 4.7 seconds to complete generating. I've seen a range of 2-8 seconds on the various other songs and test files I've used. It seems to stay roughly 1 second per minute of audio. I would love to find a way to compress below 1mb though!</p>
 </br>
 <h2 id="mdheadr--FFTVIS-Encoder/Decoder"> FFTVIS Encoder/Decoder</h2>
 </br>
-<p>The frame generator is mostly the same from the one showed in the live audio visualizer, just changed to support taking in data from a file rather than live asap. So I won't cover it here! The Encoder and Decoder are set/read a bitmask + bool from the header to determine the compression used. An .FVZ file header looks like this:</p>
+<p>The frame generator is mostly the same from the one showed in the live audio visualizer, just changed to support taking in data from a file rather than live asap. So I won't cover it here! The Encoder and Decoder use a bitmask + bool from the header to determine the compression used. An .FVZ file header looks like this:</p>
 <pre class="code-block">
 <code>
 public struct Metadata // 36 bytes long w/ padding
@@ -684,7 +684,7 @@ public struct Metadata // 36 bytes long w/ padding
 </code>
 </pre>
 </br>
-<p>The ZSTD step is made easy thanks to <a href="https://github.com/skbkontur/ZstdNet">ZstdNet</a>:</p>
+<p>The Zstd step is made easy thanks to <a href="https://github.com/skbkontur/ZstdNet">ZstdNet</a>:</p>
 <pre class="code-block">
 <code>
 // Convert our frames into a flat array 
@@ -759,7 +759,7 @@ Buffer.BlockCopy(allDeltas, 0, bytes, 0, bytes.Length);
 </code>
 </pre>
 </br>
-<p>For the decoder it's all the same but in reverse! ZSTD has to decompress first, then Quants are divided, and Deltas are added up back to their original values.</p>
+<p>For the decoder it's all the same but in reverse! Zstd has to decompress first, then Quants are divided, and Deltas are added up back to their original values.</p>
 </br>
 <h2 id="mdheadr--FVZ-Settings"> FVZ Settings</h2>
 <p>When generating .fvz files with the FFTVIS Library, you get lots of control over how visualizations should be created. The following settings are available:</p>
@@ -893,14 +893,16 @@ Buffer.BlockCopy(allDeltas, 0, bytes, 0, bytes.Length);
 <h1 id="mdheadr--WASAPI-Woes"> WASAPI Woes</h1>
 </br>
 <h2 id="mdheadr--Per-Process"> Per Process</h2>
-<p>While I was working on the audio visualizer, just for fun, I decided I wanted to see if I could split up process audio and show different colors/visualizer settings for individual processes. Starting in Windows 10 Build 20348 (aka Windows Server 2022) and up you can use <a href="https://learn.microsoft.com/en-us/windows/win32/api/audioclientactivationparams/ns-audioclientactivationparams-audioclient_activation_params">AUDIO_CLIENT_ACTIVATIONPARAMS</a> to specify a filter with a process ID. I struggled a lot trying to get this to work through PInvoking windows APIs but at the time of looking in to this NAudio hadn't implemented support yet. After some digging I ran into <a href="https://github.com/JustArion/NAudio/tree/process-audio-capture">JustArion's PR with a working implementation</a> but still ran into trouble. After many frustrating hours of debugging I discovered that instead of providing 32-bit floats like the WASAPI normally does, when doing per-process the audio is provided as PCM-16. (I never realized that would be the case D:) After decoding it as PCM-16 it looks correct! If you're looking to do anything similar in C#, you can follow the <a href="https://github.com/microsoft/windows-classic-samples/tree/main/Samples/ApplicationLoopback">reference cpp implementation</a> and write a wrapping around the WASAPIs, or you could also check out this <a href="https://github.com/qH0sT/ApplicationLoopBack">library from qH0sT</a> or use JustArion's NAudio fork on the process-audio-capture branch. NAudio hasn't <a href="https://github.com/naudio/NAudio/issues/878">merged in support</a> just yet (as these are all relatively new APIs and implementations for them). This also means that if you want to build FreqFreak, you'll need to reference JustArion's version of NAudio.</p>
+<p>While I was working on the audio visualizer, just for fun, I decided I wanted to see if I could split up process audio and show different colors/visualizer settings for individual processes. Starting in Windows 10 Build 20348 (aka Windows Server 2022) and up you can use <a href="https://learn.microsoft.com/en-us/windows/win32/api/audioclientactivationparams/ns-audioclientactivationparams-audioclient_activation_params">AUDIO_CLIENT_ACTIVATIONPARAMS</a> to specify a filter with a process ID. I struggled a lot trying to get this to work through PInvoking windows APIs but at the time of looking in to this NAudio hadn't implemented support yet. After some digging I ran into <a href="https://github.com/JustArion/NAudio/tree/process-audio-capture">JustArion's PR with a working implementation</a> but still ran into trouble. After many frustrating hours of debugging I discovered that instead of providing 32-bit floats like the WASAPI normally does, when doing per-process the audio is provided as PCM-16. (I never realized that would be the case D:) After decoding it as PCM-16 it looks (mostly) correct! If you're looking to do anything similar in C#, you can follow the <a href="https://github.com/microsoft/windows-classic-samples/tree/main/Samples/ApplicationLoopback">reference cpp implementation</a> and write a wrapping around the WASAPIs, or you could also check out this <a href="https://github.com/qH0sT/ApplicationLoopBack">library from qH0sT</a> or use JustArion's NAudio fork on the process-audio-capture branch. NAudio hasn't <a href="https://github.com/naudio/NAudio/issues/878">merged in support</a> just yet (as these are all relatively new APIs and implementations for them). This also means that if you want to build FreqFreak, you'll need to reference JustArion's version of NAudio.</p>
 </br>
 <h2 id="mdheadr--Timing"> Timing</h2>
-<p>Another fun issue I ran into was timing. Calling from the WASAPI will just give you audio as needed, so the UI system is designed to just ask for the current frame as fast as it can render them. However when building the FVZ player into FreqFreak, I ran into issues trying to playback any file rendered at above 60fps. Firstly, you can't easily delay a thread on windows past 60 fps, roughly 16hz, because the system clock runs at 15. If you try to delay any less time than 15ms, you will still wait 15ms. This is because the system clock literally cannot see the time in between it's refresh rate, so it will not know you've passed 5ms until it refreshes itself 10ms later.</p>
+<p>Another fun issue I ran into was timing. Calling from the WASAPI will just give you audio as needed, so the UI system is designed to just ask for the current frame as fast as it can render them. However when building the FVZ player into FreqFreak, I ran into issues trying to play back any file rendered at above 60fps. Firstly, you can't easily delay a thread on windows past 60 fps, roughly 16hz, because the system clock runs at 15. If you try to delay any less time than 15ms, you will still wait 15ms. This is because the system clock literally cannot see the time in between it's refresh rate, so it will not know you've passed 5ms until it refreshes itself up to 10ms later.</p>
 </br>
-<p>The second problem is the WASAPI. There is an odd bug that has persisted across all the forms of the WASAPI I've used (WASADK, CPP APIs, NAudio Wrapper). If you attempt to seek the song using the seek function, there is a large chance that instead of seeking to, for example, 1 minute in, it will seek to 1, but SAY that it's at 1:06? This results in two things: one the current timestamp is invalid, and two the song ends roughly 6 seconds early, because it thinks it's farther ahead than it is. I have no idea what files make it do this, it does it to FLAC, new and old, 44100, 48000, 88000. It does it to mp3, it does it to m4a. Truly I have no clue what the the deal is. But I do have a (very awful in theory) workaround. Why seek your file using the API when you can just. Cut your file at the bytes you want to skip, then tell windows to shut up and play this "new file" from the beginning. If you never seek it never looses position.</p>
+<p>The second problem is the WASAPI. There is an odd bug that has persisted across all the forms of the WASAPI I've used (WASADK, CPP APIs, NAudio's Wrapper). If you attempt to seek the song using the seek function, there is a large chance that instead of seeking to, for example, 1 minute in, it will seek to 1, but SAY that it's at 1:06? This results in two things: one the current timestamp is invalid, and two the song ends roughly 6 seconds early, because it thinks it's farther ahead than it is. I have no idea what audio files make it do this, it does it to FLAC, 44100, 48000, 88000. It does it to mp3, it does it to m4a. Truly I have no clue what the the deal is. But I do have a (very stupid) workaround. Why seek your file using the API when you can just. Cut your file at the bytes you want to skip, then tell windows to shut up and play this "new file" from the beginning. If you never seek it never looses position. </p>
 </br>
-<p>Lastly, I ran into a super small issue when building the Encoder for FVZ that breaks higher frame rates. This one took me awhile to figure out, but lets start by looking at this original function for generating frames from a file. The goal here is to take a know FPS + Total time and decide on how much we should hop each frame in order to hit the FPS we want (and then extract those bytes for building into frames).</p>
+<p>I hadn't encountered issues with this solution yet, till now. This means that I have to store time seprately, because I not only cannot trust the WASAPI's position, I cannot just ask NAudio WaveOut how far into the file it is (because it's not the full file). NAudio's AudioFileReader knows (because I use the OffsetSampleProvider to skip bytes for seeking) and returns it as a timestamp, but if you bombard it asking for the current time as fast as possible, it grinds the app down to 5fps or less. I also, as mentioned above, cannot just ask the thread to wait say 4.16ms for 240fps because the system clock cannot see that time. So my implementation just unrestricted asks for the next frame as soon as it's done showing the last frame, and we calculate where we are by asking when did we start (or when we lasted seeked and where to) and when we are now. The difference of the start to now equals the elapsed time and position in the song, which I can use to determine the current frame to pull. This was implemented as a custom PlaybackTimer class. However, all of this is dumb and in JS I'm able to just ask the audio player "hey when are we" and it just works, so thanks msft lol.</p>
+</br>
+<p>Lastly, I ran into a super small issue when building the Encoder for FVZ that breaks higher frame rates as well. This one took me awhile to figure out, partially because it was happening at the same time as the timing issue above. Lets start by looking at this original function for generating frames from a file. The goal here is to take a known FPS + Total time and decide on how much we should hop each frame in order to hit the FPS we want (and then extract those bytes for building into frames).</p>
 <pre class="code-block">
 <code>
 public bool GenerateFrames(IProgress<double>? progress = null) 
@@ -950,7 +952,7 @@ public bool GenerateFrames(IProgress<double>? progress = null)
 </code>
 </pre>
 </br>
-<p>So if you're smarter than me you might have been able to catch the issue. See at higher frame rates we may have a hop size that is fractional. If it is, it needs to become rounded to an int eventually, because we don't have fractional frame indexes. However, in this attempt I did something incorrect. Here I take the ceiling and of the hop making it an int early. Floor is never interacted with here (but it also would have been wrong). By doing this, I quantize before multiplying our position (i) by the hop. This leads to reduced precision, but more importantly, reduced precision that compounds each frame. Being a fraction of a second behind means being seconds behind minutes into a song.</p>
+<p>So if you're smarter than me you might have been able to catch the issue. See at higher frame rates we may have a hop size that is fractional. If it is, it needs to become rounded to an int eventually, because we don't have fractional frame indexes. However, in this attempt I did something incorrect. Here I take the ceiling and of the hop making it an int early. Floor is never really used here (but it also would have been wrong). By doing this, I quantize the position (i) before multiplying it by the hop. This leads to reduced precision, but more importantly, reduced precision that compounds each frame. Being a fraction of a second behind means being seconds behind minutes into a song.</p>
 <pre class="code-block">
 <code>
 // Dont round your hop
@@ -961,7 +963,7 @@ int src = (int)Math.Floor(i * hop); // Don't use Floor, use Round
 </code>
 </pre>
 </br>
-<p>So instead those two lines are swapped out with these 3. Our hop size is now fractional. But also very importantly we use Round. Just using floor or ceiling on your src will also lead to a compounding effect. But by using round you flipflop between going slightly ahead and slightly behind in the fractions of a second. This never becomes noticeable, and the average remains low. For example: 60 seconds at 500 FPS (88.2 hop size) leads to bounding at -0.4 -> 0.4.</p>
+<p>So instead those two lines are swapped out with these 3. Our hop size is now fractional. But also very importantly we use Round. Just using floor or ceiling on your src will also lead to a compounding effect. But by using round you flipflop between going slightly ahead and slightly behind in the fractions of a second. This never becomes noticeable, and the range remains low. For example: 60 seconds at 500 FPS (88.2 hop size) leads to bounding at -0.4 -> 0.4.</p>
 <pre class="code-block">
 <code>
 // Fractional hop
