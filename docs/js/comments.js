@@ -1,11 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
   const blueskyHandle = "epsirho.com";
   const commentTag = "blog";
+  let did = "";
   const commentsContainer = document.getElementById("comments-section");
   let ConnectPostUrl = '';
   async function fetchCommentsForPost(postUri) {
     const apiUrl =
-      "https://public.api.bsky.app/xrpc/app.bsky.feed.getPostThread";
+      "https://api.bsky.app/xrpc/app.bsky.feed.getPostThread";
     const params = new URLSearchParams({ uri: postUri });
 
     try {
@@ -59,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let img = document.createElement('div');
 
-    if(node.post?.record.embed){
+    if(node.post?.record.embed && node.post?.record.embed.images){
         img.classList.add('comment-images-holder')
         node.post?.record.embed.images.forEach(item => {
             let tempDiv = document.createElement(`div`);
@@ -145,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function fetchUserPostsByHashtag(userHandle, hashtag) {
-    const apiUrl = "https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts";
+    const apiUrl = "https://api.bsky.app/xrpc/app.bsky.feed.searchPosts";
     const currentFullUrl = window.location.href;
     const currentRelativePath = window.location.pathname;
     let allPosts = [];
@@ -169,11 +170,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await response.json();
 
         data.posts.forEach((post) => {
+          if(did == ''){
+            did = post.author.did;
+          }
           let url = post.embed.external.uri;
           if (url.includes(currentRelativePath)) {
             const parts = post.uri.split("/");
             const rkey = parts[4]; 
             ConnectPostUrl = `https://bsky.app/profile/${userHandle}/post/${rkey}`;
+            console.log(post.uri);
             fetchCommentsForPost(post.uri)
               .then((comments) => {
                 renderComments(comments, commentsContainer, false);
@@ -184,7 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             return true;
           } else {
-            
+            console.log(post);
           }
         });
 
@@ -209,6 +214,23 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchUserPostsByHashtag(blueskyHandle, commentTag)
     .then((posts) => {
       console.log(`Found comment post: ${ConnectPostUrl}`);
+
+      if(ConnectPostUrl == ''){
+        const metaElement = document.querySelector('[bsky-comments-link]');
+        const commentsLink = metaElement.getAttribute('bsky-comments-link');
+        console.log(commentsLink);
+        if(commentsLink !== ''){
+          ConnectPostUrl = `https://bsky.app/profile/${blueskyHandle}/post/${commentsLink}`;
+          const uri = `at://${did}/app.bsky.feed.post/${commentsLink}`;
+          fetchCommentsForPost(uri)
+              .then((comments) => {
+                renderComments(comments, commentsContainer, false);
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+              });
+        } 
+      }
 
       if (ConnectPostUrl == '') {
         const noCommentsInfo = document.createElement("div");

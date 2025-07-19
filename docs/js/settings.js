@@ -69,7 +69,7 @@ function setTheme(theme) {
         root.style.setProperty('--text-primary', '#ffffff');
         root.style.setProperty('--text-secondary', '#a0a0a0');
 
-        root.style.setProperty('--accent', `#3383d2`);
+        root.style.setProperty('--accent', '#3383d2');
         root.style.setProperty('--accent-secondary', '#07c3fc');
         root.style.setProperty('--link-primary', '#3383d2');
         root.style.setProperty('--link-hover', '#07c3fc');
@@ -194,7 +194,7 @@ function setTheme(theme) {
         root.style.setProperty('--text-primary', '#f3d59f');
         root.style.setProperty('--text-secondary', '#fbcba4');
         
-        root.style.setProperty('--accent', `#aa74a8`);
+        root.style.setProperty('--accent', '#aa74a8');
         root.style.setProperty('--accent-secondary', '#9f50c2');
         root.style.setProperty('--link-primary', '#c678dd');
         root.style.setProperty('--link-hover', '#ff66b3');
@@ -241,8 +241,8 @@ function setTheme(theme) {
         root.style.setProperty('--bg-main', '#fff9e8' + alphaMain);
         root.style.setProperty('--bg-card','#f7f2e0');
         root.style.setProperty('--bg-code', '#e7e9db');
-        root.style.setProperty('--text-primary', '#2f383e');
-        root.style.setProperty('--text-secondary', '#1c2125');
+        root.style.setProperty('--text-primary', '#030202');
+        root.style.setProperty('--text-secondary', '#272117');
         
         root.style.setProperty('--accent', `#ef4645`);
         root.style.setProperty('--accent-secondary', '#efc244');

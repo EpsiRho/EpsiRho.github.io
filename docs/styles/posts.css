@@ -213,14 +213,14 @@ code {
 
 .toc.scale-hover{
     transform: scale(1.1);
-    background-color: var(--bg-sidebar);
+    background-color: var(--bg-code);
 }
 
 .toc.open {
     width: 250px;
     max-height: 95vh;
     padding: 1rem;
-    background-color: var(--bg-sidebar);
+    background-color: var(--bg-code);
     transform: scale(1.0);
     overflow-y: auto;
     overflow-x: hidden;
@@ -233,7 +233,7 @@ code {
     right: 0;
     width: 3rem;
     min-height: 3rem;
-    background-color: var(--bg-sidebar);
+    background-color: var(--bg-code);
     color: var(--text-primary);
     border-radius: 0.5rem;
     display: flex;

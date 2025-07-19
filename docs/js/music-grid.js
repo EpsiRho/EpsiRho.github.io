@@ -9,39 +9,44 @@ const getGradientForEnergy = (energy, rating) => {
         bright = 1;
         bright2 = 1;
     } else if(rating >= 4.5) {
-        bright = 0.3;
+        bright = 0.6;
         bright2 = 0.5;
     } else if(rating >= 4.0) {
-        bright = 0.3;
-        bright2 = 0.07;
+        bright = 0.4;
+        bright2 = 0.4;
     } else if(rating >= 3.5) {
-        bright = 0.1;
-        bright2 = 0.01;
+        bright = 0.2;
+        bright2 = 0.2;
     } else if(rating >= 3.0) {
-        bright = 0.008;
+        bright = 0.08;
+        bright2 = 0.1;
     } else if(rating >= 2.5) {
-        bright = 0.002;
+        bright = 0.02;
+        bright2 = 0.1;
     } else if(rating >= 2.0) {
-        bright = 0.001;
+        bright = 0.007;
+        bright2 = 0.1;
     } else if(rating >= 1.5) {
-        bright = 0.0001;
+        bright = 0.004;
+        bright2 = 0.05;
     } else if(rating >= 1.0) {
         bright = 0.0;
+        bright2 = 0.0;
     }
 
     switch(energy){
         case 1:
-            return `linear-gradient(0deg, rgba(0, 128, 255, ${bright}) 0%, rgba(1, 46, 90, ${bright2}) 40%, var(--bg-card) 90%)`;
+            return `linear-gradient(0deg, rgba(0, 128, 255, ${bright}) 0%, rgba(1, 46, 90, ${bright2}) 40%, var(--bg-code) 90%)`;
         case 2:
-            return `linear-gradient(0deg, rgba(0, 200, 200, ${bright}) 0%, rgba(1, 99, 99, ${bright2}) 40%, var(--bg-card) 90%)`;
+            return `linear-gradient(0deg, rgba(0, 200, 200, ${bright}) 0%, rgba(1, 99, 99, ${bright2}) 40%, var(--bg-code) 90%)`;
         case 3:
-            return `linear-gradient(0deg, rgba(100, 255, 100, ${bright}) 0%, rgba(2, 116, 2, ${bright2}) 40%, var(--bg-card) 90%)`;
+            return `linear-gradient(0deg, rgba(100, 255, 100, ${bright}) 0%, rgba(2, 116, 2, ${bright2}) 40%, var(--bg-code) 90%)`;
         case 4:
-            return `linear-gradient(0deg, rgba(255, 200, 0, ${bright}) 0%, rgba(97, 77, 3, ${bright2}) 40%, var(--bg-card) 90%)`;
+            return `linear-gradient(0deg, rgba(255, 200, 0, ${bright}) 0%, rgba(97, 77, 3, ${bright2}) 40%, var(--bg-code) 90%)`;
         case 5:
-            return `linear-gradient(0deg, rgba(255, 0, 0, ${bright}) 0%, rgba(109, 1, 1, ${bright2}) 40%, var(--bg-card) 90%)`;
+            return `linear-gradient(0deg, rgba(255, 102, 102, ${bright}) 0%, rgba(109, 1, 1, ${bright2}) 40%, var(--bg-code) 90%)`;
         default:
-            return `linear-gradient(0deg, rgba(128, 128, 128, ${bright}) 0%, rgba(64, 64, 64, ${bright2}) 40%, var(--bg-card) 90%)`;
+            return `linear-gradient(0deg, rgba(128, 128, 128, ${bright}) 0%, rgba(64, 64, 64, ${bright2}) 40%, var(--bg-code) 90%)`;
     }
 };
 

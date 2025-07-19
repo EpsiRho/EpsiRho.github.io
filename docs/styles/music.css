@@ -96,7 +96,7 @@
 }
 
 .star {
-    color: var(--accent-secondary); 
+    color: var(--link-hover); 
     font-size: 26px;
     margin-top: -5px;
     margin-bottom: 5px;
@@ -107,7 +107,7 @@
 }
 
 .star-half {
-    color: var(--accent-secondary);
+    color: var(--link-hover);
     position: relative;
 }
 
@@ -120,7 +120,7 @@
 }
 
 .music-card .energy-bar {
-    background-color: var(--bg-dark);
+    background-color: var(--bg-code);
     border-radius: 0.25rem;
     height: 0.3rem;
     width: 100%;
