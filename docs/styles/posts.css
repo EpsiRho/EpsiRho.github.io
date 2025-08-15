@@ -74,6 +74,7 @@ code {
 .project-header-image {
     width: 100%;
     max-height: 50vh;
+    min-height: 250px;
     object-fit: cover;
     border-radius: 10px;
 }
