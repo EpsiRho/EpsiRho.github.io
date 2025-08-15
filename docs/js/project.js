@@ -122,6 +122,8 @@ window.addEventListener('DOMContentLoaded', () => {
         postDate.textContent = new Date(projectData.AnnounceDate).toLocaleString();
         let pee = document.createElement(`p`);
         pee.innerHTML = projectData.Description
+            .replaceAll("    ", "&emsp;")
+            .replaceAll("\t", "&emsp;")
             .split('\n\n')
             .map(paragraph => `<p>${paragraph.replace(/\n/g, "<br>")}</p><br>`)
             .join('');
