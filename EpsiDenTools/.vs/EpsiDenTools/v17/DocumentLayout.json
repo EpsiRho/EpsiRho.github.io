@@ -52,11 +52,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 224,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:7:0:{34c7837f-3b3a-449c-bdf0-bdad86cbaf4a}"
             },
             {
               "$type": "Document",
@@ -88,7 +92,7 @@
               "RelativeDocumentMoniker": "Classes\\DummyHTML.cs",
               "ToolTip": "C:\\Users\\jhset\\Documents\\GitHub\\EpsiRho.github.io\\EpsiDenTools\\Classes\\DummyHTML.cs",
               "RelativeToolTip": "Classes\\DummyHTML.cs",
-              "ViewState": "AgIAAMkAAAAAAAAAAAAwwNAAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAANAAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-15T22:19:19.381Z",
               "EditorCaption": ""

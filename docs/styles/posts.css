@@ -141,7 +141,7 @@ code {
         var(--accent-secondary),
         var(--accent) var(--d)
       );
-      background-size: 200% 100%;
+    background-size: 200% 100%;
     background-clip: text;
     overflow: hidden;
     -webkit-background-clip: text;

@@ -16,6 +16,22 @@
                 <img src="/images/pfp.png" alt="Profile" class="profile-img">
                 <h1 class="profile-name">Epsi's Den</h1>
                 <p class="profile-bio">Software developer, Lava lamp dog, totally a professional</p>
+                <defs>
+                <linearGradient id="accentHighlight"
+                                x1="0" y1="0" x2="400" y2="0"
+                                gradientUnits="userSpaceOnUse">
+                    <stop offset="0%"   style="stop-color: var(--accent);" />
+                    <stop offset="25%"  style="stop-color: var(--accent-secondary);" />
+                    <stop offset="50%"  style="stop-color: var(--link-clicked);" />
+                    <stop offset="75%"  style="stop-color: var(--accent-secondary);" />
+                    <stop offset="100%" style="stop-color: var(--accent);" />
+                    <!-- Animate the gradient ONLY while the SVG is hovered -->
+                    <animate attributeName="gradientTransform"
+                            values="translate(0,0); translate(-300,0)"
+                            dur="3.5s" repeatCount="indefinite"
+                            begin="icon-bsky.mouseover" end="icon-bsky.mouseout" />
+                </linearGradient>
+                </defs>
                 <div class="social-links">
                     <a href="https://bsky.app/profile/epsirho.com" aria-label="Bluesky" class="social-link">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-bluesky" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
