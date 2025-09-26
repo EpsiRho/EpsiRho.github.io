@@ -26,7 +26,7 @@ namespace EpsiDenTools.Classes
     <div class=""container"">
         <aside class=""sidebar"">
             <div class=""profile"">
-                <img src=""/images/pfp.png"" alt=""Profile"" class=""profile-img"">
+                <img src=""/images/empty.png"" alt=""Profile"" class=""profile-img"">
                 <h1 class=""profile-name"">Epsi's Den</h1>
                 <p class=""profile-bio"">Software developer, Lava lamp dog, totally a professional</p>
                 <div class=""social-links"">
@@ -233,6 +233,7 @@ namespace EpsiDenTools.Classes
     </div>
     <script src=""https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.10/purify.min.js""></script>
     <script src=""/js/toc.js""></script>
+    <script src=""/js/imgswitcher.js""></script>
     <script src=""/js/settings.js""></script>
     <script src=""/js/comments.js""></script>
     <link id=""codeTheme"" rel=""stylesheet"" href=""https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"">

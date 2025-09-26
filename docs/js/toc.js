@@ -136,3 +136,4 @@ document.addEventListener("DOMContentLoaded", () => {
         tag.style.cursor = 'pointer'
     });
 });
+

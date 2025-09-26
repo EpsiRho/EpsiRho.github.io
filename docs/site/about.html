@@ -13,7 +13,7 @@
     <div class="container">
         <aside class="sidebar">
             <div class="profile">
-                <img src="/images/pfp.png" alt="Profile" class="profile-img">
+                <img src="/images/empty.png" alt="Profile" class="profile-img">
                 <h1 class="profile-name">Epsi's Den</h1>
                 <p class="profile-bio">Software developer, Lava lamp dog, totally a professional</p>
                 <div class="social-links">
@@ -81,7 +81,17 @@
 
         <main class="main-content">
             <article class="blog-post-page">
-                <img src="/images/aboutbanner.png" alt="Blog Header" class="post-header-image">
+                <img src="/images/empty.png" alt="Blog Header" class="post-header-image">
+                <div class="imgs-link">
+                    <a id="imgs-link" href="/site/gallery" aria-label="Image Gallery">
+                        <svg xmlns="http://www.w3.org/2000/svg"  width="32"  height="32"  viewBox="0 0 38 38"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-layout-board">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 3h5a1 1 0 0 1 1 1v3a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1v-2a2 2 0 0 1 2 -2" />
+                            <path d="M14 3h5a2 2 0 0 1 2 2v8a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1v-9a1 1 0 0 1 1 -1" />
+                            <path d="M14 16h6a1 1 0 0 1 1 1v2a2 2 0 0 1 -2 2h-5a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1" />
+                            <path d="M4 10h6a1 1 0 0 1 1 1v9a1 1 0 0 1 -1 1h-5a2 2 0 0 1 -2 -2v-8a1 1 0 0 1 1 -1" />
+                        </svg>
+                    </a>
+                </div>
                 </br>
 
                 <h1 class="post-title" id="mdpost-title">About</h1>
@@ -91,7 +101,7 @@
                     <p>Skilled in designing and building software, and driven by the desire to create new or improved software or solutions.</p>
                     <p>Proficient in C# and Microsoft’s UWP/WASDK and ASP.NET frameworks.</p>
                     <p>Familiar with C/C++ and Python <i style="font-size: 0.7em;">(but I hate python)</i>.</p>
-                    <h2 id="">Interests</h3>
+                    <h2 id="mdheadr--Interests">Interests</h3>
                     <ul>
                     <li> Data Science</li>
                     <li> CLI UI/UX</li>
@@ -163,6 +173,7 @@
                 </a>
                 <hr style="margin: 10px 10px 10px 5px;" id="setdivider"/>
                 <a href="#mdpost-title"><li>About</li></a>
+                <a href="#mdheadr--Interests"><li>Interests</li></a>
                 <a href="#mdheadr--Icebreakers"><li> Icebreakers</li></a>
                 <a href="#mdheadr--Khajiit-has-wares-if-you-have-coin"><li> Khajiit has wares if you have coin</li></a>
             </ul>
@@ -252,6 +263,7 @@
         </div>
 
         <script src="/js/toc.js"></script>
+        <script src="/js/imgswitcher.js"></script>
         <script src="/js/settings.js"></script>
     </div>
 </body>

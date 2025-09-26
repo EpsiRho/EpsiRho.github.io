@@ -1,5 +1,6 @@
 /* Blog Post Page */
 .blog-post-page {
+    position: relative;
     background-color: var(--bg-card);
     border-radius: 10px;
     padding: 1rem 1.5rem 1.5rem 1.5rem;
@@ -53,6 +54,25 @@
     margin-bottom: 1rem;
     object-fit: cover;
 }
+
+.imgs-link {
+    width: 32px;
+    height: 32px;
+    background-color: var(--bg-code);
+    padding: 0.4rem;
+    border-radius: 0.5rem;
+    top: 38px;
+    right: 30px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s ease;
+    position: absolute;
+    z-index: 10;
+    opacity: 0.5;
+}
+.imgs-link:hover {
+    opacity: 1;
+}
+
 .project-header-container {
     position: relative;
     width: 100%;
@@ -141,7 +161,6 @@ code {
         var(--accent-secondary),
         var(--accent) var(--d)
       );
-    background-size: 200% 100%;
     background-clip: text;
     overflow: hidden;
     -webkit-background-clip: text;
