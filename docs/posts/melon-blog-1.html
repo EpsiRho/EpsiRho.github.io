@@ -14,7 +14,7 @@
     <div class="container">
         <aside class="sidebar">
             <div class="profile">
-                <img src="/images/empty.png" alt="Profile" class="profile-img">
+                <img src="/images/empty.webp" alt="Profile" class="profile-img">
                 <h1 class="profile-name">Epsi's Den</h1>
                 <p class="profile-bio">Software developer, Lava lamp dog, totally a professional</p>
                 <div class="social-links">
@@ -82,7 +82,7 @@
 
         <main class="main-content">
             <article class="blog-post-page">
-                <img src="/images/mms-3.png" alt="Blog Header" class="post-header-image">
+                <img src="/images/mms-3.webp" alt="Blog Header" class="post-header-image">
                 </br>
                 <span class="post-tag"> Windows</span>
 <span class="post-tag"> Linux</span>
@@ -99,11 +99,11 @@
 </br>
 <p>This project started in May of 2023, with an experimental scanner. I toyed with lots of options for databases, along with what to store and how. I ended up with MongoDB, as it's json-like document system is super powerful for this use case. The Melon Scanner combs recursively through the folders you specify logging every music file and .lrc file. It gets the track information from the music file metadata, so you'll want to use a tool like <a href="https://picard.musicbrainz.org/">MusicBrainz Picard</a>. MusicBrainz's data is what I'm modeling off of, so support for it's metadata tags will be in Melon. Below is an example of a Track in the db.</p>
 </br>
-<img alt="A Track object from Melon's MongoDB databse" title="A Track object from Melon's MongoDB databse" src="/images/mms-1.png" />
+<img style="max-height: 70vh;" alt="A Track object from Melon's MongoDB databse" title="A Track object from Melon's MongoDB databse" src="/images/mms-1.webp" />
 </br>
 <p>After getting it mostly working (it didn't actually, I've had to fix that scanner code a million times later) I created a nice UI to allow for initial setup and control of the database. This UI has gone through many stages but I'm really happy with the current result. A headless mode also exists now if you don't want to run with the UI.</p>
 </br>
-<img alt="A screenshot of Melon's scanner progress view" title="A screenshot of Melon's scanner progress view" src="/images/mms-2.png" />
+<img style="max-height: 70vh;" alt="A screenshot of Melon's scanner progress view" title="A screenshot of Melon's scanner progress view" src="/images/mms-2.webp" />
 </br>
 <p>I've since started learning ASP.NET and creating a web API for clients to interact with. I've got lots of work done, and most of the main endpoints such as search, playlists, and play statistics are all pretty much done. But i've got quite a few more things to finish. Currently I'm working on endpoints to allow updating track/album/artist info, but I've also got endpoints like recommendations, ratings, and user friending to get done. The project is awhile off, probably a few more months to finish the server.</p>
 </br>

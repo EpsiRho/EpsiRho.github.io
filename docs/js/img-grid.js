@@ -32,10 +32,10 @@ function shuffle(array) {
 }
 
 // img defs
-const bannerArr = ["/images/aboutbanner.png", "/images/epsi-tile.png", "/images/gradient-tile.png"];
-const iconArr = ["/images/right-twix-pfp.jpg", "/images/left-twix-pfp.png", "/images/wink-pfp.png", "/images/blep-pfp.png"];
-const extraArr = [ "/images/refsheet.png", "/images/heyo.png", "/images/what.png", "/images/Suprize.png", "/images/EpsiMilkshake.png",
-                   "/images/EpsiDream.png", "/images/firstcomm.png",
+const bannerArr = ["/images/aboutbanner.webp", "/images/epsi-tile.webp", "/images/gradient-tile.webp"];
+const iconArr = ["/images/right-twix-pfp.webp", "/images/left-twix-pfp.webp", "/images/wink-pfp.webp", "/images/blep-pfp.webp"];
+const extraArr = [ "/images/refsheet.webp", "/images/heyo.webp", "/images/what.webp", "/images/Suprize.webp", "/images/EpsiMilkshake.webp",
+                   "/images/EpsiDream.webp", "/images/firstcomm.webp",
 ];
 
 let combinedArr = bannerArr.concat(iconArr, extraArr);
@@ -62,7 +62,7 @@ const renderGrid = async () => {
         
         card.className = 'gallery-card';
         card.innerHTML = `
-            <img src="${item}">
+            <img decoding="async" src="${item}">
         `;
         //card.onclick = () => window.location.href = encodeURI(item.URL);
         musicGrid.appendChild(card);

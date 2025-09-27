@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const bannerArr = ["/images/aboutbanner.png", "/images/Dream169.png", "/images/epsi-tile.png", "/images/gradient-tile.png"];
-    const iconArr = ["/images/right-twix-pfp.jpg", "/images/left-twix-pfp.png", "/images/wink-pfp.png", "/images/blep-pfp.png", "/images/laptop-pfp.png"];
+    const bannerArr = ["/images/aboutbanner.webp", "/images/Dream169.webp", "/images/epsi-tile.webp", "/images/gradient-tile.webp"];
+    const iconArr = ["/images/right-twix-pfp.webp", "/images/left-twix-pfp.webp", "/images/wink-pfp.webp", "/images/blep-pfp.webp", "/images/laptop-pfp.webp"];
 
     // Choose a random banner and icon
     const randomBanner = bannerArr[Math.floor(Math.random() * bannerArr.length)];
