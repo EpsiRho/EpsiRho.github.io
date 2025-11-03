@@ -24,6 +24,7 @@ fetch('/site/version')
 const root = document.documentElement;
 const settingsButton = document.getElementById('page-settings');
 const settingsModal = document.getElementById('settings-modal');
+const settingsModalBody = settingsModal ? settingsModal.querySelector('.settings-modal-body') : null;
 const settingsBg = document.getElementById('settings-bg');
 const closeModal = document.getElementById('close-modal');
 const themeLight = document.getElementById('theme-option-light');
@@ -37,6 +38,9 @@ const themeMatrix = document.getElementById('theme-option-matrix');
 const themeNotebook = document.getElementById('theme-option-notebook');
 const toggleSwitch = document.querySelector('.toggle-switch input');
 let savedTransparencyValue = getCookie('transparent');
+let modalIsOpen = false;
+let modalResizeObserver = null;
+let modalScrollUpdateFrame = 0;
 
 function applyTransparencyMode(isTransparent) {
     if (isTransparent) {
@@ -46,10 +50,81 @@ function applyTransparencyMode(isTransparent) {
     }
 }
 
+function queueModalScrollUpdate() {
+    if (!modalIsOpen || !settingsModal || !settingsModalBody) {
+        return;
+    }
+    if (modalScrollUpdateFrame) {
+        return;
+    }
+    modalScrollUpdateFrame = requestAnimationFrame(() => {
+        modalScrollUpdateFrame = 0;
+        const previouslyScrollable = settingsModal.classList.contains('modal-scrollable');
+        settingsModal.classList.remove('modal-scrollable');
+        const needsScroll = settingsModalBody.scrollHeight - settingsModalBody.clientHeight > 1;
+        settingsModal.classList.toggle('modal-scrollable', needsScroll);
+        if (!needsScroll && previouslyScrollable) {
+            settingsModalBody.scrollTop = 0;
+        }
+    });
+}
+
+function openSettingsModal() {
+    if (!settingsModal || !settingsBg) {
+        return;
+    }
+    if (modalIsOpen) {
+        queueModalScrollUpdate();
+        return;
+    }
+    modalIsOpen = true;
+    settingsBg.classList.add('open');
+    settingsModal.classList.add('open');
+    document.body.classList.add('modal-open');
+    document.documentElement.classList.add('modal-open');
+    settingsModal.classList.remove('modal-scrollable');
+    if (settingsModalBody) {
+        settingsModalBody.scrollTop = 0;
+    }
+    queueModalScrollUpdate();
+    window.addEventListener('resize', queueModalScrollUpdate);
+    window.addEventListener('orientationchange', queueModalScrollUpdate);
+    if (typeof ResizeObserver !== 'undefined' && settingsModalBody) {
+        if (!modalResizeObserver) {
+            modalResizeObserver = new ResizeObserver(queueModalScrollUpdate);
+        }
+        modalResizeObserver.observe(settingsModalBody);
+    }
+}
+
+function closeSettingsModal() {
+    if (!modalIsOpen || !settingsModal || !settingsBg) {
+        return;
+    }
+    modalIsOpen = false;
+    settingsModal.classList.remove('open', 'modal-scrollable');
+    settingsBg.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    document.documentElement.classList.remove('modal-open');
+    if (settingsModalBody) {
+        settingsModalBody.scrollTop = 0;
+    }
+    window.removeEventListener('resize', queueModalScrollUpdate);
+    window.removeEventListener('orientationchange', queueModalScrollUpdate);
+    if (modalResizeObserver) {
+        modalResizeObserver.disconnect();
+    }
+    if (modalScrollUpdateFrame) {
+        cancelAnimationFrame(modalScrollUpdateFrame);
+        modalScrollUpdateFrame = 0;
+    }
+}
+
 function setTheme(theme) {
     let alphaSidebar = 'ff';
     let alphaMain = 'ff';
-    if(toggleSwitch.checked){
+    const transparencyEnabled = toggleSwitch ? toggleSwitch.checked : (savedTransparencyValue === true || savedTransparencyValue === "true");
+    if(transparencyEnabled){
         alphaSidebar = '21';
         alphaMain = '3a';
     }
@@ -298,6 +373,10 @@ function setTheme(theme) {
     }
 
     document.cookie = `theme=${theme}; path=/`; 
+
+    if (modalIsOpen) {
+        queueModalScrollUpdate();
+    }
 }
 
 function changeHighlightTheme(theme) {
@@ -315,94 +394,89 @@ function changeHighlightTheme(theme) {
 
 document.addEventListener('DOMContentLoaded', function() {
     const savedTheme = getCookie('theme');
+    const transparencyEnabled = savedTransparencyValue === true || savedTransparencyValue === "true";
 
-    if(savedTransparencyValue){
-        if(savedTransparencyValue == "true") {
-            toggleSwitch.checked = true;
-        }
-        else {
-            toggleSwitch.checked = false;
-        }
-        console.log(savedTransparencyValue);
+    if (toggleSwitch) {
+        toggleSwitch.checked = transparencyEnabled;
     }
-    applyTransparencyMode(toggleSwitch.checked);
+
+    applyTransparencyMode(toggleSwitch ? toggleSwitch.checked : transparencyEnabled);
 
     if (savedTheme) {
         setTheme(savedTheme);
-    }
-    else{
-        console.log("Using prefered theme");
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            setTheme('dark');
-          } else {
-            setTheme('notebook');
-          }
-    }
-
-    settingsButton.addEventListener('click', function() {
-        settingsModal.style.opacity = 1;
-        settingsBg.style.opacity = 1;
-        settingsBg.style.pointerEvents = 'all';
-        settingsModal.style.pointerEvents = 'all';
-        settingsBg.style.backdropFilter = 4
-    });
-
-    closeModal.addEventListener('click', function() {
-        settingsModal.style.opacity = 0;
-        settingsBg.style.opacity = 0;
-        settingsBg.style.pointerEvents = 'none';
-        settingsModal.style.pointerEvents = 'none';
-    });
-
-    window.addEventListener('click', function(event) {
-        console.log(event.target);
-        if (!event.target.classList.contains('settingsbtn') && !event.target.classList.contains('themebtn')) {
-            settingsModal.style.opacity = 0;
-            settingsBg.style.opacity = 0;
-            settingsBg.style.pointerEvents = 'none';
-            settingsModal.style.pointerEvents = 'none';
-        }
-        else{
-            settingsModal.style.opacity = 1;
-            settingsBg.style.opacity = 1;
-            settingsBg.style.pointerEvents = 'all';
-            settingsModal.style.pointerEvents = 'all';
-            settingsBg.style.backdropFilter = 4
-        }
-    });
-
-    themeLight.addEventListener('click', function() {
-        setTheme('light');
-    });
-    themeDark.addEventListener('click', function() {
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         setTheme('dark');
-    });
-    themeTransparent.addEventListener('click', function() {
-        setTheme('snow');
-    });
-    themeOcean.addEventListener('click', function() {
-        setTheme('ocean');
-    });
-    themeDream.addEventListener('click', function() {
-        setTheme('dream');
-    });
-    themeFields.addEventListener('click', function() {
-        setTheme('fields');
-    });
-    themeSunset.addEventListener('click', function() {
-        setTheme('sunset');
-    });
-    themeMatrix.addEventListener('click', function() {
-        setTheme('matrix');
-    });
-    themeNotebook.addEventListener('click', function() {
+    } else {
         setTheme('notebook');
+    }
+
+    if (settingsButton && settingsModal && settingsBg) {
+        settingsButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            openSettingsModal();
+        });
+    }
+
+    if (closeModal) {
+        closeModal.addEventListener('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            closeSettingsModal();
+        });
+    }
+
+    if (settingsModal && settingsBg) {
+        settingsBg.addEventListener('click', function(event) {
+            if (event.target === settingsBg) {
+                closeSettingsModal();
+            }
+        });
+
+        window.addEventListener('click', function(event) {
+            if (!modalIsOpen) {
+                return;
+            }
+            if (settingsModal.contains(event.target) || event.target.closest('#page-settings')) {
+                return;
+            }
+            closeSettingsModal();
+        });
+
+        window.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeSettingsModal();
+            }
+        });
+    }
+
+    const themeHandlers = [
+        [themeLight, 'light'],
+        [themeDark, 'dark'],
+        [themeTransparent, 'snow'],
+        [themeOcean, 'ocean'],
+        [themeDream, 'dream'],
+        [themeFields, 'fields'],
+        [themeSunset, 'sunset'],
+        [themeMatrix, 'matrix'],
+        [themeNotebook, 'notebook']
+    ];
+
+    themeHandlers.forEach(([element, theme]) => {
+        if (element) {
+            element.addEventListener('click', function() {
+                setTheme(theme);
+            });
+        }
     });
-    toggleSwitch.addEventListener('change', function() {
-        let theme = getCookie('theme');
-        savedTransparencyValue = toggleSwitch.checked;
-        document.cookie = `transparent=${savedTransparencyValue}; path=/`; 
-        applyTransparencyMode(toggleSwitch.checked);
-        setTheme(theme);
-      });
+
+    if (toggleSwitch) {
+        toggleSwitch.addEventListener('change', function() {
+            const theme = getCookie('theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'notebook');
+            savedTransparencyValue = toggleSwitch.checked ? "true" : "false";
+            document.cookie = `transparent=${savedTransparencyValue}; path=/`; 
+            applyTransparencyMode(toggleSwitch.checked);
+            setTheme(theme);
+        });
+    }
 });

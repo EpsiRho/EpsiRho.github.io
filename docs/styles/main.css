@@ -11,7 +11,6 @@
     --link-hover: #8400ff;
     --link-clicked: #ad33d2;
     --hover-icon: #4c4c4c;
-}
 
 @view-transition {
   navigation: auto;
@@ -47,19 +46,40 @@
   }
 
 #settings-bg {
-    display: block; /* Start hidden */
+    --modal-gap: clamp(1rem, 4vw, 2rem);
+    position: fixed;
+    inset: 0;
+    display: flex; /* Start hidden */
+    align-items: center;
+    justify-content: center;
+    padding: var(--modal-gap);
+    padding-top: calc(var(--modal-gap) + env(safe-area-inset-top, 0px));
+    padding-bottom: calc(var(--modal-gap) + env(safe-area-inset-bottom, 0px));
+    padding-left: calc(var(--modal-gap) + env(safe-area-inset-left, 0px));
+    padding-right: calc(var(--modal-gap) + env(safe-area-inset-right, 0px));
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.55); /* Semi-transparent overlay */
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
     opacity: 0;
-    pointer-events:none;
-    position: fixed; /* Fixed to cover the entire viewport */
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    pointer-events: none;
     z-index: 150;
-    top: 0;
-    left: 0;
-    width: 100%;
+    overflow: hidden;
+    overscroll-behavior: contain;
+    transition: opacity 0.25s ease;
+}
+
+#settings-bg.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+html.modal-open,
+body.modal-open {
+    overflow: hidden;
     height: 100%;
-    -webkit-backdrop-filter: blur(4px);
-    backdrop-filter: blur(4px);
-    transition: backdrop-filter 0.3s ease, opacity 0.5s ease;
+    overscroll-behavior: contain;
+    touch-action: none;
 }
 
 
@@ -69,21 +89,117 @@
 }
 
 #settings-modal {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
     opacity: 0;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
     background-color: var(--bg-card);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    padding: clamp(1.5rem, 3vw, 2rem);
+    border-radius: 16px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
     z-index: 200; /* Make sure it's above the background */
-    width: 90%;
+    width: min(640px, calc(100vw - 3rem - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)));
+    max-width: 640px;
+    max-height: min(600px, calc(100vh - 3rem));
+    overflow: hidden;
+    box-sizing: border-box;
+    pointer-events: none;
+    transform: scale(0.97);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    contain: layout paint;
+    scrollbar-gutter: stable;
+}
+
+@supports (height: 100dvh) {
+    #settings-modal {
+        max-height: min(600px, calc(100dvh - 3rem));
+    }
+}
+
+#settings-modal.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+#settings-modal.modal-scrollable .settings-modal-body {
     overflow-y: auto;
-    max-height: 600px;
-    max-width: 700px;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+.settings-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.settings-modal-version {
+    margin: 0;
+    font-size: 0.85rem;
+}
+
+.settings-modal-body {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    overflow: hidden;
+    scrollbar-gutter: stable both-edges;
+}
+
+.settings-modal-body .theme-picker {
+    margin: 0;
+}
+
+.settings-close-btn {
+    background: transparent;
+    border: none;
+    color: inherit;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.35rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.settings-close-btn:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    transform: scale(1.05);
+}
+
+.settings-close-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+    #settings-bg {
+        --modal-gap: clamp(0.75rem, 5vw, 1.5rem);
+    }
+
+    #settings-modal {
+        width: calc(100vw - 2rem);
+        padding: clamp(1.25rem, 5vw, 1.75rem);
+    }
+}
+
+@media (max-width: 480px) {
+    #settings-modal {
+        border-radius: 12px;
+    }
+
+    .settings-modal-header {
+        align-items: flex-start;
+    }
+
+    .settings-modal-version {
+        font-size: 0.8rem;
+    }
 }
 
 .theme-picker {

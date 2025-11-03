@@ -141,81 +141,85 @@
 
         <div id="settings-bg">
             <div id="settings-modal" class="themebtn">
-                <a aria-label="page-settings" class="social-link" id="close-modal">
-                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
-                </a>
-                <p class="themebtn" style="font-size: 0.8em; margin-left: 0px; position: relative;"><i class="themebtn"><span class="version-display"></span> &#x2022; <a class="changelog-link themebtn" href="/site/changelog">changelog</a></i></p>
-                <label class="themebtn">Select Theme:</label>
-                <div class="toggle-container themebtn">
-                    <label class="toggle-switch themebtn">
-                        <input class="themebtn" type="checkbox">
-                        <span class="slider themebtn"></span>
-                    </label>
-                    <p class="themebtn transparent-desc">Enable Transparent Effects <span class="themebtn" title="If your browser supports transparent backgrounds, you can enable this to make the site theme show through to your desktop (or browser bg).">&#x1F6C8</span></p>
+                <div class="settings-modal-header themebtn">
+                    <p class="themebtn settings-modal-version"><span class="version-display"></span> &#x2022; <a class="changelog-link themebtn" href="/site/changelog">changelog</a></p>
+                    <button type="button" aria-label="Close settings" id="close-modal" class="settings-close-btn themebtn">
+                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+                    </button>
                 </div>
+                <div class="settings-modal-body themebtn">
+                    <label class="themebtn">Select Theme:</label>
+                    <div class="toggle-container themebtn">
+                        <label class="toggle-switch themebtn">
+                            <input class="themebtn" type="checkbox">
+                            <span class="slider themebtn"></span>
+                        </label>
+                        <p class="themebtn transparent-desc">Enable Transparent Effects <span class="themebtn" title="If your browser supports transparent backgrounds, you can enable this to make the site theme show through to your desktop (or browser bg).">&#x1F6C8</span></p>
+                    </div>
 
-                <div class="theme-picker themebtn">
-                    <div class="theme-option tooltip themebtn" id="theme-option-notebook">
-                        <span class="tooltiptext themebtn">Notebook</span>
-                        <div class="theme-sidebar themebtn" style="background-color: #f1e4c1;"></div>
-                        <div class="theme-main themebtn" style="background-color: #fff9e8;">
-                            <div class="theme-card themebtn" style="background-color: #f7f2e0;"></div>
+                    <div class="theme-picker themebtn">
+                        <div class="theme-option tooltip themebtn" id="theme-option-notebook">
+                            <span class="tooltiptext themebtn">Notebook</span>
+                            <div class="theme-sidebar themebtn" style="background-color: #f1e4c1;"></div>
+                            <div class="theme-main themebtn" style="background-color: #fff9e8;">
+                                <div class="theme-card themebtn" style="background-color: #f7f2e0;"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="theme-option tooltip themebtn" id="theme-option-light" >
-                        <span class="tooltiptext themebtn">Flashbang</span>
-                        <div class="theme-sidebar themebtn" style="background-color: rgb(216, 216, 216);"></div>
-                        <div class="theme-main themebtn" style="background-color: rgb(228, 228, 228);">
-                            <div class="theme-card themebtn" style="background-color: rgb(199, 199, 199);"></div>
+                        <div class="theme-option tooltip themebtn" id="theme-option-light" >
+                            <span class="tooltiptext themebtn">Flashbang</span>
+                            <div class="theme-sidebar themebtn" style="background-color: rgb(216, 216, 216);"></div>
+                            <div class="theme-main themebtn" style="background-color: rgb(228, 228, 228);">
+                                <div class="theme-card themebtn" style="background-color: rgb(199, 199, 199);"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="theme-option tooltip themebtn" id="theme-option-transparent">
-                        <span class="tooltiptext themebtn">Snow Day</span>
-                        <div class="theme-sidebar themebtn" style="background: #b1c9e1;"></div>
-                        <div class="theme-main themebtn" style="background: #d9eafd;">
-                            <div class="theme-card themebtn" style="background-color: #bcccdc;"></div>
+                        <div class="theme-option tooltip themebtn" id="theme-option-transparent">
+                            <span class="tooltiptext themebtn">Snow Day</span>
+                            <div class="theme-sidebar themebtn" style="background: #b1c9e1;"></div>
+                            <div class="theme-main themebtn" style="background: #d9eafd;">
+                                <div class="theme-card themebtn" style="background-color: #bcccdc;"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="theme-option tooltip themebtn" id="theme-option-dark">
-                        <span class="tooltiptext themebtn">Dark</span>
-                        <div class="theme-sidebar themebtn" style="background-color: #2a2a2a;"></div>
-                        <div class="theme-main themebtn" style="background-color: #1a1a1a;">
-                            <div class="theme-card themebtn" style="background-color: rgb(53, 53, 53);"></div>
+                        <div class="theme-option tooltip themebtn" id="theme-option-dark">
+                            <span class="tooltiptext themebtn">Dark</span>
+                            <div class="theme-sidebar themebtn" style="background-color: #2a2a2a;"></div>
+                            <div class="theme-main themebtn" style="background-color: #1a1a1a;">
+                                <div class="theme-card themebtn" style="background-color: rgb(53, 53, 53);"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="theme-option tooltip themebtn" id="theme-option-ocean">
-                        <span class="tooltiptext themebtn">Ocean</span>
-                        <div class="theme-sidebar themebtn" style="background-color: #073642;"></div>
-                        <div class="theme-main themebtn" style="background-color: #002b36;">
-                            <div class="theme-card themebtn" style="background-color: #083c4a;"></div>
+                        <div class="theme-option tooltip themebtn" id="theme-option-ocean">
+                            <span class="tooltiptext themebtn">Ocean</span>
+                            <div class="theme-sidebar themebtn" style="background-color: #073642;"></div>
+                            <div class="theme-main themebtn" style="background-color: #002b36;">
+                                <div class="theme-card themebtn" style="background-color: #083c4a;"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="theme-option tooltip themebtn" id="theme-option-dream">
-                        <span class="tooltiptext themebtn">Dream</span>
-                        <div class="theme-sidebar themebtn" style="background-color: #2c2a3e;"></div>
-                        <div class="theme-main themebtn" style="background-color: #2b2336;">
-                            <div class="theme-card themebtn" style="background-color: #3b3f51;"></div>
+                        <div class="theme-option tooltip themebtn" id="theme-option-dream">
+                            <span class="tooltiptext themebtn">Dream</span>
+                            <div class="theme-sidebar themebtn" style="background-color: #2c2a3e;"></div>
+                            <div class="theme-main themebtn" style="background-color: #2b2336;">
+                                <div class="theme-card themebtn" style="background-color: #3b3f51;"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="theme-option tooltip themebtn" id="theme-option-fields">
-                        <span class="tooltiptext themebtn">Fields</span>
-                        <div class="theme-sidebar themebtn" style="background-color: #365142;"></div>
-                        <div class="theme-main themebtn" style="background-color: #283c2e;">
-                            <div class="theme-card themebtn" style="background-color: #2d543f;"></div>
+                        <div class="theme-option tooltip themebtn" id="theme-option-fields">
+                            <span class="tooltiptext themebtn">Fields</span>
+                            <div class="theme-sidebar themebtn" style="background-color: #365142;"></div>
+                            <div class="theme-main themebtn" style="background-color: #283c2e;">
+                                <div class="theme-card themebtn" style="background-color: #2d543f;"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="theme-option tooltip themebtn" id="theme-option-sunset">
-                        <span class="tooltiptext themebtn">Sunset</span>
-                        <div class="theme-sidebar themebtn" style="background-color: #4c1919;"></div>
-                        <div class="theme-main themebtn" style="background-color: #381324;">
-                            <div class="theme-card themebtn" style="background-color: #403949;"></div>
+                        <div class="theme-option tooltip themebtn" id="theme-option-sunset">
+                            <span class="tooltiptext themebtn">Sunset</span>
+                            <div class="theme-sidebar themebtn" style="background-color: #4c1919;"></div>
+                            <div class="theme-main themebtn" style="background-color: #381324;">
+                                <div class="theme-card themebtn" style="background-color: #403949;"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="theme-option tooltip themebtn" id="theme-option-matrix">
-                        <span class="tooltiptext themebtn">Matrix</span>
-                        <div class="theme-sidebar themebtn" style="background-color: #000000;"></div>
-                        <div class="theme-main themebtn" style="background-color: #0e0e0e;">
-                            <div class="theme-card themebtn" style="background-color: #1a1a1a;"></div>
+                        <div class="theme-option tooltip themebtn" id="theme-option-matrix">
+                            <span class="tooltiptext themebtn">Matrix</span>
+                            <div class="theme-sidebar themebtn" style="background-color: #000000;"></div>
+                            <div class="theme-main themebtn" style="background-color: #0e0e0e;">
+                                <div class="theme-card themebtn" style="background-color: #1a1a1a;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -227,11 +231,9 @@
             <div class="toc-content" id="toc-site-nav"></div>
             <div class="toc-content" id="toc-post-nav">
             <ul>
-                <a aria-label="page-settings" class="social-link" id="page-settings">
+                <a aria-label="page-settings" id="page-settings">
                     <li class="settingsbtn">
-                        <svg xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-adjustments settingsbtn "
-                        style="margin-right: 3px;">
+                        <svg style="margin-right:5px;" width="1.5em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" class="settingsbtn"/>
                             <path d="M4 10a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" class="settingsbtn"/>
                             <path d="M6 4v4" class="settingsbtn"/>
