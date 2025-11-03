@@ -1,9 +1,6 @@
 function createSlice(data, type) {
     const slice = document.createElement('div');
     slice.className = 'slice';
-
-    const tempBg = document.createElement('div');
-    tempBg.className = 'slice-background';
     
     const content = document.createElement('div');
     content.className = 'slice-content';
@@ -20,7 +17,6 @@ function createSlice(data, type) {
         <small>${new Date(data.AnnounceDate || data.PostDate).toLocaleDateString()}</small>
     `;
     
-    slice.appendChild(tempBg);
     slice.appendChild(content);
     slice.appendChild(blur);
     slice.appendChild(info);

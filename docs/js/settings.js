@@ -38,6 +38,14 @@ const themeNotebook = document.getElementById('theme-option-notebook');
 const toggleSwitch = document.querySelector('.toggle-switch input');
 let savedTransparencyValue = getCookie('transparent');
 
+function applyTransparencyMode(isTransparent) {
+    if (isTransparent) {
+        root.setAttribute('data-transparency', 'true');
+    } else {
+        root.removeAttribute('data-transparency');
+    }
+}
+
 function setTheme(theme) {
     let alphaSidebar = 'ff';
     let alphaMain = 'ff';
@@ -317,6 +325,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         console.log(savedTransparencyValue);
     }
+    applyTransparencyMode(toggleSwitch.checked);
 
     if (savedTheme) {
         setTheme(savedTheme);
@@ -393,6 +402,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let theme = getCookie('theme');
         savedTransparencyValue = toggleSwitch.checked;
         document.cookie = `transparent=${savedTransparencyValue}; path=/`; 
+        applyTransparencyMode(toggleSwitch.checked);
         setTheme(theme);
       });
 });
