@@ -23,7 +23,14 @@ fetch("../json/PackedProjects.json")
                         <p>${new Date(item.AnnounceDate).toLocaleDateString()}</p>
                     </div>
                 `;
-                card.onclick = () => window.location.href = encodeURI(fixedUrl);
+                //card.onclick = () => window.location.href = encodeURI(fixedUrl);
+                card.addEventListener('click', () => {
+                    card.style.viewTransitionName = `header-${item.PostURL}`;
+                    card.classList.add('slice-transitioning');
+
+                    const go = () => window.location.href = encodeURI(fixedUrl);
+                    go();
+                });
                 musicGrid.appendChild(card);
             });
         };

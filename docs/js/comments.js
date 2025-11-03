@@ -178,7 +178,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const parts = post.uri.split("/");
             const rkey = parts[4]; 
             ConnectPostUrl = `https://bsky.app/profile/${userHandle}/post/${rkey}`;
-            console.log(post.uri);
             fetchCommentsForPost(post.uri)
               .then((comments) => {
                 renderComments(comments, commentsContainer, false);
@@ -189,7 +188,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             return true;
           } else {
-            console.log(post);
           }
         });
 
@@ -218,7 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if(ConnectPostUrl == ''){
         const metaElement = document.querySelector('[bsky-comments-link]');
         const commentsLink = metaElement.getAttribute('bsky-comments-link');
-        console.log(commentsLink);
+
         if(commentsLink !== ''){
           ConnectPostUrl = `https://bsky.app/profile/${blueskyHandle}/post/${commentsLink}`;
           const uri = `at://${did}/app.bsky.feed.post/${commentsLink}`;

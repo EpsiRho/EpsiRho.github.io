@@ -13,6 +13,15 @@
     --hover-icon: #4c4c4c;
 }
 
+@view-transition {
+  navigation: auto;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+}x
+
 /* Tooltip container */
 .tooltip {
     position: relative;

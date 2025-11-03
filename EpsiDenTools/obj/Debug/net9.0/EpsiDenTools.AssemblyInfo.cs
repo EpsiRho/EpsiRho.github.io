@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EpsiDenTools")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2c43b45b79e05c279eda1d36163101d5e67789a3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+45dcab6de4247ade47d920758f48a3641464c100")]
 [assembly: System.Reflection.AssemblyProductAttribute("EpsiDenTools")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EpsiDenTools")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

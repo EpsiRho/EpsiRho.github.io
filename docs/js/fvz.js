@@ -1,5 +1,5 @@
 class VisualizerPlayer {
-    constructor(frequencyVisualizer, cnvs, playBtn, timeline, timeStr, frameCount, currentTime, currentFrameHtml) {
+    constructor(frequencyVisualizer, cnvs, playBtn, timeline, timeStr, frameCount, currentTime, currentFrameHtml, autoPlay = true) {
         this.frequencyVisualizer = frequencyVisualizer;
         this.canvas = cnvs;
         this.playBtn = playBtn;
@@ -22,12 +22,17 @@ class VisualizerPlayer {
         this.render();
         this.updateTimeDisplay();
 
-        this.isPlaying = true;
-        this.startTime = performance.now() - (this.pauseTime || 0);
-        
-        this.playBtn.textContent = 'Pause';
-        this.playBtn.onclick = () => this.pause();
-        this.animate();
+        if (autoPlay) {
+            this.isPlaying = true;
+            this.startTime = performance.now() - (this.pauseTime || 0);
+            
+            this.playBtn.textContent = 'Pause';
+            this.playBtn.onclick = () => this.pause();
+            this.animate();
+        } else {
+            this.isPlaying = false;
+            this.playBtn.textContent = 'Play';
+        }
     }
 
     setupCanvas() {
@@ -271,42 +276,138 @@ class VisualizerPlayer {
     }
 }
 
-// Your existing file handling code (keep as-is)
+const demoDefinitions = [
+    {
+        src: "/fvz/Scatman John - Scatman's World.fvz",
+        containerId: "visualizer",
+        canvasId: "visualizerCanvas",
+        playBtnId: "playBtn",
+        timelineId: "timelineSlider",
+        totalTimeId: "totalTime",
+        totalFramesId: "totalFrames",
+        currentTimeId: "currentTime",
+        currentFrameId: "currentFrame"
+    },
+    {
+        src: "/fvz/Caleb Belkin - for her..fvz",
+        containerId: "visualizer2",
+        canvasId: "visualizerCanvas2",
+        playBtnId: "playBtn2",
+        timelineId: "timelineSlider2",
+        totalTimeId: "totalTime2",
+        totalFramesId: "totalFrames2",
+        currentTimeId: "currentTime2",
+        currentFrameId: "currentFrame2"
+    },
+    {
+        src: "/fvz/What Are You (Wow).fvz",
+        containerId: "visualizer3",
+        canvasId: "visualizerCanvas3",
+        playBtnId: "playBtn3",
+        timelineId: "timelineSlider3",
+        totalTimeId: "totalTime3",
+        totalFramesId: "totalFrames3",
+        currentTimeId: "currentTime3",
+        currentFrameId: "currentFrame3"
+    }
+];
 
-const uploadArea = document.getElementById('uploadArea');
-const fileInput = document.getElementById('fileInput');
-const status = document.getElementById('status');
-const visualizer = document.getElementById('visualizer');
+const demoInstances = demoDefinitions
+    .map(def => ({
+        ...def,
+        container: document.getElementById(def.containerId),
+        canvas: document.getElementById(def.canvasId),
+        playBtn: document.getElementById(def.playBtnId),
+        timeline: document.getElementById(def.timelineId),
+        totalTime: document.getElementById(def.totalTimeId),
+        totalFrames: document.getElementById(def.totalFramesId),
+        currentTime: document.getElementById(def.currentTimeId),
+        currentFrame: document.getElementById(def.currentFrameId),
+        player: null
+    }));
 
-fetch("/fvz/Scatman John - Scatman's World.fvz")
-  .then(response => response.blob())
-  .then(blob => {
-    handleFile(blob, document.getElementById('visualizerCanvas'), document.getElementById('playBtn'), 
-    document.getElementById('timelineSlider'), document.getElementById('totalTime'), document.getElementById('totalFrames'),
-    document.getElementById('currentTime'), document.getElementById('currentFrame'));
-  })
+demoInstances.forEach(setupLazyDemo);
 
-fetch("/fvz/Caleb Belkin - for her..fvz")
-  .then(response => response.blob())
-  .then(blob => {
-    handleFile(blob, document.getElementById('visualizerCanvas2'), document.getElementById('playBtn2'), 
-    document.getElementById('timelineSlider2'), document.getElementById('totalTime2'), document.getElementById('totalFrames2'),
-    document.getElementById('currentTime2'), document.getElementById('currentFrame2'));
-  })
+function setupLazyDemo(demo) {
+    const requiredElements = [demo.container, demo.canvas, demo.playBtn, demo.timeline, demo.totalTime, demo.totalFrames];
+    if (requiredElements.some(el => !el)) {
+        return;
+    }
 
-fetch("/fvz/What Are You (Wow).fvz")
-  .then(response => response.blob())
-  .then(blob => {
-    handleFile(blob, document.getElementById('visualizerCanvas3'), document.getElementById('playBtn3'), 
-    document.getElementById('timelineSlider3'), document.getElementById('totalTime3'), document.getElementById('totalFrames3'),
-    document.getElementById('currentTime3'), document.getElementById('currentFrame3'));
-  })
+    let loadingPromise = null;
 
+    const loadDemo = async (autoPlay = true) => {
+        if (demo.player) {
+            return demo.player;
+        }
+        if (loadingPromise) {
+            return loadingPromise;
+        }
 
+        demo.playBtn.disabled = true;
+        demo.playBtn.textContent = 'Loading...';
 
-async function handleFile(file, cnv, playbtn, timeline, timestr, framecount, currentTime, currentFrame) {
-    visualizer.style.display = 'none';
+        loadingPromise = fetch(demo.src)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Failed to load ${demo.src}: ${response.status} ${response.statusText}`);
+                }
+                return response.blob();
+            })
+            .then(blob => handleFile(blob, demo, autoPlay))
+            .then(player => {
+                demo.player = player;
+                demo.playBtn.removeEventListener('click', initialClickHandler);
+                demo.playBtn.disabled = false;
+                return player;
+            })
+            .catch(error => {
+                console.error('Failed to load FVZ demo', error);
+                demo.playBtn.textContent = 'Retry';
+                demo.playBtn.disabled = false;
+                return Promise.reject(error);
+            })
+            .finally(() => {
+                loadingPromise = null;
+            });
 
+        return loadingPromise;
+    };
+
+    const initialClickHandler = async (event) => {
+        if (demo.player) {
+            return;
+        }
+        event.preventDefault();
+        event.stopPropagation();
+
+        try {
+            await loadDemo(true);
+        } catch (_) {
+            // Keep button enabled for manual retry
+        }
+    };
+
+    demo.playBtn.addEventListener('click', initialClickHandler);
+
+    if ('IntersectionObserver' in window && demo.container) {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    loadDemo(false)
+                        .then(() => obs.unobserve(entry.target))
+                        .catch(() => {
+                            // Leave observer active for future attempts
+                        });
+                }
+            });
+        }, { rootMargin: '200px 0px', threshold: 0.1 });
+
+        observer.observe(demo.container);
+    }
+}
+
+async function handleFile(file, demo, autoPlay = true) {
     try {
         if (typeof fzstd === 'undefined') {
             throw new Error('Zstd library not loaded. Please ensure fzstd is included.');
@@ -315,15 +416,26 @@ async function handleFile(file, cnv, playbtn, timeline, timestr, framecount, cur
         const arrayBuffer = await file.arrayBuffer();
         const { decompress } = fzstd;
         const result = await AudioDecoder.readFile(arrayBuffer, decompress);
-        
-        //console.log(result);
-        
-        // Create and show visualizer
-        let currentVisualizer = new VisualizerPlayer(result, cnv, playbtn, timeline, timestr, framecount, currentTime, currentFrame);
-        visualizer.style.display = 'block';
-        
+
+        const player = new VisualizerPlayer(
+            result,
+            demo.canvas,
+            demo.playBtn,
+            demo.timeline,
+            demo.totalTime,
+            demo.totalFrames,
+            demo.currentTime,
+            demo.currentFrame,
+            autoPlay
+        );
+
+        demo.playBtn.disabled = false;
+        return player;
     } catch (error) {
         console.error('Full error object:', error);
+        demo.playBtn.disabled = false;
+        demo.playBtn.textContent = 'Retry';
+        throw error;
     }
 }
 

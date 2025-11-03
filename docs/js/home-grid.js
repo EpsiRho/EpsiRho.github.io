@@ -25,11 +25,28 @@ function createSlice(data, type) {
     slice.appendChild(blur);
     slice.appendChild(info);
     if (data.PostURL) {
-    let fixedUrl = encodeURI(`/site/project?id=${data.PostURL}`);
-    slice.addEventListener('click', () => window.location.href = fixedUrl);
+        //content.style.viewTransitionName = `header-${data.PostURL}`;
+        let fixedUrl = encodeURI(`/site/project?id=${data.PostURL}`);
+        slice.addEventListener('click', () => {
+            slice.style.viewTransitionName = `header-${data.PostURL}`;
+            slice.classList.add('slice-transitioning');
+
+            const go = () => window.location.href = fixedUrl;
+            go();
+        });
     }
     else{
-        slice.addEventListener('click', () => window.location.href = encodeURI(data.BlogPostURL));
+        let transitionName = data.BlogPostURL.replaceAll("/posts/", "");
+        //content.style.viewTransitionName = `header-${transitionName}`;
+
+        slice.addEventListener('click', () => {
+            slice.style.viewTransitionName = `header-${transitionName}`;
+            slice.classList.add('slice-transitioning');
+
+            const go = () => window.location.href = encodeURI(data.BlogPostURL);
+            //return document.startViewTransition ? document.startViewTransition(go) : go();
+            go();
+        });
     }
     
     return slice;

@@ -92,7 +92,7 @@
         </aside>
 
         <main class="main-content">
-            <article class="blog-post-page" id="project-card" style="display: none;">
+            <article class="blog-post-page" id="project-card">
                 <div class="project-header-container">
                     <div class="project-header-shadow">
                         <div class="project-header-info">
@@ -103,7 +103,14 @@
                             </div>
                         </div>
                     </div>
-                    <img alt="Project Header" class="project-header-image" style="display:none;">
+                    <img alt="Project Header" src="/images/empty.webp" class="project-header-image">
+                    <script>
+                        const projectId = new URLSearchParams(location.search).get('id');
+                        if (projectId) {
+                            const headerImage = document.querySelector('.project-header-image');
+                            if (headerImage) headerImage.style.viewTransitionName = `header-${projectId}`;
+                        }
+                    </script>
                 </div>
                 </br>
                 

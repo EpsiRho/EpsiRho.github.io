@@ -77,6 +77,14 @@
     100%{background-position:-33% 50%}
 }
 
+.slice.slice-transitioning .slice-info,
+.slice.slice-transitioning .slice-blur,
+.slice.slice-transitioning .slice-background {
+    opacity: 0;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
 .slice-blur{
     position: absolute;
     background: linear-gradient(
@@ -88,7 +96,7 @@
     transform: skew(20deg);
     width: 150%;
     height: 110%;
-    left: -80px;
+    left: -120px;
     opacity: 1;
     transition: opacity 0.3s;
 }
