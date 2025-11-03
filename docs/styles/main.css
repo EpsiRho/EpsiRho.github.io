@@ -11,6 +11,7 @@
     --link-hover: #8400ff;
     --link-clicked: #ad33d2;
     --hover-icon: #4c4c4c;
+}
 
 @view-transition {
   navigation: auto;

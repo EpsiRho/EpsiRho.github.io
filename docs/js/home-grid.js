@@ -25,7 +25,7 @@ function createSlice(data, type) {
         let fixedUrl = encodeURI(`/site/project?id=${data.PostURL}`);
         slice.addEventListener('click', () => {
             slice.style.viewTransitionName = `header-${data.PostURL}`;
-            slice.classList.add('slice-transitioning');
+            //slice.classList.add('slice-transitioning');
 
             const go = () => window.location.href = fixedUrl;
             go();
@@ -37,7 +37,7 @@ function createSlice(data, type) {
 
         slice.addEventListener('click', () => {
             slice.style.viewTransitionName = `header-${transitionName}`;
-            slice.classList.add('slice-transitioning');
+            //slice.classList.add('slice-transitioning');
 
             const go = () => window.location.href = encodeURI(data.BlogPostURL);
             //return document.startViewTransition ? document.startViewTransition(go) : go();

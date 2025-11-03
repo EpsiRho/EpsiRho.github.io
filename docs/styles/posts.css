@@ -91,10 +91,6 @@ code {
     padding-bottom: 5px;
 }
 
-.slice-transitioning .details,
-.slice-transitioning .music-card {
-    opacity: 0;
-}
 
 ::view-transition-old(header-den-site-blog),
 ::view-transition-new(header-den-site-blog) {

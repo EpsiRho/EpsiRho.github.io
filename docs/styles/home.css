@@ -87,10 +87,6 @@
     100%{background-position:-33% 50%}
 }
 
-.slice.slice-transitioning .slice-info,
-.slice.slice-transitioning .slice-blur {
-    opacity: 0;
-}
 
 .slice-blur{
     position: absolute;

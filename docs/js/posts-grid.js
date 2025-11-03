@@ -25,7 +25,7 @@ fetch("../json/PackedBlogPosts.json")
                 let transitionName = item.BlogPostURL.replaceAll("/posts/", "");
                 card.addEventListener('click', () => {
                     card.style.viewTransitionName = `header-${transitionName}`;
-                    card.classList.add('slice-transitioning');
+                    //card.classList.add('slice-transitioning');
 
                     const go = () => window.location.href = encodeURI(item.BlogPostURL);
                     go();
