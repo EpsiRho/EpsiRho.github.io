@@ -11,7 +11,7 @@
           "Newtonsoft.Json": "13.0.3",
           "Pastel": "6.0.1",
           "RestSharp": "112.1.0",
-          "MelonUI": "1.0.0.0"
+          "MelonUI": "0.5.8.0"
         },
         "runtime": {
           "EpsiDenTools.dll": {}
@@ -41,11 +41,11 @@
           }
         }
       },
-      "MelonUI/1.0.0.0": {
+      "MelonUI/0.5.8.0": {
         "runtime": {
           "MelonUI.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
+            "assemblyVersion": "0.5.8.0",
+            "fileVersion": "0.5.8.0"
           }
         }
       }
@@ -78,7 +78,7 @@
       "path": "restsharp/112.1.0",
       "hashPath": "restsharp.112.1.0.nupkg.sha512"
     },
-    "MelonUI/1.0.0.0": {
+    "MelonUI/0.5.8.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
