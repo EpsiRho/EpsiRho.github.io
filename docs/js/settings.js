@@ -422,6 +422,7 @@ document.addEventListener('DOMContentLoaded', function() {
         closeModal.addEventListener('click', function(event) {
             event.preventDefault();
             event.stopPropagation();
+            console.log('Button Click');
             closeSettingsModal();
         });
     }
@@ -430,21 +431,14 @@ document.addEventListener('DOMContentLoaded', function() {
         settingsBg.addEventListener('click', function(event) {
             if (event.target === settingsBg) {
                 closeSettingsModal();
+                console.log('BG Click');
             }
         });
-
-        window.addEventListener('click', function(event) {
-            if (!modalIsOpen) {
-                return;
-            }
-            if (settingsModal.contains(event.target) || event.target.closest('#page-settings')) {
-                return;
-            }
-            closeSettingsModal();
-        });
+        
 
         window.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
+                console.log('Key Click');
                 closeSettingsModal();
             }
         });

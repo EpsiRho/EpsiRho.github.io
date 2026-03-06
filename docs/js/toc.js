@@ -1,3 +1,5 @@
+import { WebHaptics } from "https://esm.sh/web-haptics";
+
 document.addEventListener("DOMContentLoaded", () => {
     const toc = document.querySelector(".toc");
     const SidebarNav = document.querySelector(".nav-menu");
@@ -5,6 +7,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const tocNavContainer = document.getElementById("toc-site-nav");
     const tocAnchorContainer = document.getElementById("toc-post-nav");
     const setBtn = document.getElementById("page-settings");
+
+    
+
+    const haptics = new WebHaptics();
+
+    toc.addEventListener("click", () => {
+        if(!toc.classList.contains("open")){
+            haptics.trigger([
+                { duration: 30 },
+                ], { intensity: 0.8 });
+        }
+    });
 
 
     const navItems = document.createElement('div');
@@ -62,6 +76,9 @@ document.addEventListener("DOMContentLoaded", () => {
         toc.classList.remove("open");
         isOpen = false;
         toc.scrollTop = 0;
+        haptics.trigger([
+                { duration: 30 },
+                ], { intensity: 0.8 });
     };
 
     const clickEvent = (e) => {
