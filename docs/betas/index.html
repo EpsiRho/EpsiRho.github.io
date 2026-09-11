@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,16 +11,15 @@
     <meta name="theme-color" content="#06afda" />
     <meta property="og:logo" content="https://epsirho.com/images/favicon-32x32.webp" />
 
-    <meta property="og:title" content="Beta Den" />
-    <meta property="og:description" content="Enroll in and download ongoing Betas" />
+    <meta property="og:title" content="SubPack" />
+    <meta property="og:description" content="Shared Unfinished Beta Packages" />
     <meta property="og:image" content="https://epsirho.com/images/gradient-tile.webp" />
 
-    <title>Beta Den</title>
+    <title>SubPack</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/posts.css">
     <link rel="stylesheet" href="/styles/betas.css">
-    
 </head>
 <body class="betas-page">
     <div class="container">
@@ -90,54 +90,55 @@
                 </ul>
             </nav>
         </aside>
-
         <main id="beta-content" class="main-content" tabindex="-1">
             <section class="beta-card beta-intro" aria-labelledby="beta-title">
-                <h1 id="beta-title">Beta Den</h1>
-                <p>If there are any Betas active, you can enroll for them here with the code you’ve been given! This code works as many times as you need to, so don’t share it if you haven’t been told you can. Once you input the code, a cookie will be saved to remember this in this browser, and you’ll be shown downloads and a place to send feedback.</p>
-            </section>
-            <section class="beta-card" aria-labelledby="enrollments-title">
+                <h1 id="beta-title" class="post-description">SubPack</h1>
+                <p>If you’ve been given an invite code, you can enter it here to register this browser and participate in testing. You’ll see downloads and be able to send feedback for the next 365 days, or until you clear your browser’s cookies. If you lose access or need to register another browser, ask for another invite code.</p>
+                <br></br>
                 <form id="enroll-form" class="enroll-form">
-                    <label for="invite-code">Invite code</label>
                     <div class="enroll-controls">
-                        <input id="invite-code" name="code" type="text" placeholder="Enter your invite code" required maxlength="256" autocomplete="off" autocapitalize="off" spellcheck="false" aria-describedby="enroll-message">
+                        <input id="invite-code" name="code" type="text" placeholder="Invite code" required maxlength="256" autocomplete="off" autocapitalize="off" spellcheck="false" aria-describedby="enroll-message">
                         <button id="enroll-submit" class="beta-button beta-primary" type="submit">Enroll</button>
                     </div>
+                    
                     <p id="enroll-message" class="form-message" role="status" aria-live="polite"></p>
                 </form>
+                
                 <div class="enrollments-heading">
-                    <h2 id="enrollments-title">Your enrollments</h2>
+                    <h2 id="enrollments-title">Packages</h2>
                     <span id="enrollment-count" class="beta-count" aria-label="Enrollment count">0</span>
                 </div>
                 <div id="enrollments" aria-busy="true"></div>
                 <noscript><p class="empty-state">Please enable JavaScript to enroll, download builds, and send feedback.</p></noscript>
+
             </section>
         </main>
-    </div>
-    <dialog id="downloads-dialog" class="beta-dialog" aria-labelledby="downloads-title" aria-describedby="downloads-package">
-        <div class="dialog-heading">
-            <div><h2 id="downloads-title" tabindex="-1">Downloads</h2><p id="downloads-package" class="muted"></p></div>
-            <button type="button" class="dialog-close" data-close-dialog aria-label="Close downloads">×</button>
-        </div>
-        <div id="versions" aria-busy="false"></div>
-        <p id="download-message" class="form-message" role="status" aria-live="polite"></p>
-    </dialog>
-    <dialog id="feedback-dialog" class="beta-dialog" aria-labelledby="feedback-title" aria-describedby="feedback-package">
-        <div class="dialog-heading">
-            <div><h2 id="feedback-title">Send feedback</h2><p id="feedback-package" class="muted"></p></div>
-            <button type="button" class="dialog-close" data-close-dialog aria-label="Close feedback">×</button>
-        </div>
-        <form id="feedback-form" class="feedback-form">
-            <div class="form-field"><label for="issue-title">Issue title</label><input id="issue-title" name="title" required maxlength="200" autocomplete="off"></div>
-            <div class="form-field"><label for="issue-tag">Issue tag</label><select id="issue-tag" name="tag" required><option value="Bug">Bug</option><option value="Suggestion">Suggestion</option><option value="Accessibility">Accessibility</option><option value="Question">Question</option></select></div>
-            <div class="form-field"><label for="issue-description">Issue description</label><textarea id="issue-description" name="description" required maxlength="8000" rows="6"></textarea></div>
-            <div class="form-field"><label for="issue-email">Email <span class="muted">(optional)</span></label><input id="issue-email" name="email" type="email" maxlength="254" autocomplete="email"></div>
-            <p id="feedback-message" class="form-message" role="status" aria-live="polite"></p>
-            <div class="dialog-actions"><button type="button" class="beta-button" data-close-dialog>Cancel</button><button id="feedback-submit" type="submit" class="beta-button beta-primary">Send feedback</button></div>
-        </form>
-    </dialog>
-    <div id="toasts" class="toast-region" aria-live="polite" aria-relevant="additions"></div>
-    <aside class="toc" onclick="">
+
+        <dialog id="downloads-dialog" class="beta-dialog" aria-labelledby="downloads-title" aria-describedby="downloads-package">
+            <div class="dialog-heading">
+                <div><h2 id="downloads-title" tabindex="-1">Downloads</h2><p id="downloads-package" class="muted"></p></div>
+                <button type="button" class="dialog-close" data-close-dialog aria-label="Close downloads">×</button>
+            </div>
+            <div id="versions" aria-busy="false"></div>
+            <p id="download-message" class="form-message" role="status" aria-live="polite"></p>
+        </dialog>
+        <dialog id="feedback-dialog" class="beta-dialog" aria-labelledby="feedback-title" aria-describedby="feedback-package">
+            <div class="dialog-heading">
+                <div><h2 id="feedback-title">Send feedback</h2><p id="feedback-package" class="muted"></p></div>
+                <button type="button" class="dialog-close" data-close-dialog aria-label="Close feedback">×</button>
+            </div>
+            <form id="feedback-form" class="feedback-form">
+                <div class="form-field"><label for="issue-title">Issue title</label><input id="issue-title" name="title" required maxlength="200" autocomplete="off"></div>
+                <div class="form-field"><label for="issue-tag">Issue tag</label><select id="issue-tag" name="tag" required><option value="Bug">Bug</option><option value="Suggestion">Suggestion</option><option value="Accessibility">Accessibility</option><option value="Question">Question</option></select></div>
+                <div class="form-field"><label for="issue-description">Issue description</label><textarea id="issue-description" name="description" required maxlength="8000" rows="6"></textarea></div>
+                <div class="form-field"><label for="issue-email">Email <span class="muted">(optional)</span></label><input id="issue-email" name="email" type="email" maxlength="254" autocomplete="email"></div>
+                <p id="feedback-message" class="form-message" role="status" aria-live="polite"></p>
+                <div class="dialog-actions"><button type="button" class="beta-button" data-close-dialog>Cancel</button><button id="feedback-submit" type="submit" class="beta-button beta-primary">Send feedback</button></div>
+            </form>
+        </dialog>
+        <div id="toasts" class="toast-region" aria-live="polite" aria-relevant="additions"></div>
+
+        <aside class="toc" onclick="">
             <div class="toc-icon">☰</div>
             <div class="toc-content" id="toc-site-nav"></div>
             <div class="toc-content" id="toc-post-nav">
@@ -159,7 +160,9 @@
                         Settings
                     </li>
                 </a>
-               </ul>
+                <hr style="margin: 10px 10px 10px 5px;" id="setdivider"/>
+                
+            </ul>
         </aside>
 
         <div id="settings-bg">
@@ -248,12 +251,12 @@
                 </div>
             </div>
         </div>
-
+        
         <script type="module" src="/js/toc.js"></script>
         <script  src="/js/imgswitcher.js"></script>
         <script src="/js/settings.js"></script>
-        <script src="/js/age.js"></script>
         <script src="/js/betas-config.js" defer></script>
         <script src="/js/betas.js" type="module"></script>
+    </div>
 </body>
 </html>
