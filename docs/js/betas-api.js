@@ -88,19 +88,31 @@ export class EnrollmentCookies {
             if (!/^[a-zA-Z0-9-]+$/.test(id)) continue;
             try {
                 const record = JSON.parse(decodeURIComponent(value));
-                if (typeof record.code !== 'string' || !record.code || record.code.length > 256) throw new Error('Invalid record');
-                let token = '';
-                try { token = decodeURIComponent(cookies.get(TOKEN_PREFIX + id) || ''); } catch { /* Refresh with the saved code. */ }
-                entries.push({id, code: record.code, packageId: record.packageId || '', name: record.name || 'Saved beta', token});
+                // Invite codes are one-time credentials. The JWT is the durable
+                // enrollment credential, so never require the code to restore a
+                // saved enrollment.
+                if (!record || typeof record !== 'object') throw new Error('Invalid record');
+                const token = decodeURIComponent(cookies.get(TOKEN_PREFIX + id) || '');
+                const expires = Number(tokenClaims(token).exp);
+                if (!token || !Number.isFinite(expires) || expires <= Date.now() / 1000 + 30) {
+                    this.remove({id});
+                    continue;
+                }
+                entries.push({id, packageId: record.packageId || '', name: record.name || 'Saved beta', token});
             } catch { this.remove({id}); }
         }
         return entries;
     }
     save(entry) {
         // Keep each enrollment separate to avoid the ~4KB per-cookie limit.
-        this.write(CODE_PREFIX + entry.id, JSON.stringify({code: entry.code, packageId: entry.packageId, name: entry.name}), 365 * 86400);
         const remaining = Number(tokenClaims(entry.token).exp) - Date.now() / 1000;
-        this.write(TOKEN_PREFIX + entry.id, entry.token || '', Number.isFinite(remaining) ? Math.min(1800, remaining) : 0);
+        if (!entry.token || !Number.isFinite(remaining) || remaining <= 0) {
+            this.remove(entry);
+            return;
+        }
+        const maxAge = Math.floor(remaining);
+        this.write(CODE_PREFIX + entry.id, JSON.stringify({packageId: entry.packageId, name: entry.name}), maxAge);
+        this.write(TOKEN_PREFIX + entry.id, entry.token, maxAge);
     }
     remove(entry) {
         this.write(CODE_PREFIX + entry.id, '', 0);
@@ -115,9 +127,7 @@ export class BetaClient {
         // Native browser fetch requires the Window receiver when called as a method.
         this.fetcher = fetcher.bind(globalThis);
         this.retryAt = 0;
-        this.refreshes = new Map();
         this.validationPath = null;
-        this.onRefresh = () => {};
     }
     async request(path, {token, params = {}, method = 'GET', body} = {}) {
         const url = new URL(path, this.base);
@@ -164,23 +174,17 @@ export class BetaClient {
             }
         }
     }
-    async refresh(entry) {
-        if (!this.refreshes.has(entry.id)) {
-            this.refreshes.set(entry.id, this.validate(entry.code).then(token => {
-                entry.token = token;
-                entry.packageId = packageId(token) || entry.packageId;
-                this.onRefresh(entry);
-            }).finally(() => this.refreshes.delete(entry.id)));
-        }
-        return this.refreshes.get(entry.id);
-    }
     async authorized(entry, path, options = {}) {
-        if (!(Number(tokenClaims(entry.token).exp) > Date.now() / 1000 + 30)) await this.refresh(entry);
+        const expires = Number(tokenClaims(entry.token).exp);
+        if (!entry.token || !Number.isFinite(expires) || expires <= Date.now() / 1000 + 30)
+            throw new BetaError('expired', 'Your beta enrollment has expired. Enter a new invite code to enroll again.');
         try { return await this.request(path, {...options, token: entry.token}); }
         catch (error) {
-            if (error.kind !== 'unauthorized') throw error;
-            await this.refresh(entry);
-            return this.request(path, {...options, token: entry.token});
+            // A one-time invite code cannot refresh a rejected JWT. Let the page
+            // remove this enrollment rather than attempting the code a second time.
+            if (error.kind === 'unauthorized')
+                throw new BetaError('expired', 'Your beta enrollment is no longer valid. Enter a new invite code to enroll again.');
+            throw error;
         }
     }
     async info(entry) { return normalizeInfo(await (await this.authorized(entry, '/api/package/info')).json()); }

@@ -45,8 +45,6 @@ function save(entry) {
         }
     }
 }
-client.onRefresh = save;
-
 function expire(entry) {
     const index = enrollments.findIndex(item => item.id === entry.id);
     if (index === -1) return;
@@ -61,7 +59,7 @@ function errorText(error) {
     return error?.message && error?.kind ? error.message : 'Something went wrong while loading the server response. Please try again.';
 }
 function handleError(error, entry, target) {
-    if (error.kind === 'invalid' && entry) { expire(entry); return; }
+    if (['invalid', 'expired'].includes(error.kind) && entry) { expire(entry); return; }
     message(target, errorText(error), 'error');
     if (error.kind === 'rate') startCooldown();
 }
@@ -124,7 +122,7 @@ async function refreshInfo(entry) {
         entry.name = entry.info.name;
         save(entry);
     } catch (error) {
-        if (error.kind === 'invalid') expire(entry);
+        if (['invalid', 'expired'].includes(error.kind)) expire(entry);
         else {
             entry.error = errorText(error);
             if (error.kind === 'rate') startCooldown();
