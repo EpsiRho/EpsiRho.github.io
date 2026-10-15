@@ -13,7 +13,9 @@ fetch("../json/PackedProjects.json")
                 const card = document.createElement('div');
                 card.className = 'music-card';
                 card.style.background = 'var(--bg-card);';
-                let fixedUrl = `/site/project?id=${item.PostURL}`;
+                let fixedUrl = item.PostURL === 'pointer-fishing'
+                    ? '/projects/pointer-fishing'
+                    : `/site/project?id=${item.PostURL}`;
                 card.innerHTML = `
                     <div class="image-container">
                         <img src="${item.ImageURL}" alt="${item.Name}">

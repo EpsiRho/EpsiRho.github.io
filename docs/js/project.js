@@ -120,14 +120,17 @@ window.addEventListener('DOMContentLoaded', () => {
         postTitle.textContent = projectData.Name;
         postDescription.textContent = projectData.ShortDescription;
         postDate.textContent = new Date(projectData.AnnounceDate).toLocaleString();
-        let pee = document.createElement(`p`);
-        pee.innerHTML = projectData.Description
-            .replaceAll("    ", "&emsp;")
-            .replaceAll("\t", "&emsp;")
-            .split('\n\n')
-            .map(paragraph => `<p>${paragraph.replace(/\n/g, "<br>")}</p><br>`)
-            .join('');
-        postBody.appendChild(pee);
+        postBody.replaceChildren();
+        if (projectData.DescriptionHtml) {
+            // Den Manager escapes source text before adding supported Markdown markup.
+            postBody.innerHTML = projectData.DescriptionHtml;
+        } else {
+            (projectData.Description || '').split(/\n\s*\n/).forEach(paragraph => {
+                const element = document.createElement('p');
+                element.textContent = paragraph;
+                postBody.appendChild(element);
+            });
+        }
 
         // Clear and populate tags
         postTags.innerHTML = ""; // Clear any existing tags
@@ -153,7 +156,7 @@ window.addEventListener('DOMContentLoaded', () => {
         const headerImage = document.querySelector('.project-header-image');
         if (projectData.ImageURL) {
             headerImage.src = projectData.ImageURL;
-            headerImage.alt = `${projectData.Title} Header Image`;
+            headerImage.alt = `${projectData.Name} Header Image`;
             headerImage.style.display = 'block';
         } else {
             headerImage.style.display = 'none';
@@ -169,6 +172,11 @@ window.addEventListener('DOMContentLoaded', () => {
     // Main function to fetch JSON data and populate the page
     async function loadProjectData() {
         const projectId = getQueryParam('id');
+
+        if (projectId === 'pointer-fishing') {
+            window.location.replace('/projects/pointer-fishing');
+            return;
+        }
 
         if (!projectId) {
             const card = document.getElementById('missing-card');

@@ -1,0 +1,317 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Epsi's Den" />
+    <meta property="og:provider_name" content="Epsi's Den" />
+    <meta name="theme-color" content="#06afda" />
+    <meta property="og:logo" content="https://epsirho.com/images/favicon-32x32.webp" />
+
+    <meta property="og:title" content="FreakFreq" />
+    <meta property="og:description" content="A super customizable audio visualizer for windows!" />
+    <meta property="og:image" content="/images/freqfreakheader.webp" />
+
+    
+    <title>FreakFreq</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/posts.css">
+    <link rel="stylesheet" href="/styles/music.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="profile">
+                <img src="/images/empty.webp" alt="Profile" class="profile-img">
+                <h1 class="profile-name">Epsi's Den</h1>
+                <p class="profile-bio">Software developer, Lava lamp dog, totally a professional</p>
+                <div class="social-links">
+                    <a href="https://bsky.app/profile/epsirho.com" aria-label="Bluesky" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-bluesky" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M6.335 5.144c-1.654 -1.199 -4.335 -2.127 -4.335 .826c0 .59 .35 4.953 .556 5.661c.713 2.463 3.13 2.75 5.444 2.369c-4.045 .665 -4.889 3.208 -2.667 5.41c1.03 1.018 1.913 1.59 2.667 1.59c2 0 3.134 -2.769 3.5 -3.5c.333 -.667 .5 -1.167 .5 -1.5c0 .333 .167 .833 .5 1.5c.366 .731 1.5 3.5 3.5 3.5c.754 0 1.637 -.571 2.667 -1.59c2.222 -2.203 1.378 -4.746 -2.667 -5.41c2.314 .38 4.73 .094 5.444 -2.369c.206 -.708 .556 -5.072 .556 -5.661c0 -2.953 -2.68 -2.025 -4.335 -.826c-2.293 1.662 -4.76 5.048 -5.665 6.856c-.905 -1.808 -3.372 -5.194 -5.665 -6.856z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/EpsiRho" aria-label="GitHub" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path>
+                          </svg>
+                    </a>
+                    <a href="https://furry.engineer/@epsi" aria-label="Mastodon" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-mastodon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M18.648 15.254c-1.816 1.763 -6.648 1.626 -6.648 1.626a18.262 18.262 0 0 1 -3.288 -.256c1.127 1.985 4.12 2.81 8.982 2.475c-1.945 2.013 -13.598 5.257 -13.668 -7.636l-.026 -1.154c0 -3.036 .023 -4.115 1.352 -5.633c1.671 -1.91 6.648 -1.666 6.648 -1.666s4.977 -.243 6.648 1.667c1.329 1.518 1.352 2.597 1.352 5.633s-.456 4.074 -1.352 4.944z"></path><path d="M12 11.204v-2.926c0 -1.258 -.895 -2.278 -2 -2.278s-2 1.02 -2 2.278v4.722m4 -4.722c0 -1.258 .895 -2.278 2 -2.278s2 1.02 2 2.278v4.722"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z"></path>
+                                <polyline points="5 12 3 12 12 3 21 12 19 12"></polyline>
+                                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
+                                <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
+                              </svg>
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/site/about" class="nav-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-square" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 10a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path><path d="M6 21v-1a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v1"></path><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z"></path>
+                            </svg>
+                             About
+                            </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/site/posts" class="nav-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-dashboard" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M4 4h6v8h-6z"></path><path d="M4 16h6v4h-6z"></path><path d="M14 12h6v8h-6z"></path><path d="M14 4h6v4h-6z"></path></svg>
+                             Blog Posts
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/site/projects" class="nav-link">
+                            <svg xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-code"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 8l-4 4l4 4" /><path d="M17 8l4 4l-4 4" /><path d="M14 4l-4 16" /></svg>
+                             Projects
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/site/music" class="nav-link">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-music"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 17a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M13 17a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M9 17v-13h10v13" /><path d="M9 8h10" /></svg>
+                             Music Recommendations
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <article class="blog-post-page" id="project-card"><div class="project-header-container"><div class="project-header-shadow"><div class="project-header-info"><h1 class="post-title">FreakFreq</h1><p class="post-description">A super customizable audio visualizer for windows!</p><div class="post-tags"><span class="project-tag">Windows</span><span class="project-tag">C#</span><span class="project-tag">Audio</span><span class="project-tag">WPF</span><span class="project-tag">Data Visualization</span><span class="project-tag">FVZ</span></div></div></div><img alt="" src="/images/freqfreakheader.webp" class="project-header-image"></div><div class="post-links"><div class="post-links-fade"><h2>Links</h2></div><a href="https://github.com/EpsiRho/FreqFreak"><span class="post-link">Github</span></a><a href="https://epsirho.com/posts/fft-blog"><span class="post-link">Blog Post</span></a><a href="https://apps.microsoft.com/detail/9n44td8gbw16"><span class="post-link">Microsoft Store</span></a></div><div class="post-date">June 29, 2025</div><div class="post-body"><p>FreqFreak is an application made in WPF that can take in audio from WASAPI loopback for output, input, and per process id and show it with pretty and customizable audio visualizations. Tons of options, multiple built in bin mappings, easy saving/loading of config files, and many color/size/shape customizations for the spectrum. This was a labor of love as someone who grew up placing visualizers into my desktop backgrounds using Rainmeter way back in the day. As Rainmeter seems to be mostly out of fashion and many of it&#39;s popular visualizers now being broken or dead in some way, I wanted a new way to make visualizations on my PC. You can read more about the dev process and the how it works on the Blog Post! It&#39;s all free, as is it&#39;s codebase. Feel free to add / fix things or use it to build up your own visualizing systems :D</p>
+<p>Changelog: v2.0.13</p>
+<ul>
+<li>Fixed a regression in Photo Cutouts (I fixed a bug and then managed to merge it back in)</li>
+<li>Some PCs experienced a flicker in gradient settings, this should be fixed now!</li>
+</ul>
+<p>v2.0.12 (GitHub Only Release)</p>
+<ul>
+<li>You can now toggle pitch + frequency peak tracking</li>
+<li>Fixed Outer Circle and Inner Circle modes not showing peaks unless in stereo mode.</li>
+</ul>
+<p>v2.0.11</p>
+<ul>
+<li>The AudioDevices window crash due to a weak reference to it&#39;s Dispatcher has been fixed</li>
+<li>The Lines in centered mode were being drawn incorrectly on the right side with 2 stray points, these points are now gone</li>
+<li>The Cutouts can now use the arrow keys for nudging just like the main Visualizer.</li>
+<li>PathGeometry Memory Leak fixed</li>
+<li>Line Brush Memory Leak fixed</li>
+<li>Color system is now more performant</li>
+</ul>
+<p>v2.0.10</p>
+<ul>
+<li>Dual Channel visualizations <ul>
+<li>Add Left Channel/Right Channel/Stereo/Mono selector </li>
+<li>Add Oscilloscope Visualization (Stereo Mode only) </li>
+<li>Stereo Mode for Centered</li>
+<li>Stereo Mode for Inner/Outer Circle</li>
+</ul>
+</li>
+<li>Add Pitch Tracking + Color effect <ul>
+<li>Current Pitch Guess + Note Guess + Peak Frequency Guess in the Options Window</li>
+<li>Pitch color modes show the current pitch guess as a color on the gradient between color 1-2 or a rainbow gradient.</li>
+<li>Frequency color modes show the current frequency peak guess as a color on the gradient between color 1-2 or a rainbow gradient.</li>
+<li>Pitch/Peak guess is ONLY SEMI ACURATE, and can become more or less accurate depending on your FFT settings. It is also based off a mono representation of the audio in stereo mode, although in left/right exclusive modes it will base of the specified channel.</li>
+</ul>
+</li>
+<li>Revamped Color Modes<ul>
+<li>Single Color </li>
+<li>Dual Color Gradient Vertical, Horizontal, Height, Pitch, or Frequency</li>
+<li>Custom N-Color Gradient Vertical, Horizontal, Height, Pitch, or Frequency <ul>
+<li>To support custom gradients, a new Gradient Editor was added with some presets </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>New Visualization Options + Modes<ul>
+<li>Show As Lines shows the bars as points on a line(s) instead of bars</li>
+<li>Peaks now have a selector for mode:<ul>
+<li>Off, Peak Bars, Peak Lines, Peak Bars Only, Peak Lines Only</li>
+<li>Low End Dampen lets you control how much to dampen the bass compared to the rest of the spectrum, since bass can often be overpowering in audio. The new default is 1.17 (from 1 aka no dampening)</li>
+</ul>
+</li>
+<li>Bass Reactive Scaling + Bass Reactive Shake</li>
+</ul>
+</li>
+<li>Tray Icon Additions<ul>
+<li>Open New Instance</li>
+<li>Quick Import</li>
+<li>Quick Access to Audio Input Switcher </li>
+<li>Pause/Play Visualization</li>
+</ul>
+</li>
+<li>Options Menu Buttons moved from bottom to top, and a few new buttons added <ul>
+<li>Play/Pause (Stops the visualizer from getting new audio data)</li>
+<li>New Instance (Opens a new visualizer instance)</li>
+<li>Recenter (Brings the visualizer to be centered on the Options Window)</li>
+<li>Export</li>
+<li>Import</li>
+<li>Audio Input Settings</li>
+<li>FVZ Tool</li>
+<li>Cutout Tool</li>
+</ul>
+</li>
+<li>Cutout Tool lets you place images anywhere on screen<ul>
+<li>Can be used to place images as decoration, or to cover up parts of the screen.</li>
+<li>For example, cutting out the subject of the desktop background, and placing it&#39;s cutout overtop the visualizer, to give it depth.</li>
+<li>Can also be Bass Reactive</li>
+</ul>
+</li>
+<li>Optimization Pass<ul>
+<li>Visualizations are now spread out across more threads: </li>
+<li>Audio comes in and is built into frames on it&#39;s own thread on the CPU, while another CPU threads preps the window and takes those audio frames and turns them into GPU ready frames.</li>
+<li>The GPU now handles rendering the visuals, improving FPS and making the maximum settings you can get away with larger.</li>
+<li>The Options Window and it&#39;s subsequent windows are now given their own UI threads, instead of piggy backing off of the visualizer&#39;s. This means they no longer lock up when the visualizer lags now.</li>
+</ul>
+</li>
+<li>Audio Switcher can now be refreshed without reopening it</li>
+<li>New Dark + Transparent style <ul>
+<li>Windows will now try and open out of the way of other FreqFreak Windows (to the top/left/right/bottom)</li>
+<li>Accent + Tray icon color is now more consistently colorful</li>
+</ul>
+</li>
+<li>Keyboard nudging (you can use your arrow keys to nudge the selected visualizer window by 1 pixel for precise alignment) </li>
+</ul>
+<p>v1.1.0</p>
+<ul>
+<li>Added a Rotation parameter</li>
+<li>Fixed circle visualizers sizing their canvas oddly</li>
+<li>Added version number to Options UI</li>
+</ul>
+</div></article>
+            
+        </main>
+
+        <div id="settings-bg">
+            <div id="settings-modal" class="themebtn">
+                <div class="settings-modal-header themebtn">
+                    <p class="themebtn settings-modal-version"><span class="version-display"></span> &#x2022; <a class="changelog-link themebtn" href="/site/changelog">changelog</a></p>
+                    <button type="button" aria-label="Close settings" id="close-modal" class="settings-close-btn themebtn">
+                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+                    </button>
+                </div>
+                <div class="settings-modal-body themebtn">
+                    <label class="themebtn">Select Theme:</label>
+                    <div class="toggle-container themebtn">
+                        <label class="toggle-switch themebtn">
+                            <input class="themebtn" type="checkbox">
+                            <span class="slider themebtn"></span>
+                        </label>
+                        <p class="themebtn transparent-desc">Enable Transparent Effects <span class="themebtn" title="If your browser supports transparent backgrounds, you can enable this to make the site theme show through to your desktop (or browser bg).">&#x1F6C8</span></p>
+                    </div>
+
+                    <div class="theme-picker themebtn">
+                        <div class="theme-option tooltip themebtn" id="theme-option-notebook">
+                            <span class="tooltiptext themebtn">Notebook</span>
+                            <div class="theme-sidebar themebtn" style="background-color: #f1e4c1;"></div>
+                            <div class="theme-main themebtn" style="background-color: #fff9e8;">
+                                <div class="theme-card themebtn" style="background-color: #f7f2e0;"></div>
+                            </div>
+                        </div>
+                        <div class="theme-option tooltip themebtn" id="theme-option-light" >
+                            <span class="tooltiptext themebtn">Flashbang</span>
+                            <div class="theme-sidebar themebtn" style="background-color: rgb(216, 216, 216);"></div>
+                            <div class="theme-main themebtn" style="background-color: rgb(228, 228, 228);">
+                                <div class="theme-card themebtn" style="background-color: rgb(199, 199, 199);"></div>
+                            </div>
+                        </div>
+                        <div class="theme-option tooltip themebtn" id="theme-option-transparent">
+                            <span class="tooltiptext themebtn">Snow Day</span>
+                            <div class="theme-sidebar themebtn" style="background: #b1c9e1;"></div>
+                            <div class="theme-main themebtn" style="background: #d9eafd;">
+                                <div class="theme-card themebtn" style="background-color: #bcccdc;"></div>
+                            </div>
+                        </div>
+                        <div class="theme-option tooltip themebtn" id="theme-option-dark">
+                            <span class="tooltiptext themebtn">Dark</span>
+                            <div class="theme-sidebar themebtn" style="background-color: #2a2a2a;"></div>
+                            <div class="theme-main themebtn" style="background-color: #1a1a1a;">
+                                <div class="theme-card themebtn" style="background-color: rgb(53, 53, 53);"></div>
+                            </div>
+                        </div>
+                        <div class="theme-option tooltip themebtn" id="theme-option-ocean">
+                            <span class="tooltiptext themebtn">Ocean</span>
+                            <div class="theme-sidebar themebtn" style="background-color: #073642;"></div>
+                            <div class="theme-main themebtn" style="background-color: #002b36;">
+                                <div class="theme-card themebtn" style="background-color: #083c4a;"></div>
+                            </div>
+                        </div>
+                        <div class="theme-option tooltip themebtn" id="theme-option-dream">
+                            <span class="tooltiptext themebtn">Dream</span>
+                            <div class="theme-sidebar themebtn" style="background-color: #2c2a3e;"></div>
+                            <div class="theme-main themebtn" style="background-color: #2b2336;">
+                                <div class="theme-card themebtn" style="background-color: #3b3f51;"></div>
+                            </div>
+                        </div>
+                        <div class="theme-option tooltip themebtn" id="theme-option-fields">
+                            <span class="tooltiptext themebtn">Fields</span>
+                            <div class="theme-sidebar themebtn" style="background-color: #365142;"></div>
+                            <div class="theme-main themebtn" style="background-color: #283c2e;">
+                                <div class="theme-card themebtn" style="background-color: #2d543f;"></div>
+                            </div>
+                        </div>
+                        <div class="theme-option tooltip themebtn" id="theme-option-sunset">
+                            <span class="tooltiptext themebtn">Sunset</span>
+                            <div class="theme-sidebar themebtn" style="background-color: #4c1919;"></div>
+                            <div class="theme-main themebtn" style="background-color: #381324;">
+                                <div class="theme-card themebtn" style="background-color: #403949;"></div>
+                            </div>
+                        </div>
+                        <div class="theme-option tooltip themebtn" id="theme-option-matrix">
+                            <span class="tooltiptext themebtn">Matrix</span>
+                            <div class="theme-sidebar themebtn" style="background-color: #000000;"></div>
+                            <div class="theme-main themebtn" style="background-color: #0e0e0e;">
+                                <div class="theme-card themebtn" style="background-color: #1a1a1a;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <aside class="toc" onclick="">
+            <div class="toc-icon">☰</div> 
+            <div class="toc-content" id="toc-site-nav"></div>
+            <div class="toc-content" id="toc-post-nav">
+            <ul>
+                <a aria-label="page-settings" id="page-settings">
+                    <li class="settingsbtn">
+                        <svg style="margin-right:5px;" width="1.5em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" class="settingsbtn"/>
+                            <path d="M4 10a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" class="settingsbtn"/>
+                            <path d="M6 4v4" class="settingsbtn"/>
+                            <path d="M6 12v8" class="settingsbtn"/>
+                            <path d="M10 16a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" class="settingsbtn"/>
+                            <path d="M12 4v10" class="settingsbtn"/>
+                            <path d="M12 18v2" class="settingsbtn"/>
+                            <path d="M16 7a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" class="settingsbtn"/>
+                            <path d="M18 4v1" class="settingsbtn"/>
+                            <path d="M18 9v11" class="settingsbtn"/>
+                        </svg>
+                        Settings
+                    </li>
+                </a>
+            </ul>
+        </aside>
+        <script type="module" src="/js/toc.js"></script>
+        
+        <script src="/js/settings.js"></script>
+        <script src="/js/imgswitcher.js"></script>
+    </div>
+</body>
+</html>
+

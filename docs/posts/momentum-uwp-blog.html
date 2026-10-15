@@ -12,14 +12,14 @@
     <meta property="og:logo" content="https://epsirho.com/images/favicon-32x32.webp" />
 
     <meta property="og:title" content="Momentum and file performance quirks in UWP" />
-    <meta property="og:description" content="Recently, inspired by the lack of an open source codebase for Everything I started a project I call Momentum" />
-    <meta property="og:image" content="https://epsirho.com/images/momentum-uwp-blog.webp" />
+    <meta property="og:description" content="Recently, inspired by the lack of an open source codebase for Everything I started a project I call Momentum." />
+    <meta property="og:image" content="/images/momentum-uwp-blog.webp" />
 
     <title>Momentum and file performance quirks in UWP</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/posts.css">
-<link rel="stylesheet" href="/styles/comments.css">
+    <link rel="stylesheet" href="/styles/comments.css">
 </head>
 <body>
     <div class="container">
@@ -92,39 +92,23 @@
         </aside>
 
         <main class="main-content">
-            <article class="blog-post-page">
-                <img src="/images/momentum-uwp-blog.webp" alt="Blog Header" class="post-header-image"
-                     style="view-transition-name: header-momentum-uwp-blog;">
-                </br>
-                <span class="post-tag"> Windows</span>
-                <span class="post-tag"> C#</span>
-                <span class="post-tag"> WASDK</span>
-                <span class="post-tag"> UWP</span>
-                <span class="post-tag"> Console</span>
-
-                <h1 class="post-title" id="mdpost-title">Momentum and file performance quirks in UWP</h1>
-                <p class="post-description">Recently, inspired by the lack of an open source codebase for Everything I started a project I call Momentum.</p>
-                <div class="post-date">3/20/2022 12:00:00 AM</div>
-                <div class="post-body">
-                    <p>Recently, inspired by the lack of an open source codebase for Everything and some discussion with some devs on discord, I started a project I call Momentum. It was originally planned for UWP, to be a file indexer and search that had a modern Windows 11 look and feel. However, I found some weird issues while working on the indexer code.</p>
-</br>
-<h2 id="mdheadr--Console-code"> Console code</h2>
-<p>I started development on the indexer and search functions, which I programmed in a C# Console Application. The first goal was simple, create a performant indexer using hash tables and json. A simple Dictionary<string, string> was used first, but later became a Dictionary<string, IndexedFileInfo>.</p>
-</br>
-<h2 id="mdheadr--Indexer-code"> Indexer code</h2>
+            <article class="blog-post-page"><img src="/images/momentum-uwp-blog.webp" alt="" class="post-header-image"><div><span class="post-tag">Windows</span><span class="post-tag">C#</span><span class="post-tag">WASDK</span><span class="post-tag">UWP</span><span class="post-tag">Console</span></div><h1 class="post-title" id="mdpost-title">Momentum and file performance quirks in UWP</h1><p class="post-description">Recently, inspired by the lack of an open source codebase for Everything I started a project I call Momentum.</p><div class="post-date">March 20, 2022</div><div class="post-body"><p>Recently, inspired by the lack of an open source codebase for Everything and some discussion with some devs on discord, I started a project I call Momentum. It was originally planned for UWP, to be a file indexer and search that had a modern Windows 11 look and feel. However, I found some weird issues while working on the indexer code.</p>
+<h2 id="mdheadr-console-code">Console code</h2>
+<p>I started development on the indexer and search functions, which I programmed in a C# Console Application. The first goal was simple, create a performant indexer using hash tables and json. A simple Dictionary&lt;string, string&gt; was used first, but later became a Dictionary&lt;string, IndexedFileInfo&gt;.</p>
+<h2 id="mdheadr-indexer-code">Indexer code</h2>
 <ul>
-<li> Recursively scan through every folder from x starting point.</li>
-<li> Handle exceptions thrown by folders who block access.</li>
-<li> Return one filled dictionary with all files and folders scanned.</li>
+<li>Recursively scan through every folder from x starting point.</li>
+<li>Handle exceptions thrown by folders who block access.</li>
+<li>Return one filled dictionary with all files and folders scanned.</li>
 </ul>
-<pre class="code-block">
-<code>
+<pre><code>
 public static void IndexFiles()
 {
     var dictionary = SearchDirectory(&quot;C:\\Users\\jhset\\Pictures&quot;);
     Display.Message = &quot;Saving to File&quot;;
     SaveIndexesToFile(dictionary);
 }
+
 private static Dictionary&lt;string, List&lt;IndexedFileInfo&gt;&gt; SearchDirectory(string path)
 {
     var dictionary = new Dictionary&lt;string, List&lt;IndexedFileInfo&gt;&gt;();
@@ -132,12 +116,14 @@ private static Dictionary&lt;string, List&lt;IndexedFileInfo&gt;&gt; SearchDirec
     {
         // Get directories in path
         var dirs = Directory.GetDirectories(path);
+
         // If ther are dirs, recursively check them
         if (dirs.Length &gt; 0)
         {
             foreach (var dir in dirs)
             {
                 var ret = SearchDirectory(dir);
+
                 foreach (var f in ret)
                 {
                     if (dictionary.ContainsKey(f.Key))
@@ -154,8 +140,10 @@ private static Dictionary&lt;string, List&lt;IndexedFileInfo&gt;&gt; SearchDirec
                 }
             }
         }
+
         // Get the files in this dir
         var files = Directory.GetFiles(path);
+
         // Add each file to dictionary
         foreach (var file in files)
         {
@@ -174,6 +162,7 @@ private static Dictionary&lt;string, List&lt;IndexedFileInfo&gt;&gt; SearchDirec
                 dictionary.Add(name, list);
             }    
         }
+
         // Finally, add this folder to the dictionary
         string foldername = path.Split(&#39;\\&#39;).Last().ToLower();
         var flist = new List&lt;IndexedFileInfo&gt;();
@@ -187,40 +176,39 @@ private static Dictionary&lt;string, List&lt;IndexedFileInfo&gt;&gt; SearchDirec
         {
             dictionary.Add(foldername, flist);
         }
+
     }
+
     catch (Exception ex)
     {
         Display.TotalErrored++;
         return new Dictionary&lt;string, List&lt;IndexedFileInfo&gt;&gt;();
     }
     return dictionary;
+
 }
-</code>
-</pre>
-</br>
-<h2 id="mdheadr--Saving-code"> Saving code</h2>
+</code></pre>
+<h2 id="mdheadr-saving-code">Saving code</h2>
 <ul>
-<li> Serialize the dictionary to json</li>
-<li> Save to a file.</li>
+<li>Serialize the dictionary to json</li>
+<li>Save to a file.</li>
 </ul>
-<pre class="code-block">
-<code>
+<pre><code>
 private static void SaveIndexesToFile(Dictionary&lt;string, List&lt;IndexedFileInfo&gt;&gt; dictionary)
 {
+
     string text = JsonConvert.SerializeObject(dictionary, Formatting.Indented);
     File.WriteAllText(&quot;C:\\Users\\jhset\\Desktop\\Index.json&quot;, text);
 }
-</code>
-</pre>
-</br>
-<h2 id="mdheadr--Loading-code"> Loading code</h2>
+</code></pre>
+<h2 id="mdheadr-loading-code">Loading code</h2>
 <ul>
-<li> Load file in as string</li>
-<li> Deserialize json to dictionary</li>
+<li>Load file in as string</li>
+<li>Deserialize json to dictionary</li>
 </ul>
-<pre class="code-block">
-<code>
+<pre><code>
 public static Dictionary&lt;string, List&lt;IndexedFileInfo&gt;&gt; LoadIndexesFromFile()
+
 {
     try
     {
@@ -233,15 +221,13 @@ public static Dictionary&lt;string, List&lt;IndexedFileInfo&gt;&gt; LoadIndexesF
     return null;
     }
 }
-</code>
-</pre>
-<h2 id="mdheadr--Searching-code"> Searching code</h2>
+</code></pre>
+<h2 id="mdheadr-searching-code">Searching code</h2>
 <ul>
-<li> Search dictionary for results containing x</li>
-<li> Display.</li>
+<li>Search dictionary for results containing x</li>
+<li>Display.</li>
 </ul>
-<pre class="code-block">
-<code>
+<pre><code>
 var list = files.Where(o =&gt; o.Key.Contains(input)).ToList();
 for(int i = 0; i &lt; 15; i++)
 {
@@ -254,37 +240,25 @@ for(int i = 0; i &lt; 15; i++)
     }
     catch (Exception)
     {
+
     }
 }
-</code>
-</pre>
-</br>
-<h2 id="mdheadr--Results"> Results</h2>
+</code></pre>
+<h2 id="mdheadr-results">Results</h2>
 <p>The results of this first test were good, really good. Better than I was expecting. The test set was my C Drive, a Samsung SSD 970 EVO 1TB. Each test indexed 1,575,799 files. The inital console test was great, and brought in an indexing time of 70 seconds and saving time of 5 seconds.</p>
-</br>
-<h2 id="mdheadr--Moving-to-a-proper-UI"> Moving to a proper UI</h2>
-<p>I wanted to move this project to a UI framework, initally I wanted it to be UWP because mica isn't available in the WinUI 3 yet. So I get to work developing a simple UI and porting over the code. With the BroadFilesystemAccess capability enabled, the code for the file indexer could be exactly the same. I started running the first test and.. why is it so slow?</p>
-</br>
-<p>I looked back and forth. "No, the code is the same!" I tried disabling the UI that shows the current ammount of files indexed and elpased time since start. No, still not done after waiting 10 minutes. It's not just slow, it's SLOW. So now I need to check something</p>
-</br>
-<h2 id="mdheadr--WPF-and-the-WASDK"> WPF and the WASDK</h2>
+<h2 id="mdheadr-moving-to-a-proper-ui">Moving to a proper UI</h2>
+<p>I wanted to move this project to a UI framework, initally I wanted it to be UWP because mica isn&#39;t available in the WinUI 3 yet. So I get to work developing a simple UI and porting over the code. With the BroadFilesystemAccess capability enabled, the code for the file indexer could be exactly the same. I started running the first test and.. why is it so slow?</p>
+<p>I looked back and forth. &quot;No, the code is the same!&quot; I tried disabling the UI that shows the current ammount of files indexed and elpased time since start. No, still not done after waiting 10 minutes. It&#39;s not just slow, it&#39;s SLOW. So now I need to check something</p>
+<h2 id="mdheadr-wpf-and-the-wasdk">WPF and the WASDK</h2>
 <p>So I created two other projects with simple UIs, and ported the code over.</p>
-</br>
-<img style="max-height: 70vh;" alt="A graph comparing Console, WPF, and WASDK time to index, save, and load the database. Times showed in seconds." title="A graph comparing Console, WPF, and WASDK time to index, save, and load the database. Times showed in seconds." src="/images/momentum-1.webp" />
-</br>
-<p>Not bad, WASDK came out a bit slower but otherwise not bad. So you're probably thinking "Well where's UWP's times?"</p>
-</br>
-<img style="max-height: 70vh;" alt="Another graph showing Console, WPF, WASDK, and UWP times. The index time for UWP is alarmingly high." title="Another graph showing Console, WPF, WASDK, and UWP times. The index time for UWP is alarmingly high." src="/images/momentum-2.webp" />
-</br>
+<p><img src="/images/momentum-1.webp" alt="A graph comparing Console, WPF, and WASDK time to index, save, and load the database. Times showed in seconds." loading="lazy"></p>
+<p>Not bad, WASDK came out a bit slower but otherwise not bad. So you&#39;re probably thinking &quot;Well where&#39;s UWP&#39;s times?&quot;</p>
+<p><img src="/images/momentum-2.webp" alt="Another graph showing Console, WPF, WASDK, and UWP times. The index time for UWP is alarmingly high." loading="lazy"></p>
 <p>Ah. Thats 3 hours, 31 minutes, and 41 seconds. So, what the fuck?</p>
-</br>
-<p>Sadly, I don't have a good answer for this. My assumption is that the sandbox model causes file access to take more time. It sucks that even with the BroadFileSystem capability UWP's file access is so slow.</p>
-</br>
-<p>So I decided to move to the WASDK. Goodbye Mica, my beloved. This transition wasn't without issues either. When saving and loading I encountered a System.OutOfMemoryException. This only happened here, I don't have a good answer for why, but I had to design around it.</p>
-</br>
-<h2 id="mdheadr--New-saving-code"> New saving code</h2>
-<pre class="code-block">
-<code>
+<p>Sadly, I don&#39;t have a good answer for this. My assumption is that the sandbox model causes file access to take more time. It sucks that even with the BroadFileSystem capability UWP&#39;s file access is so slow.</p>
+<p>So I decided to move to the WASDK. Goodbye Mica, my beloved. This transition wasn&#39;t without issues either. When saving and loading I encountered a System.OutOfMemoryException. This only happened here, I don&#39;t have a good answer for why, but I had to design around it.</p>
+<h2 id="mdheadr-new-saving-code">New saving code</h2>
+<pre><code>
 private static void SaveIndexesToFile(Dictionary&lt;string, List&lt;IndexedFileInfo&gt;&gt; dictionary)
 {
     string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -293,6 +267,7 @@ private static void SaveIndexesToFile(Dictionary&lt;string, List&lt;IndexedFileI
     {
         System.IO.Directory.CreateDirectory($&quot;{path}\\Momentum&quot;);
     }
+
     StreamWriter sw = File.CreateText($&quot;{path}\\Momentum\\Index.json&quot;);
     JsonTextWriter writer = new JsonTextWriter(sw);
     writer.Formatting = Formatting.Indented;
@@ -318,29 +293,30 @@ private static void SaveIndexesToFile(Dictionary&lt;string, List&lt;IndexedFileI
         sw.Flush();
     }
     writer.WriteEndObject();
+
     writer.Flush();
     writer.Close();
 }
-</code>
-</pre>
-</br>
-<h2 id="mdheadr--New-loading-code"> New loading code</h2>
-<pre class="code-block">
-<code>
+</code></pre>
+<h2 id="mdheadr-new-loading-code">New loading code</h2>
+<pre><code>
 public static async void LoadIndexesFromFile()
 {
     try
     {
         IsFullyLoaded = false;
         Files = new ConcurrentDictionary&lt;string, List&lt;IndexedFileInfo&gt;&gt;();
+
         string p = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         string[] dirs = Directory.GetDirectories(p);
         if (!dirs.Contains(&quot;Momentum&quot;))
         {
             System.IO.Directory.CreateDirectory($&quot;{p}\\Momentum&quot;);
         }
+
         StreamReader sr = File.OpenText($&quot;{p}\\Momentum\\Index.json&quot;);
         JsonTextReader reader = new JsonTextReader(sr);
+
         while (reader.Read())
         {
             if (reader.Value != null)
@@ -379,30 +355,24 @@ public static async void LoadIndexesFromFile()
             }
         }
         IsFullyLoaded = true;
+
         //var obj = JsonReader .DeserializeObject&lt;Dictionary&lt;string, List&lt;IndexedFileInfo&gt;&gt;&gt;(text);
         //Files = obj;
+
     }
     catch (Exception)
     {
         return;
     }
 }
-</code>
-</pre>
-</br>
+</code></pre>
 <p>The new loading code is cool because the application can now load in files while you search, so the user can search before the full index file is done loading. This is nice because larger index files can take a few seconds to load.</p>
-</br>
-<h2 id="mdheadr--WASDK-and-the-final-application"> WASDK and the final application</h2>
-<p>As much as I'll miss mica, the WASDK is nice to use. If you're coming from UWP, you'll be right at home. Only a few things differ, but the XAML code is mostly the same.</p>
-</br>
-<img style="max-height: 70vh;" alt="A screenshot of the momentum WASDK application's search screen" title="A screenshot of the momentum WASDK application's search screen" src="/images/momentum-3.webp" />
-</br>
-<img style="max-height: 70vh;" alt="A screenshot of the momentum WASDK application's indexing screen" title="A screenshot of the momentum WASDK application's indexing screen" src="/images/momentum-4.webp" />
-</br>
+<h2 id="mdheadr-wasdk-and-the-final-application">WASDK and the final application</h2>
+<p>As much as I&#39;ll miss mica, the WASDK is nice to use. If you&#39;re coming from UWP, you&#39;ll be right at home. Only a few things differ, but the XAML code is mostly the same.</p>
+<p><img src="/images/momentum-3.webp" alt="A screenshot of the momentum WASDK application&#39;s search screen" loading="lazy"></p>
+<p><img src="/images/momentum-4.webp" alt="A screenshot of the momentum WASDK application&#39;s indexing screen" loading="lazy"></p>
 <p>If you want to test the application out and see the full source code, check out the GitHub Repository!</p>
-
-                </div>
-            </article>
+</div></article>
             <div class="blog-post-page">
                 <div id="comments-header">
                     <h1>Comments</h1>
@@ -526,21 +496,7 @@ public static async void LoadIndexesFromFile()
                         Settings
                     </li>
                 </a>
-                <hr style="margin: 10px 10px 10px 5px;" id="setdivider"/>
-                <a href="#mdpost-title"><li>Momentum and file performance quirks in UWP</li></a>
-<a href="#mdheadr--Console-code"><li> Console code</li></a>
-<a href="#mdheadr--Indexer-code"><li> Indexer code</li></a>
-<a href="#mdheadr--Saving-code"><li> Saving code</li></a>
-<a href="#mdheadr--Loading-code"><li> Loading code</li></a>
-<a href="#mdheadr--Searching-code"><li> Searching code</li></a>
-<a href="#mdheadr--Results"><li> Results</li></a>
-<a href="#mdheadr--Moving-to-a-proper-UI"><li> Moving to a proper UI</li></a>
-<a href="#mdheadr--WPF-and-the-WASDK"><li> WPF and the WASDK</li></a>
-<a href="#mdheadr--New-saving-code"><li> New saving code</li></a>
-<a href="#mdheadr--New-loading-code"><li> New loading code</li></a>
-<a href="#mdheadr--WASDK-and-the-final-application"><li> WASDK and the final application</li></a>
-
-            </ul>
+                <hr style="margin: 10px 10px 10px 5px;" id="setdivider"/><a href="#mdpost-title"><li>Momentum and file performance quirks in UWP</li></a><a href="#mdheadr-console-code"><li>Console code</li></a><a href="#mdheadr-indexer-code"><li>Indexer code</li></a><a href="#mdheadr-saving-code"><li>Saving code</li></a><a href="#mdheadr-loading-code"><li>Loading code</li></a><a href="#mdheadr-searching-code"><li>Searching code</li></a><a href="#mdheadr-results"><li>Results</li></a><a href="#mdheadr-moving-to-a-proper-ui"><li>Moving to a proper UI</li></a><a href="#mdheadr-wpf-and-the-wasdk"><li>WPF and the WASDK</li></a><a href="#mdheadr-new-saving-code"><li>New saving code</li></a><a href="#mdheadr-new-loading-code"><li>New loading code</li></a><a href="#mdheadr-wasdk-and-the-final-application"><li>WASDK and the final application</li></a></ul>
             </div>
         </aside>
     </div>
@@ -551,7 +507,7 @@ public static async void LoadIndexesFromFile()
     <script src="/js/comments.js"></script>
     <link id="codeTheme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-
     <script>hljs.highlightAll();</script>
 </body>
 </html>
+

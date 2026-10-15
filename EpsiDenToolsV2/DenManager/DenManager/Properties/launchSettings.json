@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "DenManager (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "DenManager (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

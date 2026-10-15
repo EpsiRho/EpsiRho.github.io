@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Epsi's Den" />
+    <meta property="og:provider_name" content="Epsi's Den" />
+    <meta name="theme-color" content="#2c2220" />
+    <meta property="og:logo" content="https://epsirho.com/images/favicon-32x32.webp" />
+
+    <meta property="og:title" content="Pointer Fishing" />
+    <meta property="og:description" content="Turn your desktop into an ocean to fish from!" />
+    <meta property="og:image" content="/images/pointerfishingbanner.png" />
+
+
+    <title>Pointer Fishing</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/posts.css">
+    <link rel="stylesheet" href="/styles/pointer-fishing.css">
+    <link rel="stylesheet" href="/styles/music.css">
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="profile">
+                <img src="/images/empty.webp" alt="Profile" class="profile-img">
+                <h1 class="profile-name">Epsi's Den</h1>
+                <p class="profile-bio">Software developer, Lava lamp dog, totally a professional</p>
+                <div class="social-links">
+                    <a href="https://bsky.app/profile/epsirho.com" aria-label="Bluesky" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-bluesky"
+                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path
+                                d="M6.335 5.144c-1.654 -1.199 -4.335 -2.127 -4.335 .826c0 .59 .35 4.953 .556 5.661c.713 2.463 3.13 2.75 5.444 2.369c-4.045 .665 -4.889 3.208 -2.667 5.41c1.03 1.018 1.913 1.59 2.667 1.59c2 0 3.134 -2.769 3.5 -3.5c.333 -.667 .5 -1.167 .5 -1.5c0 .333 .167 .833 .5 1.5c.366 .731 1.5 3.5 3.5 3.5c.754 0 1.637 -.571 2.667 -1.59c2.222 -2.203 1.378 -4.746 -2.667 -5.41c2.314 .38 4.73 .094 5.444 -2.369c.206 -.708 .556 -5.072 .556 -5.661c0 -2.953 -2.68 -2.025 -4.335 -.826c-2.293 1.662 -4.76 5.048 -5.665 6.856c-.905 -1.808 -3.372 -5.194 -5.665 -6.856z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/EpsiRho" aria-label="GitHub" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github"
+                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path
+                                d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5">
+                            </path>
+                        </svg>
+                    </a>
+                    <a href="https://furry.engineer/@epsi" aria-label="Mastodon" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-mastodon"
+                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path
+                                d="M18.648 15.254c-1.816 1.763 -6.648 1.626 -6.648 1.626a18.262 18.262 0 0 1 -3.288 -.256c1.127 1.985 4.12 2.81 8.982 2.475c-1.945 2.013 -13.598 5.257 -13.668 -7.636l-.026 -1.154c0 -3.036 .023 -4.115 1.352 -5.633c1.671 -1.91 6.648 -1.666 6.648 -1.666s4.977 -.243 6.648 1.667c1.329 1.518 1.352 2.597 1.352 5.633s-.456 4.074 -1.352 4.944z">
+                            </path>
+                            <path
+                                d="M12 11.204v-2.926c0 -1.258 -.895 -2.278 -2 -2.278s-2 1.02 -2 2.278v4.722m4 -4.722c0 -1.258 .895 -2.278 2 -2.278s2 1.02 2 2.278v4.722">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24"
+                                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z"></path>
+                                <polyline points="5 12 3 12 12 3 21 12 19 12"></polyline>
+                                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
+                                <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
+                            </svg>
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/site/about" class="nav-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-square"
+                                width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M9 10a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
+                                <path d="M6 21v-1a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v1"></path>
+                                <path
+                                    d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z">
+                                </path>
+                            </svg>
+                            About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/site/posts" class="nav-link">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="icon icon-tabler icon-tabler-layout-dashboard" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M4 4h6v8h-6z"></path>
+                                <path d="M4 16h6v4h-6z"></path>
+                                <path d="M14 12h6v8h-6z"></path>
+                                <path d="M14 4h6v4h-6z"></path>
+                            </svg>
+                            Blog Posts
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/site/projects" class="nav-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-code">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M7 8l-4 4l4 4" />
+                                <path d="M17 8l4 4l-4 4" />
+                                <path d="M14 4l-4 16" />
+                            </svg>
+                            Projects
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/site/music" class="nav-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-music">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M3 17a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                                <path d="M13 17a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                                <path d="M9 17v-13h10v13" />
+                                <path d="M9 8h10" />
+                            </svg>
+                            Music Recommendations
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <article class="blog-post-page" id="pointer-fishing-page">
+                <div class="project-header-container">
+                    <div class="project-header-shadow">
+                        <div class="project-header-info">
+                            <h1 class="post-title" id="pf-top">Pointer Fishing</h1>
+                            <Br>
+                            <p class="release-info">Coming soon to</p>
+                            <div class="post-tags">
+                                <span class="project-tag">Microsoft Store</span>
+                                <span class="project-tag">itch.io</span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <img alt="Pixel fish swimming across bright ocean water" src="/images/pointerfishingbanner.png"
+                        class="project-header-image">
+                </div>
+                <div class="pf-window-bar"><span>Pointer Fishing</span></div>
+                <div class="pf-content post-body">
+                    <section class="pf-section" id="pf-catch">
+                        <p class="pf-lead"><span class="post-highlight">Turn your desktop into an ocean to fish from!</span>
+                        Fish will spawn anywhere on a selected monitor. Grab them with your mouse and reel them in by dragging them into your net. But they wont go easily, they'll drag your mouse as they try to run. Fight to keep them within your net long enough to catch them!</p>
+                        <button class="pf-preview pf-preview--hero" type="button" data-pf-preview="pf-detail-catch"
+                            data-pf-title="Catching" aria-label="Open catching preview and details">
+                            <video src="/images/PointerFishingOne.webm" autoplay loop muted playsinline
+                                aria-label="Catching a fish as it pulls the cursor around the desktop"></video>
+                            <span class="pf-preview-label">Catching</span>
+                        </button>
+                    </section>
+
+                    <section class="pf-section" id="pf-collection">
+                        <h2>Fish Fish Fish Fish Fish</h2>
+                        <p>There are tons of different fish to find, spread out across various themed unlockable locations. Fish can also mutate, giving tons of variants to collect.</p>
+                        <div class="pf-stats" aria-label="Game collection at a glance">
+                            <div class="pf-stat"><strong>200</strong><span>Fish</span></div>
+                            <div class="pf-stat"><strong>9</strong><span>Locations</span></div>
+                            <div class="pf-stat"><strong>6</strong><span>Rarities</span></div>
+                            <div class="pf-stat"><strong>9</strong><span>Mutations</span></div>
+                            <div class="pf-stat"><strong>8</strong><span>Behaviors</span></div>
+                        </div>
+                        
+                    </section>
+
+                    <div class="pf-card-grid">
+                        <section class="pf-section pf-card" id="pf-bounties">
+                            <h2>Variants</h2>
+                            <p>There are 14,400 different variations of fish to catch!</p>
+                            <button class="pf-preview" type="button" data-pf-preview="pf-detail-collection"
+                            data-pf-title="Variants" aria-label="Open rarity preview and collection details">
+                                <img src="/images/Rarities.png" alt="Six colored fish silhouettes showing rarity tiers"
+                                    loading="lazy">
+                                <span class="pf-preview-label">Variants</span>
+                            </button>
+                        </section>
+
+                        <section class="pf-section pf-card" id="pf-bounties">
+                            <h2>Bounties</h2>
+                            <p>Help friendly faces find specific fish to get special rewards.</p>
+                            <button class="pf-preview" type="button" data-pf-preview="pf-detail-bounties"
+                                data-pf-title="Bounties" aria-label="Open bounty preview and details">
+                                <img src="/images/Bounty.png" alt="Two active fish bounties with coin rewards"
+                                    loading="lazy">
+                                <span class="pf-preview-label">More Info</span>
+                            </button>
+                        </section>
+
+                        <section class="pf-section pf-card" id="pf-gear">
+                            <h2>Gear</h2>
+                            <p>Mix equipment to target specific fish or to combat rough waters and strong fish.</p>
+                            <button class="pf-preview" type="button" data-pf-preview="pf-detail-gear"
+                                data-pf-title="Gear" aria-label="Open gear preview and details">
+                                <img src="/images/GearPreview.png" alt="A list of equippable gear and its stat effects"
+                                    loading="lazy">
+                                <span class="pf-preview-label">More Info</span>
+                            </button>
+                        </section>
+
+                        <section class="pf-section pf-card" id="pf-modifiers">
+                            <h2>Catch Modifiers</h2>
+                            <p>Many different systems add modifiers to your catches. These adjust your chances to find fish and how hard it is to catch them.</p>
+                            <button class="pf-preview" type="button" data-pf-preview="pf-detail-modifiers"
+                                data-pf-title="Modifiers" aria-label="Open modifiers preview and details">
+                                <img src="/images/Modifiers.png"
+                                    alt="Current catch stats and rarity, mutation, and behavior chances" loading="lazy">
+                                <span class="pf-preview-label">More Info</span>
+                            </button>
+                        </section>
+
+                        <section class="pf-section pf-card" id="pf-conditions">
+                            <h2>Cat Café</h2>
+                            <p>Buy drinks from the café to get various boosts to your stats.</p>
+                            <button class="pf-preview" type="button" data-pf-preview="pf-detail-drinks"
+                                data-pf-title="Cat Café" aria-label="Open Cat Café preview and details">
+                                <video src="/images/Drinks.webm" autoplay loop muted playsinline
+                                aria-label="A preview of the Cat Café showing a cat behind a counter serving drinks to customers"></video>
+                                
+                                <span class="pf-preview-label">More Info</span>
+                            </button>
+                        </section>
+                        <section class="pf-section pf-card" id="pf-conditions">
+                            <h2>Ocean Conditions</h2>
+                            <p>Daily and weekly ocean conditions add modifiers that affect your catches in positive and negative ways.</p>
+                            <button class="pf-preview" type="button" data-pf-preview="pf-detail-conditions"
+                                data-pf-title="Ocean conditions" aria-label="Open ocean forecast preview and details">
+                                <img src="/images/OceanConditions.png"
+                                    alt="A three-day forecast showing Blood Moon, Lazy Day, and Low Tide"
+                                    loading="lazy">
+                                <span class="pf-preview-label">More Info</span>
+                            </button>
+                        </section>
+                    </div>
+
+                    <section class="pf-section" id="pf-aquarium">
+                        
+                        <h2>Desktop Aquarium</h2>
+                        <p>Give your favorite catches a home in an aquarium window you can place on anywhere on screen.</p>
+                        <button class="pf-preview pf-preview--hero" type="button" data-pf-preview="pf-detail-aquarium"
+                            data-pf-title="Aquarium" aria-label="Open aquarium preview and details">
+                            <video src="/images/Aquarium.webm" autoplay loop muted playsinline
+                                aria-label="An aquarium full of fish swimming over a bright blue seabed"></video>
+                            <span class="pf-preview-label">More Info</span>
+                        </button>
+                    </section>
+
+                    <section class="pf-section pf-footnotes" id="pf-credits">
+                        <h2>Notes and credits</h2>
+                        <details>
+                            <summary>Extras</summary>
+                            <h2>Ripple Shader</h2>
+                            <p>An optional feature that adds a water rippling effect across your whole screen. The water ripples as you move your cursor.
+                                It's a heavier affect, so it's not enabled by default. Additionally, it's hard to show off as to create the affect, it has to exclude 
+                                the ripple shader from the system's capture, so screen sharing and screen recording won't be able to see it. It can be toggled anytime in the settings menu.
+                            </p>
+                            <h2>Discord RPC</h2>
+                            <p>Enabled by default, this feature connects to your locally running Discord client to show your current fishing location and, 
+                                if separately enabled, whether you are in the middle of catching a fish.
+                            </p>
+                            <h2>Stats</h2>
+                            <p>The stats window keeps track of your catch history, play time, and other statistics. 
+                                It also shows any awarded achievements.
+                            </p>
+                            <h2>Particles</h2>
+                            <p>The game uses various particle effects to show fish spawning and indicate if a fish is affecting your catch with it's behavior.
+                                These can be tuned to have more or less particles, or turned off entirely in the settings menu.
+                            </p>
+                            <h2>Save Export/Import</h2>
+                            <p>Pointer Fishing has no cloud saves or account system. To help you move across devices and backup your saves, 
+                                the settings menu has an easy way to export and import your save data. 
+                                Exporting creates a single file that contains all your progress and settings.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>Requirements</summary>
+                            <table>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>Minimum</td>
+                                    <td>Recommended</td>
+                                </tr>
+                                <tr>
+                                    <td>OS</td>
+                                    <td>Windows 10 22H2, 64-bit<sup>1</sup></td>
+                                    <td>Windows 11, 64-bit</td>
+                                </tr>
+                                <tr>
+                                    <td>Processor</td>
+                                    <td>Dual-core Intel/AMD processor ~2GHz</td>
+                                    <td>Modern quad-core Intel/AMD processor</td>
+                                </tr>
+                                <tr>
+                                    <td>Memory</td>
+                                    <td>4GB</td>
+                                    <td>8GB</td>
+                                </tr>
+                                <tr>
+                                    <td>Graphics</td>
+                                    <td>DirectX 9 and Shader Model 2.0 compatible integrated graphics<sup>2</sup></td>
+                                    <td>DirectX 11 and Shader Model 3.0 compatible integrated or dedicated graphics</td>
+                                </tr>
+                                <tr>
+                                    <td>Display Resolution</td>
+                                    <td>1280x720 at 100% scaling</td>
+                                    <td>1920x1080+</td>
+                                </tr>
+                                <tr>
+                                    <td>Storage</td>
+                                    <td>300 MB available</td>
+                                    <td>1 GB available</td>
+                                </tr>
+                                <tr>
+                                    <td>Input</td>
+                                    <td>Mouse</td>
+                                    <td>Mouse + Keyboard</td>
+                                </tr>
+                                <tr>
+                                    <td>Internet<sup>3</sup></td>
+                                    <td>None</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </table>
+                            <p>1: The optional Ripple Effect requires Windows 11.</p>
+                            <p>2: The optional Ripple Effect requires DirectX 11 and Shader Model 3.0.</p>
+                            <p>3: Pointer Fishing does not require an internet connection to play. 
+                                Internet is only required for downloading the game, sending bug reports, and using Discord Rich Presence.</p>
+                        </details>
+                        <details>
+                            <summary>Attribution</summary>
+                            <p>I would not have been able to complete this project without the work of these great artists!</p>
+                            <ul>
+                                <li><a href="https://toffeecraft.itch.io/ui-user-interface-pack-medieval">ToffeeCraft - Medieval UI Pack (Modified)</a></li>
+                                <li><a href="https://happypotato100.itch.io/fishing-icon-pack">happypotato100 - Fishing Icon Pack (Modified)</a></li>
+                                <li><a href="https://pixelodyssey.itch.io/100-fish-icons">PixelOdyssey - 100 Fish Icons (Modified)</a></li>
+                                <li><a href="https://beowulf.itch.io/beowulfs-fish-asset-pack">Beowulf - Fish Asset Pack (Modified)</a></li>
+                                <li><a href="https://github.com/Makin-Things/weather-icons">Makin-Things - Weather Icons (Modified)</a></li>
+                                <li><a href="https://brysiaa.itch.io/fishtank-pixel-asset-pack-16x16px">brysiaa - Fishtank</a></li>
+                                <li><a href="https://ko-fi.com/s/1d57aec437">cccretina - Pixel Art Bartender</a></li>
+                                <li><a href="https://kelvira.itch.io/currency-coins-gold-cash-icons">kelvira - Currency Icons</a></li>
+                                <li><a href="https://gdainti.itch.io/retro-computer-icons-set-110-icons">gdainti - Retro Computer Icons (Modified)</a></li>
+                                <li><a href="https://ghostpixxells.itch.io/pixel-mart">ghostpixxells - Pixel Mart (Modified)</a></li>
+                                <li><a href="https://dusk-games.itch.io/dusk-free-ui-icons">Dusk Games - UI Icons</a></li>
+                                <li><a href="https://whoga1234.itch.io/freepixelart-magic-book-icons64x6432x32">HONEY DOT - Magic Book Icons (Modified)</a></li>
+                                <li><a href="https://inking.itch.io/60-furry-portrait-assets-pixelart-pixel-art-asset-pack">InKing - Furry Portraits</a></li>
+                                <li><a href="https://nakufin.straw.page/">Nakufin - Epsi's Portrait</a></li>
+                            </ul>
+
+                        </details>
+                        <details>
+                            <summary>Privacy Policy</summary>
+                            <p>Pointer Fishing Privacy Policy</p>
+                            <p>Effective October 11, 2026</p>
+
+                            <p>Pointer Fishing is made by Epsi (https://www.epsirho.com). This policy describes the information the game uses and your choices.</p>
+
+                            <p>Local progress and settings:</p>
+                            <p>The game saves your level, coins, inventory, equipment, aquarium, bounties, achievements, discovered fish/combos/conditions/drinks, play time, catch history, and settings on your computer. Saves are stored under %APPDATA%\ARI\PointerFishing. Recovery checkpoints and backups are stored there too. These files are not automatically uploaded or synced by the game. Your operating system or backup software may separately back them up.</p>
+
+                            <p>Statistics and input:</p>
+                            <p>Catch statistics and play time are used for the game's Stats window and achievements. Mouse position and cursor movement are used for fishing gameplay. The game does not record keystrokes, maintain a browsing history, or send mouse movements to the developer.</p>
+
+                            <p>Diagnostics:</p>
+                            <p>Diagnostic logs may contain error messages, technical details, and file paths supplied by Windows or exceptions. Logs are stored under %APPDATA%\ARI\PointerFishing\Logs. The game retains the current log and one rotated previous log. Logs are not sent automatically.</p>
+
+                            <p>Discord Rich Presence:</p>
+                            <p>If enabled in Settings, the game connects to your locally running Discord client to display activity such as your current fishing location and, if separately enabled, whether you are catching a fish and its rarity. Discord receives and handles that activity under its own privacy policy (https://discord.com/privacy). Disable Discord Rich Presence to stop this connection. The developer does not receive your Discord account information from the game.</p>
+
+                            <p>Ripple Shader:</p>
+                            <p>When the ripple effect is enabled, Windows DGXI Desktop Duplication API copies pixels from the selected display into local memory/graphics resources to render the effect. This can include other applications visible on that display. The game does not record those images to disk or transmit them. Capture stops when the effect is disabled. Always On keeps the effect running between catches. To support the effect, the Ripple Shader Rendering surface is hidden from the system's capture to avoid recursive capturing, meaning screen share and screen recording wont be able to see the ripple shader. Disable Ripple Shader to avoid this desktop capture.</p>
+
+                            <p>Optional bug reports and external links:</p>
+                            <p>The game has no automatic analytics, advertising, or developer telemetry. If you choose Send Report, the Issue Summary and Steps to Reproduce you enter are sent through HTTPS to the developer's Google Form. System information is included only if you check its option, you can preview the exact text before sending. It contains the game version, Windows/runtime information, rendering tier, and monitor details. Saves, logs, screenshots, account identifiers, and usernames are not automatically attached. Please avoid entering personal or sensitive information you do not want to share. Google processes submissions and associated connection metadata, such as IP address, under its privacy policy (https://policies.google.com/privacy). The developer uses reports to investigate and resolve issues and retains them while needed for support and development. 
+                            <p>Opening any attribution or support link launches your browser, each site has its own privacy practices.</p>
+
+                            <p>Your choices and deletion:</p>
+                            <p>You can disable Discord and Ripple Shader, omit system information, or choose not to submit a report. Export and Import let you manage a local save archive. Reset Save Data starts a new profile but deliberately retains a recovery backup. To permanently remove local progress, backups, and logs, close the game and delete the folders listed above and any exported archives you kept. Uninstalling may leave these user files in place.</p>
+
+                            <p>Contact and requests:</p>
+                            <p>For privacy questions, corrections, or deletion requests concerning a submitted report, contact Epsi through epsirho@epsirho.com. Include enough report details to locate it, the game does not create an account or unique reporting identifier for you.</p>
+
+                            <p>Updates:</p>
+                            <p>Changes to this policy will be included in game updates with a revised effective date.</p>
+                        </details>
+                    </section>
+                </div>
+            </article>
+
+            <dialog id="pf-dialog" class="pf-dialog" aria-labelledby="pf-dialog-title">
+                <div class="pf-dialog-header"><strong id="pf-dialog-title">Preview</strong><button type="button"
+                        class="pf-dialog-close" aria-label="Close preview">×</button></div>
+                <div class="pf-dialog-content"></div>
+            </dialog>
+
+            <template id="pf-detail-catch"><video src="/images/PointerFishingOne.webm" autoplay loop muted playsinline
+                    aria-label="Fish pulling the cursor as the player tries to keep it in the net"></video>
+                <div class="pf-dialog-copy">
+                    <h2>Catching</h2>
+                    <p>The goal is simple: keep the fish within your net. But fish will try to run away and drag your cursor with them.
+                        Many things affect how difficult a fish is to catch: higher rarity fish swim faster, heavier fish are harder to pull, and 
+                        their behavior changes how it tries to run.</p>
+                        <br>
+                        <h3>Behaviors:</h3>
+                        <ul>
+                            <li>Normal fish swim straight away from the net.</li>
+                            <li>Confused fish swim in random directions.</li>
+                            <li>Erratic fish randomly boost away, adding more strength to their pull.</li>
+                            <li>Floppers kick the net around to new positions.</li>
+                            <li>Anxious fish fight harder as they get close to capture.</li>
+                            <li>Slippery fish are smaller, giving them an advantage in staying away from the net.</li>
+                            <li>Aggressive fish swim faster constantly.</li>
+                            <li>Tired fish swim much slower.</li>
+                        </ul>
+                </div>
+            </template>
+            <template id="pf-detail-collection"><img src="/images/Rarities.png"
+                    alt="Six fish silhouettes colored by rarity">
+                <div class="pf-dialog-copy">
+                    <h2>Rarities</h2>
+                    <p>Each fish species has a rarity level that affects its value and chance to spawn. You'll be able to easily tell what 
+                        rarity you're catching by the color and sprite that appears on screen.</p>
+                    <ul>
+                        <li>Common</li>
+                        <li>Uncommon</li>
+                        <li>Rare</li>
+                        <li>Legendary</li>
+                        <li>Abyssal</li>
+                        <li>Tall Tale</li>
+                    </ul>
+                    <br>
+                    <h2>Mutations</h2>
+                    <p>After you unlock the Demon Core, fish can mutate in different ways. Mutations add a visual
+                        effect and raise a fish's value.</p>
+                    <ul>
+                        <li>None</li>
+                        <li>Big</li>
+                        <li>Massive</li>
+                        <li>Irratiated</li>
+                        <li>Reflective</li>
+                        <li>Bioluminescent</li>
+                        <li>Charged</li>
+                        <li>Transparent</li>
+                        <li>Prismatic</li>
+                    </ul>
+                    <br>
+                    <h2>Behaviors</h2>
+                    <p>Fish have different behaviors that affect how they swim during catches and in the aquarium.</p>
+                    <ul>
+                        <li>Normal</li>
+                        <li>Confused</li>
+                        <li>Erratic</li>
+                        <li>Slippery</li>
+                        <li>Flopper</li>
+                        <li>Aggresive</li>
+                        <li>Anxious</li>
+                        <li>Tired</li>
+                    </ul>
+                </div>
+            </template>
+            <template id="pf-detail-bounties"><img src="/images/Bounty.png" alt="Bounty requests for particular fish">
+                <div class="pf-dialog-copy">
+                    <h2>Bounties</h2>
+                    <p>Friendly faces will ask for help finding fish. Each character gives 1 bounty per refresh, for a total of 4. 
+                        Completing all of them refreshes the Bounty Board early, or you can refresh it manually after 2 hours. </p>
+                    <p>Bounties ask for particular species, rarities, mutations, behaviors, or weights. They pay more
+                        than the fish would normally be worth or reward gear and aquarium items.</p>
+                    <p>Completing an NPC's bounty gives them xp too. When they level up they offer harder Bounties with higher rewards.</p>
+                </div>
+            </template>
+            <template id="pf-detail-gear"><img src="/images/GearPreview.png"
+                    alt="Gear list showing different bonuses and tradeoffs">
+                <div class="pf-dialog-copy">
+                    <h2>Choose your loadout</h2>
+                    <p>Gear can be bought from the shop, found while fishing, and be rewarded by completing bounties. 
+                        There are <strong>110 unique gear</strong>, but only two equipment slots to start, with a third available after level 100.</p>
+                    
+                </div>
+            </template>
+            <template id="pf-detail-modifiers"><img src="/images/Modifiers.png"
+                    alt="Detailed catch stats and probability bars">
+                <div class="pf-dialog-copy">
+                    <h2>Modifiers</h2>
+                    <p><strong>Modifiers</strong> can change catch stats and your chances of finding certain rarities, mutations, and
+                        behaviors. <strong>Gear</strong>, <strong>Drinks</strong>, <strong>Ocean Conditions</strong>, and <strong>Catch Combos</strong> 
+                        can contribute to your current stats. To help you keep track, the modifiers tab shows your stats and whats affecting them.</p>
+                        <br>
+                    <p><strong>Catch Combos</strong> activate when you land certain fish in order, applying different modifiers 
+                        based on the combo you hit. <strong>There are 61 to find</strong>. You can keep track of the ones you've found in the index.</p>
+                        <br>
+                </div>
+            </template>
+            <template id="pf-detail-drinks"><video src="/images/Drinks.webm" autoplay loop muted playsinline
+                    aria-label="A preview of the Cat Café showing a cat behind a counter serving drinks to customers"></video>
+                <div class="pf-dialog-copy">
+                    <h2>Drinks</h2>
+                    <p><strong>Drinks</strong> from the local cat café offer boosts for various stats. 
+                        The Lucky Cocktail and Coffee are always available, while 2 <strong>Daily Drinks</strong> swap out every day offering different boosts. 
+                        In total, there are <strong>27 different drinks</strong> to help you on your next catch.</p>
+                    <span class="post-muted">Note: This game has no online functionality, the daily drink is picked using the current system date deterministically.</span>
+                </div>
+            </template>
+            <template id="pf-detail-conditions"><img src="/images/OceanConditions.png"
+                    alt="Daily and weekly ocean forecast">
+                <div class="pf-dialog-copy">
+                    <h2>Ocean Conditions</h2>
+                    <p>There are <strong>26 daily</strong> and <strong>14 weekly</strong> ocean conditions. They
+                        add modifiers that last all day and all week, afecting your chances and difficulty. Switch up your gear to adapt to the conditions.
+                        The weather forecast gives you a preview of the conditions for up to the next week to help you plan your fishing trips.</p>
+                    <br>
+                    <p>Example Conditions:</p>
+                    <ul>
+                        <li><strong>Blood Moon</strong></li>
+                        <ul>
+                            <li>Aggression Chance x2.4</li>
+                            <li>Erratic Chance x1.8</li>
+                            <li>Fish Strength x1.12</li>
+                            <li>Mutation Luck +12</li>
+                        </ul>
+                        <li><strong>Lazy Day</strong></li>
+                        <ul>
+                            <li>Fish Strength x0.86</li>
+                            <li>Tired Chance x3.5</li>
+                            <li>Spawn Rate x0.82</li>
+                        </ul>
+                        <li><strong>Low Tide</strong></li>
+                        <ul>
+                            <li>Abyssal Chance x2.4</li>
+                            <li>Net Size x0.86</li>
+                        </ul>
+                        <li><strong>Tropical Disturbance</strong></li>
+                        <ul>
+                            <li>Luck -14 (In Everblue)</li>
+                            <li>Mutation Luck +18 (In Avarra)</li>
+                            <li>Luck -14 (In Everblue)</li>
+                            <li>Mutation Luck +18 (In Avarra)</li>
+                        </ul>
+                    </ul>
+                    <span class="post-muted">Note: This game has no online functionality, ocean conditions are picked using the current system date deterministically.</span>
+                </div>
+            </template>
+            <template id="pf-detail-aquarium"><video src="/images/Aquarium.webm" autoplay loop muted playsinline
+                    aria-label="Fish swimming in the aquarium"></video>
+                <div class="pf-dialog-copy">
+                    <h2>Aquarium</h2>
+                    <p>Move the aquarium window anywhere on screen, or make it full screen to let your fish roam
+                        across your whole monitor. Change up the floor and background, or make it transparent to see fish swim around on top of 
+                        your app windows. Find decorative items to place in the aquarium while fishing and completing quests. Fish swim around depending on their behavior: floppers bounce off other fish, erratic
+                        fish boost around, aggressive fish charge at your mouse when you tap on the window, etc.</p>
+                </div>
+            </template>
+
+        </main>
+
+        <div id="settings-bg">
+            <div id="settings-modal" class="themebtn">
+                <div class="settings-modal-header themebtn">
+                    <p class="themebtn settings-modal-version"><span class="version-display"></span> &#x2022; <a
+                            class="changelog-link themebtn" href="/site/changelog">changelog</a></p>
+                    <button type="button" aria-label="Close settings" id="close-modal"
+                        class="settings-close-btn themebtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="icon icon-tabler icons-tabler-outline icon-tabler-x">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M18 6l-12 12" />
+                            <path d="M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="settings-modal-body themebtn">
+                    <label class="themebtn">Select Theme:</label>
+                    <div class="toggle-container themebtn">
+                        <label class="toggle-switch themebtn">
+                            <input class="themebtn" type="checkbox">
+                            <span class="slider themebtn"></span>
+                        </label>
+                        <p class="themebtn transparent-desc">Enable Transparent Effects <span class="themebtn"
+                                title="If your browser supports transparent backgrounds, you can enable this to make the site theme show through to your desktop (or browser bg).">&#x1F6C8</span>
+                        </p>
+                    </div>
+
+                    <div class="theme-picker themebtn">
+                        <div class="theme-option tooltip themebtn" id="theme-option-notebook">
+                            <span class="tooltiptext themebtn">Notebook</span>
+                            <div class="theme-sidebar themebtn" style="background-color: #f1e4c1;"></div>
+                            <div class="theme-main themebtn" style="background-color: #fff9e8;">
+                                <div class="theme-card themebtn" style="background-color: #f7f2e0;"></div>
+                            </div>
+                        </div>
+                        <div class="theme-option tooltip themebtn" id="theme-option-light">
+                            <span class="tooltiptext themebtn">Flashbang</span>
+                            <div class="theme-sidebar themebtn" style="background-color: rgb(216, 216, 216);"></div>
+                            <div class="theme-main themebtn" style="background-color: rgb(228, 228, 228);">
+                                <div class="theme-card themebtn" style="background-color: rgb(199, 199, 199);"></div>
+                            </div>
+                        </div>
+                        <div class="theme-option tooltip themebtn" id="theme-option-transparent">
+                            <span class="tooltiptext themebtn">Snow Day</span>
+                            <div class="theme-sidebar themebtn" style="background: #b1c9e1;"></div>
+                            <div class="theme-main themebtn" style="background: #d9eafd;">
+                                <div class="theme-card themebtn" style="background-color: #bcccdc;"></div>
+                            </div>
+                        </div>
+                        <div class="theme-option tooltip themebtn" id="theme-option-dark">
+                            <span class="tooltiptext themebtn">Dark</span>
+                            <div class="theme-sidebar themebtn" style="background-color: #2a2a2a;"></div>
+                            <div class="theme-main themebtn" style="background-color: #1a1a1a;">
+                                <div class="theme-card themebtn" style="background-color: rgb(53, 53, 53);"></div>
+                            </div>
+                        </div>
+                        <div class="theme-option tooltip themebtn" id="theme-option-ocean">
+                            <span class="tooltiptext themebtn">Ocean</span>
+                            <div class="theme-sidebar themebtn" style="background-color: #073642;"></div>
+                            <div class="theme-main themebtn" style="background-color: #002b36;">
+                                <div class="theme-card themebtn" style="background-color: #083c4a;"></div>
+                            </div>
+                        </div>
+                        <div class="theme-option tooltip themebtn" id="theme-option-dream">
+                            <span class="tooltiptext themebtn">Dream</span>
+                            <div class="theme-sidebar themebtn" style="background-color: #2c2a3e;"></div>
+                            <div class="theme-main themebtn" style="background-color: #2b2336;">
+                                <div class="theme-card themebtn" style="background-color: #3b3f51;"></div>
+                            </div>
+                        </div>
+                        <div class="theme-option tooltip themebtn" id="theme-option-fields">
+                            <span class="tooltiptext themebtn">Fields</span>
+                            <div class="theme-sidebar themebtn" style="background-color: #365142;"></div>
+                            <div class="theme-main themebtn" style="background-color: #283c2e;">
+                                <div class="theme-card themebtn" style="background-color: #2d543f;"></div>
+                            </div>
+                        </div>
+                        <div class="theme-option tooltip themebtn" id="theme-option-sunset">
+                            <span class="tooltiptext themebtn">Sunset</span>
+                            <div class="theme-sidebar themebtn" style="background-color: #4c1919;"></div>
+                            <div class="theme-main themebtn" style="background-color: #381324;">
+                                <div class="theme-card themebtn" style="background-color: #403949;"></div>
+                            </div>
+                        </div>
+                        <div class="theme-option tooltip themebtn" id="theme-option-matrix">
+                            <span class="tooltiptext themebtn">Matrix</span>
+                            <div class="theme-sidebar themebtn" style="background-color: #000000;"></div>
+                            <div class="theme-main themebtn" style="background-color: #0e0e0e;">
+                                <div class="theme-card themebtn" style="background-color: #1a1a1a;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <aside class="toc" onclick="">
+            <div class="toc-icon">☰</div>
+            <div class="toc-content" id="toc-site-nav"></div>
+            <div class="toc-content" id="toc-post-nav">
+                <ul>
+                    <a aria-label="page-settings" id="page-settings">
+                        <li class="settingsbtn">
+                            <svg style="margin-right:5px;" width="1.5em" viewBox="0 0 24 24" stroke-width="2"
+                                stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" class="settingsbtn" />
+                                <path d="M4 10a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" class="settingsbtn" />
+                                <path d="M6 4v4" class="settingsbtn" />
+                                <path d="M6 12v8" class="settingsbtn" />
+                                <path d="M10 16a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" class="settingsbtn" />
+                                <path d="M12 4v10" class="settingsbtn" />
+                                <path d="M12 18v2" class="settingsbtn" />
+                                <path d="M16 7a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" class="settingsbtn" />
+                                <path d="M18 4v1" class="settingsbtn" />
+                                <path d="M18 9v11" class="settingsbtn" />
+                            </svg>
+                            Settings
+                        </li>
+                    </a>
+
+                    <hr style="margin: 10px 10px 10px 5px;" id="setdivider">
+                    <a href="#pf-top">
+                        <li>Pointer Fishing</li>
+                    </a>
+                    <a href="#pf-catch">
+                        <li>The catch</li>
+                    </a>
+                    <a href="#pf-collection">
+                        <li>Fish collection</li>
+                    </a>
+                    <a href="#pf-bounties">
+                        <li>Bounties</li>
+                    </a>
+                    <a href="#pf-gear">
+                        <li>Gear</li>
+                    </a>
+                    <a href="#pf-modifiers">
+                        <li>Modifiers</li>
+                    </a>
+                    <a href="#pf-conditions">
+                        <li>Ocean conditions</li>
+                    </a>
+                    <a href="#pf-aquarium">
+                        <li>Aquarium</li>
+                    </a>
+                    <a href="#pf-credits">
+                        <li>Notes and credits</li>
+                    </a>
+                </ul>
+        </aside>
+        <script src="/js/pointer-fishing.js" defer></script>
+        <script type="module" src="/js/toc.js"></script>
+
+        <script src="/js/settings.js"></script>
+        <script src="/js/imgswitcher.js"></script>
+    </div>
+</body>
+
+</html>

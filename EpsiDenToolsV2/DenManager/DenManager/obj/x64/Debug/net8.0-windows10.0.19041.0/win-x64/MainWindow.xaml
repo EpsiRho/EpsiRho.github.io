@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="DenManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Den Manager">
+    <Window.SystemBackdrop><MicaBackdrop /></Window.SystemBackdrop>
+    <NavigationView x:ConnectionId='2' x:Name="Navigation" PaneDisplayMode="Left" IsBackButtonVisible="Collapsed"
+                    IsSettingsVisible="True"                                               >
+        <NavigationView.MenuItems>
+            <NavigationViewItem Content="Blog posts" Tag="blog" Icon="Edit" />
+            <NavigationViewItem Content="Projects" Tag="projects" Icon="Library" />
+            <NavigationViewItem Content="Music recommendations" Tag="music" Icon="Audio" />
+            <NavigationViewItem Content="Publish" Tag="publish" Icon="Upload" />
+        </NavigationView.MenuItems>
+        <Grid Padding="24,12,24,24">
+            <Grid x:ConnectionId='3' x:Name="CatalogPanel" RowSpacing="16">
+                <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+                <Grid ColumnSpacing="16">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                    <TextBlock x:ConnectionId='54' x:Name="CatalogHeading" Text="Blog posts" FontSize="28" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                    <Button x:ConnectionId='55' x:Name="AddButton" Grid.Column="1" Content="Add post"                   Style="{StaticResource AccentButtonStyle}"/>
+                </Grid>
+                <GridView x:ConnectionId='50' x:Name="CatalogGrid" Grid.Row="1" IsItemClickEnabled="True" SelectionMode="None"
+                                                           >
+                    <GridView.ItemContainerStyle>
+                        <Style TargetType="GridViewItem">
+                            <Setter Property="Width" Value="270"/>
+                            <Setter Property="Height" Value="245"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </GridView.ItemContainerStyle>
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <Border x:ConnectionId='51' CornerRadius="12" BorderBrush="#40A0A0A0" BorderThickness="1"
+                                    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                                                                         >
+                                <Border.ContextFlyout>
+                                    <MenuFlyout><MenuFlyoutItem x:ConnectionId='52' Text="Remove"                     /></MenuFlyout>
+                                </Border.ContextFlyout>
+                                <Grid RowSpacing="8">
+                                    <Grid.RowDefinitions><RowDefinition Height="164"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+                                    <Grid Background="#22000000">
+                                        <TextBlock Text="No image" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.5"/>
+                                        <Image x:ConnectionId='53' Source="{Binding PreviewImage}" Stretch="UniformToFill"                               />
+                                    </Grid>
+                                    <StackPanel Grid.Row="1" Padding="12,0,12,10" Spacing="3">
+                                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" MaxLines="1"/>
+                                        <TextBlock Text="{Binding Subtitle}" Opacity="0.7" FontSize="12" TextTrimming="CharacterEllipsis" MaxLines="2"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+            </Grid>
+
+            <ScrollViewer x:ConnectionId='4' x:Name="PublishPanel" Visibility="Collapsed">
+                <StackPanel Spacing="18" MaxWidth="850">
+                    <TextBlock Text="Publish changes" FontSize="28" FontWeight="SemiBold"/>
+                    <TextBlock Text="Review the pending changes, then save the manager data and update the website files." TextWrapping="Wrap"/>
+                    <ListView x:ConnectionId='47' x:Name="ChangesList" MinHeight="220" MaxHeight="500"/>
+                    <Button x:ConnectionId='48' Content="Save and publish"                              HorizontalAlignment="Left" Style="{StaticResource AccentButtonStyle}"/>
+                    <TextBlock x:ConnectionId='49' x:Name="PublishStatus" TextWrapping="Wrap"/>
+                </StackPanel>
+            </ScrollViewer>
+            <ScrollViewer x:ConnectionId='5' x:Name="SettingsPanel" Visibility="Collapsed">
+                <StackPanel Spacing="18" MaxWidth="850">
+                    <TextBlock Text="Settings" FontSize="28" FontWeight="SemiBold"/>
+                    <TextBox x:ConnectionId='43' x:Name="WebsitePath" Header="Website folder" Description="Select the website's docs folder"/>
+                    <Button x:ConnectionId='44' Content="Browse website folder…"                             HorizontalAlignment="Left"/>
+                    <TextBox x:ConnectionId='45' x:Name="ManagerPath" Header="Manager save folder" Description="Stores editable data and packed JSON"/>
+                    <Button x:ConnectionId='46' Content="Browse manager folder…"                             HorizontalAlignment="Left"/>
+                    <TextBlock Text="Paths are applied when you save and publish." Opacity="0.7"/>
+                </StackPanel>
+            </ScrollViewer>
+
+            <Grid x:ConnectionId='6' x:Name="EditorOverlay" Visibility="Collapsed" Background="#99000000" Canvas.ZIndex="10">
+                <Border Margin="24" MaxWidth="1000" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                        CornerRadius="14" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                    <Grid Padding="24" RowSpacing="12">
+                        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+                        <Grid ColumnSpacing="16">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                            <TextBlock x:ConnectionId='41' x:Name="EditorHeading" Text="Edit" FontSize="24" FontWeight="SemiBold" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                            <Button x:ConnectionId='42' Grid.Column="1" Content="Close"                          />
+                        </Grid>
+                        <ScrollViewer Grid.Row="1">
+                            <StackPanel x:ConnectionId='7' x:Name="EditorPanel" Spacing="14">
+                                <TextBlock Text="Metadata" FontSize="18" FontWeight="SemiBold" Margin="0,8,0,0"/>
+                                <StackPanel x:ConnectionId='8' x:Name="BlogFields" Spacing="12">
+                                    <TextBox x:ConnectionId='32' x:Name="BlogTitle" Header="Title"/>
+                                    <TextBox x:ConnectionId='33' x:Name="BlogDescription" Header="Summary" AcceptsReturn="True" TextWrapping="Wrap" MaxHeight="100"/>
+                                    <TextBox x:ConnectionId='34' x:Name="BlogSlug" Header="URL ID" Description="Letters, numbers, dashes, or underscores"/>
+                                    <DatePicker x:ConnectionId='35' x:Name="BlogDate" Header="Post date"/>
+                                    <TextBox x:ConnectionId='36' x:Name="BlogImage" Header="Header image URL" PlaceholderText="/images/header.webp"                                    />
+                                    <Grid Height="190" Background="#22000000">
+                                        <TextBlock Text="No header image preview" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.5"/>
+                                        <Image x:ConnectionId='40' x:Name="BlogImagePreview" Stretch="Uniform"                                 />
+                                    </Grid>
+                                    <TextBox x:ConnectionId='37' x:Name="BlogTags" Header="Tags" PlaceholderText="Comma-separated tags"/>
+                                    <CheckBox x:ConnectionId='38' x:Name="BlogDraft" Content="Draft — save without publishing"/>
+                                    <TextBlock Text="Post markdown" FontSize="18" FontWeight="SemiBold" Margin="0,8,0,0"/>
+                                    <TextBlock Text="Resize an image with ![caption](/images/photo.webp){width=60%}. Width is relative to the article; height scales automatically."
+                                               TextWrapping="Wrap" Opacity="0.7"/>
+                                    <TextBox x:ConnectionId='39' x:Name="BlogMarkdown" AcceptsReturn="True" TextWrapping="NoWrap" FontFamily="Consolas" MinHeight="450"/>
+                                </StackPanel>
+                                <StackPanel x:ConnectionId='9' x:Name="ProjectFields" Spacing="12" Visibility="Collapsed">
+                                    <TextBox x:ConnectionId='23' x:Name="ProjectName" Header="Name"/>
+                                    <TextBox x:ConnectionId='24' x:Name="ProjectSummary" Header="Short description" AcceptsReturn="True" TextWrapping="Wrap" MaxHeight="100"/>
+                                    <TextBox x:ConnectionId='25' x:Name="ProjectSlug" Header="URL ID" Description="Used by the existing project page"/>
+                                    <DatePicker x:ConnectionId='26' x:Name="ProjectDate" Header="Announcement date"/>
+                                    <TextBox x:ConnectionId='27' x:Name="ProjectImage" Header="Image URL" PlaceholderText="/images/project.webp"                                       />
+                                    <Grid Height="190" Background="#22000000">
+                                        <TextBlock Text="No project image preview" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.5"/>
+                                        <Image x:ConnectionId='31' x:Name="ProjectImagePreview" Stretch="Uniform"                                 />
+                                    </Grid>
+                                    <TextBox x:ConnectionId='28' x:Name="ProjectTags" Header="Tags" PlaceholderText="Comma-separated tags"/>
+                                    <TextBox x:ConnectionId='29' x:Name="ProjectLinks" Header="Links" PlaceholderText="One per line: Label | https://example.com" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="90"/>
+                                    <TextBlock Text="Description markdown" FontSize="18" FontWeight="SemiBold" Margin="0,8,0,0"/>
+                                    <TextBlock Text="Resize an image with ![caption](/images/photo.webp){width=60%}. Width is relative to the article; height scales automatically."
+                                               TextWrapping="Wrap" Opacity="0.7"/>
+                                    <TextBox x:ConnectionId='30' x:Name="ProjectMarkdown" AcceptsReturn="True" TextWrapping="NoWrap" FontFamily="Consolas" MinHeight="400"/>
+                                </StackPanel>
+                                <StackPanel x:ConnectionId='10' x:Name="MusicFields" Spacing="12" Visibility="Collapsed">
+                                    <TextBox x:ConnectionId='11' x:Name="MusicLinkLookup" Header="Song or album link" PlaceholderText="Paste a Spotify, Apple Music, or other music URL"/>
+                                    <Button x:ConnectionId='12' Content="Fetch song details"                          HorizontalAlignment="Left"/>
+                                    <TextBox x:ConnectionId='13' x:Name="MusicName" Header="Name"/>
+                                    <TextBox x:ConnectionId='14' x:Name="MusicArtist" Header="Artist"/>
+                                    <TextBox x:ConnectionId='15' x:Name="MusicURL" Header="Listen link"/>
+                                    <TextBox x:ConnectionId='16' x:Name="MusicImage" Header="Cover image URL"                                     />
+                                    <Grid Height="190" Background="#22000000">
+                                        <TextBlock Text="No cover image preview" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.5"/>
+                                        <Image x:ConnectionId='22' x:Name="MusicImagePreview" Stretch="Uniform"                                 />
+                                    </Grid>
+                                    <Button x:ConnectionId='17' Content="Choose image file…"                                HorizontalAlignment="Left"/>
+                                    <TextBlock x:ConnectionId='18' x:Name="SelectedImageText" Text="No local image selected" Opacity="0.7" TextWrapping="Wrap"/>
+                                    <ComboBox x:ConnectionId='19' x:Name="MusicRating" Header="Rating" Width="160" HorizontalAlignment="Left"/>
+                                    <ComboBox x:ConnectionId='20' x:Name="MusicEnergy" Header="Energy" Width="160" HorizontalAlignment="Left"/>
+                                    <DatePicker x:ConnectionId='21' x:Name="MusicDate" Header="Date added"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+    </NavigationView>
+</Window>
+

@@ -12,14 +12,14 @@
     <meta property="og:logo" content="https://epsirho.com/images/favicon-32x32.webp" />
 
     <meta property="og:title" content="Melon Media Server Devlog 2" />
-    <meta property="og:description" content="Melon's Scanner has gotten a big upgrade" />
-    <meta property="og:image" content="https://epsirho.com/images/ScannerBanner.webp" />
+    <meta property="og:description" content="Melon&#39;s Scanner has gotten a big upgrade" />
+    <meta property="og:image" content="/images/ScannerBanner.webp" />
 
     <title>Melon Media Server Devlog 2</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/posts.css">
-<link rel="stylesheet" href="/styles/comments.css">
+    <link rel="stylesheet" href="/styles/comments.css">
 </head>
 <body>
     <div class="container">
@@ -92,62 +92,40 @@
         </aside>
 
         <main class="main-content">
-            <article class="blog-post-page">
-                <img src="/images/ScannerBanner.webp" alt="Blog Header" class="post-header-image"
-                     style="view-transition-name: header-melon-blog-2;">
-                </br>
-                <span class="post-tag"> Windows</span>
-                <span class="post-tag"> C#</span>
-                <span class="post-tag"> Console</span>
-                <span class="post-tag"> Melon</span>
-                <span class="post-tag"> Devlog</span>
-
-                <h1 class="post-title" id="mdpost-title">Melon Media Server Devlog 2</h1>
-                <p class="post-description">Melon's Scanner has gotten a big upgrade</p>
-                <div class="post-date">3/8/2024 12:00:00 AM</div>
-                <div class="post-body">
-                    <p>I have been working really hard on melon the past month, and it's getting close to V1 being feature complete! I've worked on lots of things, but for this post I wanted to talk about the scanner. The last time I talked about Melon the scanner was working but really slow. Especially on my HDD. So I spent awhile looking for optimizations and eventually ended up rewritting the scanner, which I've called Scanner V2.</p>
-</br>
+            <article class="blog-post-page"><img src="/images/ScannerBanner.webp" alt="" class="post-header-image"><div><span class="post-tag">Windows</span><span class="post-tag">C#</span><span class="post-tag">Console</span><span class="post-tag">Melon</span><span class="post-tag">Devlog</span></div><h1 class="post-title" id="mdpost-title">Melon Media Server Devlog 2</h1><p class="post-description">Melon&#39;s Scanner has gotten a big upgrade</p><div class="post-date">March 8, 2024</div><div class="post-body"><p>I have been working really hard on melon the past month, and it&#39;s getting close to V1 being feature complete! I&#39;ve worked on lots of things, but for this post I wanted to talk about the scanner. The last time I talked about Melon the scanner was working but really slow. Especially on my HDD. So I spent awhile looking for optimizations and eventually ended up rewritting the scanner, which I&#39;ve called Scanner V2.</p>
 <p>The old scanner worked like this:</p>
 <ul>
-<li> Load a track off the disk</li>
-<li> Call the database to find out if the track's artist or album exists yet</li>
-<li> If they do, update their info to include the new track, otherwise create new artist / album</li>
-<li> Insert all the new info into the dabase</li>
-<li> Repeat for each track</li>
+<li>Load a track off the disk</li>
+<li>Call the database to find out if the track&#39;s artist or album exists yet</li>
+<li>If they do, update their info to include the new track, otherwise create new artist / album</li>
+<li>Insert all the new info into the dabase</li>
+<li>Repeat for each track</li>
 </ul>
-</br>
 <p>The new scanner has multiple passes:</p>
 <ul>
-<li> Load tracks</li>
-<ul>
-<li> Read track info off the disk</li>
-<li> Create a track object and add into a thread safe List (more on that later)</li>
+<li>Load tracks<ul>
+<li>Read track info off the disk</li>
+<li>Create a track object and add into a thread safe List (more on that later)</li>
 </ul>
-<li> Fill out database objects</li>
-<ul>
-<li> Create album objects based on found tracks</li>
-<li> Create artist objects based on found tracks</li>
-<li> Update track info to link to new album and artists objects</li>
+</li>
+<li>Fill out database objects<ul>
+<li>Create album objects based on found tracks</li>
+<li>Create artist objects based on found tracks</li>
+<li>Update track info to link to new album and artists objects</li>
 </ul>
-<li> Upload to database</li>
-<ul>
-<li> Uploads all the in memory info into the database</li>
+</li>
+<li>Upload to database<ul>
+<li>Uploads all the in memory info into the database</li>
 </ul>
-<li> Delete</li>
-<ul>
-<li> Remove tracks, albums, artists that are missing from the disk</li>
+</li>
+<li>Delete <ul>
+<li>Remove tracks, albums, artists that are missing from the disk</li>
 </ul>
+</li>
 </ul>
-</ul>
-</br>
-<p>Keeping things in memory sped things up a ton. For the 4607 files on my SSD, it takes about 10-15 seconds. The old scanner took around 3 minutes 30 seconds.</p>
-<p>I was also able to enable loading multiple files at a time with the thread-safe ConcurrentDictionary type. Super useful, but only really works on my SSD. On the HDD it takes longer to load in the file, so the threads get backed up (to a max of 25).</p>
-</br>
-<p>Only a few more things to do for the scanner now. I plan on adding genre merging, because I have a lot of tracks that have genres like Drum and Bass, Drum n Bass, DnB, where they are all the same genre, just written down differently. But they show up as two different genres in the db. So I'd like a way to "Canonicalize" genres into one.</p>
-
-                </div>
-            </article>
+<p>Keeping things in memory sped things up a ton. For the 4607 files on my SSD, it takes about 10-15 seconds. The old scanner took around 3 minutes 30 seconds. I was also able to enable loading multiple files at a time with the thread-safe ConcurrentDictionary type. Super useful, but only really works on my SSD. On the HDD it takes longer to load in the file, so the threads get backed up (to a max of 25).</p>
+<p>Only a few more things to do for the scanner now. I plan on adding genre merging, because I have a lot of tracks that have genres like Drum and Bass, Drum n Bass, DnB, where they are all the same genre, just written down differently. But they show up as two different genres in the db. So I&#39;d like a way to &quot;Canonicalize&quot; genres into one.</p>
+</div></article>
             <div class="blog-post-page">
                 <div id="comments-header">
                     <h1>Comments</h1>
@@ -271,10 +249,7 @@
                         Settings
                     </li>
                 </a>
-                <hr style="margin: 10px 10px 10px 5px;" id="setdivider"/>
-                <a href="#mdpost-title"><li>Melon Media Server Devlog 2</li></a>
-
-            </ul>
+                <hr style="margin: 10px 10px 10px 5px;" id="setdivider"/><a href="#mdpost-title"><li>Melon Media Server Devlog 2</li></a></ul>
             </div>
         </aside>
     </div>
@@ -285,7 +260,6 @@
     <script src="/js/comments.js"></script>
     <link id="codeTheme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-
     <script>hljs.highlightAll();</script>
 </body>
 </html>

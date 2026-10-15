@@ -12,14 +12,14 @@
     <meta property="og:logo" content="https://epsirho.com/images/favicon-32x32.webp" />
 
     <meta property="og:title" content="Updates to The Den" />
-    <meta property="og:description" content="Updates on this site on other ongoing projects" />
-    <meta property="og:image" content="https://epsirho.com/images/sitev3UpdatesHeader.webp" />
+    <meta property="og:description" content="Updates on this site on other ongoing projects." />
+    <meta property="og:image" content="/images/sitev3UpdatesHeader.webp" />
 
     <title>Updates to The Den</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/posts.css">
-<link rel="stylesheet" href="/styles/comments.css">
+    <link rel="stylesheet" href="/styles/comments.css">
 </head>
 <body>
     <div class="container">
@@ -92,55 +92,32 @@
         </aside>
 
         <main class="main-content">
-            <article class="blog-post-page">
-                <img src="/images/sitev3UpdatesHeader.webp" alt="Blog Header" class="post-header-image"
-                     style="view-transition-name: header-sitev3updates;">
-                </br>
-                <span class="post-tag"> HTML</span>
-                <span class="post-tag">CSS</span>
-                <span class="post-tag">JS</span>
-
-                <h1 class="post-title" id="mdpost-title">Updates to The Den</h1>
-                <p class="post-description">Updates on this site on other ongoing projects.</p>
-                <div class="post-date">2/19/2025 12:00:00 AM</div>
-                <div class="post-body">
-                    <p>Hello again! I have been gone for a little while, school and life have been keeping me busy. Work on MelonUI and MelonMediaServer are still in progress, but have been slow. In the meantime I've been able to push some small but fun updates to this site! This covers v3.2, v3.3, and v3.4 :O</p>
-</br>
-<h2 id="mdheadr--Themes"> Themes</h2>
-<p>I have recently been using <a href="https://zen-browser.app/">Zen Browser</a> as my main web browser, a firefox based browser that's got lots of nice QOL. I stumbled upon the fact that Zen supports Transparency by setting the <code>browser.tabs.allowtransparentbrowser</code> tag in about:config. This disables the background between the webpage compositor and the app background, and alongside <a href="https://github.com/MicaForEveryone/MicaForEveryone">MicaForEveryone</a> on windows (I hear Linux has easier support) you can allow a webpage to be fully transparent back to the desktop. This makes for some very nice looks and lots of customization. Unfortunately, there is no way to detect if this is enabled, so I needed to add a Theme Switcher. Alongside that I figured I might as well make a few themes to flesh out the menu xP</p>
-</br>
+            <article class="blog-post-page"><img src="/images/sitev3UpdatesHeader.webp" alt="" class="post-header-image"><div><span class="post-tag">HTML</span><span class="post-tag">CSS</span><span class="post-tag">JS</span></div><h1 class="post-title" id="mdpost-title">Updates to The Den</h1><p class="post-description">Updates on this site on other ongoing projects.</p><div class="post-date">February 19, 2025</div><div class="post-body"><p>Hello again! I have been gone for a little while, school and life have been keeping me busy. Work on MelonUI and MelonMediaServer are still in progress, but have been slow. In the meantime I&#39;ve been able to push some small but fun updates to this site! This covers v3.2, v3.3, and v3.4 :O</p>
+<h2 id="mdheadr-themes">Themes</h2>
+<p>I have recently been using <a href="https://zen-browser.app/">Zen Browser</a> as my main web browser, a firefox based browser that&#39;s got lots of nice QOL. I stumbled upon the fact that Zen supports Transparency by setting the <code>browser.tabs.allow_transparent_browser</code> tag in about:config. This disables the background between the webpage compositor and the app background, and alongside <a href="https://github.com/MicaForEveryone/MicaForEveryone">MicaForEveryone</a> on windows (I hear Linux has easier support) you can allow a webpage to be fully transparent back to the desktop. This makes for some very nice looks and lots of customization. Unfortunately, there is no way to detect if this is enabled, so I needed to add a Theme Switcher. Alongside that I figured I might as well make a few themes to flesh out the menu xP</p>
 <p>The current themes are:</p>
 <ul>
-<li> Notebook (Warm White)</li>
-<li> Flashbang (Cool White)</li>
-<li> Dark (Dark Gray)</li>
-<li> Transparent (Transparent)</li>
-<li> Ocean (Deep cyan and blue)</li>
-<li> Dream (Purple and Pink)</li>
-<li> Fields (Green)</li>
-<li> Sunset (Red and Purple)</li>
-<li> Matrix (Black and Green)</li>
+<li>Notebook (Warm White)</li>
+<li>Flashbang (Cool White)</li>
+<li>Dark (Dark Gray)</li>
+<li>Transparent (Transparent)</li>
+<li>Ocean (Deep cyan and blue)</li>
+<li>Dream (Purple and Pink)</li>
+<li>Fields (Green)</li>
+<li>Sunset (Red and Purple)</li>
+<li>Matrix (Black and Green)</li>
 </ul>
-</br>
 <p>If you have suggestions for more themes or fixes/adjustments to current ones, please leave a <a href="https://github.com/EpsiRho/EpsiRho.github.io">Github Issue/PR</a> :D</p>
-</br>
-<h2 id="mdheadr--Comments"> Comments</h2>
-<p>I saw a post awhile back from a Bluesky user turning their posts into repos for their blog's comments. I've been meaning to look into it since then, and now I've lost that post hah! But I did finally get around to it, and now blog posts can have comments! This one will have them, you should be able to see them below and going to the Bluesky post will allow you to leave your own comment. You totally should btw, y'know, so I can test my code :P</p>
-<p>The implementation is custom, so not easy to drag n drop into other code. But feel free to look at mine for reference. The simple idea is we call <code>app.bsky.feed.searchPosts</code> to get all the posts I have made tagged "#blog", and checking if it's link is the same as the one we're on. If it is, then we call <code>app.bsky.feed.getPostThread</code> to get all of it's replies. Then we can recursively follow the reply tree to generate HTML to show.</p>
-</br>
-<h2 id="mdheadr--Beyond"> Beyond</h2>
+<h2 id="mdheadr-comments">Comments</h2>
+<p>I saw a post awhile back from a Bluesky user turning their posts into repos for their blog&#39;s comments. I&#39;ve been meaning to look into it since then, and now I&#39;ve lost that post hah! But I did finally get around to it, and now blog posts can have comments! This one will have them, you should be able to see them below and going to the Bluesky post will allow you to leave your own comment. You totally should btw, y&#39;know, so I can test my code :P The implementation is custom, so not easy to drag n drop into other code. But feel free to look at mine for reference. The simple idea is we call <code>app.bsky.feed.searchPosts</code> to get all the posts I have made tagged &quot;#blog&quot;, and checking if it&#39;s link is the same as the one we&#39;re on. If it is, then we call <code>app.bsky.feed.getPostThread</code> to get all of it&#39;s replies. Then we can recursively follow the reply tree to generate HTML to show.</p>
+<h2 id="mdheadr-beyond">Beyond</h2>
 <p>I also worked on a lot of other little fixes and QOL around the site, you can see all of them on the <a href="https://epsirho.com/site/changelog">Site Changelog</a>.</p>
-</br>
-<h2 id="mdheadr--MelonUI-Updates"> MelonUI Updates</h2>
-<p>I'm workin on it! Actually, afaik(barring on bugs I haven't spotted) the main core of MelonUI is done, the CWM and Renderer. Now I just want to finish up the inbox default controls, some of them are done but not most of them. They mostly all work, but have unfinished features or are buggy.</p>
-</br>
-<h2 id="mdheadr--MelonMediaServer-Updates"> MelonMediaServer Updates</h2>
-<p>Melon has been waiting on MelonUI to complete so I can swap MelonUI v1.0 for the new v2.0 Library. Aside from that, in testing thing for MelonUI I found 2 important bits of info for the 2 other blockers for progress. One was a work around for buggy audio playback in Galia(the Windows client) and the other was for Discovery algorithms. Unfortunately, I'm down to my last 2 semesters in college so I anticipate that I will have a lot of my time waste this year. But I will work on these projects as much as I can! I mostly work on side projects like these site updates because they are small and easy to work on in between other stuff, and because they help me get back into the groove of coding after spending my time away.</p>
-</br>
-<p>Well thanks for reading, I'll be back again with a MelonUI announcement hopefully soon!</p>
-
-                </div>
-            </article>
+<h2 id="mdheadr-melonui-updates">MelonUI Updates</h2>
+<p>I&#39;m workin on it! Actually, afaik(barring on bugs I haven&#39;t spotted) the main core of MelonUI is done, the CWM and Renderer. Now I just want to finish up the inbox default controls, some of them are done but not most of them. They mostly all work, but have unfinished features or are buggy.</p>
+<h2 id="mdheadr-melonmediaserver-updates">MelonMediaServer Updates</h2>
+<p>Melon has been waiting on MelonUI to complete so I can swap MelonUI v1.0 for the new v2.0 Library. Aside from that, in testing thing for MelonUI I found 2 important bits of info for the 2 other blockers for progress. One was a work around for buggy audio playback in Galia(the Windows client) and the other was for Discovery algorithms. Unfortunately, I&#39;m down to my last 2 semesters in college so I anticipate that I will have a lot of my time waste this year. But I will work on these projects as much as I can! I mostly work on side projects like these site updates because they are small and easy to work on in between other stuff, and because they help me get back into the groove of coding after spending my time away.</p>
+<p>Well thanks for reading, I&#39;ll be back again with a MelonUI announcement hopefully soon!</p>
+</div></article>
             <div class="blog-post-page">
                 <div id="comments-header">
                     <h1>Comments</h1>
@@ -264,15 +241,7 @@
                         Settings
                     </li>
                 </a>
-                <hr style="margin: 10px 10px 10px 5px;" id="setdivider"/>
-                <a href="#mdpost-title"><li>Updates to The Den</li></a>
-                <a href="#mdheadr--Themes"><li> Themes</li></a>
-                <a href="#mdheadr--Comments"><li> Comments</li></a>
-                <a href="#mdheadr--Beyond"><li> Beyond</li></a>
-                <a href="#mdheadr--MelonUI-Updates"><li> MelonUI Updates</li></a>
-                <a href="#mdheadr--MelonMediaServer-Updates"><li> MelonMediaServer Updates</li></a>
-
-            </ul>
+                <hr style="margin: 10px 10px 10px 5px;" id="setdivider"/><a href="#mdpost-title"><li>Updates to The Den</li></a><a href="#mdheadr-themes"><li>Themes</li></a><a href="#mdheadr-comments"><li>Comments</li></a><a href="#mdheadr-beyond"><li>Beyond</li></a><a href="#mdheadr-melonui-updates"><li>MelonUI Updates</li></a><a href="#mdheadr-melonmediaserver-updates"><li>MelonMediaServer Updates</li></a></ul>
             </div>
         </aside>
     </div>
@@ -283,7 +252,6 @@
     <script src="/js/comments.js"></script>
     <link id="codeTheme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-
     <script>hljs.highlightAll();</script>
 </body>
 </html>

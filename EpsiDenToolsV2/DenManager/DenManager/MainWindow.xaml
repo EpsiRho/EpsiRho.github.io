@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="DenManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Den Manager">
+    <Window.SystemBackdrop><MicaBackdrop /></Window.SystemBackdrop>
+    <NavigationView x:Name="Navigation" PaneDisplayMode="Left" IsBackButtonVisible="Collapsed"
+                    IsSettingsVisible="True" SelectionChanged="Navigation_SelectionChanged">
+        <NavigationView.MenuItems>
+            <NavigationViewItem Content="Blog posts" Tag="blog" Icon="Edit" />
+            <NavigationViewItem Content="Projects" Tag="projects" Icon="Library" />
+            <NavigationViewItem Content="Music recommendations" Tag="music" Icon="Audio" />
+            <NavigationViewItem Content="Publish" Tag="publish" Icon="Upload" />
+        </NavigationView.MenuItems>
+        <Grid Padding="24,12,24,24">
+            <Grid x:Name="CatalogPanel" RowSpacing="16">
+                <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+                <Grid ColumnSpacing="16">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                    <TextBlock x:Name="CatalogHeading" Text="Blog posts" FontSize="28" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                    <Button x:Name="AddButton" Grid.Column="1" Content="Add post" Click="Add_Click" Style="{StaticResource AccentButtonStyle}"/>
+                </Grid>
+                <GridView x:Name="CatalogGrid" Grid.Row="1" IsItemClickEnabled="True" SelectionMode="None"
+                          ItemClick="CatalogGrid_ItemClick">
+                    <GridView.ItemContainerStyle>
+                        <Style TargetType="GridViewItem">
+                            <Setter Property="Width" Value="270"/>
+                            <Setter Property="Height" Value="245"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </GridView.ItemContainerStyle>
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <Border CornerRadius="12" BorderBrush="#40A0A0A0" BorderThickness="1"
+                                    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                                    RightTapped="CatalogCard_RightTapped">
+                                <Border.ContextFlyout>
+                                    <MenuFlyout><MenuFlyoutItem Text="Remove" Click="Remove_Click"/></MenuFlyout>
+                                </Border.ContextFlyout>
+                                <Grid RowSpacing="8">
+                                    <Grid.RowDefinitions><RowDefinition Height="164"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+                                    <Grid Background="#22000000">
+                                        <TextBlock Text="No image" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.5"/>
+                                        <Image Source="{Binding PreviewImage}" Stretch="UniformToFill" ImageFailed="TileImage_Failed"/>
+                                    </Grid>
+                                    <StackPanel Grid.Row="1" Padding="12,0,12,10" Spacing="3">
+                                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" MaxLines="1"/>
+                                        <TextBlock Text="{Binding Subtitle}" Opacity="0.7" FontSize="12" TextTrimming="CharacterEllipsis" MaxLines="2"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+            </Grid>
+
+            <ScrollViewer x:Name="PublishPanel" Visibility="Collapsed">
+                <StackPanel Spacing="18" MaxWidth="850">
+                    <TextBlock Text="Publish changes" FontSize="28" FontWeight="SemiBold"/>
+                    <TextBlock Text="Review the pending changes, then save the manager data and update the website files." TextWrapping="Wrap"/>
+                    <ListView x:Name="ChangesList" MinHeight="220" MaxHeight="500"/>
+                    <Button Content="Save and publish" Click="SaveAndPublish_Click" HorizontalAlignment="Left" Style="{StaticResource AccentButtonStyle}"/>
+                    <TextBlock x:Name="PublishStatus" TextWrapping="Wrap"/>
+                </StackPanel>
+            </ScrollViewer>
+            <ScrollViewer x:Name="SettingsPanel" Visibility="Collapsed">
+                <StackPanel Spacing="18" MaxWidth="850">
+                    <TextBlock Text="Settings" FontSize="28" FontWeight="SemiBold"/>
+                    <TextBox x:Name="WebsitePath" Header="Website folder" Description="Select the website's docs folder"/>
+                    <Button Content="Browse website folder…" Click="BrowseWebsite_Click" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="ManagerPath" Header="Manager save folder" Description="Stores editable data and packed JSON"/>
+                    <Button Content="Browse manager folder…" Click="BrowseManager_Click" HorizontalAlignment="Left"/>
+                    <TextBlock Text="Paths are applied when you save and publish." Opacity="0.7"/>
+                </StackPanel>
+            </ScrollViewer>
+
+            <Grid x:Name="EditorOverlay" Visibility="Collapsed" Background="#99000000" Canvas.ZIndex="10">
+                <Border Margin="24" MaxWidth="1000" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                        CornerRadius="14" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                    <Grid Padding="24" RowSpacing="12">
+                        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+                        <Grid ColumnSpacing="16">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                            <TextBlock x:Name="EditorHeading" Text="Edit" FontSize="24" FontWeight="SemiBold" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                            <Button Grid.Column="1" Content="Close" Click="CloseEditor_Click"/>
+                        </Grid>
+                        <ScrollViewer Grid.Row="1">
+                            <StackPanel x:Name="EditorPanel" Spacing="14">
+                                <TextBlock Text="Metadata" FontSize="18" FontWeight="SemiBold" Margin="0,8,0,0"/>
+                                <StackPanel x:Name="BlogFields" Spacing="12">
+                                    <TextBox x:Name="BlogTitle" Header="Title"/>
+                                    <TextBox x:Name="BlogDescription" Header="Summary" AcceptsReturn="True" TextWrapping="Wrap" MaxHeight="100"/>
+                                    <TextBox x:Name="BlogSlug" Header="URL ID" Description="Letters, numbers, dashes, or underscores"/>
+                                    <DatePicker x:Name="BlogDate" Header="Post date"/>
+                                    <TextBox x:Name="BlogImage" Header="Header image URL" PlaceholderText="/images/header.webp" TextChanged="BlogImage_TextChanged"/>
+                                    <Grid Height="190" Background="#22000000">
+                                        <TextBlock Text="No header image preview" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.5"/>
+                                        <Image x:Name="BlogImagePreview" Stretch="Uniform" ImageFailed="EditorImage_Failed"/>
+                                    </Grid>
+                                    <TextBox x:Name="BlogTags" Header="Tags" PlaceholderText="Comma-separated tags"/>
+                                    <CheckBox x:Name="BlogDraft" Content="Draft — save without publishing"/>
+                                    <TextBlock Text="Post markdown" FontSize="18" FontWeight="SemiBold" Margin="0,8,0,0"/>
+                                    <TextBlock Text="Resize an image with ![caption](/images/photo.webp){width=60%}. Width is relative to the article; height scales automatically."
+                                               TextWrapping="Wrap" Opacity="0.7"/>
+                                    <TextBox x:Name="BlogMarkdown" AcceptsReturn="True" TextWrapping="NoWrap" FontFamily="Consolas" MinHeight="450"/>
+                                </StackPanel>
+                                <StackPanel x:Name="ProjectFields" Spacing="12" Visibility="Collapsed">
+                                    <TextBox x:Name="ProjectName" Header="Name"/>
+                                    <TextBox x:Name="ProjectSummary" Header="Short description" AcceptsReturn="True" TextWrapping="Wrap" MaxHeight="100"/>
+                                    <TextBox x:Name="ProjectSlug" Header="URL ID" Description="Used by the existing project page"/>
+                                    <DatePicker x:Name="ProjectDate" Header="Announcement date"/>
+                                    <TextBox x:Name="ProjectImage" Header="Image URL" PlaceholderText="/images/project.webp" TextChanged="ProjectImage_TextChanged"/>
+                                    <Grid Height="190" Background="#22000000">
+                                        <TextBlock Text="No project image preview" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.5"/>
+                                        <Image x:Name="ProjectImagePreview" Stretch="Uniform" ImageFailed="EditorImage_Failed"/>
+                                    </Grid>
+                                    <TextBox x:Name="ProjectTags" Header="Tags" PlaceholderText="Comma-separated tags"/>
+                                    <TextBox x:Name="ProjectLinks" Header="Links" PlaceholderText="One per line: Label | https://example.com" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="90"/>
+                                    <TextBlock Text="Description markdown" FontSize="18" FontWeight="SemiBold" Margin="0,8,0,0"/>
+                                    <TextBlock Text="Resize an image with ![caption](/images/photo.webp){width=60%}. Width is relative to the article; height scales automatically."
+                                               TextWrapping="Wrap" Opacity="0.7"/>
+                                    <TextBox x:Name="ProjectMarkdown" AcceptsReturn="True" TextWrapping="NoWrap" FontFamily="Consolas" MinHeight="400"/>
+                                </StackPanel>
+                                <StackPanel x:Name="MusicFields" Spacing="12" Visibility="Collapsed">
+                                    <TextBox x:Name="MusicLinkLookup" Header="Song or album link" PlaceholderText="Paste a Spotify, Apple Music, or other music URL"/>
+                                    <Button Content="Fetch song details" Click="FetchMusic_Click" HorizontalAlignment="Left"/>
+                                    <TextBox x:Name="MusicName" Header="Name"/>
+                                    <TextBox x:Name="MusicArtist" Header="Artist"/>
+                                    <TextBox x:Name="MusicURL" Header="Listen link"/>
+                                    <TextBox x:Name="MusicImage" Header="Cover image URL" TextChanged="MusicImage_TextChanged"/>
+                                    <Grid Height="190" Background="#22000000">
+                                        <TextBlock Text="No cover image preview" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.5"/>
+                                        <Image x:Name="MusicImagePreview" Stretch="Uniform" ImageFailed="EditorImage_Failed"/>
+                                    </Grid>
+                                    <Button Content="Choose image file…" Click="ChooseMusicImage_Click" HorizontalAlignment="Left"/>
+                                    <TextBlock x:Name="SelectedImageText" Text="No local image selected" Opacity="0.7" TextWrapping="Wrap"/>
+                                    <ComboBox x:Name="MusicRating" Header="Rating" Width="160" HorizontalAlignment="Left"/>
+                                    <ComboBox x:Name="MusicEnergy" Header="Energy" Width="160" HorizontalAlignment="Left"/>
+                                    <DatePicker x:Name="MusicDate" Header="Date added"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+    </NavigationView>
+</Window>

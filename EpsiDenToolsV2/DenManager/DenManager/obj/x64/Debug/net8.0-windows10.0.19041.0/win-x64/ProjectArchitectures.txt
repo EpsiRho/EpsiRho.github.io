@@ -1,0 +1,1 @@
+C:\Users\jhset\Documents\GitHub\EpsiRho.github.io\EpsiDenToolsV2\DenManager\DenManager\DenManager.csproj;x64

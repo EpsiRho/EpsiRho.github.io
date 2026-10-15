@@ -11,11 +11,11 @@
     <meta name="theme-color" content="#06afda" />
     <meta property="og:logo" content="https://epsirho.com/images/favicon-32x32.webp" />
 
-    <meta property="og:title" content="Epsi's Den V3" />
-    <meta property="og:description" content="Built a new site from the ground up to showcase my stuff" />
-    <meta property="og:image" content="https://epsirho.com/images/denblogheader.webp" />
+    <meta property="og:title" content="Epsi&#39;s Den V3" />
+    <meta property="og:description" content="Built a new site from the ground up to showcase my stuff." />
+    <meta property="og:image" content="/images/denblogheader.webp" />
 
-    <title>Epsi's Den V3</title>
+    <title>Epsi&#39;s Den V3</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/posts.css">
@@ -92,37 +92,16 @@
         </aside>
 
         <main class="main-content">
-            <article class="blog-post-page">
-                <img src="/images/denblogheader.webp" alt="Blog Header" class="post-header-image"
-                     style="view-transition-name: header-den-site-blog;">
-                </br>
-                <span class="post-tag">HTML</span>
-                <span class="post-tag">CSS</span>
-                <span class="post-tag">JS</span>
-                <span class="post-tag">C#</span>
-
-                <h1 class="post-title" id="mdpost-title">Epsi's Den V3</h1>
-                <p class="post-description">Built a new site from the ground up to showcase my stuff.</p>
-                <div class="post-date">12/16/2024 12:00:00 AM</div>
-                <div class="post-body">
-                    <p>I had previously been using <a href="https://gohugo.io/">Hugo</a> to build the static blog site I had been using for personal site,posts,projects. But I found it very limiting, and a bit of a pain to manage so I decided to just set up a new site and some backend tools from scratch.</p>
-</br>
-<h2 id="mdheadr--Backend-Tools"> Backend Tools</h2>
-<p>I wanted to make it simple to make new project/post pages and add new music recommendations so I built some tools for doing so. With music, it's as simple as sending any link (spotify, apple, tidal, etc) and getting an <a href="https://odesli.co/">odesli</a> link back, which will link to any streaming platform that hosts the song/album. Or if it's not available normally, I can add one with a custom Link/Title/Artist/Thumbnail.</p>
-</br>
+            <article class="blog-post-page"><img src="/images/denblogheader.webp" alt="" class="post-header-image"><div><span class="post-tag">HTML</span><span class="post-tag">CSS</span><span class="post-tag">JS</span><span class="post-tag">C#</span></div><h1 class="post-title" id="mdpost-title">Epsi&#39;s Den V3</h1><p class="post-description">Built a new site from the ground up to showcase my stuff.</p><div class="post-date">December 16, 2024</div><div class="post-body"><p>I had previously been using <a href="https://gohugo.io/">Hugo</a> to build the static blog site I had been using for personal site,posts,projects. But I found it very limiting, and a bit of a pain to manage so I decided to just set up a new site and some backend tools from scratch.</p>
+<h2 id="mdheadr-backend-tools">Backend Tools</h2>
+<p>I wanted to make it simple to make new project/post pages and add new music recommendations so I built some tools for doing so. With music, it&#39;s as simple as sending any link (spotify, apple, tidal, etc) and getting an <a href="https://odesli.co/">odesli</a> link back, which will link to any streaming platform that hosts the song/album. Or if it&#39;s not available normally, I can add one with a custom Link/Title/Artist/Thumbnail.</p>
 <p>For posts, I built a markdown to html parser and defined a simple metadata header for defining their info. In the backend I just link a path to a markdown file, or a folder of them, and it will generate the html files for each post, and json data for each post, so the site can list the available pages.</p>
-</br>
-<p>These backend tools were made a lot quicker with a nice UI thanks to another project I'm working on, MelonUI. MelonUI is used in Melon right now, but I wanted to give it a big upgrade, and with it move to a proper library. The DenTools were one of the first full apps I've built using it, and it's given me lots of info about how to make the library better. I'll have a lot more detail on that soon, hopefully I can get it v1'd and swap Melon over to the new library soon.</p>
-</br>
-<h2 id="mdheadr--Front-End"> Front End</h2>
+<p>These backend tools were made a lot quicker with a nice UI thanks to another project I&#39;m working on, MelonUI. MelonUI is used in Melon right now, but I wanted to give it a big upgrade, and with it move to a proper library. The DenTools were one of the first full apps I&#39;ve built using it, and it&#39;s given me lots of info about how to make the library better. I&#39;ll have a lot more detail on that soon, hopefully I can get it v1&#39;d and swap Melon over to the new library soon.</p>
+<h2 id="mdheadr-front-end">Front End</h2>
 <p>As for the rest of the site, I learned a little bit more css and javascript for this. Animation and colors was a big one, I do wonder why gradients are so much of a pain to work with. I had fun but also was really stumped and annoyed at css much of the time haha.</p>
-</br>
-<p>This was mostly motivated by wanting to revamp the Music recommendations page. I used to just have a list of a couple albums I enjoyed, but I wanted more. The <a href="https://epsirho.com/site/music">new page</a> shows off cards of albums, songs, or some musical work that I recommend. It shows an image, title, artist name(s), rating (0.0 -> 5.0), and an energy level (think: chill -> hardstyle). Energy is shown by color: dark blue, light blue, green, yellow, red. The rating modifies the color's brightness.</p>
-</br>
-<p>If you're reading this, hi! You're already on the site this post is about, and if you've read this far you should check out the rest of the site! It's got lots of polish and a few easter eggs as well, like a hidden page somewhere!</p>
-
-                </div>
-            </article>
+<p>This was mostly motivated by wanting to revamp the Music recommendations page. I used to just have a list of a couple albums I enjoyed, but I wanted more. The <a href="https://epsirho.com/site/music">new page</a> shows off cards of albums, songs, or some musical work that I recommend. It shows an image, title, artist name(s), rating (0.0 -&gt; 5.0), and an energy level (think: chill -&gt; hardstyle). Energy is shown by color: dark blue, light blue, green, yellow, red. The rating modifies the color&#39;s brightness.</p>
+<p>If you&#39;re reading this, hi! You&#39;re already on the site this post is about, and if you&#39;ve read this far you should check out the rest of the site! It&#39;s got lots of polish and a few easter eggs as well, like a hidden page somewhere!</p>
+</div></article>
             <div class="blog-post-page">
                 <div id="comments-header">
                     <h1>Comments</h1>
@@ -246,12 +225,7 @@
                         Settings
                     </li>
                 </a>
-                <hr style="margin: 10px 10px 10px 5px;" id="setdivider"/>
-                <a href="#mdpost-title"><li>Epsi's Den V3</li></a>
-<a href="#mdheadr--Backend-Tools"><li> Backend Tools</li></a>
-<a href="#mdheadr--Front-End"><li> Front End</li></a>
-
-            </ul>
+                <hr style="margin: 10px 10px 10px 5px;" id="setdivider"/><a href="#mdpost-title"><li>Epsi&#39;s Den V3</li></a></ul>
             </div>
         </aside>
     </div>
