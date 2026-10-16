@@ -8,12 +8,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeButton = dialog.querySelector('.pf-dialog-close');
     let lastTrigger = null;
     let borrowedVideo = null;
+    const preparedVideos = new WeakSet();
+
+    const shouldPlayVideo = video => !document.hidden &&
+        (page.contains(video) || (dialog.open && dialog.contains(video)));
 
     const playVideo = video => {
         video.play().catch(error => {
             if (error.name !== 'AbortError') console.warn('Could not start preview video:', error);
         });
     };
+
+    const prepareVideo = video => {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.playsInline = true;
+        video.autoplay = true;
+        video.controls = false;
+        video.preload = 'auto';
+        // Replay explicitly instead of relying on native WebM looping and seeking on mobile.
+        video.loop = false;
+        if (preparedVideos.has(video)) return;
+        preparedVideos.add(video);
+        video.addEventListener('ended', () => {
+            video.currentTime = 0;
+            if (shouldPlayVideo(video)) playVideo(video);
+        });
+        const resumeWhenReady = () => {
+            if (video.paused && shouldPlayVideo(video)) playVideo(video);
+        };
+        video.addEventListener('canplay', resumeWhenReady);
+        video.addEventListener('seeked', resumeWhenReady);
+    };
+
+    page.querySelectorAll('video').forEach(prepareVideo);
 
     page.querySelectorAll('[data-pf-preview]').forEach(button => {
         button.addEventListener('click', () => {
@@ -54,22 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const videos = content.querySelectorAll('video');
-            videos.forEach(video => {
-                // Set playback properties explicitly; template clones may only retain the attributes.
-                video.muted = true;
-                video.defaultMuted = true;
-                video.playsInline = true;
-                video.loop = true;
-                video.controls = false;
-                video.preload = 'auto';
-            });
+            videos.forEach(prepareVideo);
 
             dialog.showModal();
             // Start while the opening tap still grants user activation on mobile browsers.
-            videos.forEach(video => {
-                if (video !== borrowedVideo?.video) video.load();
-                playVideo(video);
-            });
+            videos.forEach(playVideo);
             closeButton.focus();
         });
     });
