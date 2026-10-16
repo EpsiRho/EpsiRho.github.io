@@ -33,7 +33,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 figure.append(image, caption);
             }
 
+            const videos = content.querySelectorAll('video');
+            videos.forEach(video => {
+                // Set playback properties explicitly; template clones may only retain the attributes.
+                video.muted = true;
+                video.defaultMuted = true;
+                video.playsInline = true;
+                video.loop = true;
+                video.controls = false;
+                video.preload = 'auto';
+            });
+
             dialog.showModal();
+            // Start while the opening tap still grants user activation on mobile browsers.
+            videos.forEach(video => {
+                video.load();
+                video.play().catch(error => console.warn('Could not start preview video:', error));
+            });
             closeButton.focus();
         });
     });
@@ -43,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (event.target === dialog) dialog.close();
     });
     dialog.addEventListener('close', () => {
+        content.querySelectorAll('video').forEach(video => video.pause());
         content.replaceChildren();
         lastTrigger?.focus();
         lastTrigger = null;

@@ -18,24 +18,47 @@
     font-family: Consolas, "Courier New", monospace;
 }
 
-table {
+#pointer-fishing-page .pf-requirements-scroll {
+  max-width: 100%;
+  margin: 1rem 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+#pointer-fishing-page .pf-requirements-scroll:focus-visible {
+  outline: 2px solid var(--pf-mint);
+  outline-offset: 3px;
+}
+
+#pointer-fishing-page .pf-requirements-hint { display: none; }
+
+#pointer-fishing-page .pf-requirements {
   table-layout: fixed;
-  width: 70%;
+  width: 100%;
+  min-width: 36rem;
   margin: 0 auto;
   border-collapse: collapse;
   border: 3px solid var(--pf-copper-light);
+  font-size: .95rem;
+  line-height: 1.5;
 }
 
-th,
-td {
-  padding: 0.6em;
+#pointer-fishing-page .pf-requirements th,
+#pointer-fishing-page .pf-requirements td {
+  padding: .85rem 1rem;
   border: 2px solid var(--pf-line);
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
 }
 
-tbody tr:nth-child(odd) {
+#pointer-fishing-page .pf-requirements th { color: var(--pf-gold); }
+#pointer-fishing-page .pf-requirements th:first-child { width: 22%; }
+
+#pointer-fishing-page .pf-requirements tbody tr:nth-child(odd) {
   background-color: var(--pf-panel-deep);
 }
-tbody tr:nth-child(even) {
+#pointer-fishing-page .pf-requirements tbody tr:nth-child(even) {
   background-color: var(--pf-background);
 }
 
@@ -237,7 +260,7 @@ tbody tr:nth-child(even) {
 #pointer-fishing-page .pf-preview-label::after { content: " ↗"; color: var(--pf-mint); }
 
 #pointer-fishing-page .pf-footnotes { border-top: 1px solid var(--pf-line); padding-top: 1rem; }
-#pointer-fishing-page .pf-footnotes details { background: var(--pf-panel); border: 1px solid var(--pf-line); padding: .7rem 1rem; margin: .6rem 0; }
+#pointer-fishing-page .pf-footnotes details { min-width: 0; overflow-wrap: anywhere; background: var(--pf-panel); border: 1px solid var(--pf-line); padding: .7rem 1rem; margin: .6rem 0; }
 #pointer-fishing-page .pf-footnotes summary { cursor: pointer; color: var(--pf-gold); font-weight: 700; }
 #pointer-fishing-page .pf-footnotes a { color: var(--pf-mint); overflow-wrap: anywhere; }
 #pointer-fishing-page .pf-footnotes ul { padding-left: 1.3rem; }
@@ -323,6 +346,8 @@ html:has(#pf-dialog[open]) { scrollbar-gutter: stable; }
     #pointer-fishing-page .project-header-container { height: 260px; }
     #pointer-fishing-page .pf-card .pf-preview img,
     #pointer-fishing-page .pf-card .pf-preview video { height: 210px; }
+    #pointer-fishing-page .pf-footnotes details { padding: .85rem .75rem; }
+    #pointer-fishing-page .pf-requirements-hint { display: block; color: var(--pf-mint); font-size: .85rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
