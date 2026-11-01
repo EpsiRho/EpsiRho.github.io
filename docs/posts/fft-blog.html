@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/posts.css">
     <link rel="stylesheet" href="/styles/comments.css">
+<link rel="stylesheet" href="/styles/fvz.css">
 </head>
 <body>
     <div class="container">
@@ -745,7 +746,20 @@ Buffer.BlockCopy(allDeltas, 0, bytes, 0, bytes.Length);
 </li>
 </ul>
 <h2 id="mdheadr-fvz-examples">FVZ Examples</h2>
-<p>I&#39;ve made a quick JS implementation of the decoder, so you can enjoy live examples of real .fvz files being played back! No audio (gotta play nice with Mr. Copyright), but can you guess the songs being played?</p>
+<p>I&#39;ve made a quick JS implementation of the decoder, so you can enjoy live examples of real .fvz files being played back! No audio (gotta play nice with Mr. Copyright), but can you guess the songs being played? (Click the blurred song name to reveal it.)</p>
+<div id="visualizer" class="visualizer-container">
+<canvas id="visualizerCanvas" class="visualizer-canvas" width="800" height="400"></canvas>
+<div class="controls"><button type="button" id="playBtn">Play</button><div class="timeline"><input type="range" id="timelineSlider" min="0" max="100" value="0" disabled></div></div>
+<div class="info-panel"><div><span id="currentTime">00:00</span> / <span id="totalTime">00:00</span></div><div><span class="songName songNameHidden" title="Reveal Song Name">Scatman John - Scatman&#39;s World</span></div><div>Frame: <span id="currentFrame">0</span> / <span id="totalFrames">0</span></div></div></div>
+<div id="visualizer2" class="visualizer-container">
+<canvas id="visualizerCanvas2" class="visualizer-canvas" width="800" height="400"></canvas>
+<div class="controls"><button type="button" id="playBtn2">Play</button><div class="timeline"><input type="range" id="timelineSlider2" min="0" max="100" value="0" disabled></div></div>
+<div class="info-panel"><div><span id="currentTime2">00:00</span> / <span id="totalTime2">00:00</span></div><div><span class="songName songNameHidden" title="Reveal Song Name">Caleb Belkin - for her.</span></div><div>Frame: <span id="currentFrame2">0</span> / <span id="totalFrames2">0</span></div></div></div>
+<div id="visualizer3" class="visualizer-container">
+<canvas id="visualizerCanvas3" class="visualizer-canvas" width="800" height="400"></canvas>
+<div class="controls"><button type="button" id="playBtn3">Play</button><div class="timeline"><input type="range" id="timelineSlider3" min="0" max="100" value="0" disabled></div></div>
+<div class="info-panel"><div><span id="currentTime3">00:00</span> / <span id="totalTime3">00:00</span></div><div><span class="songName songNameHidden" title="Reveal Song Name">Fox Stevenson - What Are You (Wow)</span></div><div>Frame: <span id="currentFrame3">0</span> / <span id="totalFrames3">0</span></div></div></div>
+
 <h1 id="mdheadr-wasapi-woes">WASAPI Woes</h1>
 <h2 id="mdheadr-per-process">Per Process</h2>
 <p>While I was working on the audio visualizer, just for fun, I decided I wanted to see if I could split up process audio and show different colors/visualizer settings for individual processes. Starting in Windows 10 Build 20348 (aka Windows Server 2022) and up you can use <a href="https://learn.microsoft.com/en-us/windows/win32/api/audioclientactivationparams/ns-audioclientactivationparams-audioclient_activation_params">AUDIOCLIENTACTIVATIONPARAMS</a> to specify a filter with a process ID. I struggled a lot trying to get this to work through PInvoking windows APIs but at the time of looking in to this NAudio hadn&#39;t implemented support yet. After some digging I ran into <a href="https://github.com/JustArion/NAudio/tree/process-audio-capture">JustArion&#39;s PR with a working implementation</a> but still ran into trouble. After many frustrating hours of debugging I discovered that instead of providing 32-bit floats like the WASAPI normally does, when doing per-process the audio is provided as PCM-16. (I never realized that would be the case D:) After decoding it as PCM-16 it looks correct! If you&#39;re looking to do anything similar in C#, you can follow the <a href="https://github.com/microsoft/windows-classic-samples/tree/main/Samples/ApplicationLoopback">reference cpp implementation</a> and write a wrapping around the WASAPIs, or you could also check out this <a href="https://github.com/qH0sT/ApplicationLoopBack">library from qH0sT</a> or use JustArion&#39;s NAudio fork on the process-audio-capture branch. NAudio hasn&#39;t <a href="https://github.com/naudio/NAudio/issues/878">merged in support</a> just yet (as these are all relatively new APIs and implementations for them). This also means that if you want to build FreqFreak, you&#39;ll need to reference JustArion&#39;s version of NAudio.</p>
@@ -991,6 +1005,9 @@ Console.WriteLine($&quot;Error range after {frames} frames: {errMin:0.###} -&gt;
     <link id="codeTheme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
+<script src="https://unpkg.com/fzstd@0.1.1"></script>
+<script src="/js/fvzDecoder.js"></script>
+<script src="/js/fvz.js"></script>
 </body>
 </html>
 

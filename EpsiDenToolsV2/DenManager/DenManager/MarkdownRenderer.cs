@@ -13,6 +13,7 @@ public static class MarkdownRenderer
     private static readonly Regex ListItem = new(@"^(?<indent>[ \t]*)(?<marker>[-*+]|\d+[.)])[ \t]+(?<body>.*)$", RegexOptions.Compiled);
     private static readonly Regex Link = new(@"(!?)\[([^\]]+)\]\(([^)]+)\)(?:\{width=(\d{1,3})%\})?", RegexOptions.Compiled | RegexOptions.IgnoreCase);
     private static readonly Regex TableDivider = new(@"^\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?$", RegexOptions.Compiled);
+    public const string FvzExamplesDirective = "{{fvz-examples}}";
 
     public static string Render(string markdown)
     {
@@ -62,6 +63,12 @@ public static class MarkdownRenderer
                 while (next < lines.Length && string.IsNullOrWhiteSpace(lines[next])) next++;
                 if (lists.Count == 0 || next >= lines.Length || !ListItem.IsMatch(lines[next]))
                     CloseLists();
+                continue;
+            }
+            if (line == FvzExamplesDirective)
+            {
+                FlushParagraph(); CloseLists();
+                output.AppendLine(RenderFvzExamples());
                 continue;
             }
             if (line.Contains('|') && index + 1 < lines.Length && TableDivider.IsMatch(lines[index + 1].Trim()))
@@ -146,6 +153,33 @@ public static class MarkdownRenderer
 
     private static IEnumerable<string> TableCells(string line) =>
         line.Trim().Trim('|').Split('|').Select(x => x.Trim());
+
+    private static string RenderFvzExamples()
+    {
+        var songs = new[] {
+            "Scatman John - Scatman's World",
+            "Caleb Belkin - for her.",
+            "Fox Stevenson - What Are You (Wow)"
+        };
+        var html = new StringBuilder();
+        for (var index = 0; index < songs.Length; index++)
+        {
+            var suffix = index == 0 ? "" : (index + 1).ToString();
+            html.Append("<div id=\"visualizer").Append(suffix).AppendLine("\" class=\"visualizer-container\">");
+            html.Append("<canvas id=\"visualizerCanvas").Append(suffix).AppendLine("\" class=\"visualizer-canvas\" width=\"800\" height=\"400\"></canvas>");
+            html.Append("<div class=\"controls\"><button type=\"button\" id=\"playBtn").Append(suffix)
+                .Append("\">Play</button><div class=\"timeline\"><input type=\"range\" id=\"timelineSlider")
+                .Append(suffix).AppendLine("\" min=\"0\" max=\"100\" value=\"0\" disabled></div></div>");
+            html.Append("<div class=\"info-panel\"><div><span id=\"currentTime").Append(suffix)
+                .Append("\">00:00</span> / <span id=\"totalTime").Append(suffix)
+                .Append("\">00:00</span></div><div><span class=\"songName songNameHidden\" title=\"Reveal Song Name\">")
+                .Append(WebUtility.HtmlEncode(songs[index]))
+                .Append("</span></div><div>Frame: <span id=\"currentFrame").Append(suffix)
+                .Append("\">0</span> / <span id=\"totalFrames").Append(suffix)
+                .AppendLine("\">0</span></div></div></div>");
+        }
+        return html.ToString();
+    }
 
     private static int IndentWidth(string whitespace)
     {

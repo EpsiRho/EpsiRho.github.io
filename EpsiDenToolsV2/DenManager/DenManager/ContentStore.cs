@@ -339,9 +339,25 @@ public sealed class ContentStore
             }
             html = Regex.Replace(html, "(<hr[^>]*id=\"setdivider\"[^>]*/>).*?(</ul>)",
                 m => m.Groups[1].Value + toc + m.Groups[2].Value, RegexOptions.Singleline);
-            return html;
+            return WithFvzAssets(html, post.Markdown);
         }
-        return $"<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>{title}</title><link rel=\"stylesheet\" href=\"/styles/main.css\"><link rel=\"stylesheet\" href=\"/styles/posts.css\"></head><body><div class=\"container\"><aside class=\"sidebar\"><h1>Epsi's Den</h1><nav><a href=\"/\">Home</a> · <a href=\"/site/posts\">Blog posts</a> · <a href=\"/site/projects\">Projects</a> · <a href=\"/site/music\">Music</a></nav></aside><main class=\"main-content\">{article}</main></div></body></html>";
+        var fallback = $"<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>{title}</title><link rel=\"stylesheet\" href=\"/styles/main.css\"><link rel=\"stylesheet\" href=\"/styles/posts.css\"></head><body><div class=\"container\"><aside class=\"sidebar\"><h1>Epsi's Den</h1><nav><a href=\"/\">Home</a> · <a href=\"/site/posts\">Blog posts</a> · <a href=\"/site/projects\">Projects</a> · <a href=\"/site/music\">Music</a></nav></aside><main class=\"main-content\">{article}</main></div></body></html>";
+        return WithFvzAssets(fallback, post.Markdown);
+    }
+
+    private static string WithFvzAssets(string html, string markdown)
+    {
+        if (!markdown.Contains(MarkdownRenderer.FvzExamplesDirective, StringComparison.Ordinal)) return html;
+        if (!html.Contains("/styles/fvz.css", StringComparison.Ordinal))
+            html = html.Replace("</head>", "<link rel=\"stylesheet\" href=\"/styles/fvz.css\">\n</head>", StringComparison.OrdinalIgnoreCase);
+        var scripts = new[] {
+            "https://unpkg.com/fzstd@0.1.1",
+            "/js/fvzDecoder.js",
+            "/js/fvz.js"
+        };
+        var missing = string.Join("\n", scripts.Where(script => !html.Contains("src=\"" + script + "\"", StringComparison.Ordinal))
+            .Select(script => "<script src=\"" + script + "\"></script>"));
+        return missing.Length == 0 ? html : html.Replace("</body>", missing + "\n</body>", StringComparison.OrdinalIgnoreCase);
     }
 
     private static string ProjectHtml(ProjectEntry project, string template)

@@ -49,9 +49,9 @@ class VisualizerPlayer {
 
     resizeCanvas() {
         
-        // Get the actual container width (or use window width)
+        // The published page no longer has the old post-page ID.
         const container = this.canvas.parentElement;
-        const containerWidth = document.getElementById("post-page").clientWidth;
+        const containerWidth = container?.clientWidth || window.innerWidth;
         
         // Use container width, but ensure minimum width for 250 bars
         const minWidth = 250; // At least 1px per bar
